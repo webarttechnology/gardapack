@@ -127,7 +127,7 @@
                                 </div>
                                 <div class="text-center py-5 px-4">
                                     <span class="title d-block mb-2"><a href="{{ url('product-details', $product->slug) }}">{{ $product->name }}</a></span>
-                                    <span class="price d-block fwEbold">@if($product->discount !=0) <del>Rs. {{ $product->price }}</del>Rs. {{ $product->discount }} @else Rs. {{ $product->price }} @endif</span>
+                                    <span class="price d-block fwEbold">@if($product->discount !=0) <del>$ {{ $product->price }}</del>$ {{ $product->discount }} @else $ {{ $product->price }} @endif</span>
                                     {{-- <span class="hotOffer fwEbold text-uppercase text-white position-absolute d-block">HOT</span> --}}
                                     {{-- <span class="hotOffer green fwEbold text-uppercase text-white position-absolute d-block ml-8">Sale</span> --}}
                                 </div>

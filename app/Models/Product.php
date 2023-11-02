@@ -37,7 +37,10 @@ class Product extends Model
         'weight',
         'length',
         'width',
-        'height'
+        'height',
+        'features',
+        'color_added',
+        'qty_check',
     ];
 
     public function variations()

@@ -53,6 +53,7 @@
 </div>
 
 <!-- include jQuery library -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
 <script src="{{ asset('front_end/js/jquery-3.4.1.min.js')}}"></script>
 <!-- include bootstrap popper JavaScript -->
@@ -64,6 +65,7 @@
 <script type="text/javascript" src="{{ asset('front_end/js/stellarnav.min.js')}}"></script>
 <script src="{{asset('front_end/js/cart.js')}}"></script>
 <script src="{{asset('front_end/js/wish-list.js')}}"></script>
+<script src="{{asset('front_end/js/product.js')}}"></script>
 
 <!---------Owl Caraousel Script------------>
 

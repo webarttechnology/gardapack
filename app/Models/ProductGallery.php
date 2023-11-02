@@ -12,6 +12,7 @@ class ProductGallery extends Model
     protected $table = "product_galleries";
     protected $fillable = [
           'product_id',
+          'color',
           'gallery_image'
     ];
 

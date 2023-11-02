@@ -129,6 +129,17 @@
                             <br>
 
                             <div class="">
+                                <label class="form-label">Features</label>
+                                <textarea class="ckeditor form-control" name="features">
+                                    {!! $products->features !!}
+                                </textarea>
+                                @if ($errors->has('features'))
+                                <span class="text-danger">{{ $errors->first('features') }}</span>
+                                @endif
+                            </div>
+                            <br>
+
+                            <div class="">
                                 <label class="form-label">Product Price</label>
                                 <input type="number" class="form-control" value="{{ $products->price }}"
                                     name="product_price" />
@@ -184,12 +195,19 @@
                             </div>
                             </div>
 
+                            <div class="" id="no_in_stock_div">
+                                <label class="form-label">Want to add QTY?</label>
+                                <input type="checkbox" name="qty_checkbox" id="qty_checkbox" @if($products->qty_check != null) checked @endif onclick="QtyAdd()">
+                            </div>
+                            <br>
+
 
                             <!-- Variation code start -->
                             @foreach($variations as $variation)
                             @if($variation->variation != "NA")
-                            <div class="row borderBp" id="variations">
-                                <div class="col-md-3 col-12">
+                            <div class="row">
+                            <div class="borderBp" id="variations" style="display: block">
+                                <div class="col-md-12 col-12">
                                     <div class="form-group">
                                         <label>Variation</label>
                                         <input type="text" name="ropeChain[]" value="{{ $variation->variation }}"
@@ -197,55 +215,8 @@
                                             placeholder="0.68 Mm Thickness 18 Inch" />
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-12">
-                                    <div class="form-group">
-                                        <label>Carat</label>
-                                        <input type="number" name="carat[]" id="carat" value="{{ $variation->carat }}"
-                                            class="form-control" placeholder="Ex 14k" />
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-12">
-                                    <div class="form-group">
-                                        <label>Size</label>
-                                        <input type="number" name="size[]" id="size" value="{{ $variation->size }}"
-                                            class="form-control" placeholder="Size" />
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-12">
-                                    <div class="form-group">
-                                        <label>Amount</label>
-                                        <input type="num" name="amount[]" id="amount1" value="{{ $variation->amount }}"
-                                            class="form-control" placeholder="Amount" onkeyup="getdiscountprice(1)" />
-                                        @if ($errors->has('amount'))
-                                        <span class="text-danger">{{ $errors->first('amount') }}</span>
-                                        @endif
-                                    </div>
-                                </div>
-
-                                <div class="col-md-3 col-12 mt-3">
-                                    <div class="form-group">
-                                        <label>Color</label>
-                                        <input type="text" name="gold_color[]" id="gold_color"
-                                            value="{{ $variation->color }}" class="form-control" placeholder="Color" />
-                                        @if ($errors->has('gold_color'))
-                                        <span class="text-danger">{{ $errors->first('gold_color') }}</span>
-                                        @endif
-                                    </div>
-                                </div>
-
-                                <div class="col-md-3 col-12 mt-3">
-                                    <div class="form-group">
-                                        <label>Discount%</label>
-                                        <input type="num" name="discount_percentage[]" id="discount_percentage1"
-                                            value="{{ $variation->discount }}" class="form-control"
-                                            placeholder="Discount Percentage" onkeyup="getdiscountprice(1)" />
-                                        @if ($errors->has('discount_percentage'))
-                                        <span class="text-danger">{{ $errors->first('discount_percentage') }}</span>
-                                        @endif
-                                    </div>
-                                </div>
-
-                                <div class="col-md-3 col-12 mt-3">
+                                
+                                <div class="col-md-12 col-12 mt-3">
                                     <div class="form-group">
                                         <label>Final Price</label>
                                         <input type="num" name="final_price[]" id="final_price1" class="form-control"
@@ -257,13 +228,6 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-3 col-12 mt-3">
-                                    <div class="form-group">
-                                        <label>Image</label>
-                                        <input type="file" name="otherimage[]" id="otherimage" class="form-control" />
-                                    </div>
-                                </div>
-
                                 <div class="col-md-2 col-12 rope-chan mt-3">
                                     <p id="line_no"></p>
                                     <span class="btn btn-primary m-b-5 m-t-5" id="addrow" style="float: left;"
@@ -271,11 +235,12 @@
                                         
                                     <a href="{{ url('admin/product/variation/delete', $variation->id) }}" onclick="return confirm('Are you sure you want to delete this item?');"> 
                                     <span class="btn btn-danger m-b-5 m-t-5" id="removerow" 
-                                    style="float: right; position: relative; top: -38px; left: 10px;">
+                                    style="float: right; position: relative; left: 10px;">
                                     <i class="bx bx-trash" aria-hidden="true"></i></span>
                                     </a>
 
                                 </div>
+                            </div>
                             </div>
                             @endif
                             @endforeach
@@ -426,6 +391,15 @@
                                 <label class="form-label">Rating</label>
                                 <p><b> {{ $rating }} Out of 5.00 ( {{ $total_no_of_rating }} Reviews ) </b></p>
                                 {{-- <input type="number" class="form-control" name="rating" value="{{ $products->rating }}"  /> --}}
+                            </div>
+                            <br>
+
+                            <div class="">
+                                <label class="form-label">Let Users choose Color?</label>
+                                <input type="checkbox" name="color_added" id="color_added" class="" @if($products->color_added != null) checked @endif>
+                                @if ($errors->has('color_added'))
+                                <span class="text-danger">{{ $errors->first('color_added') }}</span>
+                                @endif
                             </div>
                             <br>
 

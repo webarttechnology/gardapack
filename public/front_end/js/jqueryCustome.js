@@ -16890,13 +16890,13 @@ $(function() {
         max: 50000,
         values: [ 0, 50000 ],
         slide: function( event, ui ) {
-            $( "#amount" ).html( "Price : Rs. " + ui.values[ 0 ] + " - RS. " + ui.values[ 1 ] );
+            $( "#amount" ).html( "Price : $ " + ui.values[ 0 ] + " - RS. " + ui.values[ 1 ] );
     $( "#amount1" ).val(ui.values[ 0 ]);
     $( "#amount2" ).val(ui.values[ 1 ]);
         }
     });
-    $( "#amount" ).html( "Price : Rs. " + $( "#slider-range" ).slider( "values", 0 ) +
-    " - Rs. " + $( "#slider-range" ).slider( "values", 1 ) );
+    $( "#amount" ).html( "Price : $ " + $( "#slider-range" ).slider( "values", 0 ) +
+    " - $ " + $( "#slider-range" ).slider( "values", 1 ) );
 
     $( "#amount1" ).val($( "#slider-range" ).slider( "values", 0 ));
     $( "#amount2" ).val($( "#slider-range" ).slider( "values", 1 ));

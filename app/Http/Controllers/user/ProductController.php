@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
-use App\Models\{Product, Category, ProductGallery, Rating};
+use App\Models\{Product, Category, ProductGallery, Rating, Variations};
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -96,4 +96,22 @@ class ProductController extends Controller
         $gal = ProductGallery::whereId($id)->first();
         return response()->json(asset("admin/product/gallery/".$gal->gallery_image));
     }
+
+    /**
+     * GAllery Image Fetch
+     */
+
+     public function galImg_fetch($prod_id, $color){
+        $prodImg = ProductGallery::where('product_id', $prod_id)->where('color', $color)->first();
+        if($prodImg != null){
+            return response()->json(['image' => $prodImg->gallery_image]);
+        }else{
+            return response()->json(['image' => "null"]);
+        }
+     }
+
+     public function prodVar_fetch($prod_id){
+        $prodVar = Variations::whereId($prod_id)->first();
+        return response()->json(['variation' => $prodVar->final_price]);
+     }
 }

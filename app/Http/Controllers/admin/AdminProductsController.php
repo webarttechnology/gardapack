@@ -40,6 +40,7 @@ class AdminProductsController extends Controller
                     'name' => 'required|max:200',
                     'featured_img' => 'required|max:2048|mimes:jpg,jpeg,png,gif',
                     'stock_status' => 'required|not_in:Select Status',
+                    'features' => 'required',
                ]);
 
                $price = ($request->product_price == null) ? 0 : ($request->product_price);
@@ -75,6 +76,8 @@ class AdminProductsController extends Controller
                      $no_in_stock = null;
                }
 
+               $color_added = ($request->has('color_added')) ? ($request->color_added) : null;
+
                $product = Product::create([
                      'category_id' => $request->categories,
                      'sub_category_id' => $request->subcategories,
@@ -100,6 +103,9 @@ class AdminProductsController extends Controller
                      'length' => $request->length,
                      'width' => $request->width,
                      'height' => $request->height,
+                     'features' => $request->features,
+                     'color_added' => $color_added,
+                     'qty_check' => $request->qty_checkbox,
                ]);
 
                // add variations
@@ -115,6 +121,7 @@ class AdminProductsController extends Controller
                            $gold_color = ($request->gold_color[$key]) ?? 'NA' ?? $request->gold_color[$key];
                            $discount_percentage1 = ($request->discount_percentage1[$key]) ?? 'NA' ?? $request->discount_percentage1[$key];
                            $discount_amt1 = ($request->discount_amt1[$key]) ?? 'NA' ?? $request->discount_amt1[$key];
+                           $final_price = ($request->final_price[$key]) ?? 'NA' ?? $request->final_price[$key];
 
 
                             $new_var = Variations::create([
@@ -125,7 +132,7 @@ class AdminProductsController extends Controller
                                 'amount' => $amount,
                                 'color' => $gold_color,
                                 'discount' => $discount_percentage1,
-                                'final_price' => $discount_amt1,
+                                'final_price' => $final_price,
                             ]);
 
 
@@ -166,10 +173,12 @@ class AdminProductsController extends Controller
 
         $gallery = ProductGallery::create([
               'product_id' => $id,
+              'color' => $request->color,
               'gallery_image' => $imageName
         ]);
 
-        return response()->json(['success'=>$imageName]);
+        return redirect('admin/product/gallery/lists/'.$id)->with('success', 'Successfully Saved');
+        // return response()->json(['success'=>$imageName]);
     }
 
     /* 
@@ -266,9 +275,11 @@ class AdminProductsController extends Controller
 
             return view('admin.product.update', compact('products', 'variations', 'categories'));
         }else{
+            
             $request->validate([
                 'categories' => 'required|not_in:Select a Category',
                 'name' => 'required|max:200',
+                'features' => 'required',
            ]);
 
            $price = ($request->product_price == null) ? 0 : ($request->product_price);
@@ -287,6 +298,8 @@ class AdminProductsController extends Controller
             else{
                     $no_in_stock = null;
             }
+
+            $color_added = ($request->has('color_added')) ? ($request->color_added) : null;
 
            $basics = Product::whereId($id)->update([
                 'category_id' => $request->categories,
@@ -310,6 +323,10 @@ class AdminProductsController extends Controller
                  'length' => $request->length,
                  'width' => $request->width,
                  'height' => $request->height,
+
+                 'features' => $request->features,
+                 'color_added' => $color_added,
+                 'qty_check' => $request->qty_checkbox,
            ]);
 
 
@@ -345,6 +362,7 @@ class AdminProductsController extends Controller
            if($request->has('ropeChain')){
                $variations = $request->ropeChain;
                
+               Variations::where('product_id', $id)->delete();
                foreach($variations as $key => $variation){
                         $name = ($request->ropeChain[$key]) ?? 'NA' ?? $request->ropeChain[$key];
                         $carat = ($request->carat[$key]) ?? 'NA' ?? $request->carat[$key];
@@ -353,6 +371,7 @@ class AdminProductsController extends Controller
                         $gold_color = ($request->gold_color[$key]) ?? 'NA' ?? $request->gold_color[$key];
                         $discount_percentage1 = ($request->discount_percentage1[$key]) ?? 'NA' ?? $request->discount_percentage1[$key];
                         $discount_amt1 = ($request->discount_amt1[$key]) ?? 'NA' ?? $request->discount_amt1[$key];
+                        $final_price = ($request->final_price[$key]) ?? 'NA' ?? $request->final_price[$key];
 
                         /**  
                          * check the variation is already exists or not 
@@ -360,8 +379,6 @@ class AdminProductsController extends Controller
                          * else, a new variation will be created
                         */
 
-                        $check = Variations::whereVariation($name)->whereCarat($carat)->whereId($id)->first();
-                        if($check == null){
                                 $new_var = Variations::create([
                                     'product_id' => $id,
                                     'variation' => $name,
@@ -370,32 +387,8 @@ class AdminProductsController extends Controller
                                     'amount' => $amount,
                                     'color' => $gold_color,
                                     'discount' => $discount_percentage1,
-                                    'final_price' => $discount_amt1,
+                                    'final_price' => $final_price,
                                 ]);
-                        }else{
-                                    Variations::where('product_id', $id)->update([
-                                        'variation' => $name,
-                                        'carat' => $carat,
-                                        'size' => $size,
-                                        'amount' => $amount,
-                                        'color' => $gold_color,
-                                        'discount' => $discount_percentage1,
-                                        'final_price' => $discount_amt1,
-                                    ]);
-                        }
-
-                        // // upload image
-                        // if($request->hasFile('otherimage')){
-                        //     $variation_image = $request->otherimage[$key];
-                    
-                        //     $imageName2 = time().'.'.$variation_image->extension();
-                        //     $variation_image->move(public_path('admin/product/variations/otherimage/'), $imageName2);
-
-                        //     VariationImages::create([
-                        //             'var_id' => $new_var->id,
-                        //             'var_image' => $imageName2,
-                        //     ]);
-                        // }
                }
            }
 

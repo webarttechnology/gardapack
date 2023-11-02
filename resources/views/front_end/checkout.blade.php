@@ -42,7 +42,7 @@
               <h6 class="my-0"><a href="{{ url('product-details', $product->slug) }}" target="_blank">{{ $product->name }}</a></h6>
               <small class="text-muted">( {{ $cart->cart_quantity }} products)</small>
             </div>
-            <span class="text-muted">Rs. {{ number_format((double)($cart->cart_quantity * $product->price), 2, '.', '' ) }}</span>
+            <span class="text-muted">$ {{ number_format((double)($cart->cart_quantity * $product->price), 2, '.', '' ) }}</span>
           </li>
         @endforeach
         
@@ -52,13 +52,13 @@
             <h6 class="my-0">Promo code</h6>
             <small>EXAMPLECODE</small>
           </div>
-          <span class="text-success">Rs. 0</span>
+          <span class="text-success">$ 0</span>
         </li> --}}
 
 
         <li class="list-group-item d-flex justify-content-between">
           <span>Total</span>
-          <strong>Rs. {{ $total }}</strong>
+          <strong>$ {{ $total }}</strong>
         </li>
       </ul>
 

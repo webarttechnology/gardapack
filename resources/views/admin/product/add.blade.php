@@ -114,6 +114,16 @@
                             </div>
                             <br>
 
+                            <div class="">
+                                <label class="form-label">Features</label>
+                                <textarea class="ckeditor form-control" name="features"></textarea>
+                                @if ($errors->has('features'))
+                                <span class="text-danger">{{ $errors->first('features') }}</span>
+                                @endif
+                            </div>
+                            <br>
+
+
                             <div class="" id="stock_status_div">
                                 <label class="form-label">Product Status</label>
 
@@ -131,58 +141,25 @@
                                 <input type="number" class="form-control" name="no_in_stock" value="1" min="1" />
                             </div>
                             <br>
+
+
+                            <div class="" id="no_in_stock_div">
+                                <label class="form-label">Want to add QTY?</label>
+                                <input type="checkbox" name="qty_checkbox" id="qty_checkbox" onclick="QtyAdd()">
+                            </div>
+                            <br>
                             
-                        <!-- Variation code start -->
-                        <div class="row borderBp" id="variations" style="display: none;">
-                                <div class="col-md-3 col-12">
+                         <!-- Variation code start -->
+                         <div class="row">
+                        <div class="borderBp" id="variations" style="display: none;">
+                                <div class="col-md-12 col-12">
                                     <div class="form-group">
                                         <label>Variation</label>
                                         <input type="text" name="ropeChain[]" id="ropeChain" class="form-control" placeholder="0.68 Mm Thickness 18 Inch" value=""  />
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-12">
-                                    <div class="form-group">
-                                        <label>Carat</label>
-                                        <input type="number" name="carat[]" id="carat" class="form-control" placeholder="Ex 14k" value="{{ old('carat') }}"  />
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-12">
-                                    <div class="form-group">
-                                        <label>Size</label>
-                                        <input type="number" name="size[]" id="size" class="form-control" placeholder="Size" value="{{ old('size') }}"  />
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-12">
-                                    <div class="form-group">
-                                        <label>Amount</label>
-                                        <input type="num" name="amount[]" id="amount1" class="form-control" placeholder="Amount" onkeyup="getdiscountprice(1)" value="{{ old('amount') }}"  />  
-                                        @if ($errors->has('amount'))
-                                                <span class="text-danger">{{ $errors->first('amount') }}</span>
-                                        @endif     
-                                    </div>
-                                </div>
 
-                                <div class="col-md-3 col-12 mt-3">
-                                    <div class="form-group">
-                                        <label>Color</label>
-                                        <input type="text" name="gold_color[]" id="gold_color" class="form-control" placeholder="Color" value="{{ old('gold_color') }}"  /> 
-                                        @if ($errors->has('gold_color'))
-                                            <span class="text-danger">{{ $errors->first('gold_color') }}</span>
-                                        @endif
-                                    </div>
-                                </div>
-
-                                <div class="col-md-3 col-12 mt-3">
-                                    <div class="form-group">
-                                        <label>Discount%</label>
-                                        <input type="num" name="discount_percentage[]" id="discount_percentage1" class="form-control" placeholder="Discount Percentage" onkeyup="getdiscountprice(1)" value="{{ old('discount_percentage') }}"  /> 
-                                        @if ($errors->has('discount_percentage'))
-                                            <span class="text-danger">{{ $errors->first('discount_percentage') }}</span>
-                                        @endif
-                                    </div>
-                                </div>
-
-                                <div class="col-md-3 col-12 mt-3">
+                                <div class="col-md-12 col-12 mt-3">
                                     <div class="form-group">
                                         <label>Final Price</label>
                                         <input type="num" name="final_price[]" id="final_price1" class="form-control" placeholder="Final Price" value="{{ old('final_price') }}" /> 
@@ -193,19 +170,13 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-3 col-12 mt-3">
-                                    <div class="form-group">
-                                        <label>Image</label>
-                                        <input type="file" name="otherimage[]" id="otherimage" class="form-control"/>                                       
-                                    </div>
-                                </div>
-
                                 <div class="col-md-2 col-12 rope-chan mt-3">
                                 <p id="line_no" ></p>
                                         <span class="btn btn-primary m-b-5 m-t-5" id="addrow" onclick="return addRows();" style="float: left;" ><i class="bx bx-plus" aria-hidden="true"></i></span>
                                         <!-- <span class="btn btn-primary m-b-5 m-t-5" id="removerow" style="float: right;" onclick="return removeRows();"><i class="bx bx-minus" aria-hidden="true"></i></span> -->
                                 </div>
                             </div>
+                        </div>
                             <!-- variations code ends -->
                             
                                         
@@ -312,6 +283,16 @@
                                 <input type="number" class="form-control" name="rating"  />
                             </div>
                             <br> --}}
+
+                            <div class="">
+                                <label class="form-label">Let Users choose Color?</label>
+                                <input type="checkbox" name="color_added" id="color_added" class="">
+                                {{-- <textarea class="ckeditor form-control" name="features"></textarea> --}}
+                                @if ($errors->has('color_added'))
+                                <span class="text-danger">{{ $errors->first('color_added') }}</span>
+                                @endif
+                            </div>
+                            <br>
 
 
                             <div class="">

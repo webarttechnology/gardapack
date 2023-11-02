@@ -36,6 +36,7 @@
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
+                                <th>Color</th>
                                 <th>Image</th>
                                 <th>Action</th>
                             </tr>
@@ -44,6 +45,9 @@
 
                             @foreach($galleries as $gallery)
                             <tr>
+                                <td>
+                                    {{ $gallery->color }}
+                                </td>
                                 <td>
                                     <img src="{{ asset('admin/product/gallery/'.$gallery->gallery_image) }}" 
                                     class="card-img-top" alt="..." style="height: 100px; width: 125px">

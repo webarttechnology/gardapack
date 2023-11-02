@@ -30,7 +30,7 @@
                 <div class="productSliderImage mb-lg-0 mb-4" id="first_img" style="display: block;">
                     
                     <div class="zoom" onmousemove="zoom(event)" style="background-image: url({{ asset('admin/product/featured_img/'.$product->featured_img) }})">
-								<img src="{{ asset('admin/product/featured_img/'.$product->featured_img) }}" alt="image description">
+								<img src="{{ asset('admin/product/featured_img/'.$product->featured_img) }}" id="main_img" alt="image description">
 					</div>
 							
 							
@@ -75,22 +75,63 @@
                         
                         <li>( {{ $rating_no }} customer reviews )</li>
                     </ul>
-                    <strong class="price d-block mb-5 text-green">Rs. {{ $product->price }}</strong>
-                    <p class="mb-5">{!! $product->short_description !!}</p>
+                    <strong class="price d-block mb-5 text-green" id="total_price">$ {{ $product->price }}</strong>
+                    {{-- <p class="mb-5">{!! $product->short_description !!}</p> --}}
                     <ul class="list-unstyled productInfoDetail mb-5 overflow-hidden">
-                        <!--<li class="mb-2">Product Code: <span>FA008</span></li>-->
-                        <li class="mb-2">Quantity: <span>
+                        
+                        <li class="mb-2">
+                            {!! $product->features !!}
+                        </li>
+
+                        <li class="mb-2">Availability:: <span>
                             @if ($product->no_in_stock == null)
                                Out of Stock
                             @else
                               In Stock
                             @endif
-                            
-                            
-                            </span></li>
-                        <li class="mb-2">Shipping tax: <span>
-                            {{ $product->delivary_charge }}
                         </span></li>
+                        {{-- <li class="mb-2">Shipping tax: <span>
+                            {{ $product->delivary_charge }}
+                        </span></li> --}}
+
+                        <li class="mb-2">sku: <span>
+                            @if($product->sku_code == null)
+                               N/A
+                            @else
+                             {{ $product->sku_code }}
+                            @endif
+                        </span></li>
+
+                        @if($product->qty_check != null)
+                        @php
+                            $variations = App\Models\Variations::where('product_id', $product->id)->get();
+                        @endphp
+
+                        <li class="mb-2 mt-2">
+                            <label for="">Qty</label>
+                            <select name="variation" id="variation" class="form-control bg-light" onchange="variationChange({{ $product->id }})">
+                                 <option value="Select">Select a Option</option>
+                                 @foreach ($variations as $variation)
+                                     <option value="{{ $variation->id }}">{{ $variation->variation }}</option>
+                                 @endforeach         
+                            </select>
+                        </li>
+                        @endif
+
+                        @if($product->color_added != null)
+                        <li class="mb-2 mt-2">
+                            <label for="">Color</label>
+                            <select name="color" id="color" class="form-control bg-light" onchange="colorChange({{ $product->id }})">
+                                 <option value="Select">Select a Option</option>
+                                 <option value="White">White</option>
+                                 <option value="Black">Black</option>
+                                 <option value="Red">Red</option>
+                            </select>
+                        </li>
+                        <li class="mb-2 mt-2">
+                            <a href="javascript:void(0)" onclick="clearSection()">CLEAR SECTION</a>
+                        </li>
+                        @endif
                     </ul>
                     
                     @if($product->no_in_stock != null)
@@ -155,6 +196,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- gallery images -->
         <div class="row">
             <div class="col-12">
                 <!-- paggSlider -->
@@ -200,9 +243,9 @@
                 <!-- tabSetList -->
                 <ul class="list-unstyled tabSetList d-flex justify-content-center mb-9">
                     <li class="mr-md-20 mr-sm-10 mr-2">
-                        <a href="#tab1-0" class="active playfair fwEbold pb-2">Description</a>
+                        <a href="#tab0-0" class="active playfair fwEbold pb-2">Additional Information</a>
                     </li>
-                    <li class="mr-md-20 mr-sm-10 mr-2">
+                    <li class="mr-md-10 mr-sm-10 mr-2">
                         <a href="#tab1-0" class="active playfair fwEbold pb-2">Description</a>
                     </li>
                     <li>
@@ -211,7 +254,10 @@
                 </ul>
                 <!-- tab-content -->
                 <div class="tab-content mb-xl-11 mb-lg-10 mb-md-8 mb-5">
-                    <div id="tab1-0" class="active">
+                    <div id="tab0-0" class="active">
+                        <p class="mb-5">{!! $product->short_description !!}</p>
+                    </div>
+                    <div id="tab1-0">
                         <p>{!! $product->description !!}</p>
                     </div>
                     <div id="tab2-0">
@@ -348,7 +394,7 @@
                     </div>
                     <div class="text-center py-5 px-4">
                         <span class="title d-block mb-2"><a href="{{ url('product-details', $related_product->slug) }}">{{ $related_product->name }}</a></span>
-                        <span class="price d-block fwEbold">@if($related_product->discount !=0) <del>Rs. {{ $related_product->price }}</del>Rs. {{ $related_product->discount }} @else Rs. {{ $related_product->price }} @endif</span>
+                        <span class="price d-block fwEbold">@if($related_product->discount !=0) <del>$ {{ $related_product->price }}</del>$ {{ $related_product->discount }} @else $ {{ $related_product->price }} @endif</span>
                         {{-- <span class="hotOffer green fwEbold text-uppercase text-white position-absolute d-block">Sale</span> --}}
                     </div>
                 </div>

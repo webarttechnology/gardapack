@@ -67,7 +67,7 @@
                                     <input type="hidden" class="quantity_field" name="quantity" data-price="15.50"
                                         value="1" />
                                 </div>
-                                <div class="pl-3 prcfk">Rs. {{ number_format((double)($cart->cart_quantity * $product->price), 2, '.', '' ) }}</div>
+                                <div class="pl-3 prcfk">$ {{ number_format((double)($cart->cart_quantity * $product->price), 2, '.', '' ) }}</div>
                             </div>
                         </li>
                         @endforeach
@@ -95,7 +95,7 @@
                             <div class="summary-content">
                                 <div class="col_1of2 meta-data">
                                     <div class="sub-total">
-                                        <em>Sub Total: </em><span class="amount"> Rs. {{ $total }}</span>
+                                        <em>Sub Total: </em><span class="amount"> $ {{ $total }}</span>
                                     </div>
                                     <!--<div class="taxes">-->
                                     <!--    <em>Plus VAT: </em><span class="amount">@ 20%</span>-->
@@ -104,7 +104,7 @@
                                 </div>
                                 <div class="col_1of2">
                                     <div class="total">
-                                        <span class="amount"> Total Rs. {{ $total }}</span>
+                                        <span class="amount"> Total $ {{ $total }}</span>
                                     </div>
                                 </div>
                             </div>

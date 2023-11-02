@@ -111,6 +111,7 @@
                                         <li class="mr-2 overflow-hidden"><a href="javascript:void(0)" onclick="return addToCart({{ $product->id }}, 'single', 'pc')" class="icon-cart d-block @if($cart_details) active @endif"></a></li>
                                         @else
                                         <li class="mr-2 overflow-hidden"><a href="javascript:void(0)" onclick="warningAlert('pc')" class="icon-cart d-block"></a></li>
+                                        <li class="mr-2 overflow-hidden"><a href="javascript:void(0)" onclick="" class="icon-search d-block"></a></li>
                                         @endif
                                         @endif
                                         
@@ -121,7 +122,7 @@
                                 </div>
                                 <div class="text-center py-5 px-4">
                                     <span class="title d-block mb-2"><a href="{{ url('product-details', $product->slug) }}">{{ $product->name }}</a></span>
-                                    <span class="price d-block fwEbold">@if($product->discount !=0) <del>Rs. {{ $product->price }}</del>Rs. {{ $product->discount }} @else Rs. {{ $product->price }} @endif</span>
+                                    <span class="price d-block fwEbold">@if($product->discount !=0) <del>$ {{ $product->price }}</del>$ {{ $product->discount }} @else $ {{ $product->price }} @endif</span>
                                     {{-- <span class="hotOffer fwEbold text-uppercase text-white position-absolute d-block">HOT</span> --}}
                                     {{-- <span class="hotOffer green fwEbold text-uppercase text-white position-absolute d-block ml-8">Sale</span> --}}
                                 </div>
@@ -212,7 +213,7 @@
                                 </div>
                                 <div class="description-wrap pl-1">
                                     <h4 class="headingVII mb-1"><a href="{{ url('product-details', $top_rated_product->slug) }}">{{ $top_rated_product->name }}</a></h4>
-                                    <strong class="price fwEbold d-block;">Rs. {{ $top_rated_product->price }}</strong>
+                                    <strong class="price fwEbold d-block;">$ {{ $top_rated_product->price }}</strong>
                                 </div>
                             </li>
                             @endforeach

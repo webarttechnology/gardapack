@@ -97,6 +97,8 @@ Route::controller(ProductController::class)->group(function(){
     Route::get('fetch/gallery/{id}', 'fetch_gallery_img')->name('fetch/gallery');
     // product search..
     Route::any('product-search', 'product_search');
+    Route::get('gallery/image/fetch/{prod_id}/{color}', 'galImg_fetch');
+    Route::get('product/variation/fetch/{prod_id}', 'prodVar_fetch');
 });
 
 /**

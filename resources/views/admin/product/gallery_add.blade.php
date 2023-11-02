@@ -23,9 +23,33 @@
                 <h6 class="mb-0 text-uppercase">Add Gallery</h6>
                 <hr />
 
-                <form action="{{ url('admin/product/gallery', ['id' => $product_ids]) }}" method="post" enctype="multipart/form-data" class="dropzone">
+                {{-- <form action="{{ url('admin/product/gallery', ['id' => $product_ids]) }}" method="post" enctype="multipart/form-data" class="dropzone"> --}}
+
+                    <form action="{{ url('admin/product/gallery', ['id' => $product_ids]) }}" method="post" enctype="multipart/form-data">
                     @csrf
-                </form>
+
+                    <div class="">
+                        <label class="form-label">Color</label>
+                        {{-- <input type="number" class="form-control" name="product_discount"  value="0" /> --}}
+
+                        <select class="form-control" name="color" id="color">
+                            <option value="White">White</option>
+                            <option value="Black">Black</option>
+                            <option value="Red">Red</option>
+                        </select>
+                    </div>
+                    <br>
+
+                    <div class="">
+                        <label class="form-label">Product Discount Price</label>
+                        <input type="file" class="form-control" name="file"  value="0" />
+                    </div>
+
+                    <div class="">
+                        <button class="form-control btn btn-primary mt-2" type="submit">Save</button>
+                    </div>
+                    <br>
+                  </form>
 
             </div>
         </div>

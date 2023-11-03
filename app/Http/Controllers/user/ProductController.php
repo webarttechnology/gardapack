@@ -114,4 +114,14 @@ class ProductController extends Controller
         $prodVar = Variations::whereId($prod_id)->first();
         return response()->json(['variation' => $prodVar->final_price]);
      }
+
+     /**
+      * product compare
+     */
+
+     public function product_compare($product_id){
+        $product = Product::whereId($product_id)->first();
+        $view = view('front_end.product.compare', compact('product'));
+        return response()->json(['view' => $view->render(), 'status' => true]);
+     }
 }

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\{Order, OrderedProduct, Cart, Product};
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\payment\PaypalPaymentController;
 
 class OrderManageController extends Controller
 {
@@ -18,7 +19,7 @@ class OrderManageController extends Controller
                 'fname' => 'required|max:200',
                 'lname' => 'required|max:200',
                 'email' => 'required|email|max:200',
-                'phone' => 'required|max:15',
+                'phone' => 'required',
                 'address1' => 'required',
                 'country' => 'required',
                 'state' => 'required',
@@ -53,6 +54,7 @@ class OrderManageController extends Controller
                  'billing_town' => $request->town,
                  'billing_state' => $request->state,
                  'billing_zip' => $request->zip,
+                 'total_amount' => $request->total_price,
                  'order_notes' => $request->order_notes,
            ]);
 
@@ -71,6 +73,11 @@ class OrderManageController extends Controller
                ]);
         }
 
-        return redirect()->back()->with('order_submit', 'Order Submitted Successfully');
+        Cart::where('user_id', Auth::user()->id)->delete();
+
+        $link = PaypalPaymentController::paypalPay($request, $order->id, $request->total_price);
+        return $link;
+        
+     //    return redirect()->back()->with('order_submit', 'Order Submitted Successfully');
     }
 }

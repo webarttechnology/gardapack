@@ -102,23 +102,10 @@
                                         @endif
                                         
                                         
-                                        {{-- @if($product->no_in_stock != null)
-                                        @if(Auth::user())
-                                        @php
-                                            $cart_details = App\Models\Cart::where('user_id', Auth::user()->id)->where('product_id', $product->id)->first();
-                                        @endphp --}}
-                                        
                                         {{-- <li class="mr-2 overflow-hidden"><a href="javascript:void(0)" onclick="return addToCart({{ $product->id }}, 'single', 'pc')" class="icon-cart d-block @if($cart_details) active @endif"></a></li> --}}
                                         <li class="mr-2 overflow-hidden"><a href="javascript:void(0)" onclick="return addToCart({{ $product->id }}, 'single', 'pc')" class="icon-cart d-block"></a></li>
-                                        {{-- @else
-                                        <li class="mr-2 overflow-hidden"><a href="javascript:void(0)" onclick="warningAlert('pc')" class="icon-cart d-block"></a></li>
-                                        <li class="mr-2 overflow-hidden"><a href="javascript:void(0)" onclick="" class="icon-search d-block"></a></li>
-                                        @endif
-                                        @endif --}}
-                                        
-                                        <!--<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-cart d-block"></a></li>-->
-                                        <!--<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-eye d-block"></a></li>-->
-                                        <!--<li class="overflow-hidden"><a href="javascript:void(0);" class="icon-arrow d-block"></a></li>-->
+                                        <li class="mr-2 overflow-hidden"><a href="javascript:void(0)" onclick="return productCompare({{ $product->id }}, 'pc')" class="icon-cart d-block"></a></li>
+                                        <li class="mr-2 overflow-hidden"><a href="javascript:void(0)" onclick="#" class="icon-search d-block" data-toggle="modal" data-target="#exampleModal"></a></li>
                                     </ul>
                                 </div>
                                 <div class="text-center py-5 px-4">
@@ -350,5 +337,8 @@
 				</div>
 			</aside>   
 </main>
+
+<!-- Product Compare MOdal -->
+
 
 <x-userFooter />

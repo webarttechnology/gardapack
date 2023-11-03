@@ -27,8 +27,11 @@ return new class extends Migration
             $table->string('billing_town')->nullable();
             $table->string('billing_state');
             $table->string('billing_zip');
+            $table->text('total_amount')->nullable();
             $table->string('order_notes')->nullable();
             $table->string('status', 50)->default(0)->comment('0=>not paid, 1=> paid');
+            $table->text('txn_id')->nullable();
+            $table->text('transaction_details')->nullable();
             $table->timestamps();
         });
     }

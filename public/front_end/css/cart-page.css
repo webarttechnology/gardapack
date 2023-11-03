@@ -550,3 +550,57 @@ html {
         align-items: center;
     }
 }
+
+/*----------3.11.2023 (Soham) -------------*/
+
+.featureSec .modal-dialog {
+    width:1000px !important;
+    max-width:1000px !important;
+}
+
+.featureSec .modal-header {
+    border-bottom:0;
+} 
+
+.featureSec .modal-dialog .btn.btnShop {
+    min-width:110px !important;
+    min-width: 110px !important;
+    padding: 6px 23px !important;
+    font-size: 15px;
+    line-height:34px;
+}
+
+.featureSec .modal-dialog .glryimg {
+    width:100%;
+    overflow:hidden;
+    height:400px;
+}
+
+.featureSec .modal-dialog .glryimg img{
+    width:100%;
+    object-fit:cover;
+    height:100% !important;
+}
+
+/*.featureSec .modal-dialog h2 {*/
+/*    font-size: 25px;*/
+/*    font-weight: 600;*/
+/*    color:#222;*/
+/*}*/
+
+/*.featureSec .modal-dialog .pencl a {*/
+/*    color:#222;*/
+/*}*/
+
+/*.featureSec .modal-dialog .prceprt h1{*/
+/*    font-size: 35px;*/
+/*    color: #222;*/
+/*}*/
+
+/*.featureSec .modal-dialog .form-control {*/
+/*    background: #fff;*/
+/*    width: 200px;*/
+/*    color: #333;*/
+/*    height: 40px;*/
+/*    border: 1px solid #adadad;*/
+/*}*/

@@ -88,6 +88,7 @@
       <form class="needs-validation" action="{{ url('user/product/order/add') }}" method="post" novalidate>
         @csrf
 
+        <input type="hidden" name="total_price" id="total_price" value="{{ $total }}">
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="firstName">First Name *</label>

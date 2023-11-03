@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "65e85f9f959c0b087110331754d451cf",
+    "content-hash": "addde2ecb80aad243ef09dbc2ad1c31e",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -487,6 +487,63 @@
                 }
             ],
             "time": "2023-01-14T14:17:03+00:00"
+        },
+        {
+            "name": "epmnzava/paypal-laravel",
+            "version": "1.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dbrax/paypal-laravel.git",
+                "reference": "2b75a71ef4060196d8a554c6b52065a4404a15c7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dbrax/paypal-laravel/zipball/2b75a71ef4060196d8a554c6b52065a4404a15c7",
+                "reference": "2b75a71ef4060196d8a554c6b52065a4404a15c7",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^5.5.44|^6.0|^7.0|^8.0|^9.0|^10.0",
+                "php": "^7.1|^7.2|^7.3|^7.4|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Epmnzava\\PaypalLaravel\\PaypalLaravelServiceProvider"
+                    ],
+                    "aliases": {
+                        "PaypalLaravel": "Epmnzava\\PaypalLaravel\\PaypalLaravelFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Epmnzava\\PaypalLaravel\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Emmanuel Paul Mnzava",
+                    "email": "epmnzava@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "This is a laravel package for intergration with paypal",
+            "homepage": "https://github.com/dbrax/paypal-laravel",
+            "keywords": [
+                "epmnzava",
+                "paypal-laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/dbrax/paypal-laravel/issues",
+                "source": "https://github.com/dbrax/paypal-laravel/tree/1.7"
+            },
+            "time": "2023-04-07T07:53:38+00:00"
         },
         {
             "name": "fruitcake/laravel-cors",

@@ -4,7 +4,7 @@
         <p class="mb-0">Coppyright 2023 by <a href="javascript:void(0);">Green Mall</a> - All right reserved</p>
     </div>
 </footer>
-<div class="cart-drawer cart-drawer-right"> 
+<div class="cart-drawer cart-drawer-right">
     <h3>Menu</h3>
     <div class="cart-drawer-close-btn">
         X
@@ -22,35 +22,156 @@
              <a class="dropdown-item" href="#">Rooftop Gardening</a>
             </div>
            </div> -->
-           <li>
-               <a class="postprt" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                Services <i class="fa fa-angle-down" aria-hidden="true"></i>
-            </a>
-          </li>
-         <div class="collapse" id="collapseExample">
-            <div class="card card-body">
-            @foreach($categories as $category)
-            <ul>	
-              <li><a class="dropdown-item" href="{{ url('service-details', $category->slug) }}">{{ $category->name }}</a></li>
-            </ul>	
-            @endforeach	
+            <li>
+                <a class="postprt" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
+                    aria-controls="collapseExample">
+                    Services <i class="fa fa-angle-down" aria-hidden="true"></i>
+                </a>
+            </li>
+            <div class="collapse" id="collapseExample">
+                <div class="card card-body">
+                    @foreach($categories as $category)
+                    <ul>
+                        <li><a class="dropdown-item" href="{{ url('service-details', $category->slug) }}">{{
+                                $category->name }}</a></li>
+                    </ul>
+                    @endforeach
+                </div>
             </div>
-          </div>
             <li><a href="{{ url('faq') }}">Faq</a></li>
             <li><a href="{{ url('gallery') }}">Gallery</a></li>
             <li><a href="{{ url('contact-us') }}">Contact us</a></li>
-            
-            
+
+
             @if(auth()->user())
-               <li><a href="#">My Order</a></li>
-			   <li><a href="{{ route('user.logout') }}">Signout</a></li>
-			@else
-			  <li><a href="{{ url('signup') }}">Signup</a></li>	
-			@endif
+            <li><a href="#">My Order</a></li>
+            <li><a href="{{ route('user.logout') }}">Signout</a></li>
+            @else
+            <li><a href="{{ url('signup') }}">Signup</a></li>
+            @endif
         </ul>
     </div>
 </div>
 </div>
+
+{{-- Compare Modal --}}
+<div class="modal" id="productCompare_modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Modal Title</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+              <div class="row">
+                  <div class="col-md-6">
+                      <div class="owl-carousel imggry_carousel owl-theme">
+                          <div class="item">
+                             <div class="glryimg">
+                                 <img src="https://greenmall.mypickmyvote.com/admin/product/featured_img/1690098930.jpg">
+                             </div>
+                          </div>
+                          <div class="item">
+                             <div class="glryimg">
+                                 <img src="https://greenmall.mypickmyvote.com/admin/product/featured_img/1690098930.jpg">
+                             </div>
+                          </div>
+                          <div class="item">
+                             <div class="glryimg">
+                                 <img src="https://greenmall.mypickmyvote.com/admin/product/featured_img/1690098930.jpg">
+                             </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="productTextHolder overflow-hidden">
+                         <h2 class="fwEbold mb-2">Wrought Iron Bench</h2>
+                         <ul class="list-unstyled ratingList d-flex flex-nowrap mb-2">
+                            <li class="mr-2"><a href="javascript:void(0);"><i class=" far fa-star "></i></a></li>
+                            <li class="mr-2"><a href="javascript:void(0);"><i class=" far fa-star "></i></a></li>
+                            <li class="mr-2"><a href="javascript:void(0);"><i class=" far fa-star "></i></a></li>
+                            <li class="mr-2"><a href="javascript:void(0);"><i class=" far fa-star "></i></a></li>
+                            <li class="mr-2"><a href="javascript:void(0);"><i class=" far fa-star "></i></a></li>
+                            <li>( 0 customer reviews )</li>
+                         </ul>
+                         <strong class="price d-block mb-5 text-green">Rs. 12999</strong>
+                         <p class="mb-5"></p>
+                         <p>Size -&nbsp;127 cm x 79 cm x 58 cm</p>
+                         <ul>
+                           <li>-5.31 Mil Thick Mylar</li>
+                           <li>-Matte Finish</li>
+                           <li>-Overlap Child-Resistant Zipper.</li>
+                           <li>-Smell proof, food grade materials.</li>
+                           <li>-Tamper evident tear notch.</li>
+                          </ul>
+                         <p>&nbsp;(3 Seaters)</p>
+                         <p></p>
+                         <ul class="list-unstyled productInfoDetail mb-5 overflow-hidden">
+                            <!--<li class="mb-2">Product Code: <span>FA008</span></li>-->
+                            <li class="mb-2">Quantity: <span>
+                               In Stock
+                               </span>
+                            </li>
+                            <li class="mb-2">Shipping tax: <span>
+                               0
+                               </span>
+                            </li>
+                         </ul>
+                         <div class="holder overflow-hidden d-flex flex-wrap mb-6">
+                          <input type="number" placeholder="1">
+                          <a href="cart-page.php" class="btn btnTheme btnShop fwEbold text-white md-round py-3 px-4 py-md-3 px-md-4">Add To Cart <i class="fas fa-arrow-right ml-2"></i></a>
+                          <a href="javascript:void(0);" onclick="warningAlert()" class="icon-heart btn btnTheme ml-1 fwEbold text-white md-round py-3 px-4 py-md-3 px-md-4"></a>
+                          </div>
+                         <ul class="list-unstyled socialNetwork d-flex flex-wrap mb-4">
+                            <li class="text-uppercase mr-5">SHARE THIS PRODUCT:</li>
+                            <li class="mr-4"><a href="https://www.facebook.com/sharer/sharer.php?u=https://greenmall.mypickmyvote.com/product-details/wrought-iron-bench" target="_blank" class="fab fa-facebook-f"></a></li>
+                            <!--<li class="mr-4"><a href="javascript:void(0);" class="fab fa-google-plus-g"></a></li>-->
+                            <li class="mr-4"><a href="https://twitter.com/intent/tweet?url=https://greenmall.mypickmyvote.com/product-details/wrought-iron-bench" target="_blank" class="fab fa-twitter"></a></li>
+                            <li class="mr-4"><a href="https://pinterest.com/pin/create/button/?url=https://greenmall.mypickmyvote.com/product-details/wrought-iron-bench" target="_blank" class="fab fa-pinterest-p"></a></li>
+                         </ul>
+                         <!-- category -->
+                         <ul class="list-unstyled productInfoDetail mb-0">
+                            <li class="mb-2">Categories: <a href="javascript:void(0);">Garden Furniture</a></li>
+                            <!--<li>Brand: <a href="javascript:void(0);">KFC</a></li>-->
+                         </ul>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+        <!--<div class="modal-footer">-->
+        <!--  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+        <!--  <button type="button" class="btn btn-primary">Save changes</button>-->
+        <!--</div>-->
+      </div>
+    </div>
+  </div>
 
 <!-- include jQuery library -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -72,7 +193,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
 <script type="text/javascript">
-jQuery(document).ready(function($) {
+    jQuery(document).ready(function($) {
     jQuery('.stellarnav').stellarNav({
         theme: 'dark',
         breakpoint: 960,
@@ -83,7 +204,7 @@ jQuery(document).ready(function($) {
 });
 </script>
 <script>
-     $(document).ready(function() {
+    $(document).ready(function() {
      	$drawerRight = $('.cart-drawer-right');
      	$cart_list = $('.cart-drawer-btn, .cart-drawer-close-btn');
      	$cart_list.click(function() {
@@ -133,7 +254,7 @@ jQuery(document).ready(function($) {
 
 <!-- audio -->
 <script type="text/javascript">
-         var track = document.getElementById('track');
+    var track = document.getElementById('track');
 
 var controlBtn = document.getElementById('play-pause');
 
@@ -159,7 +280,7 @@ controlBtn.className = "play";
 <!---------Zoom in-------------->
 
 <script>
-   function zoom(e){
+    function zoom(e){
   var zoomer = e.currentTarget;
   e.offsetX ? offsetX = e.offsetX : offsetX = e.touches[0].pageX
   e.offsetY ? offsetY = e.offsetY : offsetX = e.touches[0].pageX
@@ -198,11 +319,60 @@ controlBtn.className = "play";
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
 <!-- Gallery JS -->
 <script>
-Fancybox.bind("[data-fancybox]", {
+    Fancybox.bind("[data-fancybox]", {
     // Custom options for all galleries
 });
 </script>
 
+<!-- Product Compare -->
+<script>
+    function productCompare(product_id, page="na"){
+
+    $.ajax({
+    type: "GET",  
+        url:'{{ url("product/compare") }}'+'/'+product_id,
+        success: function(response) {
+            console.log(response);
+            $("#productCompare_modal").modal('show');
+            $("#productCompare_modal .modal-body").append(response.view);
+        }
+    });
+}
+</script>
+
+
+<script>
+    toastr.options = {
+        "closeButton": true,
+        "progressBar": true
+    }
+
+    @if (Session::has('success'))
+        toastr.success("{{ session('success') }}");
+    @endif
+
+    @if (Session::has('error'))
+        toastr.error("{{ session('error') }}");
+    @endif
+
+    @if (Session::has('login_error'))
+        toastr.error("{{ session('login_error') }}");
+    @endif
+    
+    @if (Session::has('info'))
+        toastr.info("{{ session('info') }}");
+    @endif
+
+    @if (Session::has('warning'))
+        toastr.warning("{{ session('warning') }}");
+    @endif
+
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            toastr.error("{{ $error }}");
+        @endforeach
+    @endif
+</script>
 </body>
 
 </html>

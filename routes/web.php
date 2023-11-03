@@ -34,7 +34,7 @@ use App\Http\Controllers\user\WishListController;
 use App\Http\Controllers\user\OrderManageController;
 use App\Http\Controllers\user\NewsletterManageController;
 use App\Http\Controllers\user\ContactUsManageController;
-
+use App\Http\Controllers\payment\PaypalPaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -103,7 +103,12 @@ Route::controller(ProductController::class)->group(function(){
     Route::any('product-search', 'product_search');
     Route::get('gallery/image/fetch/{prod_id}/{color}', 'galImg_fetch');
     Route::get('product/variation/fetch/{prod_id}', 'prodVar_fetch');
+
+    // product compare
+    Route::get('product/compare/{product_id}', 'product_compare')->name('product.compare');
 });
+
+Route::get('paypal/success', [PaypalPaymentController::class, 'success'])->name('payment.success');
 
 /**
  * Product Rating

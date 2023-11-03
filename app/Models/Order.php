@@ -25,6 +25,9 @@ class Order extends Model
         'billing_state',
         'billing_zip',
         'status',
-        'order_status'
+        'order_status',
+        'txn_id',
+        'transaction_details',
+        'total_amount'
     ];
 }

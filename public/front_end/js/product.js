@@ -44,3 +44,8 @@ function clearSection(){
      document.getElementById('variation').value = "Select";
      document.getElementById('color').value = "Select";
 }
+
+/**
+ * product compare
+*/
+

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\user;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\{User};
+use App\Http\Controllers\user\CartManageController;
 use Illuminate\Support\Facades\Auth;
 
 class UserAuthController extends Controller
@@ -44,6 +45,7 @@ class UserAuthController extends Controller
           ]);
   
           if(Auth::attempt(['email' => $request -> input('email'), 'password' => $request -> input('password')])){
+            CartManageController::cartSync();
              return redirect()->route('user.home');
             //   dd(Auth::user()->id);
           }

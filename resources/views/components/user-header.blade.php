@@ -100,11 +100,11 @@
 									@endif
 									
 									
-									@if(Auth::user())
+									{{-- @if(Auth::user()) --}}
 									   <li class="nav-item"><a class="nav-link position-relative icon-cart" href="{{ url('user/cart/page') }}"><span class="num rounded d-block">{{ $product_in_cart }}</span></a></li>
-                                    @else
+                                    {{-- @else
     									<li class="nav-item"><a class="nav-link position-relative icon-cart" onclick="warningAlert()"><span class="num rounded d-block">0</span></a></a></li>
-									@endif
+									@endif --}}
 									
 									@if(Auth::user())
 								    <li class="icon-user">

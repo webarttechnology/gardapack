@@ -136,28 +136,8 @@
                     
                     @if($product->no_in_stock != null)
                     <div class="holder overflow-hidden d-flex flex-wrap mb-6">
-                        <!--<input type="number" name="cart_quantity" id="cart_quantity" placeholder="1" min="1" value="1">-->
-                        
-                        <!-- add to cart section -->
-                        
-                        @if(Auth::user())
-                        @php
-								$cart_details = App\Models\Cart::where('user_id', Auth::user()->id)->where('product_id', $product->id)->first();
-						@endphp
-						
-						
-                        @if($cart_details)
-                        
-                        <a href="javascript:void(0);" class="btn btnTheme btnShop fwEbold text-white md-round py-3 px-4 py-md-3 px-md-4">   Already in Cart </a>
-                        @else
                         <input type="number" name="cart_quantity" id="cart_quantity" placeholder="1" min="1" value="1">
                         <a href="javascript:void(0);" class="btn btnTheme btnShop fwEbold text-white md-round py-3 px-4 py-md-3 px-md-4" onclick="return addToCart({{ $product->id }}, 'multiple')">   Add To Cart <i class="fas fa-arrow-right ml-2"></i></a>
-                        @endif
-
-                        @else
-                          <input type="number" name="cart_quantity" id="cart_quantity" placeholder="1" min="1" value="1">
-                          <input type="button" class="btn btnTheme btnShop fwEbold text-white md-round py-3 px-4 py-md-3 px-md-4" value="Add To Cart" onclick="warningAlert()">
-                        @endif
                         
                         
                         <!-- wishlist section  -->

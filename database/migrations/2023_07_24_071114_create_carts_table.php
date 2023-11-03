@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('user_id');
             $table->string('product_id');
+            $table->text('amount')->nullable();
             $table->string('cart_quantity');
             $table->timestamps();
         });

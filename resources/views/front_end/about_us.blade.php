@@ -1,7 +1,7 @@
 <x-userHeader />
 <main>
 	<!-- introBannerHolder -->
-	<section class="introBannerHolder d-flex w-100 bgCover" style="background-image: url({{ asset('front_end/images/innerBanner.png') }});">
+	{{-- <section class="introBannerHolder d-flex w-100 bgCover" style="background-image: url({{ asset('front_end/images/innerBanner.png') }});">
 		<div class="container">
 			<div class="row">
 				<div class="col-12 pt-sm-10 text-center">
@@ -14,7 +14,7 @@
 				</div>
 			</div>
 		</div>
-	</section>
+	</section> --}}
 
 
 	<section class="blocksec">
@@ -148,7 +148,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="landscp-head">
-						<h1>Green Mall Stretches for Your Benefit</h1>
+						<h1 Stretches for Your Benefit</h1>
 					</div>
 				</div>
 			</div>
@@ -195,7 +195,7 @@
 			<div class="row text-center">
 				<div class="col-md-12">
 					<div class="know-more-head">
-						<h1>Know More About Green Mall</h1>
+						<h1>Know More</h1>
 					</div>
 				</div>
 			</div>
@@ -206,17 +206,17 @@
 					    <p>{!! $details->description5 !!}</p>
 					    
 					    
-						<!--<p><i class="fa fa-angle-double-right" aria-hidden="true"></i> Green Mall is a garden center and day trip destination for plant lovers in Kolkata, India. It is located in Shamukpota near Bakrahat, about 11km away from Kolkata by road. Green Mall was established in 2007 by gardening expert Dinesh Chandra Rawat, and claims to be India’s first garden center.</p>-->
-						<!--<p><i class="fa fa-angle-double-right" aria-hidden="true"></i> Green Mall has a wide variety of plants, including trees, shrubs, flowers, and herbs. They also have a store for all your essential and quirky gardening equipment and accessories. In addition, Green Mall offers a variety of gardening services, such as landscaping, plant care, and pest control.</p>-->
-						<!--<p><i class="fa fa-angle-double-right" aria-hidden="true"></i> Green Mall is a great place to spend a leisurely day. You can wander through the gardens, admire the plants, and learn more about gardening. You can also purchase plants, gardening supplies, and landscaping services. Green Mall is a great place to find everything you need to create a beautiful garden.</p>-->
-						<!--<p><i class="fa fa-angle-double-right" aria-hidden="true"></i> Here are some of the things you can do at Green Mall:</p>-->
+						<!--<p><i class="fa fa-angle-double-right" aria-hidden="true"></i> is a garden center and day trip destination for plant lovers in Kolkata, India. It is located in Shamukpota near Bakrahat, about 11km away from Kolkata by road. was established in 2007 by gardening expert Dinesh Chandra Rawat, and claims to be India’s first garden center.</p>-->
+						<!--<p><i class="fa fa-angle-double-right" aria-hidden="true"></i> has a wide variety of plants, including trees, shrubs, flowers, and herbs. They also have a store for all your essential and quirky gardening equipment and accessories. In addition, offers a variety of gardening services, such as landscaping, plant care, and pest control.</p>-->
+						<!--<p><i class="fa fa-angle-double-right" aria-hidden="true"></i> is a great place to spend a leisurely day. You can wander through the gardens, admire the plants, and learn more about gardening. You can also purchase plants, gardening supplies, and landscaping services. is a great place to find everything you need to create a beautiful garden.</p>-->
+						<!--<p><i class="fa fa-angle-double-right" aria-hidden="true"></i> Here are some of the things you can do at:</p>-->
 						<!--<p><i class="fa fa-angle-double-right" aria-hidden="true"></i> Browse the wide variety of plants, including trees, shrubs, flowers, and herbs.</p>-->
 						<!--<p><i class="fa fa-angle-double-right" aria-hidden="true"></i> Purchase gardening supplies, such as pots, soil, fertilizer, and tools.</p>-->
 						<!--<p><i class="fa fa-angle-double-right" aria-hidden="true"></i> Get advice from the gardening experts on how to care for your plants.</p>-->
 						<!--<p><i class="fa fa-angle-double-right" aria-hidden="true"></i> Take a gardening class to learn more about gardening.</p>-->
 						<!--<p><i class="fa fa-angle-double-right" aria-hidden="true"></i> Hire a professional landscaper to design and create a beautiful garden for you.</p>-->
 						<!--<p><i class="fa fa-angle-double-right" aria-hidden="true"></i> Enjoy a delicious meal at the on-site restaurant.</p>-->
-						<!--<p><i class="fa fa-angle-double-right" aria-hidden="true"></i> Green Mall is a great place to learn about gardening, purchase plants and supplies, and get advice from the experts. It is also a great place to relax and enjoy the beauty of nature.</p>-->
+						<!--<p><i class="fa fa-angle-double-right" aria-hidden="true"></i> is a great place to learn about gardening, purchase plants and supplies, and get advice from the experts. It is also a great place to relax and enjoy the beauty of nature.</p>-->
 					</div>
 				</div>
 				<div class="col-md-6">
@@ -228,86 +228,5 @@
 		</div>
 	</section>
 	
-	
-	
-	 @php
-				$address = App\Models\Pages::where('name', 'Contact Us Page')->first();
-				$phones = explode(',', $address->phone);
-				$emails = explode(',', $address->email);
-			@endphp
-
-			<aside class="footerHolder container-fluid bg-lightGray overflow-hidden px-xl-20 px-lg-14 pt-xl-12 pb-xl-8 pt-lg-12 pt-md-8 pt-10 pb-lg-8">
-				<div class="d-flex flex-wrap flex-lg-nowrap">
-					<div class="coll-1 pr-3 mb-sm-4 mb-3 mb-lg-0">
-						<h3 class="headingVI fwEbold text-uppercase mb-7">Contact Us</h3>
-						<ul class="list-unstyled footerContactList mb-3">
-							<li class="mb-3 d-flex flex-nowrap"><span class="icon icon-place mr-3"></span> <address class="fwEbold m-0">{{ $address->address }}</address></li>
-							<li class="mb-3 d-flex flex-nowrap"><span class="icon icon-phone mr-3"></span> <span class="leftAlign">Phone : 
-								@foreach ($phones as $phone)
-								<a href="tel:{{ $phone }}">{{ $phone }}</a><br>
-								@endforeach
-
-							</span></li>
-							<li class="email d-flex flex-nowrap"><span class="icon icon-email mr-2"></span> <span class="leftAlign">Email : 
-								@foreach ($emails as $email)
-						    		<a href="mailto:{{ $email }}">{{ $email }}</a><br>								
-								@endforeach
-
-							</span></li>
-						</ul>
-						<ul class="list-unstyled followSocailNetwork d-flex flex-nowrap">
-							<li class="fwEbold mr-xl-11 mr-sm-6 mr-4">Follow  us:</li>
-							<li class="mr-xl-6 mr-sm-4 mr-2"><a href="https://www.facebook.com/greenmall" target="_blank" class="fab fa-facebook-f"></a></li>
-							<li class="mr-xl-6 mr-sm-4 mr-2"><a href="https://www.youtube.com/c/LiveGreenMall" target="_blank" class="fab fa-youtube"></a></li>
-							{{-- <li class="mr-xl-6 mr-sm-4 mr-2"><a href="javascript:void(0);" class="fab fa-pinterest"></a></li>
-							<li class="mr-2"><a href="javascript:void(0);" class="fab fa-google-plus-g"></a></li> --}}
-						</ul>
-					</div>
-
-					
-					<div class="coll-2 mb-sm-4 mb-3 mb-lg-0">
-						<h3 class="headingVI fwEbold text-uppercase mb-6">Quick Link</h3>
-						<ul class="list-unstyled footerNavList">
-							<li class="mb-1"><a href="{{ url('/') }}">Home</a></li>
-							<li class="mb-1"><a href="{{ url('gallery') }}">Gallery</a></li>
-							<li class="mb-2"><a href="{{ url('about-us') }}">About</a></li>
-							<li class="mb-2"><a href="{{ url('contact-us') }}">Contact</a></li>
-						</ul>
-					</div>
-					
-					
-					@if (Auth::user())
-					<div class="coll-3 mb-sm-4 mb-3 mb-lg-0">
-						<h3 class="headingVI fwEbold text-uppercase mb-6">My Account</h3>
-						<ul class="list-unstyled footerNavList">
-							<li class="mb-1"><a href="javascript:void(0);">My account</a></li>
-							<li class="mb-2"><a href="javascript:void(0);">My Order</a></li>
-						</ul>
-					</div>
-					@else
-					<div class="coll-3 mb-sm-4 mb-3 mb-lg-0">
-						<h3 class="headingVI fwEbold text-uppercase mb-6">My Account</h3>
-						<ul class="list-unstyled footerNavList">
-							<li class="mb-1"><a href="{{ url('signup') }}">Signin</a></li>
-						</ul>
-					</div>
-					@endif
-
-                    @php
-						$category_lists = App\Models\Category::where('type', 'product')->inRandomOrder()->limit(6)->get();
-					@endphp
-
-					<div class="coll-4 mb-sm-4 mb-3 mb-lg-0">
-						<h3 class="headingVI fwEbold text-uppercase mb-7 pl-xl-14 pl-lg-10">Category</h3>
-						<ul class="list-unstyled tagNavList d-flex flex-wrap justify-content-lg-end mb-0">
-							@foreach ($category_lists as $category_list)
-							   <li class="text-center mb-2"><a href="{{ url('product-category', ['subcategory_id' => 0, 'category_slug' => $category_list->slug]) }}" class="md-round d-block py-2 px-2">{{ $category_list->name }}</a></li>
-							@endforeach
-						</ul>
-					</div>
-
-					
-				</div>
-			</aside>
 	</main>
 <x-userFooter />

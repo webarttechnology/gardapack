@@ -124,4 +124,17 @@ class ProductController extends Controller
         $view = view('front_end.product.compare', compact('product'));
         return response()->json(['view' => $view->render(), 'status' => true]);
      }
+
+     /**
+      * Single product details
+     */
+
+     public function SingleProductDetails($product_id){
+            $product = Product::with('productGalleries', 'category')->whereId($product_id)->first();
+            $prod_quantity = ($product->no_in_stock > 0) ? "In Stock" : "Out of Stock";
+            // $prodCategory = Category::where('id', $product->category_id)->first();
+            // $prodGalleries = ProductGallery::where('product_id', $product->id)->get();
+            return response()->json(['details' => $product, 'quantity' => $prod_quantity, 
+            ]);
+     }
 }

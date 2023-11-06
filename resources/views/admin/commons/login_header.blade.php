@@ -23,16 +23,16 @@
 	@endif
 
     <!--plugins-->
-    <link href="{{asset('assets/plugins/simplebar/css/simplebar.css')}}" rel="stylesheet" />
-    <link href="{{asset('assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css')}}" rel="stylesheet" />
-    <link href="{{asset('assets/plugins/metismenu/css/metisMenu.min.css')}}" rel="stylesheet" />
+    <link href="{{asset('assets_old/plugins/simplebar/css/simplebar.css')}}" rel="stylesheet" />
+    <link href="{{asset('assets_old/plugins/perfect-scrollbar/css/perfect-scrollbar.css')}}" rel="stylesheet" />
+    <link href="{{asset('assets_old/plugins/metismenu/css/metisMenu.min.css')}}" rel="stylesheet" />
     <!-- loader-->
-    <link href="{{asset('assets/css/pace.min.css')}}" rel="stylesheet" />
-    <script src="{{asset('assets/js/pace.min.js')}}"></script>
+    <link href="{{asset('assets_old/css/pace.min.css')}}" rel="stylesheet" />
+    <script src="{{asset('assets_old/js/pace.min.js')}}"></script>
     <!-- Bootstrap CSS -->
-    <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('assets/css/app.css')}}" rel="stylesheet">
-    <link href="{{asset('assets/css/icons.css')}}" rel="stylesheet">
+    <link href="{{asset('assets_old/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('assets_old/css/app.css')}}" rel="stylesheet">
+    <link href="{{asset('assets_old/css/icons.css')}}" rel="stylesheet">
     <title>
         @if($app_name != null)
             {{ $app_name->value }}
@@ -48,12 +48,12 @@
     @yield('content')
 
     <!-- Bootstrap JS -->
-    <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('assets_old/js/bootstrap.bundle.min.js')}}"></script>
     <!--plugins-->
-    <script src="{{asset('assets/js/jquery.min.js')}}"></script>
-    <script src="{{asset('assets/plugins/simplebar/js/simplebar.min.js')}}"></script>
-    <script src="{{asset('assets/plugins/metismenu/js/metisMenu.min.js')}}"></script>
-    <script src="{{asset('assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js')}}"></script>
+    <script src="{{asset('assets_old/js/jquery.min.js')}}"></script>
+    <script src="{{asset('assets_old/plugins/simplebar/js/simplebar.min.js')}}"></script>
+    <script src="{{asset('assets_old/plugins/metismenu/js/metisMenu.min.js')}}"></script>
+    <script src="{{asset('assets_old/plugins/perfect-scrollbar/js/perfect-scrollbar.js')}}"></script>
     <!--Password show & hide js -->
     <script>
     $(document).ready(function() {
@@ -72,7 +72,7 @@
     });
     </script>
     <!--app JS-->
-    <script src="{{asset('assets/js/app.js')}}"></script>
+    <script src="{{asset('assets_old/js/app.js')}}"></script>
 </body>
 
 </html>

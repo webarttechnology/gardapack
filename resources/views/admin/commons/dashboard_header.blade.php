@@ -25,21 +25,21 @@
 	@endif
 
 	<!--plugins-->
-	<link href="{{asset('assets/plugins/simplebar/css/simplebar.css')}}" rel="stylesheet" />
-	<link href="{{asset('assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css')}}" rel="stylesheet" />
-	<link href="{{asset('assets/plugins/metismenu/css/metisMenu.min.css')}}" rel="stylesheet" />
-	<link href="{{asset('assets/plugins/datatable/css/dataTables.bootstrap5.min.css')}}" rel="stylesheet" />
+	<link href="{{asset('assets_old/plugins/simplebar/css/simplebar.css')}}" rel="stylesheet" />
+	<link href="{{asset('assets_old/plugins/perfect-scrollbar/css/perfect-scrollbar.css')}}" rel="stylesheet" />
+	<link href="{{asset('assets_old/plugins/metismenu/css/metisMenu.min.css')}}" rel="stylesheet" />
+	<link href="{{asset('assets_old/plugins/datatable/css/dataTables.bootstrap5.min.css')}}" rel="stylesheet" />
 	<!-- loader-->
-	<link href="{{asset('assets/css/pace.min.css')}}" rel="stylesheet" />
-	<script src="{{asset('assets/js/pace.min.js')}}"></script>
+	<link href="{{asset('assets_old/css/pace.min.css')}}" rel="stylesheet" />
+	<script src="{{asset('assets_old/js/pace.min.js')}}"></script>
 	<!-- Bootstrap CSS -->
-	<link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
-	<link href="{{asset('assets/css/app.css')}}" rel="stylesheet">
-	<link href="{{asset('assets/css/icons.css')}}" rel="stylesheet">
+	<link href="{{asset('assets_old/css/bootstrap.min.css')}}" rel="stylesheet">
+	<link href="{{asset('assets_old/css/app.css')}}" rel="stylesheet">
+	<link href="{{asset('assets_old/css/icons.css')}}" rel="stylesheet">
 	<!-- Theme Style CSS -->
-	<link rel="stylesheet" href="{{asset('assets/css/dark-theme.css')}}" />
-	<link rel="stylesheet" href="{{asset('assets/css/semi-dark.css')}}" />
-	<link rel="stylesheet" href="{{asset('assets/css/header-colors.css')}}" />
+	<link rel="stylesheet" href="{{asset('assets_old/css/dark-theme.css')}}" />
+	<link rel="stylesheet" href="{{asset('assets_old/css/semi-dark.css')}}" />
+	<link rel="stylesheet" href="{{asset('assets_old/css/header-colors.css')}}" />
 	<title>
 	@if($app_name != null)
 		{{ $app_name->value }}
@@ -326,7 +326,7 @@
 					</div>
 					<div class="user-box dropdown">
 						<a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							<!-- <img src="asset('assets/images/avatars/avatar-2.png')}}" class="user-img" alt="user avatar"> -->
+							<!-- <img src="asset('assets_old/images/avatars/avatar-2.png')}}" class="user-img" alt="user avatar"> -->
 							
 							@if($details->profile_img != null)
 							<img src="{{asset('admin/profile_img/'.$details->profile_img)}}" class="user-img" alt="user avatar">
@@ -384,15 +384,15 @@
 	</div>
 	<!--end wrapper-->
 	<!-- Bootstrap JS -->
-	<script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
+	<script src="{{asset('assets_old/js/bootstrap.bundle.min.js')}}"></script>
 	<!--plugins-->
-	<script src="{{asset('assets/js/jquery.min.js')}}"></script>
-	<script src="{{asset('assets/plugins/simplebar/js/simplebar.min.js')}}"></script>
-	<script src="{{asset('assets/plugins/metismenu/js/metisMenu.min.js')}}"></script>
-	<script src="{{asset('assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js')}}"></script>
-	<script src="{{asset('assets/plugins/apexcharts-bundle/js/apexcharts.min.js')}}"></script>
-	<script src="{{asset('assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
-	<script src="{{asset('assets/plugins/datatable/js/dataTables.bootstrap5.min.js')}}"></script>
+	<script src="{{asset('assets_old/js/jquery.min.js')}}"></script>
+	<script src="{{asset('assets_old/plugins/simplebar/js/simplebar.min.js')}}"></script>
+	<script src="{{asset('assets_old/plugins/metismenu/js/metisMenu.min.js')}}"></script>
+	<script src="{{asset('assets_old/plugins/perfect-scrollbar/js/perfect-scrollbar.js')}}"></script>
+	<script src="{{asset('assets_old/plugins/apexcharts-bundle/js/apexcharts.min.js')}}"></script>
+	<script src="{{asset('assets_old/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
+	<script src="{{asset('assets_old/plugins/datatable/js/dataTables.bootstrap5.min.js')}}"></script>
 	<script>
 		$(document).ready(function() {
 			$('#example').DataTable({
@@ -400,9 +400,9 @@
 			});
 		  } );
 	</script>
-	<script src="{{asset('assets/js/dashboard-eCommerce.js')}}"></script>
+	<script src="{{asset('assets_old/js/dashboard-eCommerce.js')}}"></script>
 	<!--app JS-->
-	<script src="{{asset('assets/js/app.js')}}"></script>
+	<script src="{{asset('assets_old/js/app.js')}}"></script>
 	<script>
 		new PerfectScrollbar('.product-list');
 		new PerfectScrollbar('.customers-list');

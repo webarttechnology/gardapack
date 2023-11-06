@@ -53,6 +53,11 @@ class Product extends Model
             return $this->hasMany(ProductGallery::class);
     }
 
+    public function category()
+    {
+            return $this->belongsTo(Category::class);
+    }
+
     /**
      * counting product 
     */

@@ -1,80 +1,82 @@
-<!-- ---------------Footer Section Start----------- -->
+<!-- footer -->
+<footer id="footer" class="container-fluid overflow-hidden px-lg-20">
+    <div class="copyRightHolder text-center pt-lg-5 pb-lg-4 py-3">
+        <p class="mb-0">Coppyright 2023 by <a href="javascript:void(0);">Green Mall</a> - All right reserved</p>
+    </div>
+</footer>
+<div class="cart-drawer cart-drawer-right">
+    <h3>Menu</h3>
+    <div class="cart-drawer-close-btn">
+        X
+    </div>
+    <div class="manuItem">
+        <ul>
+            <li><a href="{{ url('/') }}">Home</a></li>
+            <li><a href="{{ url('about-us') }}">About Us</a></li>
+            <!-- <div class="dropdown">
+               <li class="text-white dropdown-toggle listsec" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Services
+               </li>
+               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+             <a class="dropdown-item" href="#">Landscaping Services</a>
+             <a class="dropdown-item" href="#">Rooftop Gardening</a>
+            </div>
+           </div> -->
+            <li>
+                <a class="postprt" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
+                    aria-controls="collapseExample">
+                    Services <i class="fa fa-angle-down" aria-hidden="true"></i>
+                </a>
+            </li>
+            <div class="collapse" id="collapseExample">
+                <div class="card card-body">
+                    @foreach($categories as $category)
+                    <ul>
+                        <li><a class="dropdown-item" href="{{ url('service-details', $category->slug) }}">{{
+                                $category->name }}</a></li>
+                    </ul>
+                    @endforeach
+                </div>
+            </div>
+            <li><a href="{{ url('faq') }}">Faq</a></li>
+            <li><a href="{{ url('gallery') }}">Gallery</a></li>
+            <li><a href="{{ url('contact-us') }}">Contact us</a></li>
 
-<section class="footersec">
-    <div class="container">
-        <div class="row align-items-center mt-5" data-aos="zoom-in" data-aos-duration="2000">
-            <div class="col-md-4">
-                <div class="ftr-cntct-hdng">
-                    <h4>Contact Us</h4>
-                </div>
-                <div class="ftr-address">
-                    <ul>
-                        <li>
-                            <p>IN Office Address : Matrix Tower <br>Block GP, Sector V, WB, Kol–700091</p>
-                        </li>
-                        <li><a href="#">Email : infoShopsee.com</a></li>
-                        <li><a href="tel: 1 888-927-7332">Toll-Free : +1 888-927-7332</a></li>
-                        <li><a href="tel:1 415 800 4429">USA Support : +1 415 800 4429</a>
-                            <p></p>
-                        </li>
-                    </ul>
-                </div>
-                <div class="company">
-                    <p>Company Name : Grada Packs</p>
-                    <p>Company Address : Zone Orlytech
-                        Batiment 5161 allee du commandant
-                        Mouchotte ORLY Paris ,91550 , France
-                    </p>
-                </div>
+
+            @if(auth()->user())
+            <li><a href="#">My Order</a></li>
+            <li><a href="{{ route('user.logout') }}">Signout</a></li>
+            @else
+            <li><a href="{{ url('signup') }}">Signup</a></li>
+            @endif
+        </ul>
+    </div>
+</div>
+</div>
+
+{{-- Compare Modal --}}
+<div class="modal" id="productCompare_modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Modal Title</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-            <div class="col-md-4">
-                <div class="ftrservice">
-                    <div class="srvchdng">
-                        <h4>Services</h4>
-                    </div>
-                    <ul>
-                        <li><a href="#">Lorem</a></li>
-                        <li><a href="#">Lorem</a></li>
-                        <li><a href="#">Lorem</a></li>
-                        <li><a href="#">Lorem</a></li>
-                        <li><a href="#">Lorem</a></li>
-                        <li><a href="#">Lorem</a></li>
-                    </ul>
-                </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
             </div>
-            <div class="col-md-4">
-                <div class="ftrservice">
-                    <div class="srvchdng">
-                        <h4>Quick Links</h4>
-                    </div>
-                    <ul>
-                        <li><a href="#">Lorem</a></li>
-                        <li><a href="#">Lorem</a></li>
-                        <li><a href="#">Lorem</a></li>
-                        <li><a href="#">Lorem</a></li>
-                        <li><a href="#">Lorem</a></li>
-                        <li><a href="#">Lorem</a></li>
-                    </ul>
-                </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
-        </div>
-        <div class="row py-5" data-aos="zoom-in" data-aos-duration="2000">
-            <div class="col-md-8">
-                <div class="ftrbtm">
-                    <p>Copyright 2022 © Grada Packs. Powered by <a href="https://webart.technology/"
-                            target="_blank">
-                            WebArt
-                            Technology All Rights Reserved</a></p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="ftrlogo">
-                    <img src="{{ asset('assets/images/ftr-logo.png')}}" alt="">
-                </div>
-            </div>
+
         </div>
     </div>
-</section>
+</div>
 
 
 <!-- quick view modal -->
@@ -174,37 +176,10 @@
     </div>
 </div>
 
-<!-- ---------------Footer Section End----------- -->
-<!-- Sohail END -->
-</body>
-
-<!-- AOS JS  -->
+<!-- include jQuery library -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-AOS.init();
-</script>
-<!-- Bootstrap JS CDN -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-crossorigin="anonymous"></script>
-
-<!-- jquery min-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="{{ asset('assets/js/stellarnav.min.js')}}"></script>
-<script type="text/javascript">
-jQuery(document).ready(function ($) {
-    jQuery('.stellarnav').stellarNav({
-        breakpoint: 960,
-        position: 'right',
-        phoneBtn: '18009997788',
-        locationBtn: 'https://www.google.com/maps'
-    });
-});
-</script>
-
+<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+<script src="{{ asset('front_end/js/jquery-3.4.1.min.js')}}"></script>
 <!-- include bootstrap popper JavaScript -->
 <script src="{{ asset('front_end/js/popper.min.js')}}"></script>
 <!-- include bootstrap JavaScript -->
@@ -477,5 +452,6 @@ controlBtn.className = "play";
         // }
    }
 </script>
+</body>
 
 </html>

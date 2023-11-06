@@ -106,6 +106,7 @@ Route::controller(ProductController::class)->group(function(){
 
     // product compare
     Route::get('product/compare/{product_id}', 'product_compare')->name('product.compare');
+    Route::get('single/product/details/{product_id}', 'SingleProductDetails')->name('single.product.details');
 });
 
 Route::get('paypal/success', [PaypalPaymentController::class, 'success'])->name('payment.success');
@@ -147,7 +148,7 @@ Route::controller(CartManageController::class)
 ->prefix('user/cart/')
 ->group(function(){
     Route::get('page', 'cart');
-    Route::get('add/{product_id}/{cart_quantity}', 'cart_add');
+    Route::get('add/{product_id}/{cart_quantity}', 'cart_add')->name('cart.add');
     Route::get('delete/{cart_id}', 'cart_delete');
     Route::get('update/{cart_id}/{quantity}', 'cart_update');
 });

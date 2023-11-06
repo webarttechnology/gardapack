@@ -1,0 +1,300 @@
+@media only screen and (max-width: 600px) {
+    .header-part {
+
+        padding: 5px 0;
+    }
+
+    .header-part nav {
+        padding-bottom: 7px;
+        padding-top: 12px;
+    }
+
+    .header-part nav a {
+        padding-left: 6px;
+    }
+
+    .header-part p {
+        display: none;
+    }
+
+    .header-part .header-log {
+        padding-top: 14px;
+        padding-left: 0;
+        font-size: 8px;
+    }
+
+    .header-part nav i {
+        font-size: 16px;
+    }
+
+    .header-part nav {
+        text-align: center;
+    }
+
+    .header-part2 img {
+        width: 39%;
+    }
+
+    .home-part2 nav {
+        text-align: end;
+    }
+
+    .header-part2 nav a {
+
+        font-size: 29px;
+        margin-left: 8px
+    }
+
+    .home-wrap2 {
+        padding-top: 0px;
+        padding-left: 119px;
+    }
+
+    .header-part2 nav {
+        margin-left: 163px;
+    }
+
+    .home-wrap {
+        border-right: 0;
+    }
+
+    .search {
+
+        top: 0px;
+        left: 86%;
+        width: 14%;
+        height: 40px;
+    }
+
+    .search i {
+
+        margin-left: 3px
+    }
+
+    .home-logo {
+        margin-bottom: 16px;
+    }
+
+    .header-part3 .stellarnav.mobile ul {
+
+        background: #57ce47;
+    }
+
+    .stellarnav svg {
+        fill: #fff;
+    }
+
+    .form-select {
+
+        width: 366%;
+    }
+
+    .home-form input::placeholder {
+        font-size: 11px;
+        padding-top: 10px;
+    }
+
+    .header-part3 .nav-link {
+        font-size: 10px;
+        padding-left: 27px;
+    }
+
+    .header-part3 .third {
+        color: #000;
+    }
+
+    .header-part3 .stellarnav a {
+        color: #fff;
+        font-size: 25px;
+    }
+
+    .stellarnav .menu-toggle span.bars span {
+        display: block;
+        width: 24px;
+        height: 4px;
+        border-radius: 6px;
+        background: #fff;
+    }
+
+    .stellarnav .menu-toggle span.bars {
+
+        top: 5px
+    }
+
+
+
+    .home-banner {
+        padding: 77px 0;
+    }
+
+    .home-banner h1 {
+        font-size: 34px;
+    }
+
+    .banner-image {
+        text-align: center;
+        padding-bottom: 76px;
+    }
+
+    .home-banner p {
+        font-size: 12px;
+        padding-bottom: 4px;
+        text-align: center;
+    }
+
+    .home-button {
+        text-align: center;
+    }
+
+    .home-button .btn {
+        font-size: 19px;
+        padding: 9px 36px;
+
+    }
+
+    .home-banner h1 {
+        text-align: center;
+        padding-bottom: 14px;
+        font-size: 60px;
+    }
+
+    .dealofday h2 {
+        font-size: 42px;
+        text-align: center;
+    }
+
+    .dealofday .btnbox {
+        padding-top: 29px;
+    }
+
+    .dealofday .btnbox a {
+        font-size: 23px;
+    }
+
+    .sec-title h2::after {
+        width: 169px;
+    }
+
+    .sec-title h2 {
+        font-size: 30px;
+        padding-bottom: 20px;
+    }
+
+    .expitems {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .blog .hdng h1 {
+
+        font-size: 38px;
+    }
+
+
+    .faq .accordion-button {
+
+
+        font-size: 18px;
+
+
+    }
+
+    .newproducts .deal-item h5 {
+
+        font-size: 29px;
+    }
+
+    .newproducts .deal-item .stars {
+
+        font-size: 24px;
+    }
+
+    .dealofday .deal-item {
+
+        gap: 8px;
+    }
+
+    .price {
+        font-size: 25px;
+    }
+
+    .faq .accordion-body {
+
+        font-size: 17px;
+    }
+
+    .footersec {
+        text-align: center;
+    }
+
+    .footersec .ftr-cntct-hdng h4 {
+        font-size: 41px;
+    }
+
+    .footersec .ftr-address ul li p {
+        font-size: 20px;
+
+    }
+
+    .footersec .ftr-address ul li a,
+    .ftrservice ul li a {
+        text-decoration: none;
+        font-size: 20px;
+    }
+
+    .footersec .company p {
+        font-size: 20px;
+    }
+
+    .footersec .ftrservice {
+
+        margin-left: 8px
+    }
+
+
+
+    .footersec .ftrservice .srvchdng h4 {
+
+        font-size: 41px;
+    }
+
+    .home-service li a {
+        font-size: 20px;
+    }
+
+    .footersec .ftrbtm p {
+        font-size: 20px;
+    }
+
+
+
+    .blog .blogbtn {
+        margin-bottom: 23px;
+    }
+
+    .blog .blogbtn a {
+        font-size: 18px;
+        padding: 9px 33px;
+    }
+
+
+/**/
+
+}
+
+
+@media only screen and (max-width: 767px) {
+    .header-part nav a {
+        padding-left: 6px;
+    }
+
+    .header-part p {
+        display: none;
+    }
+
+
+
+
+
+
+}

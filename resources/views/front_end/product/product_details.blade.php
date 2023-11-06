@@ -2,7 +2,7 @@
 
 <main>
     <!-- introBannerHolder -->
-    <section class="introBannerHolder d-flex w-100 bgCover" style="background-image: url({{ asset('front_end/images/b-bg7.jpg')}} );">
+    {{-- <section class="introBannerHolder d-flex w-100 bgCover" style="background-image: url({{ asset('front_end/images/b-bg7.jpg')}} );">
         <div class="container">
             
             <div class="row">
@@ -18,7 +18,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- twoColumns -->
     <div class="text-right" id="cart_msg"></div>
     

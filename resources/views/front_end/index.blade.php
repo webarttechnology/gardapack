@@ -36,38 +36,26 @@
             </div>
         </div>
         <div class="row py-3" data-aos="zoom-in" data-aos-duration="2000">
+
+            @foreach($categories as $category)
             <div class="col-md-3 my-3">
                 <div class="deal-item">
                     <div class="img">
-                        <img src="assets/images/categories 1.png" alt="">
+                        @if($category->category_img != null)
+                        <a href="{{ url('product-category', ['subcategory_id' => 0, 'category_slug' => $category->slug]) }}">
+                            <img src="{{ asset('category_img/'.$category->category_img) }}" alt="">
+                        </a>
+                        @else
+                        <a href="{{ url('product-category', ['subcategory_id' => 0, 'category_slug' => $category->slug]) }}">
+                            <img src="{{asset('pages/featured_img/no_imge_found.jpg')}}" height="100" width="175" alt="">
+                        </a>
+                        @endif
                     </div>
-                    <h5>Vaccum Seal Bags</h5>
+                    <h5>{{ $category->name }}</h5>
                 </div>
             </div>
-            <div class="col-md-3 my-3">
-                <div class="deal-item">
-                    <div class="img">
-                        <img src="assets/images/categories 2.png" alt="">
-                    </div>
-                    <h5>Vaccum Seal Rolls</h5>
-                </div>
-            </div>
-            <div class="col-md-3 my-3">
-                <div class="deal-item">
-                    <div class="img">
-                        <img src="assets/images/plain-bag-black-back-380x434.jpg" alt="">
-                    </div>
-                    <h5>Clear/Black Bags</h5>
-                </div>
-            </div>
-            <div class="col-md-3 my-3">
-                <div class="deal-item">
-                    <div class="img">
-                        <img src="assets/images/camo-back-380x434.jpg" alt="">
-                    </div>
-                    <h5>All Black Bags</h5>
-                </div>
-            </div>
+            @endforeach
+
         </div>
     </div>
 </section>
@@ -143,13 +131,15 @@
             </div>
         </div>
         <div class="row py-3" data-aos="zoom-in" data-aos-duration="2000">
+
+
+           @foreach($products as $product)
             <div class="col-md-3 my-3">
                 <div class="deal-item">
                     <div class="img">
-                        <img src="assets/images/camo-back-380x434.jpg" alt="">
+                        <img src="{{ asset('admin/product/featured_img/'.$product->featured_img)}}" alt="">
                     </div>
-                    <h5>Plain Black 3.5G
-                        Mylar Bag</h5>
+                    <h5>{{ $product->name }}</h5>
                     <div class="stars">
                         <i class="bi bi-star-fill"></i>
                         <i class="bi bi-star-fill"></i>
@@ -157,68 +147,14 @@
                         <i class="bi bi-star-fill"></i>
                         <i class="bi bi-star-fill"></i>
                     </div>
-                    <p class="price">$192.00</p>
+                    <p class="price">${{ $product->price }}</p>
                 </div>
             </div>
-            <div class="col-md-3 my-3">
-                <div class="deal-item">
-                    <div class="img">
-                        <img src="assets/images/new2.jpg" alt="">
-                    </div>
-                    <h5>Lorem Ipsum Dolor Sit Amet</h5>
-                    <div class="stars">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                    </div>
-                    <p class="price">$192.00</p>
-                </div>
-            </div>
-            <div class="col-md-3 my-3">
-                <div class="deal-item">
-                    <div class="img">
-                        <img src="assets/images/new3.jpg" alt="">
-                    </div>
-                    <h5>Lorem Ipsum Dolor Sit Amet</h5>
-                    <div class="stars">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                    </div>
-                    <p class="price">$192.00</p>
-                </div>
-            </div>
-            <div class="col-md-3 my-3">
-                <div class="deal-item">
-                    <div class="img">
-                        <img src="assets/images/deal3.jpg" alt="">
-                    </div>
-                    <h5>Plain Black 3.5G
-                        Mylar Bag</h5>
-                    <div class="stars">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                    </div>
-                    <p class="price">$192.00</p>
-                </div>
-            </div>
+            @endforeach
+
         </div>
     </div>
 </section>
-
-<!-- Ria END -->
-
-
-
-
-<!-- Tanmoy -->
 
 <!-- explore -->
 <section class="explore">
@@ -332,92 +268,24 @@
         <div class="row py-5">
             <div class="col-md-12" data-aos="zoom-in" data-aos-duration="2000">
                 <div class="accordion" id="accordionExample">
+
+
+                    @foreach($faqs as $key => $faq)
                     <div class="accordion-item">
                         <h2 class="accordion-header">
                             <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                Where are your bags made?
+                                data-bs-target="#collapseOne_{{ $key }}" aria-expanded="true" aria-controls="collapseOne_{{ $key }}">
+                                {!! $faq->question !!}
                             </button>
                         </h2>
-                        <div id="collapseOne" class="accordion-collapse collapse show"
+                        <div id="collapseOne_{{ $key }}" class="accordion-collapse collapse @if($key == 0) show @endif"
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                Our packaging is manufactured entirely in the United States in the beautiful
-                                state of Ohio in order to maintain quality and support our industry.
+                                {!! $faq->answer !!}
                             </div>
                         </div>
                     </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                Are your bags biodegradable?
-                            </button>
-                        </h2>
-                        <div id="collapseTwo" class="accordion-collapse collapse"
-                            data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Velit sed quia, eius
-                                mollitia consequatur cupiditate alias minima repudiandae qui consequuntur esse nihil
-                                repellat at aspernatur dicta expedita, omnis deserunt nemo?
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                How do I get the best results from my Grove Bags?
-                            </button>
-                        </h2>
-                        <div id="collapseThree" class="accordion-collapse collapse"
-                            data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore possimus suscipit
-                                eos perferendis nemo magni eum asperiores, ab earum error voluptas facilis id libero
-                                voluptates explicabo, non sunt molestiae vitae, eius maiores consequatur? Placeat
-                                voluptatem sapiente molestiae dolorum tempore veritatis tenetur, rerum nihil cumque
-                                odio ipsum eveniet dignissimos reprehenderit quos nemo dolore? Corporis, id!
-                                Quisquam voluptate quam voluptatum incidunt delectus?
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                Are your bags odor proof?
-                            </button>
-                        </h2>
-                        <div id="collapseFour" class="accordion-collapse collapse"
-                            data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, numquam cupiditate.
-                                Cum laboriosam consectetur, incidunt veritatis consequuntur perferendis, explicabo
-                                debitis odit quisquam animi ipsam, ratione recusandae voluptatum magni tempore? Sed
-                                numquam facere at deleniti magni nulla quae perspiciatis facilis blanditiis,
-                                necessitatibus accusamus esse expedita quod itaque qui aliquid tenetur nobis.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                When should you use a Grove Bag?
-                            </button>
-                        </h2>
-                        <div id="collapseFive" class="accordion-collapse collapse"
-                            data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero est ducimus unde
-                                obcaecati perferendis sequi, autem tenetur error, molestias, numquam placeat
-                                suscipit adipisci consequatur. Sapiente illum facilis modi nam architecto!
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach 
 
                 </div>
             </div>

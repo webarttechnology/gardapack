@@ -1,3 +1,7 @@
+@php
+$address = App\Models\Pages::where('name', 'Contact Us Page')->first();
+@endphp
+
 <!-- ---------------Footer Section Start----------- -->
 
 <section class="footersec">
@@ -10,22 +14,21 @@
                 <div class="ftr-address">
                     <ul>
                         <li>
-                            <p>IN Office Address : Matrix Tower <br>Block GP, Sector V, WB, Kol–700091</p>
+                            <p>Address : {{ $address->address }}</p>
                         </li>
-                        <li><a href="#">Email : infoShopsee.com</a></li>
-                        <li><a href="tel: 1 888-927-7332">Toll-Free : +1 888-927-7332</a></li>
-                        <li><a href="tel:1 415 800 4429">USA Support : +1 415 800 4429</a>
-                            <p></p>
+                        <li>
+                            <a href="javascript:void(0)">Email : {{ $address->email }} </a>
                         </li>
+                        <li><a href="javascript:void(0)">Toll-Free : {{ $address->phone }}</a></li>
                     </ul>
                 </div>
-                <div class="company">
+                {{-- <div class="company">
                     <p>Company Name : Grada Packs</p>
                     <p>Company Address : Zone Orlytech
                         Batiment 5161 allee du commandant
                         Mouchotte ORLY Paris ,91550 , France
                     </p>
-                </div>
+                </div> --}}
             </div>
             <div class="col-md-4">
                 <div class="ftrservice">
@@ -33,12 +36,9 @@
                         <h4>Services</h4>
                     </div>
                     <ul>
-                        <li><a href="#">Lorem</a></li>
-                        <li><a href="#">Lorem</a></li>
-                        <li><a href="#">Lorem</a></li>
-                        <li><a href="#">Lorem</a></li>
-                        <li><a href="#">Lorem</a></li>
-                        <li><a href="#">Lorem</a></li>
+                        @foreach($services as $service)
+                          <li><a href="{{ url('service-details', $service->slug) }}">{{ $service->name }}</a></li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -48,12 +48,18 @@
                         <h4>Quick Links</h4>
                     </div>
                     <ul>
-                        <li><a href="#">Lorem</a></li>
-                        <li><a href="#">Lorem</a></li>
-                        <li><a href="#">Lorem</a></li>
-                        <li><a href="#">Lorem</a></li>
-                        <li><a href="#">Lorem</a></li>
-                        <li><a href="#">Lorem</a></li>
+                        @if(Auth::user())
+                        <li><a href="{{ url('/') }}">Home</a></li>
+                        <li><a href="{{ url('my-account') }}">My accounts</a></li>
+                        <li><a href="{{ url('order-history') }}">My orders</a></li>
+                        <li><a href="{{ url('contact-us') }}">Contact Us</a></li>
+                        <li><a href="{{ url('about-us') }}">About Us</a></li>
+                        <li><a href="{{ url('user.logout') }}">Logout</a></li>
+                        @else
+                        <li><a href="{{ url('/') }}">Home</a></li>
+                        <li><a href="{{ url('contact-us') }}">Contact Us</a></li>
+                        <li><a href="{{ url('about-us') }}">About Us</a></li>
+                        @endif
                     </ul>
                 </div>
             </div>
@@ -61,7 +67,7 @@
         <div class="row py-5" data-aos="zoom-in" data-aos-duration="2000">
             <div class="col-md-8">
                 <div class="ftrbtm">
-                    <p>Copyright 2022 © Grada Packs. Powered by <a href="https://webart.technology/"
+                    <p>Copyright 2022 © Grada Packs. Powered by <a href="{{ url('/') }}"
                             target="_blank">
                             WebArt
                             Technology All Rights Reserved</a></p>

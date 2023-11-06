@@ -1101,3 +1101,9 @@ article:last-of-type {
 /* -----------------------Features Csss End--------------- */
 
 /* --------------Sohail Css END--------------- */
+
+.searchBtn{
+    background-color: transparent;
+    border: none;
+    padding: 0;
+}

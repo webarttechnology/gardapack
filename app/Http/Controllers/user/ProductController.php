@@ -78,11 +78,16 @@ class ProductController extends Controller
     */
 
     public function product_search(Request $request){
-        
+        $request->validate([
+              'p_search' => 'required',
+              'search_category' => 'required',
+        ]);
+
         $per_page = 12;
         $search_for = $request->p_search;
+        $search_category = $request->search_category;
         $product_categories = Category::where('type', 'product')->get();
-        $products = Product::where('name', 'LIKE', '%'.$search_for.'%')->get();
+        $products = Product::where('name', 'LIKE', '%'.$search_for.'%')->where('category_id', $search_category)->get();
         $total_products = count($products);
 
         return view('front_end.product.product_search', compact('products', 'search_for', 'total_products', 'per_page',  'product_categories'));

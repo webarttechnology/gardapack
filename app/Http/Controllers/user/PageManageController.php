@@ -7,22 +7,24 @@ use Illuminate\Http\Request;
 use App\Models\{Product, PdfDownloads, Category,ProductGallery, Service, WebsiteGallery, Faq, Course, Pages, Cart, User, Order};
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class PageManageController extends Controller
 {
     //
 
     public function index(){
-        $products = Product::inRandomOrder()->limit(12)->get();
-        $categories = Category::where('type', 'product')->inRandomOrder()->limit(10)->get();
+        // $products = Product::inRandomOrder()->limit(12)->get();
+        $products = Product::with('productGalleries', 'category')->inRandomOrder()->limit(4)->get();
+        $categories = Category::where('type', 'product')->inRandomOrder()->limit(4)->get();
         $daily_deals = Product::orderBy('id', 'desc')->limit(10)->get();
         $courses = Course::orderBy('id', 'desc')->limit(6)->get();
         $pdfs = PdfDownloads::all();
         $video_banner = DB::table('video_banner')->first();
         $why_us = DB::table('why_choose_us')->first();
-        
-        return view('front_end.index', compact('products', 'why_us', 'categories', 'daily_deals', 'courses', 'pdfs', 'video_banner'));
+        $faqs = Faq::all();
+
+        return view('front_end.index', compact('products', 'faqs', 'why_us', 'categories', 'daily_deals', 'courses', 'pdfs', 'video_banner'));
     }
     
     public function signup_signin(){

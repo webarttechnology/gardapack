@@ -1,3 +1,7 @@
+@php
+    $categories = App\Models\Category::where('type', 'product')->get();
+@endphp
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -111,26 +115,38 @@
                             <a href="{{ url('/') }}"><img src="{{ asset('assets/images/Nav_Logo.png')}}"></a>
                         </div>
                     </div>
+
                     <div class="col-md-4 col-sm-6">
-                        <div class="home-form">
-                            <div class="home-wrap">
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected>All Catagories</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
+                        <form action="{{ url('product-search') }}" method="post">
+                            @csrf
+
+                            <div class="home-form">
+                                <div class="home-wrap">
+                                    <select class="form-select" name="search_category" aria-label="Default select example">
+                                        <option value="" selected>All Catagories</option>
+
+                                        @foreach($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="home-wrap2">
+                                    <input type="text" name="p_search" placeholder="Search of products" required>
+                                    <span class="search">
+                                        <button class="searchBtn" type="submit"><i class="bi bi-search"></i></button>
+                                    </span>
+                                </div>
                             </div>
-                            <div class="home-wrap2">
-                                <input type="text" placeholder="Search of products">
-                                <span class="search"><a href="#"><i class="bi bi-search"></i></a></span>
-                            </div>
-                        </div>
+                        </form>
                     </div>
+
                     <div class="col-md-4 col-sm-6 ">
                         <nav>
-                            <a href="#"><i class="fa fa-user" aria-hidden="true"></i></a>
-                            <a href="#"><i class="bi bi-cart4"></i></a>
+                            @if(Auth::user())
+                              <a href="{{ url('my-account') }}"><i class="fa fa-user" aria-hidden="true"></i></a>
+                            @endif
+
+                            <a href="{{ url('user/cart/page') }}"><i class="bi bi-cart4"></i></a>
                         </nav>
                     </div>
 

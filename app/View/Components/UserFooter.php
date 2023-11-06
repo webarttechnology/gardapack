@@ -24,7 +24,8 @@ class UserFooter extends Component
      */
     public function render()
     {
-        $categories = Category::whereType("service")->get();
-        return view('components.user-footer', compact('categories'));
+        // $categories = Category::whereType("service")->get();
+        $services = Category::whereType("service")->get();
+        return view('components.user-footer', compact('services'));
     }
 }

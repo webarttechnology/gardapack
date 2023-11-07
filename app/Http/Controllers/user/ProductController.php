@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
-use App\Models\{Product, Category, ProductGallery, Rating, Variations};
+use App\Models\{Product, Category, ProductGallery, Rating, Variations, ProductCompare};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -126,34 +127,52 @@ class ProductController extends Controller
      */
 
      public function product_compare($product_id){
-        // $compareProductIds = Session::get('compareProductId', []);
-        $compareProductIds = json_decode(Session::get('compareProductId'), true);
+         $unique_id = Session::get('compareUniqueId') ? Session::get('compareUniqueId') : Str::random(30);
+         Session::put('compareUniqueId', $unique_id);
+         dd(Session('compareUniqueId'));
+        //  $unique_id = Session::get('compareUniqueId', Str::random(30));
+        // dd(session()->get('compareUniqueId'));
+        // $sessionLifetimeInMinutes = 1;
+        // dd($unique_id);
 
+        $check = ProductCompare::where('unique_id', $unique_id)
+                ->where('prod_id', $product_id)->first();
 
-        if($compareProductIds != null){
-            /**
-             * count product
-            */
-            foreach($compareProductIds as $compareProductId){
-                $compareProductIds[] = $compareProductId;
-            }
-
-            dd($compareProductIds);
-
-                // if(!in_array($product_id, $compareProductIds)){
-                //     // $compareProductIds  .= ','.$product_id;
-                //     $compareProductIds[] .= $product_id;
-
-                //     // Limit the array to a maximum of 4 product IDs
-                //     $compareProductIds = array_slice($compareProductIds, 0, 4);
-
-                    Session::put('compareProductId', $compareProductIds);
-                // }
-        }else{
-            Session::put('compareProductId', $product_id);
+        if($check === null){
+            ProductCompare::create([
+                 'unique_id' => $unique_id,
+                 'prod_id' => $product_id,
+            ]);
         }
+        
+        Session(['compareUniqueId' => $unique_id]);
 
-        // $product = Product::whereId($product_id)->first();
+        // $compareProductIds = Session::get('compareProductId', []);
+        // $compareProductIds = json_decode(Session::get('compareProductId'), true);
+
+        // if($compareProductIds != null){
+        // 
+        //     
+        //     foreach($compareProductIds as $compareProductId){
+        //         $compareProductIds[] .= $compareProductId;
+        //     }
+
+        //     dd($compareProductIds);
+
+        //         // if(!in_array($product_id, $compareProductIds)){
+        //         //     // $compareProductIds  .= ','.$product_id;
+        //         //     $compareProductIds[] .= $product_id;
+
+        //         //     // Limit the array to a maximum of 4 product IDs
+        //         //     $compareProductIds = array_slice($compareProductIds, 0, 4);
+
+        //             Session::put('compareProductId', $compareProductIds);
+        //         // }
+        // }else{
+        //     Session::put('compareProductId', $product_id);
+        // }
+
+        // // $product = Product::whereId($product_id)->first();
         return view('front_end.product.compare');
         // return response()->json(['view' => $view->render(), 'status' => true]);
      }

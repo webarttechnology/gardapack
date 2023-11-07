@@ -2,8 +2,8 @@
 
 <main>
     <!-- introBannerHolder -->
-    <section class="introBannerHolder d-flex w-100 bgCover" style="background-image: url({{ asset('front_end/images/b-bg7.jpg')}});">
-    {{-- <section class="introBannerHolder d-flex w-100 bgCover"> --}}
+    {{-- <section class="introBannerHolder d-flex w-100 bgCover" style="background-image: url({{ asset('front_end/images/b-bg7.jpg')}});"> --}}
+    <section class="introBannerHolder d-flex w-100">
         <div class="container">
             <div class="row">
                 <div class="col-12 pt-sm-10 text-center">

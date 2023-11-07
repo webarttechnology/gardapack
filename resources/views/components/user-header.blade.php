@@ -162,6 +162,13 @@
                     <li><a href="#">Blog</a></li>
                     <li><a href="{{ url('about-us') }}">About</a></li>
                     <li><a href="{{ url('contact-us') }}">Contact</a></li>
+                    <li>
+                        @if(Auth::user())
+                            <a href="{{ url('my-account') }}">My Account</a>
+                        @else
+                           <a href="{{ url('my-account') }}">My Account</a>
+                        @endif
+                    </li>
                     <li><a href="#">Reseller</a></li>
                 </ul>
             </div><!-- .stellarnav -->

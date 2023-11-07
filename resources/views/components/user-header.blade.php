@@ -169,6 +169,7 @@
                            <a href="{{ url('my-account') }}">My Account</a>
                         @endif
                     </li>
+                    <li><a href="{{ url('wholesale-application') }}">Wholesale</a></li>
                     <li><a href="#">Reseller</a></li>
                 </ul>
             </div><!-- .stellarnav -->

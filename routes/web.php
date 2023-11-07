@@ -35,6 +35,7 @@ use App\Http\Controllers\user\OrderManageController;
 use App\Http\Controllers\user\NewsletterManageController;
 use App\Http\Controllers\user\ContactUsManageController;
 use App\Http\Controllers\payment\PaypalPaymentController;
+use App\Http\Controllers\user\WholeSaleManageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,7 +82,12 @@ Route::controller(PageManageController::class)->group(function(){
       Route::post('change-password-action', 'change_pass_action');
       Route::post('edit-profile-action', 'edit_profile_action');
       Route::get('cancel-order/{orderId}', 'cancel_order');
-});
+
+      // wholesale
+      Route::get('wholesale-application', 'wholesale_application');
+    });
+    
+    Route::post('wholesale/application/action', [WholeSaleManageController::class, 'wholesaler_add']);
 
 // User Register & Login
 Route::controller(UserAuthController::class)->group(function(){

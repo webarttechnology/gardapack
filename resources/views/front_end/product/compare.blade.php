@@ -1,3 +1,6 @@
+@php
+   $productsCompares = App\Models\ProductCompare::orderBy('id', 'desc')->limit(4)->get();
+@endphp
 
 <x-userHeader />
 <section class="prdctcmpsect py-5">
@@ -15,193 +18,92 @@
                    </tr>
                 </thead>
                 <tbody>
+                      
                     <tr>
-                      <th>Product</th>
+                    <th>Product</th>
+                      @foreach($productsCompares as $productCompare)
+                      @php
+                          $product = App\Models\Product::where('id', $productCompare->prod_id)->first();
+                      @endphp
+
                       <td>
                            <div class="prdctim">
-                               <img src="https://portotheme.com/html/wolmart/assets/images/products/elements/1.jpg" alt="">
+                               <img src="{{ asset('admin/product/featured_img/'.$product->featured_img) }}" alt="">
                            </div>
                       </td>
-                      <td>
-                           <div class="prdctim">
-                               <img src="https://portotheme.com/html/wolmart/assets/images/products/elements/1.jpg" alt="">
-                           </div>
-                      </td>
-                      <td>
-                           <div class="prdctim">
-                               <img src="https://portotheme.com/html/wolmart/assets/images/products/elements/1.jpg" alt="">
-                           </div>
-                      </td>
-                      <td>
-                           <div class="prdctim">
-                               <img src="https://portotheme.com/html/wolmart/assets/images/products/elements/1.jpg" alt="">
-                           </div>
-                      </td>
+                      @endforeach
                    </tr>
                    <tr>
                       <th>Price</th>
-                      <td>$40.00</td>
-                      <td>$86.00</td>
-                      <td>$30.00</td>
-                      <td>$236.00</td>
-                   </tr>
+
+                      @foreach($productsCompares as $productCompare)
+                      @php
+                          $product = App\Models\Product::where('id', $productCompare->prod_id)->first();
+                      @endphp
+                      <td>${{ $product->price }}</td>
+                      @endforeach
+                       </tr>
                    <tr>
                       <th>Availability</th>
-                      <td>In stock</td>
-                      <td>In stock</td>
-                      <td>In stock</td>
-                      <td>In stock</td>
+                      @foreach($productsCompares as $productCompare)
+                      @php
+                          $product = App\Models\Product::where('id', $productCompare->prod_id)->first();
+                      @endphp
+                      <td>{{ ($product->no_in_stock > 0) ? "In Stock" : "Out of Stock" }}</td>
+                      @endforeach
                    </tr>
                    <tr>
                       <th>Description</th>
+                      @foreach($productsCompares as $productCompare)
+                      @php
+                          $product = App\Models\Product::where('id', $productCompare->prod_id)->first();
+                      @endphp
                       <td>
                            <div class="dest">
                                <ul>
-                                   <li><i class="bi bi-check2"></i> Ultrices eros in cursus turpis massa cursus mattis.</li>
-                                   <li><i class="bi bi-check2"></i> Ultrices eros in cursus turpis massa cursus mattis.</li>
-                                   <li><i class="bi bi-check2"></i> Ultrices eros in cursus turpis massa cursus mattis.</li>
+                                   <li><i class="bi bi-check2"></i> {!! $product->short_description !!}</li>
                                </ul>
                            </div>
                       </td>
-                      <td>
-                          <div class="dest">
-                               <ul>
-                                   <li><i class="bi bi-check2"></i> Ultrices eros in cursus turpis massa cursus mattis.</li>
-                                   <li><i class="bi bi-check2"></i> Ultrices eros in cursus turpis massa cursus mattis.</li>
-                                   <li><i class="bi bi-check2"></i> Ultrices eros in cursus turpis massa cursus mattis.</li>
-                               </ul>
-                           </div>
-                      </td>
-                      <td>
-                          <div class="dest">
-                               <ul>
-                                   <li><i class="bi bi-check2"></i> Ultrices eros in cursus turpis massa cursus mattis.</li>
-                                   <li><i class="bi bi-check2"></i> Ultrices eros in cursus turpis massa cursus mattis.</li>
-                                   <li><i class="bi bi-check2"></i> Ultrices eros in cursus turpis massa cursus mattis.</li>
-                               </ul>
-                           </div>
-                      </td>
-                      <td>
-                          <div class="dest">
-                               <ul>
-                                   <li><i class="bi bi-check2"></i> Ultrices eros in cursus turpis massa cursus mattis.</li>
-                                   <li><i class="bi bi-check2"></i> Ultrices eros in cursus turpis massa cursus mattis.</li>
-                                   <li><i class="bi bi-check2"></i> Ultrices eros in cursus turpis massa cursus mattis.</li>
-                               </ul>
-                           </div>
-                      </td>
+                      @endforeach
                    </tr>
                    <tr>
                       <th>Ratings & Reviews</th>
+                      @foreach($productsCompares as $productCompare)
+                      @php
+                          $product = App\Models\Product::where('id', $productCompare->prod_id)->first();
+                          $prodRating = App\Models\Rating::where('product_id', $product->id)->get();
+                          $totalRating = count($prodRating);
+                          $ratingSum = (App\Models\Rating::where('product_id', $product->id)->sum('rate'));
+
+                          if($totalRating != 0){
+                              $avgRating = number_format($ratingSum/$totalRating, 0);
+                          }else{
+                              $avgRating = 0;
+                          }
+                      @endphp
                       <td>
                           <div class="stars">
                            <ul>
-                               <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                               <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                               <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                               <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                               <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                               <li><span>(5 Reviews)</span> </li>
+                               <li @if($avgRating < 1) class="active" @endif><i class="fa fa-star" aria-hidden="true"></i></li>
+                               <li @if($avgRating < 2) class="active" @endif><i class="fa fa-star" aria-hidden="true"></i></li>
+                               <li @if($avgRating < 3) class="active" @endif><i class="fa fa-star" aria-hidden="true"></i></li>
+                               <li @if($avgRating < 4) class="active" @endif><i class="fa fa-star" aria-hidden="true"></i></li>
+                               <li @if($avgRating < 5) class="active" @endif><i class="fa fa-star" aria-hidden="true"></i></li>
+                               <li><span>({{ $totalRating }} Reviews)</span> </li>
                            </ul>   
                         </div>
                       </td>
-                      <td>
-                           <div class="stars">
-                           <ul>
-                               <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                               <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                               <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                               <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                               <li class="active"><i class="fa fa-star" aria-hidden="true"></i></li>
-                               <li><span>(5 Reviews)</span> </li>
-                           </ul>   
-                        </div>
-                      </td>
-                      <td>
-                           <div class="stars">
-                           <ul>
-                               <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                               <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                               <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                               <li class="active"><i class="fa fa-star" aria-hidden="true"></i></li>
-                               <li class="active"><i class="fa fa-star" aria-hidden="true"></i></li>
-                               <li><span>(5 Reviews)</span> </li>
-                           </ul>   
-                        </div>
-                      </td>
-                      <td>
-                           <div class="stars">
-                           <ul>
-                               <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                               <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                               <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                               <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                               <li class="active"><i class="fa fa-star" aria-hidden="true"></i></li>
-                               <li><span>(5 Reviews)</span> </li>
-                           </ul>   
-                        </div>
-                      </td>
+                      @endforeach
                    </tr>
                    <tr>
                       <th>Category</th>
-                      <td>Watches</td>
-                      <td>Shoes</td>
-                      <td>Watches</td>
-                      <td>Electronics</td>
-                   </tr>
-                   <tr>
-                      <th>Size</th>
-                      <td>Medium, Small</td>
-                      <td>Large, Medium</td>
-                      <td>Small</td>
-                      <td>Medium</td>
-                   </tr>
-                   <tr>
-                      <th>Color</th>
-                      <td>
-                           <div class="colorst">
-                             <ul>
-                                  <li><span></span></li>
-                                  <li><span></span></li>
-                                  <li><span></span></li>
-                                  <li><span></span></li>
-                                  <li><span></span></li>
-                             </ul>		
-                           </div>	
-                      </td>
-                      <td>
-                           <div class="colorst">
-                             <ul>
-                                  <li><span></span></li>
-                                  <li><span></span></li>
-                                  <li><span></span></li>
-                                  <li><span></span></li>
-                                  <li><span></span></li>
-                             </ul>		
-                           </div>	
-                      </td>
-                      <td>
-                           <div class="colorst">
-                             <ul>
-                                  <li><span></span></li>
-                                  <li><span></span></li>
-                                  <li><span></span></li>
-                                  <li><span></span></li>
-                                  <li><span></span></li>
-                             </ul>		
-                           </div>	
-                      </td>
-                      <td>
-                          <div class="colorst">
-                             <ul>
-                                  <li><span></span></li>
-                                  <li><span></span></li>
-                                  <li><span></span></li>
-                                  <li><span></span></li>
-                                  <li><span></span></li>
-                             </ul>		
-                           </div>	
-                      </td>
+                      @foreach($productsCompares as $productCompare)
+                      @php
+                          $product = App\Models\Product::with('category')->where('id', $productCompare->prod_id)->first();
+                      @endphp
+                      <td>{{ $product->category->name }}</td>
+                      @endforeach
                    </tr>
                 </tbody>
              </table>

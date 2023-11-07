@@ -176,4 +176,12 @@ class PageManageController extends Controller
 
         return redirect()->back()->with('danger', 'Order Canceled');
     }
+
+    /**
+     * whole sale page
+    */
+
+    public function wholesale_application(){
+        return view('front_end.wholesale.index');
+    }
 }

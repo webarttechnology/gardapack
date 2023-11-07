@@ -3987,3 +3987,85 @@ background:#d1d106;
 .prdctcmpsect .colorst li:last-child span {
  background:#888;
 }
+
+/*Wholesale Page*/
+
+.wholesale{
+  padding: 50px 0;
+}
+
+.wholesale p {
+  margin-bottom: 0 ;
+
+}
+
+.wholesale .form-title {
+  background: #f1f1f1;
+  border-bottom: 1px solid #EAEAEA;
+  margin: 0;
+  padding: 10px 25px;
+  margin-bottom: 20px;
+}
+
+.wholesale .form-title h3{
+  font-weight: 400;
+  font-size: 2em;
+  color: #444;
+}
+
+.wholesale label {
+  padding-bottom: 8px;
+  display: block;
+  font-size: 16px;
+  color: #444;
+}
+
+.wholesale label.odd {
+  padding-bottom: 0;
+}
+
+.wholesale label em {
+  color: #ff0000;
+}
+
+.wholesale .subla {
+  font-size: 12px;
+  color: #888888;
+  margin-top: 4px;
+}
+
+.wholesale input {
+  border-radius: 4px;
+}
+.wholesale input:hover{
+  border-color: #a8a8a8;
+}
+
+.wholesale .buttons {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.wholesale .buttons button.btn {
+  font-size: 17px;
+  border-radius: 0;
+  background-color: var(--color-theme);
+  font-family: var(--font-secondary);
+  color: var(--color-dark);
+  font-weight: 500;
+  margin: 0 5px;
+}
+
+.wholesale .buttons button.btn:hover {
+  background-color: transparent;
+  color: var(--color-dark);
+  border-color: var(--color-theme);
+}
+
+.wholesale .wrning {
+  border-top: 1px dashed #888888;
+  margin-top: 30px;
+  padding-top: 30px;
+  text-align: center;
+}
+/*Wholesale Page END*

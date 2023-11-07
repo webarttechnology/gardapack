@@ -451,4 +451,25 @@
      }
 </script>
 
+<script>
+    function colorChange(product_id){
+    let color =$('#color').val();
+    // $hostname = "http://127.0.0.1:8000/";
+
+  if(color != "Select"){
+      $.ajax({
+          type: "GET",
+          url: '../gallery/image/fetch/'+product_id+'/'+color,
+          success: function(response) {
+              // Handle the response from the server
+              if(response['image'] != "null"){
+                 $('#main_img').attr('src', '{{ asset('/admin/product/gallery/') }}'+ '/'+response['image']);
+              }
+            }
+          });
+  }else{
+    alert('Enter color');
+  }
+}
+</script>
 <x-userFooter />

@@ -88,13 +88,17 @@ class Product extends Model
      */
 
      public static function topRatedProducts($category_id, $subcategory_id){
-            if($subcategory_id == 0){
-                $top = Product::where('category_id', $category_id)->orderByRaw('CAST(price as UNSIGNED) desc')->limit(5)->get();
-            }else{
-                 $top = Product::where('category_id', $category_id)
-                      ->where('sub_category_id', $subcategory_id)
-                      ->orderByRaw('CAST(price as UNSIGNED) desc')->limit(5)->get();
-            }
+          if($category_id != 0){
+               if($subcategory_id == 0){
+                   $top = Product::where('category_id', $category_id)->orderByRaw('CAST(price as UNSIGNED) desc')->limit(5)->get();
+               }else{
+                    $top = Product::where('category_id', $category_id)
+                         ->where('sub_category_id', $subcategory_id)
+                         ->orderByRaw('CAST(price as UNSIGNED) desc')->limit(5)->get();
+               }
+          }else{
+               $top = Product::orderByRaw('CAST(price as UNSIGNED) desc')->limit(5)->get();
+          }
 
             return $top;
      }

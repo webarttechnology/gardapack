@@ -85,6 +85,9 @@ Route::controller(PageManageController::class)->group(function(){
 
       // wholesale
       Route::get('wholesale-application', 'wholesale_application');
+
+      // Retailer
+      Route::get('retailers', 'retailer');
     });
     
     Route::post('wholesale/application/action', [WholeSaleManageController::class, 'wholesaler_add']);
@@ -113,6 +116,11 @@ Route::controller(ProductController::class)->group(function(){
     // product compare
     Route::get('product/compare/{product_id}', 'product_compare')->name('product.compare');
     Route::get('single/product/details/{product_id}', 'SingleProductDetails')->name('single.product.details');
+
+    /**
+    * Shop
+    */
+    Route::get('shop', 'shop');
 });
 
 Route::get('paypal/success', [PaypalPaymentController::class, 'success'])->name('payment.success');
@@ -184,6 +192,10 @@ Route::post('contact-us', [ContactUsManageController::class, 'contact_us']);
 */
 
 Route::group(['prefix' => 'admin'], function(){
+
+    // Wholesaller
+
+       Route::get('wholesaler/lists', [WholeSaleManageController::class, 'wholesaler_lists']);
 
        // controller grouping
        Route::controller(AdminAuthController::class)->group(function(){

@@ -184,4 +184,12 @@ class PageManageController extends Controller
     public function wholesale_application(){
         return view('front_end.wholesale.index');
     }
+
+    /**
+     * Retailer
+     */
+
+     public function retailer(){
+          return view('front_end.retailer.index');
+     }
 }

@@ -157,11 +157,10 @@
         <div class="header-part3 ">
             <div class="stellarnav">
                 <ul>
-                    <li><a href="#" class="active">Technology</a></li>
-                    <li><a href="#">Media</a></li>
-                    <li><a href="#">Blog</a></li>
+                    <li><a href="{{ url('/') }}" class="active">Home</a></li>
                     <li><a href="{{ url('about-us') }}">About</a></li>
-                    <li><a href="{{ url('contact-us') }}">Contact</a></li>
+                    <li><a href="{{ url('shop') }}">Shop</a></li>
+                    <li><a href="{{ url('contact-us') }}">Contact Us</a></li>
                     <li>
                         @if(Auth::user())
                             <a href="{{ url('my-account') }}">My Account</a>
@@ -170,7 +169,7 @@
                         @endif
                     </li>
                     <li><a href="{{ url('wholesale-application') }}">Wholesale</a></li>
-                    <li><a href="#">Reseller</a></li>
+                    <li><a href="{{ url('retailers') }}">Retailers</a></li>
                 </ul>
             </div><!-- .stellarnav -->
         </div>

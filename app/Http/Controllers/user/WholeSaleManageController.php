@@ -60,4 +60,9 @@ class WholeSaleManageController extends Controller
                return redirect()->back()->with('error', 'You Have ALready Registered with this Email');
            }
     }
+
+    public function wholesaler_lists(){
+          $lists = User::with('info')->where('user_type', 'wholesale')->orderBy('id', 'desc')->get();
+          return view('admin.wholesale.lists', compact('lists'));
+    }
 }

@@ -7,11 +7,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 pt-sm-10 text-center">
-                    <h1 class="headingIV fwEbold playfair mb-4">{{ $category->name }}</h1>
+                    <h1 class="headingIV fwEbold playfair mb-4"></h1>
                     <ul class="list-unstyled breadCrumbs d-flex justify-content-center">
                         <li class="mr-2"><a href="{{ url('/') }}">Home</a></li>
                         <li class="mr-2">/</li>
-                        <li class="active">{{ $category->name }}</li>
+                        <li class="active"><a href="{{ url('shop') }}">Shop</a></li>
                     </ul>
                 </div>
             </div>
@@ -126,19 +126,6 @@
                             </ul>
                         </div>
 
-                        {{-- <div class="col-12 pt-3 mb-lg-0 mb-md-6 mb-3">
-                            <!-- pagination -->
-                            <ul class="list-unstyled pagination d-flex justify-content-center align-items-end">
-                                <li><a href="javascript:void(0);"><i class="fas fa-chevron-left"></i></a></li>
-                                <li class="active"><a href="javascript:void(0);">1</a></li>
-                                <li><a href="javascript:void(0);">2</a></li>
-                                <li>...</li>
-                                <li><a href="javascript:void(0);"><i class="fas fa-chevron-right"></i></a></li>
-                            </ul>
-                        </div> --}}
-
-
-
                     </div>
                 </article>
             </div>
@@ -171,7 +158,8 @@
                         </ul>
                     </section>
                     <!-- widget -->
-                    <section class="widget mb-9">
+
+                    {{-- <section class="widget mb-9">
                         <h3 class="headingVII fwEbold text-uppercase mb-6">Filter by price</h3>
                         <!-- filter ranger form -->
                         
@@ -189,7 +177,9 @@
                         </form>
                         
                         
-                    </section>
+                    </section> --}}
+
+
                     <!-- widget -->
                     <section class="widget mb-9">
                         <h3 class="headingVII fwEbold text-uppercase mb-6">top rate</h3>
@@ -211,25 +201,7 @@
                         </ul>
                     </section>
                     <!-- widget -->
-                    
-                    
-                    @if($tags != null)
-                   @php
-                         $tag = explode(",", $tags);    
-                    @endphp
-                    
-                    <section class="widget mb-9">
-                        <h3 class="headingVII fwEbold text-uppercase mb-5">product tags</h3>
-                        <ul class="list-unstyled tagNavList d-flex flex-wrap mb-0">
-
-                           
-                              @foreach($tag as $key => $t)
-                                  <li class="text-center"><a href="javascript:void(0);" class="md-round d-block">{{ $t }}</a></li>
-                              @endforeach
-                            
-                        </ul>
-                    </section>
-                    @endif
+                 
                     
                 </aside>
             </div>

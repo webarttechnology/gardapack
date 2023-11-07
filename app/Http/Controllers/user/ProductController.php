@@ -48,6 +48,21 @@ class ProductController extends Controller
         
         return view('front_end.product.product_category', compact('products', 'tags', 'category', 'per_page', 'top_rated_products', 'total_products', 'product_categories'));
     }
+
+    /**
+     * shop 
+    */
+
+    public function shop(){
+        $per_page = 12;
+        $category = Category::get();
+        $total_products = count(Product::all());
+        $products = Product::inRandomOrder()->paginate($per_page);
+        $product_categories = Category::where('type', 'product')->get();
+        $top_rated_products = Product::topRatedProducts(0, 0);
+
+        return view('front_end.product.shop', compact('category', 'product_categories', 'products', 'total_products', 'per_page', 'top_rated_products'));
+    }
     
     
     /**

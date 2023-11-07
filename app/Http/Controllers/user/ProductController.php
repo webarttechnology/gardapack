@@ -126,22 +126,29 @@ class ProductController extends Controller
      */
 
      public function product_compare($product_id){
-        $compareProductIds = Session::get('compareProductId', []);
+        // $compareProductIds = Session::get('compareProductId', []);
+        $compareProductIds = json_decode(Session::get('compareProductId'), true);
 
-        if(Session::has('compareProductId')){
+
+        if($compareProductIds != null){
             /**
              * count product
             */
-            
-                if(!in_array($product_id, $compareProductIds)){
-                    // $compareProductIds  .= ','.$product_id;
-                    $compareProductIds[] = $product_id;
+            foreach($compareProductIds as $compareProductId){
+                $compareProductIds[] = $compareProductId;
+            }
 
-                    // Limit the array to a maximum of 4 product IDs
-                    $compareProductIds = array_slice($compareProductIds, 0, 4);
+            dd($compareProductIds);
+
+                // if(!in_array($product_id, $compareProductIds)){
+                //     // $compareProductIds  .= ','.$product_id;
+                //     $compareProductIds[] .= $product_id;
+
+                //     // Limit the array to a maximum of 4 product IDs
+                //     $compareProductIds = array_slice($compareProductIds, 0, 4);
 
                     Session::put('compareProductId', $compareProductIds);
-                }
+                // }
         }else{
             Session::put('compareProductId', $product_id);
         }

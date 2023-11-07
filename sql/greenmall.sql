@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2023 at 06:00 AM
+-- Generation Time: Nov 07, 2023 at 07:48 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -1089,6 +1089,51 @@ INSERT INTO `products` (`id`, `category_id`, `sub_category_id`, `added_by`, `nam
 (464, '24', NULL, '3', 'Gregory Klein', NULL, '<p>gh</p>', '<p>hfv</p>', '1698912214.jpg', '879', '91', '28', NULL, 'Fugiat ut ut adipisi', NULL, 'https://www.muhemafeloluxu.info', NULL, 'Out of Stock', 'gregory-klein', NULL, 'Odio voluptatem dict', 'Veritatis voluptate', 'Culpa aute atque eu', 'Ut pariatur Et arch', 'Ad cumque veniam an', 'inactive', '<p>hg</p>', NULL, NULL, NULL, '2023-11-02 02:33:34', '2023-11-02 02:33:34'),
 (465, '24', NULL, '3', 'Gregory Klein', NULL, '<p>gh</p>', '<p>hfv</p>', '1698913908.jpg', '879', '91', '28', NULL, 'Fugiat ut ut adipisi', NULL, 'https://www.muhemafeloluxu.info', NULL, 'Out of Stock', 'gregory-klein', NULL, 'Odio voluptatem dict', 'Veritatis voluptate', 'Culpa aute atque eu', 'Ut pariatur Et arch', 'Ad cumque veniam an', 'inactive', '<p>hg</p>', NULL, NULL, NULL, '2023-11-02 03:01:48', '2023-11-02 03:01:48'),
 (466, '6', NULL, '3', 'Chandler Rice', NULL, '<p>DEsc001</p>', '<p>Test</p>', '1698921483.jpg', '768', '4', '0', NULL, 'Quia recusandae Vol', NULL, 'https://www.nixifenofycumiw.co', '100', 'In Stock', 'chandler-rice', NULL, 'Id quasi est odit e', 'Esse ducimus exerc', 'Totam magnam eaque l', 'Ipsam sit culpa cup', 'Lorem et iste elit', 'active', '<p>Test Features</p>', 'on', 'on', NULL, '2023-11-02 05:08:03', '2023-11-02 05:36:50');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_compares`
+--
+
+CREATE TABLE `product_compares` (
+  `id` int(11) NOT NULL,
+  `user_id` varchar(255) DEFAULT NULL,
+  `unique_id` text DEFAULT NULL,
+  `prod_id` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `product_compares`
+--
+
+INSERT INTO `product_compares` (`id`, `user_id`, `unique_id`, `prod_id`, `created_at`, `updated_at`) VALUES
+(1, NULL, 'WfinqexSNTXR4MqeT13nN0lckOZz1e', '127', '2023-11-06 23:55:23', '2023-11-06 23:55:23'),
+(2, NULL, '8vQhqSPLWAzeKrgyxrVAQiCQoll3I4', '131', '2023-11-06 23:55:39', '2023-11-06 23:55:39'),
+(3, NULL, 'hHH7TOK6xBGVHhFO2Z8UVVzHqfylPn', '135', '2023-11-06 23:57:35', '2023-11-06 23:57:35'),
+(4, NULL, 'ZSKyem7uN9es2qQgcmjX0E0QmuHE0t', '23', '2023-11-06 23:57:49', '2023-11-06 23:57:49'),
+(5, NULL, 'CZXo39qRBfREVUDBoYKXABSSLRcekD', '125', '2023-11-06 23:58:49', '2023-11-06 23:58:49'),
+(6, NULL, '5dY3qFKSLI7IAIjUMf538wWQtolFdQ', '128', '2023-11-06 23:58:58', '2023-11-06 23:58:58'),
+(7, NULL, 'nz4qayt9VxWeGRhsHKd541W4rMEmNt', '125', '2023-11-07 00:03:24', '2023-11-07 00:03:24'),
+(8, NULL, 'pSYkZ35cRzcFEhpkYXQ9PQ8H8nFubb', '126', '2023-11-07 00:03:27', '2023-11-07 00:03:27'),
+(9, NULL, 'Fb38W2IhwuG6f61QniKOWycYQQff9v', '124', '2023-11-07 00:04:16', '2023-11-07 00:04:16'),
+(10, NULL, 'GdpRAuYrFEcwJ59xmPhJRCALGB6mrB', '125', '2023-11-07 00:04:20', '2023-11-07 00:04:20'),
+(11, NULL, 'cMgnSy01nefiJhf2XP7XnOqZbcv0lk', '131', '2023-11-07 00:05:19', '2023-11-07 00:05:19'),
+(12, NULL, 'JLXjAvn6kWdBECusWuvcGNqneRxm5N', '132', '2023-11-07 00:05:22', '2023-11-07 00:05:22'),
+(13, NULL, 'tK96RQ5xgmcKg03PBNaxjztBa15VBt', '125', '2023-11-07 00:09:07', '2023-11-07 00:09:07'),
+(14, NULL, 'pkGYO9oXrvA4egthawwO2mOhkiyNsW', '128', '2023-11-07 00:09:09', '2023-11-07 00:09:09'),
+(15, NULL, '1h5UqRR62pDm6VLLxfUmKDv51Gtceu', '128', '2023-11-07 00:09:41', '2023-11-07 00:09:41'),
+(16, NULL, 'm8nUOhis1NLa49IUsheJ6gA79BE3kU', '130', '2023-11-07 00:09:45', '2023-11-07 00:09:45'),
+(17, NULL, 'HuRLSQdbve8LGnAPd864fgCbnKPPQp', '125', '2023-11-07 00:46:48', '2023-11-07 00:46:48'),
+(18, NULL, 'DHGgHFa2U7SETtEfmB54xXgep7DlKq', '126', '2023-11-07 00:46:52', '2023-11-07 00:46:52'),
+(19, NULL, 'q1L2u4cNAMt7F4uu5M8kQer5l0Pywo', '125', '2023-11-07 00:46:55', '2023-11-07 00:46:55'),
+(20, NULL, 'etOknPtWJS0LbfbVJXIiKfDe2NhMWB', '124', '2023-11-07 00:47:03', '2023-11-07 00:47:03'),
+(21, NULL, 'xU5tuSQ2emu2v4xn1xSDXIhjuaSbTZ', '125', '2023-11-07 00:47:06', '2023-11-07 00:47:06'),
+(22, NULL, 'BpAyhtRc57LiTqYsYN1TXLp9r2goDt', '128', '2023-11-07 00:49:05', '2023-11-07 00:49:05'),
+(23, NULL, 'g0nm5cbO9u6tt4GWE7oaKV6RVVGoL3', '132', '2023-11-07 00:49:10', '2023-11-07 00:49:10'),
+(24, NULL, 'wfaforppCAC7zAh5YR1BAO4rlMTdRH', '124', '2023-11-07 01:17:20', '2023-11-07 01:17:20');
 
 -- --------------------------------------------------------
 
@@ -2512,6 +2557,12 @@ ALTER TABLE `products`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `product_compares`
+--
+ALTER TABLE `product_compares`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `product_galleries`
 --
 ALTER TABLE `product_galleries`
@@ -2689,6 +2740,12 @@ ALTER TABLE `personal_access_tokens`
 --
 ALTER TABLE `products`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=467;
+
+--
+-- AUTO_INCREMENT for table `product_compares`
+--
+ALTER TABLE `product_compares`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `product_galleries`

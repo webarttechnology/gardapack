@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2023 at 07:48 AM
+-- Generation Time: Nov 07, 2023 at 10:00 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -1133,7 +1133,14 @@ INSERT INTO `product_compares` (`id`, `user_id`, `unique_id`, `prod_id`, `create
 (21, NULL, 'xU5tuSQ2emu2v4xn1xSDXIhjuaSbTZ', '125', '2023-11-07 00:47:06', '2023-11-07 00:47:06'),
 (22, NULL, 'BpAyhtRc57LiTqYsYN1TXLp9r2goDt', '128', '2023-11-07 00:49:05', '2023-11-07 00:49:05'),
 (23, NULL, 'g0nm5cbO9u6tt4GWE7oaKV6RVVGoL3', '132', '2023-11-07 00:49:10', '2023-11-07 00:49:10'),
-(24, NULL, 'wfaforppCAC7zAh5YR1BAO4rlMTdRH', '124', '2023-11-07 01:17:20', '2023-11-07 01:17:20');
+(24, NULL, 'wfaforppCAC7zAh5YR1BAO4rlMTdRH', '124', '2023-11-07 01:17:20', '2023-11-07 01:17:20'),
+(25, NULL, '83VVaaqwK4xsLk9SGtt3woBuTn7iJ8', '124', '2023-11-07 01:34:50', '2023-11-07 01:34:50'),
+(26, NULL, '2HkbmUCCKMTfS2MWKTb6gnn3hEJOuQ', '124', '2023-11-07 01:43:11', '2023-11-07 01:43:11'),
+(27, NULL, '1BL94R4kbh7fRcsTXQa34amEH8jsKl', '124', '2023-11-07 01:44:56', '2023-11-07 01:44:56'),
+(28, NULL, 'CSPhn9bX8HxqHmtLbZFx57XHRqMrEu', '132', '2023-11-07 01:46:00', '2023-11-07 01:46:00'),
+(29, NULL, 'TkQvwcMsUaHlqo0b8ZBkJ9DJcFpEXX', '128', '2023-11-07 01:47:21', '2023-11-07 01:47:21'),
+(30, NULL, 'x7B00YNcAkumxs6fXZXtTPzBicrfnZ', '446', '2023-11-07 01:48:22', '2023-11-07 01:48:22'),
+(31, NULL, 'WqongAEgofHwfFodjDL08a8ZRhhKGP', '124', '2023-11-07 01:48:54', '2023-11-07 01:48:54');
 
 -- --------------------------------------------------------
 
@@ -1640,8 +1647,8 @@ INSERT INTO `ratings` (`id`, `user_id`, `product_id`, `rate`, `comment`, `type`,
 (5, '1', '17', '2', NULL, 'product', '2023-07-18 02:25:10', '2023-07-18 02:25:10'),
 (6, '1', '17', '3', NULL, 'product', '2023-07-18 02:46:27', '2023-07-18 02:46:27'),
 (7, '6', '20', '5', 'Grate', 'product', '2023-07-21 11:07:15', '2023-07-21 11:07:15'),
-(8, '6', '20', '3', 'Average', 'product', '2023-07-21 11:07:29', '2023-07-21 11:07:29'),
-(9, '6', '20', '4', 'NAAAAAAAAA', 'product', '2023-07-21 11:56:10', '2023-07-21 11:56:10'),
+(8, '6', '124', '3', 'Average', 'product', '2023-07-21 11:07:29', '2023-07-21 11:07:29'),
+(9, '6', '124', '4', 'NAAAAAAAAA', 'product', '2023-07-21 11:56:10', '2023-07-21 11:56:10'),
 (10, '6', '420', '5', 'Test', 'product', '2023-08-16 11:59:00', '2023-08-16 11:59:00');
 
 -- --------------------------------------------------------
@@ -1772,6 +1779,7 @@ CREATE TABLE `users` (
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   `remember_token` varchar(100) DEFAULT NULL,
+  `user_type` varchar(255) NOT NULL DEFAULT 'user',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1780,18 +1788,19 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `phone`, `address`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Jhon deb', 'jhondeb123xyz@gmail.com', NULL, NULL, NULL, '$2y$10$eIuouhiZxqM34e1EeBud4u8eUl8wo.Prn3KEcy3xiFC.E7RGuTuV.', NULL, '2023-02-23 04:51:25', '2023-08-14 10:25:36'),
-(2, 'Philip Haynes', 'gejuramyk1@mailinator.com', NULL, NULL, NULL, '$2y$10$GWCGYEL8uBvwN4yPsBtBbu8S/67kYqpOGn6f.bE6D0HkHUFSv6ZQC', NULL, '2023-02-28 23:38:57', '2023-02-28 23:40:22'),
-(3, 'Azalia Rios', 'bysazu@mailinator.com', NULL, NULL, NULL, '$2y$10$nwjnlvzBHFnvvYh1mQ.f0.blCL3iEH9mtHWMwcFNpneiYaXEidKlm', NULL, '2023-02-28 23:41:12', '2023-02-28 23:41:12'),
-(4, 'Dorothy Callahan', 'jufad@mailinator.com', NULL, NULL, NULL, '$2y$10$ibVjDDM4e5XvGkEdR1okF.EaqBjqxUDGrefV6a7R8wcB9rtVDw1hC', NULL, '2023-03-01 04:38:55', '2023-03-01 04:38:55'),
-(5, 'Nina Morris', 'tafin@mailinator.com', NULL, NULL, NULL, '$2y$10$L/teI.EbXxcI0Ywl69z97eZ.QWZAxuAf7RPozoz0LZ11ArWO6fLxm', NULL, '2023-03-01 04:51:24', '2023-03-01 04:51:24'),
-(6, 'Test', 'testing123@gmail.com', '54784589940', 'Cinderella Flora Farms Pvt Ltd (Since 1995) ISO 9001:2015 Certified for Nursery, Garden Center & Landscaping', NULL, '$2y$10$eYYEZdHevM/pQC9rx.rope/xvpb5qhqUDfcy0Jdlou3Snr9OLYh4C', NULL, '2023-07-21 09:01:26', '2023-08-17 08:50:16'),
-(7, 'Sudip Ghosh', 'sudip.webbersmedia@gmail.com', NULL, NULL, NULL, '$2y$10$XybzcymG9QHRAA8fLz5RVeH1mcE4qgH2FUNOFauaXI3DNgG17RDZ2', NULL, '2023-08-07 13:56:10', '2023-08-14 10:29:55'),
-(8, 'biswajit', 'buyohenoitta-4576@yopmail.com', NULL, NULL, NULL, '$2y$10$ox..pHMZpdgoo/zVLg5ELODf4ItrZqu2tnm6g.vaMEHwTjm2x5dnO', NULL, '2023-08-16 08:10:10', '2023-08-16 08:10:10'),
-(9, 'Hakeem French', 'qetybyho@mailinator.com', NULL, NULL, NULL, '$2y$10$VcnmgVpwSAu5G3ufSLuZIe5miF5YzwGUFRpRc.dTS2SSB/nlTkFk2', NULL, '2023-08-17 08:53:34', '2023-08-17 08:53:34'),
-(10, 'miri@mailinator.com', 'hefu@mailinator.com', 'miza@mailinator.com', 'Et ullam aut dolore', NULL, '$2y$10$m3EO/mJhwEYZuOmlVF9pwOJwxptzR8gzhnBVCnTZX9YBB4FpWe8Wq', NULL, '2023-08-21 13:40:24', '2023-08-21 13:47:16'),
-(11, 'biswajit', 'admin@admin.in', NULL, NULL, NULL, '$2y$10$DvGs/hnqzgTn1e84osc8B.R/oxF3nEBh7Qs1oHqwFLDkdYHY1CO0a', NULL, '2023-08-22 08:35:29', '2023-08-22 08:35:29');
+INSERT INTO `users` (`id`, `name`, `email`, `phone`, `address`, `email_verified_at`, `password`, `remember_token`, `user_type`, `created_at`, `updated_at`) VALUES
+(1, 'Jhon deb', 'jhondeb123xyz@gmail.com', NULL, NULL, NULL, '$2y$10$eIuouhiZxqM34e1EeBud4u8eUl8wo.Prn3KEcy3xiFC.E7RGuTuV.', NULL, 'user', '2023-02-23 04:51:25', '2023-08-14 10:25:36'),
+(2, 'Philip Haynes', 'gejuramyk1@mailinator.com', NULL, NULL, NULL, '$2y$10$GWCGYEL8uBvwN4yPsBtBbu8S/67kYqpOGn6f.bE6D0HkHUFSv6ZQC', NULL, 'user', '2023-02-28 23:38:57', '2023-02-28 23:40:22'),
+(3, 'Azalia Rios', 'bysazu@mailinator.com', NULL, NULL, NULL, '$2y$10$nwjnlvzBHFnvvYh1mQ.f0.blCL3iEH9mtHWMwcFNpneiYaXEidKlm', NULL, 'user', '2023-02-28 23:41:12', '2023-02-28 23:41:12'),
+(4, 'Dorothy Callahan', 'jufad@mailinator.com', NULL, NULL, NULL, '$2y$10$ibVjDDM4e5XvGkEdR1okF.EaqBjqxUDGrefV6a7R8wcB9rtVDw1hC', NULL, 'user', '2023-03-01 04:38:55', '2023-03-01 04:38:55'),
+(5, 'Nina Morris', 'tafin@mailinator.com', NULL, NULL, NULL, '$2y$10$L/teI.EbXxcI0Ywl69z97eZ.QWZAxuAf7RPozoz0LZ11ArWO6fLxm', NULL, 'user', '2023-03-01 04:51:24', '2023-03-01 04:51:24'),
+(6, 'Test', 'testing123@gmail.com', '54784589940', 'Cinderella Flora Farms Pvt Ltd (Since 1995) ISO 9001:2015 Certified for Nursery, Garden Center & Landscaping', NULL, '$2y$10$eYYEZdHevM/pQC9rx.rope/xvpb5qhqUDfcy0Jdlou3Snr9OLYh4C', NULL, 'user', '2023-07-21 09:01:26', '2023-08-17 08:50:16'),
+(7, 'Sudip Ghosh', 'sudip.webbersmedia@gmail.com', NULL, NULL, NULL, '$2y$10$XybzcymG9QHRAA8fLz5RVeH1mcE4qgH2FUNOFauaXI3DNgG17RDZ2', NULL, 'user', '2023-08-07 13:56:10', '2023-08-14 10:29:55'),
+(8, 'biswajit', 'buyohenoitta-4576@yopmail.com', NULL, NULL, NULL, '$2y$10$ox..pHMZpdgoo/zVLg5ELODf4ItrZqu2tnm6g.vaMEHwTjm2x5dnO', NULL, 'user', '2023-08-16 08:10:10', '2023-08-16 08:10:10'),
+(9, 'Hakeem French', 'qetybyho@mailinator.com', NULL, NULL, NULL, '$2y$10$VcnmgVpwSAu5G3ufSLuZIe5miF5YzwGUFRpRc.dTS2SSB/nlTkFk2', NULL, 'user', '2023-08-17 08:53:34', '2023-08-17 08:53:34'),
+(10, 'miri@mailinator.com', 'hefu@mailinator.com', 'miza@mailinator.com', 'Et ullam aut dolore', NULL, '$2y$10$m3EO/mJhwEYZuOmlVF9pwOJwxptzR8gzhnBVCnTZX9YBB4FpWe8Wq', NULL, 'user', '2023-08-21 13:40:24', '2023-08-21 13:47:16'),
+(11, 'biswajit', 'admin@admin.in', NULL, NULL, NULL, '$2y$10$DvGs/hnqzgTn1e84osc8B.R/oxF3nEBh7Qs1oHqwFLDkdYHY1CO0a', NULL, 'user', '2023-08-22 08:35:29', '2023-08-22 08:35:29'),
+(12, 'sati@mailinator.com hyka@mailinator.com', 'xagu@mailinator.com', '33', NULL, NULL, '$2y$10$jEStc5kdtPvkZxLClwl2BOT9S5vHsGJDUwPwWXrxx5RS9.hgRyRuS', NULL, 'wholesale', '2023-11-07 03:26:58', '2023-11-07 03:26:58');
 
 -- --------------------------------------------------------
 
@@ -2387,6 +2396,36 @@ INSERT INTO `website_galleries` (`id`, `added_by`, `added_id`, `img`, `created_a
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `wholesale_infos`
+--
+
+CREATE TABLE `wholesale_infos` (
+  `id` int(11) NOT NULL,
+  `user_id` text NOT NULL,
+  `phone` varchar(50) NOT NULL,
+  `company_name` text NOT NULL,
+  `resellerId` varchar(50) NOT NULL,
+  `resellerFile` text NOT NULL,
+  `address_line1` text NOT NULL,
+  `address_line2` text DEFAULT NULL,
+  `city` varchar(200) NOT NULL,
+  `state` varchar(200) NOT NULL,
+  `zip` varchar(50) NOT NULL,
+  `country` varchar(200) NOT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `wholesale_infos`
+--
+
+INSERT INTO `wholesale_infos` (`id`, `user_id`, `phone`, `company_name`, `resellerId`, `resellerFile`, `address_line1`, `address_line2`, `city`, `state`, `zip`, `country`, `created_at`, `updated_at`) VALUES
+(1, '12', '33', 'kahecuq@mailinator.com', 'poqecyt@mailinator.com', '1699347417garda.png', 'hokebokode@mailinator.com', 'pizoroduxa@mailinator.com', 'libemo@mailinator.com', 'wego@mailinator.com', 'lyqa@mailinator.com', 'USA', '2023-11-07 03:26:58', '2023-11-07 03:26:58');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `why_choose_us`
 --
 
@@ -2630,6 +2669,12 @@ ALTER TABLE `website_galleries`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `wholesale_infos`
+--
+ALTER TABLE `wholesale_infos`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `why_choose_us`
 --
 ALTER TABLE `why_choose_us`
@@ -2745,7 +2790,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `product_compares`
 --
 ALTER TABLE `product_compares`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `product_galleries`
@@ -2787,7 +2832,7 @@ ALTER TABLE `subcategories`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `variations`
@@ -2812,6 +2857,12 @@ ALTER TABLE `video_banner`
 --
 ALTER TABLE `website_galleries`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT for table `wholesale_infos`
+--
+ALTER TABLE `wholesale_infos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `why_choose_us`

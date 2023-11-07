@@ -3908,3 +3908,82 @@ padding: 50px 0;
     padding-bottom:30px;
  }
 }
+
+/*-----------Table Styles (Compare Page) ---------------*/
+
+.prdctcmpsect .table>:not(:last-child)>:last-child>* {
+  text-align: center;
+}  
+
+
+.prdctcmpsect thead th a {
+ color:#f30;
+}
+
+.prdctcmpsect thead th i {
+ font-size: 17px;
+ text-align: left;
+}
+
+.prdctcmpsect .prdctim{
+  width: 200px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.prdctcmpsect .prdctim img{
+  width: 100%;
+  object-fit: cover;
+}
+
+
+.prdctcmpsect .stars ul{
+  display: flex;
+}
+
+.prdctcmpsect .stars ul li {
+ padding:0 5px;
+ font-size: 15px;
+}
+
+.prdctcmpsect .stars i {
+  color: #FF9747;
+}
+
+
+.prdctcmpsect .stars li.active i {
+  color: #d9d9d9;
+}
+
+.prdctcmpsect .colorst ul {
+display: flex;
+}
+
+.prdctcmpsect .colorst ul li{
+padding:0 5px;
+}
+
+
+.prdctcmpsect .colorst li span {
+  background: #FF0000;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: inline-block;
+} 
+
+.prdctcmpsect .colorst li:nth-child(2) span {
+ background:#00FF00;
+}
+
+.prdctcmpsect .colorst li:nth-child(3) span {
+ background:#0000FF;
+}
+
+.prdctcmpsect .colorst li:nth-child(4) span {
+background:#d1d106;
+} 
+
+.prdctcmpsect .colorst li:last-child span {
+ background:#888;
+}

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\user;
 use App\Http\Controllers\Controller;
 use App\Models\{Product, Category, ProductGallery, Rating, Variations};
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ProductController extends Controller
 {
@@ -125,9 +126,29 @@ class ProductController extends Controller
      */
 
      public function product_compare($product_id){
-        $product = Product::whereId($product_id)->first();
-        $view = view('front_end.product.compare', compact('product'));
-        return response()->json(['view' => $view->render(), 'status' => true]);
+        $compareProductIds = Session::get('compareProductId', []);
+
+        if(Session::has('compareProductId')){
+            /**
+             * count product
+            */
+            
+                if(!in_array($product_id, $compareProductIds)){
+                    // $compareProductIds  .= ','.$product_id;
+                    $compareProductIds[] = $product_id;
+
+                    // Limit the array to a maximum of 4 product IDs
+                    $compareProductIds = array_slice($compareProductIds, 0, 4);
+
+                    Session::put('compareProductId', $compareProductIds);
+                }
+        }else{
+            Session::put('compareProductId', $product_id);
+        }
+
+        // $product = Product::whereId($product_id)->first();
+        return view('front_end.product.compare');
+        // return response()->json(['view' => $view->render(), 'status' => true]);
      }
 
      /**

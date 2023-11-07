@@ -105,7 +105,7 @@
                                         
                                         {{-- <li class="mr-2 overflow-hidden"><a href="javascript:void(0)" onclick="return addToCart({{ $product->id }}, 'single', 'pc')" class="icon-cart d-block @if($cart_details) active @endif"></a></li> --}}
                                         <li class="mr-2 overflow-hidden"><a href="javascript:void(0)" onclick="return addToCart({{ $product->id }}, 'single', 'pc')" class="icon-cart d-block"></a></li>
-                                        <li class="mr-2 overflow-hidden"><a href="javascript:void(0)" onclick="return productCompare({{ $product->id }}, 'pc')" class="icon-cart d-block"></a></li>
+                                        <li class="mr-2 overflow-hidden"><a href="{{ url('product/compare', $product->id) }}" target="_blank" class="icon-cart d-block"></a></li>
                                         <li class="mr-2 overflow-hidden"><a href="javascript:void(0)" class="icon-search d-block" onclick="quickViewProduct({{ $product->id }})"></a></li>
                                     </ul>
                                 </div>

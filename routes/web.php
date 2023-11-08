@@ -23,7 +23,7 @@ use App\Http\Controllers\admin\AdminNewsletterMAnageController;
 use App\Http\Controllers\admin\PdfDownloadManageController;
 use App\Http\Controllers\admin\VideoBannerManageController;
 use App\Http\Controllers\admin\ExtraManageController;
-
+use App\Http\Controllers\admin\ShopsController;
 
 use App\Http\Controllers\user\PageManageController;
 use App\Http\Controllers\user\RatingManageController;
@@ -195,7 +195,16 @@ Route::group(['prefix' => 'admin'], function(){
 
     // Wholesaller
 
-       Route::get('wholesaler/lists', [WholeSaleManageController::class, 'wholesaler_lists']);
+    Route::get('wholesaler/lists', [WholeSaleManageController::class, 'wholesaler_lists']);
+
+
+    Route::get('shops/show', [ShopsController::class, 'index'])->name('shops.lists');
+    Route::get('shops/add', [ShopsController::class, 'add'])->name('shops.add');
+    Route::post('shops/store', [ShopsController::class, 'store'])->name('shops.store');
+    Route::get('shops/edit/{id}', [ShopsController::class, 'edit'])->name('shops.edit');
+    Route::post('shops/update/{id}', [ShopsController::class, 'updete'])->name('shops.update');
+    Route::get('shops/delete', [ShopsController::class, 'delete'])->name('shops.delete');
+
 
        // controller grouping
        Route::controller(AdminAuthController::class)->group(function(){

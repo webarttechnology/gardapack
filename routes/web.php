@@ -205,8 +205,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('shops/add', [ShopsController::class, 'add'])->name('shops.add');
     Route::post('shops/store', [ShopsController::class, 'store'])->name('shops.store');
     Route::get('shops/edit/{id}', [ShopsController::class, 'edit'])->name('shops.edit');
-    Route::post('shops/update/{id}', [ShopsController::class, 'updete'])->name('shops.update');
-    Route::get('shops/delete', [ShopsController::class, 'delete'])->name('shops.delete');
+    Route::put('shops/update/{id}', [ShopsController::class, 'update'])->name('shops.update');
+    Route::get('shops/delete/{id}', [ShopsController::class, 'delete'])->name('shops.delete');
 
 
     // controller grouping

@@ -4033,12 +4033,31 @@ background:#d1d106;
   color: #888888;
   margin-top: 4px;
 }
-
 .wholesale input {
-  border-radius: 4px;
+  background-color: #fff !important;
+  height: 40px;
+}
+.wholesale input {
+  border-color: #dfdfdf;
+  border-radius: 4px !important;
+}
+
+.wholesale select {
+  height: 40px;
+  background-color: #444;
+  background-color: #fff;
+  border-color: #dfdfdf;
+}
+
+.wholesale select:focus {
+  background-color: #fff;
+}
+
+.wholesale option{
+  background-color: #fff;
 }
 .wholesale input:hover{
-  border-color: #a8a8a8;
+  border-color: #a8a8a8 !important;
 }
 
 .wholesale .buttons {

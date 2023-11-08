@@ -5,7 +5,7 @@
             <div class="col-md-9">
                 <form action="{{ url('wholesale/application/action') }}" method="post" enctype="multipart/form-data">
                     @csrf
-                    
+
                     <div class="form-title">
                         <h3>Wholesale Application</h3>
                         <p>application for wholesale</p>
@@ -34,7 +34,7 @@
                                 </div>
                                 <div class="col-md-12 my-2">
                                     <p><label for><span>Phone</span> <em>*</em></label></p>
-                                    <input type="number" class="form-control" name="phone" required>
+                                    <input type="text" class="form-control" name="phone" required>
                                 </div>
                                 <div class="col-md-6 my-2">
                                     <p><label for><span>Company Name</span> <em>*</em></label></p>

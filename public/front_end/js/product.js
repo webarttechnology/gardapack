@@ -15,7 +15,7 @@ function variationChange(prod_id){
                    $('#total_price').html('$'+response['variation']);
               }
             });
-    }
+}
 }
 
 /**
@@ -30,4 +30,3 @@ function clearSection(){
 /**
  * product compare
 */
-

@@ -8,6 +8,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- Bootstrap CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -29,42 +31,45 @@
         rel="stylesheet">
 
     <!-- Staller Nav CSS -->
-    <link href="{{ asset('assets/css/stellarnav.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('assets/css/stellarnav.min.css') }}" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <!-- Responsive CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/css/responsive.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
     <title>Grada </title>
 
     <!-- include the site bootstrap stylesheet -->
-	<link rel="stylesheet" href="{{ asset('front_end/css/bootstrap.css')}}">
-	<!-- include the site fontawesome stylesheet -->
-	<link rel="stylesheet" href="{{ asset('front_end/css/fontawesome.css')}}">
-	<!-- include the site stylesheet -->
-	<link rel="stylesheet" href="{{ asset('front_end/style.css')}}">
-	<!-- include theme plugins setting stylesheet -->
-	<link rel="stylesheet" href="{{ asset('front_end/css/plugins.css')}}">
-	<!-- include theme color setting stylesheet -->
-	<link rel="stylesheet" href="{{ asset('front_end/css/color.css')}}">
-	<!-- include theme responsive setting stylesheet -->
-	<link rel="stylesheet" href="{{ asset('front_end/css/responsive.css') }}">
-	
-	<link rel="stylesheet" href="{{ asset('front_end/css/cart-page.css') }}">
+    <link rel="stylesheet" href="{{ asset('front_end/css/bootstrap.css') }}">
+    <!-- include the site fontawesome stylesheet -->
+    <link rel="stylesheet" href="{{ asset('front_end/css/fontawesome.css') }}">
+    <!-- include the site stylesheet -->
+    <link rel="stylesheet" href="{{ asset('front_end/style.css') }}">
+    <!-- include theme plugins setting stylesheet -->
+    <link rel="stylesheet" href="{{ asset('front_end/css/plugins.css') }}">
+    <!-- include theme color setting stylesheet -->
+    <link rel="stylesheet" href="{{ asset('front_end/css/color.css') }}">
+    <!-- include theme responsive setting stylesheet -->
+    <link rel="stylesheet" href="{{ asset('front_end/css/responsive.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('front_end/css/cart-page.css') }}">
 
     <!-- sweetalert -->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.all.min.js"></script>
-    
+
     <!-- toaster -->
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0- 
-     alpha/css/bootstrap.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0- 
+     alpha/css/bootstrap.css"
+        rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
     <!---------Owl Caraousel------------->
 
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
 
 </head>
 
@@ -97,10 +102,10 @@
                     <div class="col-md-2 col-sm-2 ">
                         <div class="header-log">
                             @if (Auth::user())
-                              <a href="#" class="log">Log Out</a>
+                                <a href="#" class="log">Log Out</a>
                             @else
-                              <a href="{{ url('signup') }}" class="log">Log in</a> 
-                              <a href="{{ url('signup') }}">Sign Up</a>
+                                <a href="{{ url('signup') }}" class="log">Log in</a>
+                                <a href="{{ url('signup') }}">Sign Up</a>
                             @endif
                         </div>
                     </div>
@@ -112,7 +117,7 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="home-logo">
-                            <a href="{{ url('/') }}"><img src="{{ asset('assets/images/Nav_Logo.png')}}"></a>
+                            <a href="{{ url('/') }}"><img src="{{ asset('assets/images/Nav_Logo.png') }}"></a>
                         </div>
                     </div>
 
@@ -122,11 +127,12 @@
 
                             <div class="home-form">
                                 <div class="home-wrap">
-                                    <select class="form-select" name="search_category" aria-label="Default select example">
+                                    <select class="form-select" name="search_category"
+                                        aria-label="Default select example">
                                         <option value="" selected>All Catagories</option>
 
-                                        @foreach($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -142,8 +148,8 @@
 
                     <div class="col-md-4 col-sm-6 ">
                         <nav>
-                            @if(Auth::user())
-                              <a href="{{ url('my-account') }}"><i class="fa fa-user" aria-hidden="true"></i></a>
+                            @if (Auth::user())
+                                <a href="{{ url('my-account') }}"><i class="fa fa-user" aria-hidden="true"></i></a>
                             @endif
 
                             <a href="{{ url('user/cart/page') }}"><i class="bi bi-cart4"></i></a>
@@ -162,10 +168,10 @@
                     <li><a href="{{ url('shop') }}">Shop</a></li>
                     <li><a href="{{ url('contact-us') }}">Contact Us</a></li>
                     <li>
-                        @if(Auth::user())
+                        @if (Auth::user())
                             <a href="{{ url('my-account') }}">My Account</a>
                         @else
-                           <a href="{{ url('my-account') }}">My Account</a>
+                            <a href="{{ url('my-account') }}">My Account</a>
                         @endif
                     </li>
                     <li><a href="{{ url('wholesale-application') }}">Wholesale</a></li>

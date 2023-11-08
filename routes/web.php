@@ -162,7 +162,7 @@ Route::controller(CartManageController::class)
 ->prefix('user/cart/')
 ->group(function(){
     Route::get('page', 'cart');
-    Route::get('add/{product_id}/{cart_quantity}', 'cart_add')->name('cart.add');
+    Route::post('add/{product_id}/{cart_quantity}', 'cart_add')->name('cart.add');
     Route::get('delete/{cart_id}', 'cart_delete');
     Route::get('update/{cart_id}/{quantity}', 'cart_update');
 });

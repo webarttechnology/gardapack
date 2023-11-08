@@ -15,6 +15,8 @@ class OrderedProduct extends Model
         'order_id',
         'product_id',
         'product_price',
-        'product_quantity'
+        'product_quantity',
+        'color',
+        'variation',
     ];
 }

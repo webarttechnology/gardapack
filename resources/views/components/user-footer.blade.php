@@ -1,5 +1,5 @@
 @php
-$address = App\Models\Pages::where('name', 'Contact Us Page')->first();
+    $address = App\Models\Pages::where('name', 'Contact Us Page')->first();
 @endphp
 
 <!-- ---------------Footer Section Start----------- -->
@@ -36,8 +36,8 @@ $address = App\Models\Pages::where('name', 'Contact Us Page')->first();
                         <h4>Services</h4>
                     </div>
                     <ul>
-                        @foreach($services as $service)
-                        <li><a href="{{ url('service-details', $service->slug) }}">{{ $service->name }}</a></li>
+                        @foreach ($services as $service)
+                            <li><a href="{{ url('service-details', $service->slug) }}">{{ $service->name }}</a></li>
                         @endforeach
                     </ul>
                 </div>
@@ -48,17 +48,17 @@ $address = App\Models\Pages::where('name', 'Contact Us Page')->first();
                         <h4>Quick Links</h4>
                     </div>
                     <ul>
-                        @if(Auth::user())
-                        <li><a href="{{ url('/') }}">Home</a></li>
-                        <li><a href="{{ url('my-account') }}">My accounts</a></li>
-                        <li><a href="{{ url('order-history') }}">My orders</a></li>
-                        <li><a href="{{ url('contact-us') }}">Contact Us</a></li>
-                        <li><a href="{{ url('about-us') }}">About Us</a></li>
-                        <li><a href="{{ url('user.logout') }}">Logout</a></li>
+                        @if (Auth::user())
+                            <li><a href="{{ url('/') }}">Home</a></li>
+                            <li><a href="{{ url('my-account') }}">My accounts</a></li>
+                            <li><a href="{{ url('order-history') }}">My orders</a></li>
+                            <li><a href="{{ url('contact-us') }}">Contact Us</a></li>
+                            <li><a href="{{ url('about-us') }}">About Us</a></li>
+                            <li><a href="{{ url('user.logout') }}">Logout</a></li>
                         @else
-                        <li><a href="{{ url('/') }}">Home</a></li>
-                        <li><a href="{{ url('contact-us') }}">Contact Us</a></li>
-                        <li><a href="{{ url('about-us') }}">About Us</a></li>
+                            <li><a href="{{ url('/') }}">Home</a></li>
+                            <li><a href="{{ url('contact-us') }}">Contact Us</a></li>
+                            <li><a href="{{ url('about-us') }}">About Us</a></li>
                         @endif
                     </ul>
                 </div>
@@ -89,7 +89,7 @@ $address = App\Models\Pages::where('name', 'Contact Us Page')->first();
             </div>
             <div class="col-md-4">
                 <div class="ftrlogo">
-                    <img src="{{ asset('assets/images/ftr-logo.png')}}" alt="">
+                    <img src="{{ asset('assets/images/ftr-logo.png') }}" alt="">
                 </div>
             </div>
         </div>
@@ -112,11 +112,7 @@ $address = App\Models\Pages::where('name', 'Contact Us Page')->first();
                     <div class="row">
                         <div class="col-md-6">
                             <div class="owl-carousel imggry_carousel owl-theme" id="prodImages">
-                                <div class="item">
-                                    <div class="glryimg">
 
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -155,8 +151,8 @@ $address = App\Models\Pages::where('name', 'Contact Us Page')->first();
                                 </ul>
                                 <input type="hidden" id="prodId">
                                 <div class="holder overflow-hidden d-flex flex-wrap mb-6">
-                                    <input type="number" placeholder="1" id="cart_quantity" value="1" min="1"
-                                        max="1000000000">
+                                    <input type="number" placeholder="1" id="cart_quantity" value="1"
+                                        min="1" max="1000000000">
                                     <a href="javascript:void(0);"
                                         class="btn btnTheme btnShop fwEbold text-white md-round py-3 px-4 py-md-3 px-md-4"
                                         onclick="return beforeAddToCart()">Add
@@ -179,7 +175,8 @@ $address = App\Models\Pages::where('name', 'Contact Us Page')->first();
                                 </ul>
                                 <!-- category -->
                                 <ul class="list-unstyled productInfoDetail mb-0">
-                                    <li class="mb-2">Categories: <a href="javascript:void(0);" id="prodCategory">Garden
+                                    <li class="mb-2">Categories: <a href="javascript:void(0);"
+                                            id="prodCategory">Garden
                                             Furniture</a></li>
                                     <!--<li>Brand: <a href="javascript:void(0);">KFC</a></li>-->
                                 </ul>
@@ -215,28 +212,28 @@ $address = App\Models\Pages::where('name', 'Contact Us Page')->first();
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
     integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="{{ asset('assets/js/stellarnav.min.js')}}"></script>
+<script src="{{ asset('assets/js/stellarnav.min.js') }}"></script>
 <script type="text/javascript">
-    jQuery(document).ready(function ($) {
-    jQuery('.stellarnav').stellarNav({
-        breakpoint: 960,
-        position: 'right',
-        phoneBtn: '18009997788',
-        locationBtn: 'https://www.google.com/maps'
+    jQuery(document).ready(function($) {
+        jQuery('.stellarnav').stellarNav({
+            breakpoint: 960,
+            position: 'right',
+            phoneBtn: '18009997788',
+            locationBtn: 'https://www.google.com/maps'
+        });
     });
-});
 </script>
 
 <!-- include bootstrap popper JavaScript -->
-<script src="{{ asset('front_end/js/popper.min.js')}}"></script>
+<script src="{{ asset('front_end/js/popper.min.js') }}"></script>
 <!-- include bootstrap JavaScript -->
-<script src="{{ asset('front_end/js/bootstrap.min.js')}}"></script>
+<script src="{{ asset('front_end/js/bootstrap.min.js') }}"></script>
 <!-- include custom JavaScript -->
-<script src="{{ asset('front_end/js/jqueryCustome.js')}}"></script>
-<script type="text/javascript" src="{{ asset('front_end/js/stellarnav.min.js')}}"></script>
-<script src="{{asset('front_end/js/cart.js')}}"></script>
-<script src="{{asset('front_end/js/wish-list.js')}}"></script>
-<script src="{{asset('front_end/js/product.js')}}"></script>
+<script src="{{ asset('front_end/js/jqueryCustome.js') }}"></script>
+<script type="text/javascript" src="{{ asset('front_end/js/stellarnav.min.js') }}"></script>
+<script src="{{ asset('front_end/js/cart.js') }}"></script>
+<script src="{{ asset('front_end/js/wish-list.js') }}"></script>
+<script src="{{ asset('front_end/js/product.js') }}"></script>
 
 <!---------Owl Caraousel Script------------>
 
@@ -244,39 +241,39 @@ $address = App\Models\Pages::where('name', 'Contact Us Page')->first();
 
 <script type="text/javascript">
     jQuery(document).ready(function($) {
-    jQuery('.stellarnav').stellarNav({
-        theme: 'dark',
-        breakpoint: 960,
-        position: 'right',
-        phoneBtn: '18009997788',
-        locationBtn: 'https://www.google.com/maps'
+        jQuery('.stellarnav').stellarNav({
+            theme: 'dark',
+            breakpoint: 960,
+            position: 'right',
+            phoneBtn: '18009997788',
+            locationBtn: 'https://www.google.com/maps'
+        });
     });
-});
 </script>
 <script>
     $(document).ready(function() {
-     	$drawerRight = $('.cart-drawer-right');
-     	$cart_list = $('.cart-drawer-btn, .cart-drawer-close-btn');
-     	$cart_list.click(function() {
-     		$(this).toggleClass('active');
-     		$('body').toggleClass('cart-drawer-pushtoleft');
-     		$drawerRight.toggleClass('cart-drawer-open');
-     	});
-     });
+        $drawerRight = $('.cart-drawer-right');
+        $cart_list = $('.cart-drawer-btn, .cart-drawer-close-btn');
+        $cart_list.click(function() {
+            $(this).toggleClass('active');
+            $('body').toggleClass('cart-drawer-pushtoleft');
+            $drawerRight.toggleClass('cart-drawer-open');
+        });
+    });
 </script>
 <script>
-    $(document).ready(function(){
-      $(".icon-search").click(function(){
-        $(".pseudo-search").toggle(500);
-        $(".searchLi").hide();
-      });
+    $(document).ready(function() {
+        $(".icon-search").click(function() {
+            $(".pseudo-search").toggle(500);
+            $(".searchLi").hide();
+        });
     });
 </script>
 
 
 <!-- warning alert -->
 <script>
-    function warningAlert(page = "na"){
+    function warningAlert(page = "na") {
         Swal.fire({
             icon: 'error',
             title: 'You are not Logedin, Please Login First',
@@ -284,15 +281,15 @@ $address = App\Models\Pages::where('name', 'Contact Us Page')->first();
             showCancelButton: true,
             confirmButtonText: 'Login',
             // denyButtonText: `Don't save`,
-            }).then((result) => {
+        }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
-            if(page == "pc"){
-                window.location.href = "../../signup";
-            }else{
-                window.location.href = "../signup";
-            }
-                
+                if (page == "pc") {
+                    window.location.href = "../../signup";
+                } else {
+                    window.location.href = "../signup";
+                }
+
                 // Swal.fire('Saved!', '', 'success')
             } else if (result.isDenied) {
                 Swal.fire('Changes are not saved', '', 'info')
@@ -306,59 +303,58 @@ $address = App\Models\Pages::where('name', 'Contact Us Page')->first();
 <script type="text/javascript">
     var track = document.getElementById('track');
 
-var controlBtn = document.getElementById('play-pause');
+    var controlBtn = document.getElementById('play-pause');
 
-function playPause() {
-    if (track.paused) {
-        track.play();
-        //controlBtn.textContent = "Pause";
-        controlBtn.className = "pause";
-    } else {
-        track.pause();
-         //controlBtn.textContent = "Play";
-        controlBtn.className = "play";
+    function playPause() {
+        if (track.paused) {
+            track.play();
+            //controlBtn.textContent = "Pause";
+            controlBtn.className = "pause";
+        } else {
+            track.pause();
+            //controlBtn.textContent = "Play";
+            controlBtn.className = "play";
+        }
     }
-}
 
-controlBtn.addEventListener("click", playPause);
-track.addEventListener("ended", function() {
-controlBtn.className = "play";
-});
-
+    controlBtn.addEventListener("click", playPause);
+    track.addEventListener("ended", function() {
+        controlBtn.className = "play";
+    });
 </script>
 
 <!---------Zoom in-------------->
 
 <script>
-    function zoom(e){
-  var zoomer = e.currentTarget;
-  e.offsetX ? offsetX = e.offsetX : offsetX = e.touches[0].pageX
-  e.offsetY ? offsetY = e.offsetY : offsetX = e.touches[0].pageX
-  x = offsetX/zoomer.offsetWidth*100
-  y = offsetY/zoomer.offsetHeight*100
-  zoomer.style.backgroundPosition = x + '% ' + y + '%';
-}
+    function zoom(e) {
+        var zoomer = e.currentTarget;
+        e.offsetX ? offsetX = e.offsetX : offsetX = e.touches[0].pageX
+        e.offsetY ? offsetY = e.offsetY : offsetX = e.touches[0].pageX
+        x = offsetX / zoomer.offsetWidth * 100
+        y = offsetY / zoomer.offsetHeight * 100
+        zoomer.style.backgroundPosition = x + '% ' + y + '%';
+    }
 </script>
 
 <script>
     var owlCarousel = $('.owl-carousel.catgry_carousel').owlCarousel({
-        loop:true,
-        margin:10,
-        nav:false,
-        dots:false,
-        autoplay:true,
+        loop: true,
+        margin: 10,
+        nav: false,
+        dots: false,
+        // autoplay:true,
         slideTransition: 'linear',
-        autoplayTimeout: 4000,
-        autoplaySpeed: 4000,
-        responsive:{
-            0:{
-                items:1
+        // autoplayTimeout: 4000,
+        // autoplaySpeed: 4000,
+        responsive: {
+            0: {
+                items: 1
             },
-            600:{
-                items:1
+            600: {
+                items: 1
             },
-            1000:{
-                items:1
+            1000: {
+                items: 1
             }
         }
     })
@@ -370,24 +366,24 @@ controlBtn.className = "play";
 <!-- Gallery JS -->
 <script>
     Fancybox.bind("[data-fancybox]", {
-    // Custom options for all galleries
-});
+        // Custom options for all galleries
+    });
 </script>
 
 <!-- Product Compare -->
 <script>
-    function productCompare(product_id, page="na"){
+    function productCompare(product_id, page = "na") {
 
-    $.ajax({
-    type: "GET",  
-        url:'{{ url("product/compare") }}'+'/'+product_id,
-        success: function(response) {
-            console.log(response);
-            $("#productCompare_modal").modal('show');
-            $("#productCompare_modal .modal-body").append(response.view);
-        }
-    });
-}
+        $.ajax({
+            type: "GET",
+            url: '{{ url('product/compare') }}' + '/' + product_id,
+            success: function(response) {
+                console.log(response);
+                $("#productCompare_modal").modal('show');
+                $("#productCompare_modal .modal-body").append(response.view);
+            }
+        });
+    }
 </script>
 
 
@@ -408,7 +404,7 @@ controlBtn.className = "play";
     @if (Session::has('login_error'))
         toastr.error("{{ session('login_error') }}");
     @endif
-    
+
     @if (Session::has('info'))
         toastr.info("{{ session('info') }}");
     @endif
@@ -423,81 +419,82 @@ controlBtn.className = "play";
         @endforeach
     @endif
 
-    function quickViewProduct(productId){
-          $.ajax({
-            type: "GET",  
-                url:'{{ url("single/product/details") }}'+'/'+productId,
-                success: function(response) {
-                    // console.log(response.details);
-                    $('#quickViewModal').modal('show');
-                    $('#prodId').val(response.details.id);
-                    $('#prodName').text(response.details.name);
-                    $('#prodRate').text('$'+response.details.price);
-                    $('#prodQuantity').text(response.quantity);
-                    $('#prodCategory').text(response.details.category.name);
-                    $('#prodAdditionalDetails').html(response.details.short_description);
+    function quickViewProduct(productId) {
+        $.ajax({
+            type: "GET",
+            url: '{{ url('single/product/details') }}' + '/' + productId,
+            success: function(response) {
+                // console.log(response.details);
+                $('#quickViewModal').modal('show');
+                $('#prodId').val(response.details.id);
+                $('#prodName').text(response.details.name);
+                $('#prodRate').text('$' + response.details.price);
+                $('#prodQuantity').text(response.quantity);
+                $('#prodCategory').text(response.details.category.name);
+                $('#prodAdditionalDetails').html(response.details.short_description);
 
-                    var imageContainer = $('#prodImages');
+                var imageContainer = $('#prodImages');
 
-                    $.each(response.details.product_galleries, function (index, gallery) {
-                        var imageSrc = '{{ asset('admin/product/gallery') }}' + '/' + gallery.gallery_image;
+                $.each(response.details.product_galleries, function(index, gallery) {
+                    var imageSrc = '{{ asset('admin/product/gallery') }}' + '/' + gallery
+                        .gallery_image;
 
-                        // Create an <img> element and set its attributes
-                        var image = $('<img>', {
-                            src: imageSrc
-                        });
-
-                        var str = '<div class="item"><div class="glryimg">';
-                        // Create an image element and append it to the image container
-                        str += image;
-                        str += '</div></div>';
-
-                        // Append the image to the image container
-                        imageContainer.append(image);
+                    // Create an <img> element and set its attributes
+                    var image = $('<img>', {
+                        src: imageSrc
                     });
 
-                    imageContainer.owlCarousel({
-                        loop:true,
-                        margin:10,
-                        nav:false,
-                        dots:false,
-                        autoplay:true,
-                        slideTransition: 'linear',
-                        autoplayTimeout: 4000,
-                        autoplaySpeed: 4000,
-                        responsive:{
-                            0:{
-                                items:1
-                            },
-                            600:{
-                                items:1
-                            },
-                            1000:{
-                                items:1
-                            }
+                    var str = '<div class="item"><div class="glryimg">';
+                    // Create an image element and append it to the image container
+                    str += image;
+                    str += '</div></div>';
+
+                    // Append the image to the image container
+                    imageContainer.append(image);
+                });
+
+                imageContainer.owlCarousel({
+                    loop: true,
+                    margin: 10,
+                    nav: false,
+                    dots: false,
+                    // autoplay: true,
+                    slideTransition: 'linear',
+                    // autoplayTimeout: 4000,
+                    // autoplaySpeed: 4000,
+                    responsive: {
+                        0: {
+                            items: 1
+                        },
+                        600: {
+                            items: 1
+                        },
+                        1000: {
+                            items: 1
                         }
-                    })
+                    }
+                })
 
-                    // Trigger the refresh event to reload the Owl Carousel
-                    // imageContainer.trigger('refresh.owl.carousel');
+                // Trigger the refresh event to reload the Owl Carousel
+                // imageContainer.trigger('refresh.owl.carousel');
 
-                    // console.log(owlCarousel);
+                // console.log(owlCarousel);
 
-                    owlCarousel.trigger('refresh.owl.carousel');
-                }
-          });
-   }
+                owlCarousel.trigger('refresh.owl.carousel');
+            }
+        });
+    }
 
-   function beforeAddToCart(){
+    function beforeAddToCart() {
         prodId = $('#prodId').val();
         // let var currentUrl = window.location.href;
         // var isWordPresent = currentUrl.indexOf('product-category');
         // if(isWordPresent == true){
-            addToCart(prodId, 'multiple', 'pc');
+        addToCart(prodId, 'multiple', 'pc');
         // }else{
         //     addToCart(prodId, 'multiple');
         // }
-   }
+    }
 </script>
 
 </html>

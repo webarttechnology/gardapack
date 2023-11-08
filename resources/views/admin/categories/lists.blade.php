@@ -36,7 +36,7 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Image</th>
-                                <th>Sub Categories</th>
+                                {{-- <th>Sub Categories</th> --}}
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -52,7 +52,7 @@
                                        <img src="{{asset('pages/featured_img/no_imge_found.jpg')}}" height="100" width="175" alt="">
                                     @endif
                                 </td>
-                                <td>
+                                {{-- <td>
                                     @php
                                          $sub_cat_count = count(App\Models\Subcategory::where('category_id', $categorie->id)->get());
                                     @endphp
@@ -62,7 +62,7 @@
                                     @else
                                         <a href="{{ url('admin/sub-categories/add/page', $categorie->id) }}" class="btn btn-primary radius-30">Add</a>
                                     @endif
-                                </td>
+                                </td> --}}
                                 <td>
                                     <a href="{{url('admin/update/category/page', ['id' => $categorie->id, 'type' => $type])}}"><button
                                             class="btn btn-success radius-30"><i class="lni lni-arrow-right"></i>Update</button></a>

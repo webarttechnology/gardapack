@@ -107,6 +107,11 @@
 						</div>
 						<div class="menu-title">Admin Profile</div>
 					</a>
+					<a href="{{ url('admin/wholesaler/lists') }}">
+						<div class="parent-icon"><i class="bx bx-user-circle"></i>
+						</div>
+						<div class="menu-title">Wholesaller</div>
+					</a>
 				</li>
 
 				<li class="menu-label">Pages</li>

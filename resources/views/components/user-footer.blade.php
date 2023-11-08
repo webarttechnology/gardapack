@@ -37,7 +37,7 @@ $address = App\Models\Pages::where('name', 'Contact Us Page')->first();
                     </div>
                     <ul>
                         @foreach($services as $service)
-                          <li><a href="{{ url('service-details', $service->slug) }}">{{ $service->name }}</a></li>
+                        <li><a href="{{ url('service-details', $service->slug) }}">{{ $service->name }}</a></li>
                         @endforeach
                     </ul>
                 </div>
@@ -64,11 +64,25 @@ $address = App\Models\Pages::where('name', 'Contact Us Page')->first();
                 </div>
             </div>
         </div>
+        <div class="row justify-content-center">
+            <div class="col-md-4"></div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="subscribe" data-aos="zoom-in" data-aos-duration="2000">
+                    <h3>NEWSLETTER SIGN UP</h3>
+                    <form action>
+                        <div class="form">
+                            <input type="email" placeholder="Enter your email address" required>
+                            <button type="submit"><i class="bi bi-send"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
         <div class="row py-5" data-aos="zoom-in" data-aos-duration="2000">
             <div class="col-md-8">
                 <div class="ftrbtm">
-                    <p>Copyright 2022 © Grada Packs. Powered by <a href="{{ url('/') }}"
-                            target="_blank">
+                    <p>Copyright 2022 © Grada Packs. Powered by <a href="{{ url('/') }}" target="_blank">
                             WebArt
                             Technology All Rights Reserved</a></p>
                 </div>
@@ -100,7 +114,7 @@ $address = App\Models\Pages::where('name', 'Contact Us Page')->first();
                             <div class="owl-carousel imggry_carousel owl-theme" id="prodImages">
                                 <div class="item">
                                     <div class="glryimg">
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -139,11 +153,13 @@ $address = App\Models\Pages::where('name', 'Contact Us Page')->first();
                                         </span>
                                     </li> --}}
                                 </ul>
-                                <input type="hidden" id="prodId" >
+                                <input type="hidden" id="prodId">
                                 <div class="holder overflow-hidden d-flex flex-wrap mb-6">
-                                    <input type="number" placeholder="1" id="cart_quantity" value="1" min="1" max="1000000000">
+                                    <input type="number" placeholder="1" id="cart_quantity" value="1" min="1"
+                                        max="1000000000">
                                     <a href="javascript:void(0);"
-                                        class="btn btnTheme btnShop fwEbold text-white md-round py-3 px-4 py-md-3 px-md-4" onclick="return beforeAddToCart()">Add
+                                        class="btn btnTheme btnShop fwEbold text-white md-round py-3 px-4 py-md-3 px-md-4"
+                                        onclick="return beforeAddToCart()">Add
                                         To Cart <i class="fas fa-arrow-right ml-2"></i></a>
                                     <a href="javascript:void(0);" onclick="warningAlert()"
                                         class="icon-heart btn btnTheme ml-1 fwEbold text-white md-round py-3 px-4 py-md-3 px-md-4"></a>
@@ -188,20 +204,20 @@ $address = App\Models\Pages::where('name', 'Contact Us Page')->first();
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-AOS.init();
+    AOS.init();
 </script>
 <!-- Bootstrap JS CDN -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-crossorigin="anonymous"></script>
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+</script>
 
 <!-- jquery min-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="{{ asset('assets/js/stellarnav.min.js')}}"></script>
 <script type="text/javascript">
-jQuery(document).ready(function ($) {
+    jQuery(document).ready(function ($) {
     jQuery('.stellarnav').stellarNav({
         breakpoint: 960,
         position: 'right',

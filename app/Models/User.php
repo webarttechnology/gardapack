@@ -54,4 +54,9 @@ class User extends Authenticatable
         $total_user = count(User::all());
         return $total_user;
     }
+
+    public function info()
+    {
+            return $this->hasOne(WholesaleInfo::class);
+    }
 }

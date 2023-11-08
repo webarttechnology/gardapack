@@ -15,7 +15,7 @@ class PageManageController extends Controller
 
     public function index(){
         // $products = Product::inRandomOrder()->limit(12)->get();
-        $products = Product::with('productGalleries', 'category')->inRandomOrder()->limit(4)->get();
+        $products = Product::with('productGalleries', 'category')->latest()->limit(4)->get();
         $categories = Category::where('type', 'product')->inRandomOrder()->limit(12)->get();
         $daily_deals = Product::orderBy('id', 'desc')->limit(10)->get();
         $courses = Course::orderBy('id', 'desc')->limit(6)->get();
@@ -184,4 +184,12 @@ class PageManageController extends Controller
     public function wholesale_application(){
         return view('front_end.wholesale.index');
     }
+
+    /**
+     * Retailer
+     */
+
+     public function retailer(){
+          return view('front_end.retailer.index');
+     }
 }

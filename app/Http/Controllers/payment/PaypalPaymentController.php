@@ -20,7 +20,7 @@ class PaypalPaymentController extends Controller
         $shipping = 0;
         $handling_fee = 0;
         $response = $paypal_payments->CreatePayment($total_amount, $tax, $shipping, $handling_fee, $description);
-        
+
         // payment Id
         $payment_id = $response["payment_id"];
 
@@ -36,7 +36,7 @@ class PaypalPaymentController extends Controller
     {
         $paypal = new Paypal;
         $response = $paypal->executePayment($request->paymentId, $request->PayerID);
-        
+
         if (json_decode($response)->state == "approved") {
             /**
              * Update db if payment done 
@@ -49,7 +49,7 @@ class PaypalPaymentController extends Controller
             ]);
 
             Session::forget('paymentDetails');
-            return redirect('/')->with('order_submit', 'Order Submitted Successfully');
+            return redirect('/')->with('success', 'Order is successfully placed');
         } else {
             /**
              * If payment is not approved
@@ -60,7 +60,8 @@ class PaypalPaymentController extends Controller
         }
     }
 
-    public function cancel(Request $request){
-        return redirect('/')->with('error', 'Sorry! Your PAyment Has been Canceled');  
-   }
+    public function cancel(Request $request)
+    {
+        return redirect('/')->with('error', 'Sorry! Your PAyment Has been Canceled');
+    }
 }

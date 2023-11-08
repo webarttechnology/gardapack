@@ -69,7 +69,6 @@
 
 <script>
     var nextPageToken;
-    var newLocation;
     var markers = [];
     var geocoder = new google.maps.Geocoder();
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -132,44 +131,32 @@
                 'address': locationInput
             }, function(results, status) {
                 if (status === 'OK' && results.length > 0) {
-                    newLocation = results[0].geometry.location;
+                    var newLocation = results[0].geometry.location;
                     map.setCenter(newLocation);
 
-                    var csrfToken = $('meta[name="csrf-token"]').attr("content");
+                    // Fetch nearby places
+                    var request = {
+                        location: newLocation,
+                        radius: $("#radius").val(), // 50 km
+                        type: 'train_station',
+                        pageToken: nextPageToken
+                    };
 
-                    $.ajax({
-                        method: 'POST',
-                        url: '{{ 'fetch/shops' }}',
-                        dataType: 'json',
-                        headers: {
-                            "X-CSRF-TOKEN": csrfToken, // Include the CSRF token in the headers
-                            Authorization: "Bearer " +
-                                csrfToken, // Include the CSRF token as Authorization Bearer
-                            // Other headers...
-                        },
-                        success: function(data) {
-                            console.log(data);
-                            displayStores(data.shops);
-                        },
-                        error: function(data) {
-                            console.log(data);
+                    var service = new google.maps.places.PlacesService(map);
+                    service.nearbySearch(request, function(results, status, pagination) {
+                        if (status === 'OK') {
+                            displayStores(results);
+
+                            // if (pagination.hasNextPage) {
+                            //     nextPageToken = pagination.nextPage();
+                            // } else {
+                            //     nextPageToken = null;
+                            // }
                         }
                     });
-
-                    // var request = {
-                    //     location: newLocation,
-                    //     radius: $("#radius").val(), // 50 km
-                    //     type: 'train_station',
-                    //     pageToken: nextPageToken
-                    // };
-
-                    // var service = new google.maps.places.PlacesService(map);
-                    // service.nearbySearch(request, function(results, status, pagination) {
-                    //     if (status === 'OK') {
-                    //     }
-                    // });
                 } else {
-                    return $('.lists').html('<ul><p> No Results Found </p></ul>');
+                    // // If geocoding fails, try searching by store name
+                    // searchStoresByName(locationInput);
                 }
             });
         }
@@ -201,59 +188,62 @@
             markers.forEach(function(marker) {
                 marker.setMap(null);
             });
-
             markers = [];
 
-            var searchLocation = map.getCenter(); // Use the center of the map as the searched location
+            // Sort stores by distance before displaying
+            stores.sort(function(a, b) {
+                return a.distance - b.distance;
+            });
 
             for (var i = 0; i < stores.length && i < $("#limit").val(); i++) {
                 var store = stores[i];
+                console.log(store.geometry.location);
 
-                var storePosition = new google.maps.LatLng(store.latitude, store.longitude);
+                // Create a marker for each store
+                var marker = new google.maps.Marker({
+                    position: store.geometry.location,
+                    map: map,
+                    title: store.name
+                });
 
-                // Calculate distance between the searched location and the store
-                var distanceInMeters = haversineDistance(
-                    searchLocation.lat(),
-                    searchLocation.lng(),
-                    storePosition.lat(),
-                    storePosition.lng()
-                );
+                // Store the marker in the markers array
+                markers.push(marker);
 
-                // Convert distance from meters to kilometers
-                var distanceInKm = distanceInMeters / 1000;
+                // Add click event listener to the marker to display infowindow
+                marker.addListener('click', function() {
+                    infowindow.setContent(store.name);
+                    infowindow.open(map, this);
+                });
 
-                // Check if the store is within the desired radius (e.g., 10 km)
-                if (distanceInKm <= ($("#radius").val() / 1000)) {
-                    var marker = new google.maps.Marker({
-                        position: storePosition,
-                        map: map,
-                        title: store.name
-                    });
+                // Fetch details for each place to get the phone number
+                var detailsRequest = {
+                    placeId: store.place_id,
+                    fields: ['name', 'formatted_address', 'formatted_phone_number', 'geometry', 'url']
+                };
 
-                    // Store the marker in the markers array
-                    markers.push(marker);
-
-                    // Add click event listener to the marker to display infowindow
-                    marker.addListener('click', function() {
-                        infowindow.setContent(store.name);
-                        infowindow.open(map, this);
-                    });
-
-                    var storeInfo = '<ul><li>' +
-                        '<h4><a target="_blank" href="' + store.url + '">' + store.name + '</a></h4>' +
-                        '<address>' +
-                        '<p>' + store.address + '</p>' +
-                        '</address>' +
-                        '<p class="phone"><strong>Phone: </strong> <a href="tel:' + store.tel + '">' + (store
-                            .tel ||
-                            'NA') +
-                        '</a>' +
-                        '<p><a href="#!" class="directions-link" onclick="directionUpdate(this, event)" data-lat="' +
-                        store.latitude + '" data-lng="' + store.longitude +
-                        '">Directions</a></p>' +
-                        '</li></ul>';
-                    lists.append(storeInfo);
-                }
+                var detailsService = new google.maps.places.PlacesService(map);
+                detailsService.getDetails(detailsRequest, function(place, status) {
+                    if (status === 'OK') {
+                        var storeInfo = '<ul><li>' +
+                            '<h4><a href="' + place.url + '">' + place.name + '</a></h4>' +
+                            '<address>' +
+                            '<p>' + place.formatted_address + '</p>' +
+                            '</address>' +
+                            '<p class="phone"><strong>Phone: </strong> <a href="tel:' + (place
+                                .formatted_phone_number || 'N/A') + '">' +
+                            (place.formatted_phone_number || 'N/A') + '</a></p>' +
+                            // '<p><strong>Distance: </strong>' + distanceInKm.toFixed(2) + ' km</p>' +
+                            '<p><a href="#!" class="directions-link" onclick="directionUpdate(this, event)" data-lat="' +
+                            place.geometry.location.lat() + '" data-lng="' + place.geometry.location
+                            .lng() +
+                            '">Directions</a></p>' +
+                            '</li></ul>';
+                        lists.append(storeInfo);
+                    } else {
+                        alert('Place details request was not successful for the following reason: ' +
+                            status);
+                    }
+                });
             }
         }
     });
@@ -279,7 +269,7 @@
         var destination = new google.maps.LatLng(destinationLat, destinationLng);
 
         var request = {
-            origin: newLocation,
+            origin: map.getCenter(),
             destination: destination,
             travelMode: 'DRIVING'
         };

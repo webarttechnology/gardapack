@@ -102,7 +102,7 @@
                     <div class="col-md-2 col-sm-2 ">
                         <div class="header-log">
                             @if (Auth::user())
-                                <a href="#" class="log">Log Out</a>
+                                <a href="{{ url('logout') }}" class="log">Log Out</a>
                             @else
                                 <a href="{{ url('signup') }}" class="log">Log in</a>
                                 <a href="{{ url('signup') }}">Sign Up</a>
@@ -149,7 +149,9 @@
                     <div class="col-md-4 col-sm-6 ">
                         <nav>
                             @if (Auth::user())
-                                <a href="{{ url('my-account') }}"><i class="fa fa-user" aria-hidden="true"></i></a>
+                                <a href="{{ url('user/wishlist/page') }}"><i class="bi bi-heart"></i></a>
+                                <a href="{{ url('user/wishlist/page') }}"><i class="fa fa-user"
+                                        aria-hidden="true"></i></a>
                             @endif
 
                             <a href="{{ url('user/cart/page') }}"><i class="bi bi-cart4"></i></a>

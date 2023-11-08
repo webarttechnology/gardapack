@@ -39,15 +39,36 @@ class ShopsController extends Controller
         return redirect()->route('shops.lists')->with('success',  'Data Added Successfully!!!');
     }
 
-    public function update()
+    public function edit($id)
     {
-        $shops = Shop::all();
-        return view ('admin.shops.lists', compact('shops'));
+        $shops = Shop::find($id);
+        return view ('admin.shops.update', compact('shops'));
     }
 
-    public function delete()
+    public function update(Request $request , $id)
     {
-        $shops = Shop::all();
-        return view ('admin.shops.lists', compact('shops'));
+        $shops = Shop::find($id);
+        $shops->update([
+            'address'=> $request->address,
+            'address2'=> $request->address2,
+            'city'=> $request->city,
+            'state'=> $request->state,
+            'zip_code'=> $request->zip_code,
+            'country'=> $request->country,
+            'latitude'=> $request->latitude,
+            'longitude'=> $request->longitude,
+            'tel'=> $request->tel,
+            'fax'=> $request->fax,
+            'email'=> $request->email,
+            'url'=> $request->url,
+        ]);
+        return redirect()->route('shops.lists')->with('success',  'Data Updated Successfully!!!');
+    }
+
+    public function delete($id)
+    {
+       $shops= Shop::find($id);
+       $shops->delete();
+       return redirect()->route('shops.lists')->with('success',  'Data Deleted Successfully!!!');
     }
 }

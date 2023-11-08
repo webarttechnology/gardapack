@@ -33,14 +33,15 @@
                 <h6 class="mb-0 text-uppercase">Add Shops</h6>
                 <hr />
 
-                <form action="{{ route('shops.store') }}" method="post" >
+                <form action="{{ route('shops.update', ['id' => $shops->id ]) }}" method="post" >
+                    @method('PUT')
                     @csrf
 
                     <div class="card">
                         <div class="card-body">
                             <div class="mb-3">
                                 <label class="form-label"> Address *</label>
-                                <input type="text" class="form-control datepicker" placeholder="Address" name="address" required />
+                                <input type="text" class="form-control datepicker" placeholder="Address" name="address" required  value="{{old('address', $shops->address)}}"/>
                                 @if ($errors->has('address'))
                                 <span class="text-danger">{{ $errors->first('address') }}</span>
                                 @endif
@@ -48,7 +49,7 @@
                             <br>
                             <div class="mb-3">
                                 <label class="form-label"> Other Address *</label>
-                                <input type="text" class="form-control datepicker" placeholder="Address" name="address2" required />
+                                <input type="text" class="form-control datepicker" placeholder="Address" name="address2" required value="{{old('address2', $shops->address2)}}"/>
                                 @if ($errors->has('address2'))
                                 <span class="text-danger">{{ $errors->first('address2') }}</span>
                                 @endif
@@ -56,7 +57,7 @@
                             <br>
                             <div class="mb-3">
                                 <label class="form-label"> City *</label>
-                                <input type="text" class="form-control datepicker" placeholder="City" name="city" required />
+                                <input type="text" class="form-control datepicker" placeholder="City" name="city" value="{{old('city', $shops->city)}}" required />
                                 @if ($errors->has('city'))
                                 <span class="text-danger">{{ $errors->first('city') }}</span>
                                 @endif
@@ -64,7 +65,7 @@
                             <br>
                             <div class="mb-3">
                                 <label class="form-label"> State *</label>
-                                <input type="text" class="form-control datepicker" placeholder="State" name="state" required />
+                                <input type="text" class="form-control datepicker" placeholder="State" name="state" value="{{old('state', $shops->state)}}" required />
                                 @if ($errors->has('state'))
                                 <span class="text-danger">{{ $errors->first('state') }}</span>
                                 @endif
@@ -72,7 +73,7 @@
                             <br>
                             <div class="mb-3">
                                 <label class="form-label"> Zip Code* </label>
-                                <input type="text" class="form-control datepicker" placeholder="Zip Code" name="zip_code" required />
+                                <input type="text" class="form-control datepicker" placeholder="Zip Code" name="zip_code" value="{{old('zip_code', $shops->zip_code)}}" required />
                                 @if ($errors->has('zip'))
                                 <span class="text-danger">{{ $errors->first('zip') }}</span>
                                 @endif
@@ -80,7 +81,7 @@
                             <br>
                             <div class="mb-3">
                                 <label class="form-label"> Country* </label>
-                                <input type="text" class="form-control datepicker" placeholder="Country" name="country" required />
+                                <input type="text" class="form-control datepicker" placeholder="Country" name="country" value="{{old('country', $shops->country)}}" required />
                                 @if ($errors->has('country'))
                                 <span class="text-danger">{{ $errors->first('country') }}</span>
                                 @endif
@@ -88,7 +89,7 @@
                             <br>
                             <div class="mb-3">
                                 <label class="form-label"> Latitude *</label>
-                                <input type="text" class="form-control datepicker" placeholder="Latitude" name="latitude" required />
+                                <input type="text" class="form-control datepicker" placeholder="Latitude" name="latitude" required value="{{old('latitude', $shops->latitude)}}"/>
                                 @if ($errors->has('latitude'))
                                 <span class="text-danger">{{ $errors->first('latitude') }}</span>
                                 @endif
@@ -96,7 +97,7 @@
                             <br>
                             <div class="mb-3">
                                 <label class="form-label"> Longitude* </label>
-                                <input type="text" class="form-control datepicker" placeholder="Longitude" name="longitude" required />
+                                <input type="text" class="form-control datepicker" placeholder="Longitude" name="longitude" value="{{old('longitude', $shops->longitude)}}" required />
                                 @if ($errors->has('longitude'))
                                 <span class="text-danger">{{ $errors->first('longitude') }}</span>
                                 @endif
@@ -104,7 +105,7 @@
                             <br>
                             <div class="mb-3">
                                 <label class="form-label"> Tel </label>
-                                <input type="number" class="form-control datepicker" placeholder="Tel" name="tel" />
+                                <input type="number" class="form-control datepicker" placeholder="Tel" name="tel" value="{{old('tel', $shops->tel)}}"/>
                                 @if ($errors->has('tel'))
                                 <span class="text-danger">{{ $errors->first('tel') }}</span>
                                 @endif
@@ -112,7 +113,7 @@
                             <br>
                             <div class="mb-3">
                                 <label class="form-label"> FAX </label>
-                                <input type="text" class="form-control datepicker" placeholder="fax" name="fax" />
+                                <input type="text" class="form-control datepicker" placeholder="fax" name="fax" value="{{old('fax', $shops->fax)}}"/>
                                 @if ($errors->has('fax'))
                                 <span class="text-danger">{{ $errors->first('fax') }}</span>
                                 @endif
@@ -120,7 +121,7 @@
                             <br>
                             <div class="mb-3">
                                 <label class="form-label"> Email </label>
-                                <input type="text" class="form-control datepicker" placeholder="Email" name="email" />
+                                <input type="text" class="form-control datepicker" placeholder="Email" name="email" value="{{old('email', $shops->email)}}"/>
                                 @if ($errors->has('email'))
                                 <span class="text-danger">{{ $errors->first('email') }}</span>
                                 @endif
@@ -128,7 +129,7 @@
                             <br>
                             <div class="mb-3">
                                 <label class="form-label"> URL </label>
-                                <input type="text" class="form-control datepicker" placeholder="URL" name="url" />
+                                <input type="text" class="form-control datepicker" placeholder="URL" name="url" value="{{old('url', $shops->url)}}"/>
                                 @if ($errors->has('url'))
                                 <span class="text-danger">{{ $errors->first('url') }}</span>
                                 @endif
@@ -136,7 +137,7 @@
                             <br>
 
                             <div class="">
-                                <input type="submit" class="form-control btn btn-primary px-4" value="Add" />
+                                <input type="submit" class="form-control btn btn-primary px-4" value="Update" />
                             </div>
                         </div>
                     </div>

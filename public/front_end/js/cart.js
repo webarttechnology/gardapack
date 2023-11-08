@@ -1,4 +1,5 @@
-function addToCart(product_id, type, page="na"){
+function addToCart(product_id, type, page="na")
+{
     let cart_quantity;
     
     if(type == "multiple"){

@@ -112,6 +112,11 @@
 						</div>
 						<div class="menu-title">Wholesaller</div>
 					</a>
+					<a href="{{ route('shops.lists') }}">
+						<div class="parent-icon"><i class="bx bx-user-circle"></i>
+						</div>
+						<div class="menu-title">Shops</div>
+					</a>
 				</li>
 
 				<li class="menu-label">Pages</li>

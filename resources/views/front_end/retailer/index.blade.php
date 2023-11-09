@@ -91,6 +91,14 @@
 
     function resetForm() {
         if (navigator.geolocation) {
+
+            if (directionsDisplay) {
+
+                directionsDisplay.setDirections({
+                    routes: []
+                }); // Clear directions
+            }
+
             navigator.geolocation.getCurrentPosition(function(position) {
                 // If successful, update the map center to the user's location
                 var userLocation = {
@@ -123,11 +131,12 @@
 
         $('#search-form').submit(function(event) {
             event.preventDefault();
-            markers.forEach(function(marker) {
-                marker.setMap(null);
-            });
+            if (directionsDisplay) {
 
-            markers = [];
+                directionsDisplay.setDirections({
+                    routes: []
+                }); // Clear directions
+            }
             var locationInput = $('#location-input').val();
 
             if (locationInput == '') {
@@ -259,7 +268,7 @@
 
                     directionsService.route(request, function(result, status) {
                         if (status == 'OK') {
-                            directionsDisplay.setDirections(result);
+                            // directionsDisplay.setDirections(result);
                             var route = result.routes[0];
 
                             route.legs.forEach(function(leg) {

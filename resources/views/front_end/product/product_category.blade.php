@@ -1,9 +1,8 @@
 <x-userHeader />
 <main>
     <!-- introBannerHolder -->
-    <section class="introBannerHolder d-flex w-100 bgCover"
+    {{-- <section class="introBannerHolder d-flex w-100 bgCover"
         style="background-image: url({{ asset('front_end/images/b-bg7.jpg') }});">
-        {{-- <section class="introBannerHolder d-flex w-100"> --}}
         <div class="container">
             <div class="row">
                 <div class="col-12 pt-sm-10 text-center">
@@ -16,7 +15,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
 
     @php
@@ -87,7 +86,7 @@
 
                         @foreach ($products as $product)
                             <div class="col-12 col-sm-6 col-lg-4 featureCol mb-7">
-                                <div class="border">
+                                <div class="border border_sty">
                                     <div class="imgHolder position-relative w-100 overflow-hidden">
                                         <a href="{{ url('product-details', $product->slug) }}"><img
                                                 src="{{ asset('admin/product/featured_img/' . $product->featured_img) }}"
@@ -115,7 +114,9 @@
                                             <li class="mr-2 overflow-hidden"><a href="javascript:void(0)"
                                                     onclick="return addToCart({{ $product->id }}, 'single', 'pc')"
                                                     class="icon-cart d-block"></a></li>
-                                            <li class="mr-2 overflow-hidden"><a href="{{ url('product/compare', $product->id) }}" target="_blank" class="d-block"><i class="bi bi-arrow-clockwise"></i></a></li>
+                                            <li class="mr-2 overflow-hidden"><a
+                                                    href="{{ url('product/compare', $product->id) }}" target="_blank"
+                                                    class="d-block"><i class="bi bi-arrow-clockwise"></i></a></li>
                                             <li class="mr-2 overflow-hidden"><a href="javascript:void(0)"
                                                     class="icon-search d-block"
                                                     onclick="quickViewProduct({{ $product->id }})"></a></li>
@@ -163,7 +164,7 @@
             </div>
             <div class="col-12 col-lg-3 order-lg-1">
                 <!-- sidebar -->
-                <aside id="sidebar">
+                <aside id="sidebar" class="asidesecty">
                     <!-- widget -->
                     <section class="widget overflow-hidden mb-9">
                         <form action="{{ url('product-search') }}" class="searchForm position-relative border"

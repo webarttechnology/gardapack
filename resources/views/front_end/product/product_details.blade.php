@@ -43,6 +43,31 @@
                 <div class="zoom" onmousemove="zoom(event)" class="productSliderImage mb-lg-0 mb-4" id="other_img"
                     style="display: none;"></div>
 
+                <div class="row">
+                    <div class="col-12">
+                        <!-- paggSlider -->
+                        <div class="paggSlider">
+
+                            @php
+                                $galleries = App\Models\ProductGallery::where('product_id', $product->id)->get();
+                            @endphp
+
+                            @if ($galleries->isEmpty() == false)
+                                @foreach ($galleries as $gallery)
+                                    <div>
+                                        <div class="imgBlock my-3">
+                                            <img src="{{ asset('admin/product/gallery/' . $gallery->gallery_image) }}"
+                                                onclick="showGalleryImage(<?php echo $gallery->id; ?>)" alt="image description"
+                                                class="img-fluid">
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @endif
+
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
 
@@ -204,7 +229,7 @@
         </div>
 
         <!-- gallery images -->
-        <div class="row">
+        <div class="row d-none">
             <div class="col-12">
                 <!-- paggSlider -->
                 <div class="paggSlider">
@@ -243,128 +268,129 @@
         @endif
     </div>
 
-
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-8">
-                <!-- tabSetList -->
-                <ul class="list-unstyled tabSetList d-flex justify-content-center mb-9">
-                    <li class="mr-md-20 mr-sm-10 mr-2">
-                        <a href="#tab0-0" class="active playfair fwEbold pb-2">Additional Information</a>
-                    </li>
-                    <li class="mr-md-10 mr-sm-10 mr-2">
-                        <a href="#tab1-0" class="active playfair fwEbold pb-2">Description</a>
-                    </li>
-                    <li>
-                        <a href="#tab2-0" class="playfair fwEbold pb-2">Reviews ( {{ $rating_no }} )</a>
-                    </li>
-                </ul>
-                <!-- tab-content -->
-                <div class="tab-content mb-xl-11 mb-lg-10 mb-md-8 mb-5">
-                    <div id="tab0-0" class="active">
-                        <p class="mb-5">{!! $product->short_description !!}</p>
-                    </div>
-                    <div id="tab1-0">
-                        <p>{!! $product->description !!}</p>
-                    </div>
-                    <div id="tab2-0">
-                        <!-- review -->
-
-                        <div class="cmntsbx">
-
-                            <form action="{{ route('user.product.review', $product->id) }}" method="post">
-                                @csrf
-
-                                <div class="ratingst">
-                                    <div class="d-inline-block">
-                                        <p>Your Rating*</p>
-                                    </div>
-                                    <div class="strtcns d-inline-block">
-                                        <ul>
-                                            <li><i class="far fa-star" id="rateing_1" aria-hidden="true"
-                                                    onclick="return ratingSection(1)"></i>
-                                            </li>
-                                            <li><i class="far fa-star" id="rateing_2" aria-hidden="true"
-                                                    onclick="return ratingSection(2)"></i>
-                                            </li>
-                                            <li><i class="far fa-star" id="rateing_3" aria-hidden="true"
-                                                    onclick="return ratingSection(3)"></i>
-                                            </li>
-                                            <li><i class="far fa-star" id="rateing_4" aria-hidden="true"
-                                                    onclick="return ratingSection(4)"></i>
-                                            </li>
-                                            <li><i class="far fa-star" id="rateing_5" aria-hidden="true"
-                                                    onclick="return ratingSection(5)"></i>
-                                            </li>
-                                        </ul>
-
-                                        <input type="hidden" name="rating" id="rating">
-                                    </div>
-                                </div>
-                                <div class="cform">
-
-                                    <div class="mb-3">
-                                        <label for="">Comment*</label>
-                                        <textarea class="form-control" name="comment" required></textarea>
-                                    </div>
-                                    <div>
-                                        @if (Auth::user())
-                                            <input type="Submit" class="sbmtbtn" value="Submit">
-                                        @else
-                                            <input type="button" class="sbmtbtn" value="Submit"
-                                                onclick="warningAlert()">
-                                        @endif
-                                    </div>
-
-                                </div>
-                            </form>
-
-
-                            <div class="cntscty pb-3">
-
-
-                                @foreach ($reviews as $review)
-                                    @php
-                                        $user = App\Models\User::whereId($review->user_id)->first();
-                                    @endphp
-                                    <div class="cmntsdetails mt-5">
-                                        <h5 class="pt-2 pb-1">{{ $user->name }}</h5>
-                                        <div class="strtcns">
-                                            <ul>
-
-                                                <li><i class="@if ($review->rate > 0) fas fa-star @else far fa-star @endif"
-                                                        id="rateing_1" aria-hidden="true"></i>
-                                                </li>
-                                                <li><i class="@if ($review->rate > 1) fas fa-star @else far fa-star @endif"
-                                                        id="rateing_2" aria-hidden="true"></i>
-                                                </li>
-                                                <li><i class="@if ($review->rate > 2) fas fa-star @else far fa-star @endif"
-                                                        id="rateing_3" aria-hidden="true"></i>
-                                                </li>
-                                                <li><i class="@if ($review->rate > 3) fas fa-star @else far fa-star @endif"
-                                                        id="rateing_4" aria-hidden="true"></i>
-                                                </li>
-                                                <li><i class="@if ($review->rate > 4) fas fa-star @else far fa-star @endif"
-                                                        id="rateing_5" aria-hidden="true"></i>
-                                                </li>
-
-                                            </ul>
-                                        </div>
-                                        <p>{{ $review->comment }}</p>
-                                    </div>
-                                @endforeach
-
-
-
-
-                            </div>
+    <section class="bg-grky">
+        <div class="container comntssty">
+            <div class="row justify-content-center">
+                <div class="col-10">
+                    <!-- tabSetList -->
+                    <ul class="list-unstyled tabSetList d-flex justify-content-center mb-4 custom_list">
+                        <li class="">
+                            <a href="#tab0-0" class="active playfair fwEbold pb-2">Additional Information</a>
+                        </li>
+                        <li class="">
+                            <a href="#tab1-0" class="active playfair fwEbold pb-2">Description</a>
+                        </li>
+                        <li>
+                            <a href="#tab2-0" class="playfair fwEbold pb-2">Reviews ( {{ $rating_no }} )</a>
+                        </li>
+                    </ul>
+                    <!-- tab-content -->
+                    <div class="tab-content mb-xl-11 mb-lg-10 mb-md-8 mb-5">
+                        <div id="tab0-0" class="active">
+                            <p class="mb-5">{!! $product->short_description !!}</p>
                         </div>
+                        <div id="tab1-0">
+                            <p>{!! $product->description !!}</p>
+                        </div>
+                        <div id="tab2-0">
+                            <!-- review -->
 
+                            <div class="cmntsbx">
+
+                                <form action="{{ route('user.product.review', $product->id) }}" method="post">
+                                    @csrf
+
+                                    <div class="ratingst">
+                                        <div class="d-inline-block">
+                                            <p>Your Rating*</p>
+                                        </div>
+                                        <div class="strtcns d-inline-block">
+                                            <ul>
+                                                <li><i class="far fa-star" id="rateing_1" aria-hidden="true"
+                                                        onclick="return ratingSection(1)"></i>
+                                                </li>
+                                                <li><i class="far fa-star" id="rateing_2" aria-hidden="true"
+                                                        onclick="return ratingSection(2)"></i>
+                                                </li>
+                                                <li><i class="far fa-star" id="rateing_3" aria-hidden="true"
+                                                        onclick="return ratingSection(3)"></i>
+                                                </li>
+                                                <li><i class="far fa-star" id="rateing_4" aria-hidden="true"
+                                                        onclick="return ratingSection(4)"></i>
+                                                </li>
+                                                <li><i class="far fa-star" id="rateing_5" aria-hidden="true"
+                                                        onclick="return ratingSection(5)"></i>
+                                                </li>
+                                            </ul>
+
+                                            <input type="hidden" name="rating" id="rating">
+                                        </div>
+                                    </div>
+                                    <div class="cform">
+
+                                        <div class="mb-3">
+                                            <label for="">Comment*</label>
+                                            <textarea class="form-control" name="comment" required></textarea>
+                                        </div>
+                                        <div>
+                                            @if (Auth::user())
+                                                <input type="Submit" class="sbmtbtn" value="Submit">
+                                            @else
+                                                <input type="button" class="sbmtbtn" value="Submit"
+                                                    onclick="warningAlert()">
+                                            @endif
+                                        </div>
+
+                                    </div>
+                                </form>
+
+
+                                <div class="cntscty pb-3">
+
+
+                                    @foreach ($reviews as $review)
+                                        @php
+                                            $user = App\Models\User::whereId($review->user_id)->first();
+                                        @endphp
+                                        <div class="cmntsdetails mt-5">
+                                            <h5 class="pt-2 pb-1">{{ $user->name }}</h5>
+                                            <div class="strtcns">
+                                                <ul>
+
+                                                    <li><i class="@if ($review->rate > 0) fas fa-star @else far fa-star @endif"
+                                                            id="rateing_1" aria-hidden="true"></i>
+                                                    </li>
+                                                    <li><i class="@if ($review->rate > 1) fas fa-star @else far fa-star @endif"
+                                                            id="rateing_2" aria-hidden="true"></i>
+                                                    </li>
+                                                    <li><i class="@if ($review->rate > 2) fas fa-star @else far fa-star @endif"
+                                                            id="rateing_3" aria-hidden="true"></i>
+                                                    </li>
+                                                    <li><i class="@if ($review->rate > 3) fas fa-star @else far fa-star @endif"
+                                                            id="rateing_4" aria-hidden="true"></i>
+                                                    </li>
+                                                    <li><i class="@if ($review->rate > 4) fas fa-star @else far fa-star @endif"
+                                                            id="rateing_5" aria-hidden="true"></i>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                            <p>{{ $review->comment }}</p>
+                                        </div>
+                                    @endforeach
+
+
+
+
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
     <!-- featureSec -->
     <section class="featureSec container overflow-hidden pt-xl-12 pb-xl-29 pt-lg-10 pb-lg-14 pt-md-8 pb-md-10 py-5">
         <div class="row">
@@ -379,7 +405,7 @@
             @foreach ($related_products as $related_product)
                 <!-- featureCol -->
                 <div class="col-12 col-sm-6 col-lg-3 featureCol position-relative mb-7">
-                    <div class="border">
+                    <div class="border border_sty">
                         <div class="imgHolder position-relative w-100 overflow-hidden">
                             <a href="{{ url('product-details', $related_product->slug) }}"><img
                                     src="{{ asset('admin/product/featured_img/' . $related_product->featured_img) }}"

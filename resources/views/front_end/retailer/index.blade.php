@@ -353,11 +353,9 @@
             leg.steps.forEach(function(step, index) {
                 console.log(step);
                 var directionInfo = '<ul class="pl-0"><li class="d-flex ">' +
-                    '<div class="mr-3">' + (index + 1) + ' </div> ' +
-                    '<div>' +
-                    step.instructions +
-                    '<br>' + step.distance.text +
-                    '</div></li></ul>';
+                    '<div class="ltysecty">' + (index + 1) + ' </div> ' +
+                    '<div class="mdlsecty">' + step.instructions + ' </div> ' +
+                    '<div>' + step.distance.text + '</div></li></ul>';
                 lists.append(directionInfo);
             });
         });

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2023 at 10:00 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: Nov 09, 2023 at 04:38 AM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,14 +29,14 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `admins` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `first_name` varchar(255) NOT NULL,
-  `last_name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `country` varchar(255) DEFAULT NULL,
-  `profile_img` varchar(255) DEFAULT NULL,
-  `type` varchar(255) NOT NULL DEFAULT 'admin',
-  `status` varchar(100) NOT NULL DEFAULT 'active',
+  `first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `country` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `profile_img` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'admin',
+  `status` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -63,10 +63,12 @@ INSERT INTO `admins` (`id`, `first_name`, `last_name`, `email`, `password`, `cou
 
 CREATE TABLE `carts` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` varchar(255) NOT NULL,
-  `product_id` varchar(255) NOT NULL,
-  `amount` text DEFAULT NULL,
-  `cart_quantity` varchar(255) NOT NULL,
+  `user_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `product_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `amount` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `color` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `variation` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cart_quantity` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -75,16 +77,17 @@ CREATE TABLE `carts` (
 -- Dumping data for table `carts`
 --
 
-INSERT INTO `carts` (`id`, `user_id`, `product_id`, `amount`, `cart_quantity`, `created_at`, `updated_at`) VALUES
-(38, '7', '127', NULL, '1', '2023-08-07 13:56:45', '2023-08-11 16:09:31'),
-(39, '7', '27', NULL, '2', '2023-08-07 14:38:12', '2023-08-11 16:08:16'),
-(40, '7', '24', NULL, '1', '2023-08-07 14:38:34', '2023-08-07 14:39:20'),
-(43, '7', '124', NULL, '1', '2023-08-11 15:56:43', '2023-08-11 15:56:43'),
-(59, '11', '323', NULL, '1', '2023-08-22 09:33:47', '2023-08-22 09:34:28'),
-(60, '11', '431', NULL, '1', '2023-08-22 09:33:54', '2023-08-22 09:33:54'),
-(61, '11', '401', NULL, '1', '2023-08-22 09:36:27', '2023-08-22 09:36:27'),
-(62, '11', '21', NULL, '1', '2023-08-22 12:49:38', '2023-08-22 12:49:38'),
-(63, '11', '99', NULL, '1', '2023-08-22 12:49:47', '2023-08-22 12:49:47');
+INSERT INTO `carts` (`id`, `user_id`, `product_id`, `amount`, `color`, `variation`, `cart_quantity`, `created_at`, `updated_at`) VALUES
+(38, '7', '127', NULL, NULL, NULL, '1', '2023-08-07 13:56:45', '2023-08-11 16:09:31'),
+(39, '7', '27', NULL, NULL, NULL, '2', '2023-08-07 14:38:12', '2023-08-11 16:08:16'),
+(40, '7', '24', NULL, NULL, NULL, '1', '2023-08-07 14:38:34', '2023-08-07 14:39:20'),
+(43, '7', '124', NULL, NULL, NULL, '1', '2023-08-11 15:56:43', '2023-08-11 15:56:43'),
+(59, '11', '323', NULL, NULL, NULL, '1', '2023-08-22 09:33:47', '2023-08-22 09:34:28'),
+(60, '11', '431', NULL, NULL, NULL, '1', '2023-08-22 09:33:54', '2023-08-22 09:33:54'),
+(61, '11', '401', NULL, NULL, NULL, '1', '2023-08-22 09:36:27', '2023-08-22 09:36:27'),
+(62, '11', '21', NULL, NULL, NULL, '1', '2023-08-22 12:49:38', '2023-08-22 12:49:38'),
+(63, '11', '99', NULL, NULL, NULL, '1', '2023-08-22 12:49:47', '2023-08-22 12:49:47'),
+(74, '13', '472', '10', NULL, NULL, '1', '2023-11-08 00:44:49', '2023-11-08 01:07:35');
 
 -- --------------------------------------------------------
 
@@ -94,11 +97,11 @@ INSERT INTO `carts` (`id`, `user_id`, `product_id`, `amount`, `cart_quantity`, `
 
 CREATE TABLE `categories` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `category_img` varchar(255) DEFAULT NULL,
-  `added_by` varchar(255) NOT NULL,
-  `type` varchar(255) DEFAULT NULL,
-  `slug` text DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category_img` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `added_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slug` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -145,10 +148,10 @@ INSERT INTO `categories` (`id`, `name`, `category_img`, `added_by`, `type`, `slu
 
 CREATE TABLE `contact_us` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` text NOT NULL,
-  `email` text NOT NULL,
-  `phone` text NOT NULL,
-  `message` text NOT NULL,
+  `name` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `message` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -170,13 +173,13 @@ INSERT INTO `contact_us` (`id`, `name`, `email`, `phone`, `message`, `created_at
 
 CREATE TABLE `courses` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `added_by` varchar(50) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `description` text NOT NULL,
-  `img` text NOT NULL,
-  `video` text DEFAULT NULL,
-  `youtube_video` text DEFAULT NULL,
-  `slug` text NOT NULL,
+  `added_by` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `img` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `video` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `youtube_video` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slug` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -201,11 +204,11 @@ INSERT INTO `courses` (`id`, `added_by`, `name`, `description`, `img`, `video`, 
 
 CREATE TABLE `failed_jobs` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `uuid` varchar(255) NOT NULL,
-  `connection` text NOT NULL,
-  `queue` text NOT NULL,
-  `payload` longtext NOT NULL,
-  `exception` longtext NOT NULL,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -221,7 +224,7 @@ CREATE TABLE `faqs` (
   `answer` text NOT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `faqs`
@@ -243,7 +246,7 @@ INSERT INTO `faqs` (`id`, `question`, `answer`, `created_at`, `updated_at`) VALU
 
 CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -278,7 +281,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `newsletters` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `email` text NOT NULL,
+  `email` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -298,11 +301,11 @@ INSERT INTO `newsletters` (`id`, `email`, `created_at`, `updated_at`) VALUES
 
 CREATE TABLE `notifications` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `sub_admin_id` varchar(100) NOT NULL,
-  `action` varchar(50) NOT NULL,
-  `action_with` varchar(50) NOT NULL,
-  `action_with_id` varchar(50) NOT NULL,
-  `status` varchar(255) NOT NULL DEFAULT 'unread',
+  `sub_admin_id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `action` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `action_with` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `action_with_id` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'unread',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -330,11 +333,13 @@ INSERT INTO `notifications` (`id`, `sub_admin_id`, `action`, `action_with`, `act
 
 CREATE TABLE `ordered_products` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` varchar(255) NOT NULL,
-  `order_id` varchar(255) NOT NULL,
-  `product_id` varchar(255) NOT NULL,
-  `product_price` varchar(255) NOT NULL,
-  `product_quantity` varchar(255) NOT NULL,
+  `user_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `order_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `product_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `product_price` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `product_quantity` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `color` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `variation` int(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -343,97 +348,99 @@ CREATE TABLE `ordered_products` (
 -- Dumping data for table `ordered_products`
 --
 
-INSERT INTO `ordered_products` (`id`, `user_id`, `order_id`, `product_id`, `product_price`, `product_quantity`, `created_at`, `updated_at`) VALUES
-(1, '6', 'ODR_BLEyCIsp90xh7qyAZGxK', '159', '280', '4', '2023-08-11 12:21:19', '2023-08-11 12:21:19'),
-(2, '6', 'ODR_BLEyCIsp90xh7qyAZGxK', '216', '90', '1', '2023-08-11 12:21:19', '2023-08-11 12:21:19'),
-(3, '6', 'ODR_BLEyCIsp90xh7qyAZGxK', '134', '65', '1', '2023-08-11 12:21:19', '2023-08-11 12:21:19'),
-(4, '6', 'ODR_BLEyCIsp90xh7qyAZGxK', '180', '2250', '1', '2023-08-11 12:21:19', '2023-08-11 12:21:19'),
-(5, '6', 'ODR_BLEyCIsp90xh7qyAZGxK', '239', '1575', '1', '2023-08-11 12:21:19', '2023-08-11 12:21:19'),
-(6, '6', 'ODR_BLEyCIsp90xh7qyAZGxK', '36', '2050', '1', '2023-08-11 12:21:19', '2023-08-11 12:21:19'),
-(7, '6', 'ODR_BLEyCIsp90xh7qyAZGxK', '237', '840', '1', '2023-08-11 12:21:19', '2023-08-11 12:21:19'),
-(8, '6', 'ODR_BLEyCIsp90xh7qyAZGxK', '239', '1575', '1', '2023-08-11 12:21:19', '2023-08-11 12:21:19'),
-(9, '6', 'ODR_BLEyCIsp90xh7qyAZGxK', '108', '2300', '1', '2023-08-11 12:21:19', '2023-08-11 12:21:19'),
-(10, '6', 'ODR_BLEyCIsp90xh7qyAZGxK', '126', '520', '3', '2023-08-11 12:21:19', '2023-08-11 12:21:19'),
-(11, '6', 'ODR_BLEyCIsp90xh7qyAZGxK', '252', '2500', '1', '2023-08-11 12:21:19', '2023-08-11 12:21:19'),
-(12, '6', 'ODR_BLEyCIsp90xh7qyAZGxK', '124', '410', '1', '2023-08-11 12:21:19', '2023-08-11 12:21:19'),
-(13, '6', 'ODR_c0h96KQWpAGvbtTqESDW', '216', '90', '1', '2023-08-11 15:12:32', '2023-08-11 15:12:32'),
-(14, '6', 'ODR_c0h96KQWpAGvbtTqESDW', '134', '65', '1', '2023-08-11 15:12:32', '2023-08-11 15:12:32'),
-(15, '6', 'ODR_c0h96KQWpAGvbtTqESDW', '239', '1575', '2', '2023-08-11 15:12:32', '2023-08-11 15:12:32'),
-(16, '6', 'ODR_c0h96KQWpAGvbtTqESDW', '237', '840', '1', '2023-08-11 15:12:32', '2023-08-11 15:12:32'),
-(17, '6', 'ODR_c0h96KQWpAGvbtTqESDW', '239', '1575', '1', '2023-08-11 15:12:32', '2023-08-11 15:12:32'),
-(18, '6', 'ODR_c0h96KQWpAGvbtTqESDW', '126', '520', '2', '2023-08-11 15:12:32', '2023-08-11 15:12:32'),
-(19, '7', 'ODR_nquxbAY2l2dczkyYeWaU', '127', '90', '1', '2023-08-11 16:25:02', '2023-08-11 16:25:02'),
-(20, '7', 'ODR_nquxbAY2l2dczkyYeWaU', '27', '880', '2', '2023-08-11 16:25:02', '2023-08-11 16:25:02'),
-(21, '7', 'ODR_nquxbAY2l2dczkyYeWaU', '24', '590', '1', '2023-08-11 16:25:02', '2023-08-11 16:25:02'),
-(22, '7', 'ODR_nquxbAY2l2dczkyYeWaU', '124', '410', '1', '2023-08-11 16:25:02', '2023-08-11 16:25:02'),
-(23, '6', 'ODR_V1mma3Q3xMAdoGQPaSpI', '216', '90', '1', '2023-08-14 14:36:23', '2023-08-14 14:36:23'),
-(24, '6', 'ODR_V1mma3Q3xMAdoGQPaSpI', '134', '65', '3', '2023-08-14 14:36:23', '2023-08-14 14:36:23'),
-(25, '6', 'ODR_V1mma3Q3xMAdoGQPaSpI', '239', '1575', '2', '2023-08-14 14:36:23', '2023-08-14 14:36:23'),
-(26, '6', 'ODR_V1mma3Q3xMAdoGQPaSpI', '237', '840', '1', '2023-08-14 14:36:23', '2023-08-14 14:36:23'),
-(27, '6', 'ODR_V1mma3Q3xMAdoGQPaSpI', '239', '1575', '1', '2023-08-14 14:36:23', '2023-08-14 14:36:23'),
-(28, '6', 'ODR_V1mma3Q3xMAdoGQPaSpI', '126', '520', '2', '2023-08-14 14:36:23', '2023-08-14 14:36:23'),
-(29, '6', 'ODR_V1mma3Q3xMAdoGQPaSpI', '268', '1800', '1', '2023-08-14 14:36:23', '2023-08-14 14:36:23'),
-(30, '6', 'ODR_V1mma3Q3xMAdoGQPaSpI', '38', '4120', '1', '2023-08-14 14:36:23', '2023-08-14 14:36:23'),
-(31, '6', 'ODR_V1mma3Q3xMAdoGQPaSpI', '369', '40', '1', '2023-08-14 14:36:23', '2023-08-14 14:36:23'),
-(32, '6', 'ODR_V1mma3Q3xMAdoGQPaSpI', '337', '90', '1', '2023-08-14 14:36:23', '2023-08-14 14:36:23'),
-(33, '6', 'ODR_V1mma3Q3xMAdoGQPaSpI', '55', '3220', '1', '2023-08-14 14:36:23', '2023-08-14 14:36:23'),
-(34, '6', 'ODR_V1mma3Q3xMAdoGQPaSpI', '46', '990', '1', '2023-08-14 14:36:23', '2023-08-14 14:36:23'),
-(35, '6', 'ODR_V1mma3Q3xMAdoGQPaSpI', '199', '16', '1', '2023-08-14 14:36:23', '2023-08-14 14:36:23'),
-(36, '6', 'ODR_V1mma3Q3xMAdoGQPaSpI', '455', '120', '2', '2023-08-14 14:36:23', '2023-08-14 14:36:23'),
-(37, '6', 'ODR_V1mma3Q3xMAdoGQPaSpI', '27', '880', '1', '2023-08-14 14:36:23', '2023-08-14 14:36:23'),
-(38, '6', 'ODR_V1mma3Q3xMAdoGQPaSpI', '187', '1230', '1', '2023-08-14 14:36:23', '2023-08-14 14:36:23'),
-(39, '6', 'ODR_V1mma3Q3xMAdoGQPaSpI', '179', '1570', '1', '2023-08-14 14:36:23', '2023-08-14 14:36:23'),
-(40, '6', 'ODR_eqFzCDklaWvF9NejgvOb', '216', '90', '2', '2023-11-03 04:33:15', '2023-11-03 04:33:15'),
-(41, '6', 'ODR_eqFzCDklaWvF9NejgvOb', '239', '1575', '1', '2023-11-03 04:33:15', '2023-11-03 04:33:15'),
-(42, '6', 'ODR_eqFzCDklaWvF9NejgvOb', '126', '520', '2', '2023-11-03 04:33:15', '2023-11-03 04:33:15'),
-(43, '6', 'ODR_eqFzCDklaWvF9NejgvOb', '369', '40', '1', '2023-11-03 04:33:15', '2023-11-03 04:33:15'),
-(44, '6', 'ODR_eqFzCDklaWvF9NejgvOb', '337', '90', '1', '2023-11-03 04:33:15', '2023-11-03 04:33:15'),
-(45, '6', 'ODR_eqFzCDklaWvF9NejgvOb', '46', '990', '1', '2023-11-03 04:33:15', '2023-11-03 04:33:15'),
-(46, '6', 'ODR_eqFzCDklaWvF9NejgvOb', '101', '1000', '1', '2023-11-03 04:33:15', '2023-11-03 04:33:15'),
-(47, '6', 'ODR_eqFzCDklaWvF9NejgvOb', '99', '700', '1', '2023-11-03 04:33:15', '2023-11-03 04:33:15'),
-(48, '6', 'ODR_ohuDNHJPLuqoONLupFde', '216', '90', '2', '2023-11-03 04:35:52', '2023-11-03 04:35:52'),
-(49, '6', 'ODR_ohuDNHJPLuqoONLupFde', '239', '1575', '1', '2023-11-03 04:35:52', '2023-11-03 04:35:52'),
-(50, '6', 'ODR_ohuDNHJPLuqoONLupFde', '126', '520', '2', '2023-11-03 04:35:52', '2023-11-03 04:35:52'),
-(51, '6', 'ODR_ohuDNHJPLuqoONLupFde', '369', '40', '1', '2023-11-03 04:35:52', '2023-11-03 04:35:52'),
-(52, '6', 'ODR_ohuDNHJPLuqoONLupFde', '337', '90', '1', '2023-11-03 04:35:52', '2023-11-03 04:35:52'),
-(53, '6', 'ODR_ohuDNHJPLuqoONLupFde', '46', '990', '1', '2023-11-03 04:35:52', '2023-11-03 04:35:52'),
-(54, '6', 'ODR_ohuDNHJPLuqoONLupFde', '101', '1000', '1', '2023-11-03 04:35:52', '2023-11-03 04:35:52'),
-(55, '6', 'ODR_ohuDNHJPLuqoONLupFde', '99', '700', '1', '2023-11-03 04:35:52', '2023-11-03 04:35:52'),
-(56, '6', 'ODR_o02ad39ADuUuzokSdRQz', '216', '90', '2', '2023-11-03 04:36:17', '2023-11-03 04:36:17'),
-(57, '6', 'ODR_o02ad39ADuUuzokSdRQz', '239', '1575', '1', '2023-11-03 04:36:17', '2023-11-03 04:36:17'),
-(58, '6', 'ODR_o02ad39ADuUuzokSdRQz', '126', '520', '2', '2023-11-03 04:36:17', '2023-11-03 04:36:17'),
-(59, '6', 'ODR_o02ad39ADuUuzokSdRQz', '369', '40', '1', '2023-11-03 04:36:17', '2023-11-03 04:36:17'),
-(60, '6', 'ODR_o02ad39ADuUuzokSdRQz', '337', '90', '1', '2023-11-03 04:36:17', '2023-11-03 04:36:17'),
-(61, '6', 'ODR_o02ad39ADuUuzokSdRQz', '46', '990', '1', '2023-11-03 04:36:17', '2023-11-03 04:36:17'),
-(62, '6', 'ODR_o02ad39ADuUuzokSdRQz', '101', '1000', '1', '2023-11-03 04:36:17', '2023-11-03 04:36:17'),
-(63, '6', 'ODR_o02ad39ADuUuzokSdRQz', '99', '700', '1', '2023-11-03 04:36:17', '2023-11-03 04:36:17'),
-(64, '6', 'ODR_KhiIX33JXKGsMADU6vHZ', '216', '90', '2', '2023-11-03 04:37:20', '2023-11-03 04:37:20'),
-(65, '6', 'ODR_KhiIX33JXKGsMADU6vHZ', '239', '1575', '1', '2023-11-03 04:37:20', '2023-11-03 04:37:20'),
-(66, '6', 'ODR_KhiIX33JXKGsMADU6vHZ', '126', '520', '2', '2023-11-03 04:37:20', '2023-11-03 04:37:20'),
-(67, '6', 'ODR_KhiIX33JXKGsMADU6vHZ', '369', '40', '1', '2023-11-03 04:37:20', '2023-11-03 04:37:20'),
-(68, '6', 'ODR_KhiIX33JXKGsMADU6vHZ', '337', '90', '1', '2023-11-03 04:37:20', '2023-11-03 04:37:20'),
-(69, '6', 'ODR_KhiIX33JXKGsMADU6vHZ', '46', '990', '1', '2023-11-03 04:37:20', '2023-11-03 04:37:20'),
-(70, '6', 'ODR_KhiIX33JXKGsMADU6vHZ', '101', '1000', '1', '2023-11-03 04:37:20', '2023-11-03 04:37:20'),
-(71, '6', 'ODR_KhiIX33JXKGsMADU6vHZ', '99', '700', '1', '2023-11-03 04:37:20', '2023-11-03 04:37:20'),
-(72, '6', 'ODR_SnI9Qf4fE2RLvX82G4Pa', '216', '90', '2', '2023-11-03 04:47:54', '2023-11-03 04:47:54'),
-(73, '6', 'ODR_SnI9Qf4fE2RLvX82G4Pa', '239', '1575', '1', '2023-11-03 04:47:54', '2023-11-03 04:47:54'),
-(74, '6', 'ODR_SnI9Qf4fE2RLvX82G4Pa', '126', '520', '2', '2023-11-03 04:47:54', '2023-11-03 04:47:54'),
-(75, '6', 'ODR_SnI9Qf4fE2RLvX82G4Pa', '369', '40', '1', '2023-11-03 04:47:54', '2023-11-03 04:47:54'),
-(76, '6', 'ODR_SnI9Qf4fE2RLvX82G4Pa', '337', '90', '1', '2023-11-03 04:47:54', '2023-11-03 04:47:54'),
-(77, '6', 'ODR_SnI9Qf4fE2RLvX82G4Pa', '46', '990', '1', '2023-11-03 04:47:54', '2023-11-03 04:47:54'),
-(78, '6', 'ODR_SnI9Qf4fE2RLvX82G4Pa', '101', '1000', '1', '2023-11-03 04:47:54', '2023-11-03 04:47:54'),
-(79, '6', 'ODR_SnI9Qf4fE2RLvX82G4Pa', '99', '700', '1', '2023-11-03 04:47:54', '2023-11-03 04:47:54'),
-(80, '6', 'ODR_fyDU9QW7HlbsKcMOcx7C', '216', '90', '2', '2023-11-03 05:04:39', '2023-11-03 05:04:39'),
-(81, '6', 'ODR_fyDU9QW7HlbsKcMOcx7C', '239', '1575', '1', '2023-11-03 05:04:39', '2023-11-03 05:04:39'),
-(82, '6', 'ODR_fyDU9QW7HlbsKcMOcx7C', '369', '40', '1', '2023-11-03 05:04:39', '2023-11-03 05:04:39'),
-(83, '6', 'ODR_fyDU9QW7HlbsKcMOcx7C', '337', '90', '1', '2023-11-03 05:04:39', '2023-11-03 05:04:39'),
-(84, '6', 'ODR_Iw8cfC8FguZqLL0KlLCo', '216', '90', '2', '2023-11-03 05:05:56', '2023-11-03 05:05:56'),
-(85, '6', 'ODR_Iw8cfC8FguZqLL0KlLCo', '239', '1575', '1', '2023-11-03 05:05:56', '2023-11-03 05:05:56'),
-(86, '6', 'ODR_Iw8cfC8FguZqLL0KlLCo', '369', '40', '1', '2023-11-03 05:05:56', '2023-11-03 05:05:56'),
-(87, '6', 'ODR_Iw8cfC8FguZqLL0KlLCo', '337', '90', '1', '2023-11-03 05:05:56', '2023-11-03 05:05:56'),
-(88, '6', 'ODR_M1PPGypgYnhBhfKOyUQ8', '48', '1610', '2', '2023-11-03 05:47:23', '2023-11-03 05:47:23'),
-(89, '6', 'ODR_M1PPGypgYnhBhfKOyUQ8', '239', '1575', '2', '2023-11-03 05:47:23', '2023-11-03 05:47:23'),
-(90, '6', 'ODR_M1PPGypgYnhBhfKOyUQ8', '45', '10150', '2', '2023-11-03 05:47:23', '2023-11-03 05:47:23');
+INSERT INTO `ordered_products` (`id`, `user_id`, `order_id`, `product_id`, `product_price`, `product_quantity`, `color`, `variation`, `created_at`, `updated_at`) VALUES
+(1, '6', 'ODR_BLEyCIsp90xh7qyAZGxK', '159', '280', '4', NULL, NULL, '2023-08-11 12:21:19', '2023-08-11 12:21:19'),
+(2, '6', 'ODR_BLEyCIsp90xh7qyAZGxK', '216', '90', '1', NULL, NULL, '2023-08-11 12:21:19', '2023-08-11 12:21:19'),
+(3, '6', 'ODR_BLEyCIsp90xh7qyAZGxK', '134', '65', '1', NULL, NULL, '2023-08-11 12:21:19', '2023-08-11 12:21:19'),
+(4, '6', 'ODR_BLEyCIsp90xh7qyAZGxK', '180', '2250', '1', NULL, NULL, '2023-08-11 12:21:19', '2023-08-11 12:21:19'),
+(5, '6', 'ODR_BLEyCIsp90xh7qyAZGxK', '239', '1575', '1', NULL, NULL, '2023-08-11 12:21:19', '2023-08-11 12:21:19'),
+(6, '6', 'ODR_BLEyCIsp90xh7qyAZGxK', '36', '2050', '1', NULL, NULL, '2023-08-11 12:21:19', '2023-08-11 12:21:19'),
+(7, '6', 'ODR_BLEyCIsp90xh7qyAZGxK', '237', '840', '1', NULL, NULL, '2023-08-11 12:21:19', '2023-08-11 12:21:19'),
+(8, '6', 'ODR_BLEyCIsp90xh7qyAZGxK', '239', '1575', '1', NULL, NULL, '2023-08-11 12:21:19', '2023-08-11 12:21:19'),
+(9, '6', 'ODR_BLEyCIsp90xh7qyAZGxK', '108', '2300', '1', NULL, NULL, '2023-08-11 12:21:19', '2023-08-11 12:21:19'),
+(10, '6', 'ODR_BLEyCIsp90xh7qyAZGxK', '126', '520', '3', NULL, NULL, '2023-08-11 12:21:19', '2023-08-11 12:21:19'),
+(11, '6', 'ODR_BLEyCIsp90xh7qyAZGxK', '252', '2500', '1', NULL, NULL, '2023-08-11 12:21:19', '2023-08-11 12:21:19'),
+(12, '6', 'ODR_BLEyCIsp90xh7qyAZGxK', '124', '410', '1', NULL, NULL, '2023-08-11 12:21:19', '2023-08-11 12:21:19'),
+(13, '6', 'ODR_c0h96KQWpAGvbtTqESDW', '216', '90', '1', NULL, NULL, '2023-08-11 15:12:32', '2023-08-11 15:12:32'),
+(14, '6', 'ODR_c0h96KQWpAGvbtTqESDW', '134', '65', '1', NULL, NULL, '2023-08-11 15:12:32', '2023-08-11 15:12:32'),
+(15, '6', 'ODR_c0h96KQWpAGvbtTqESDW', '239', '1575', '2', NULL, NULL, '2023-08-11 15:12:32', '2023-08-11 15:12:32'),
+(16, '6', 'ODR_c0h96KQWpAGvbtTqESDW', '237', '840', '1', NULL, NULL, '2023-08-11 15:12:32', '2023-08-11 15:12:32'),
+(17, '6', 'ODR_c0h96KQWpAGvbtTqESDW', '239', '1575', '1', NULL, NULL, '2023-08-11 15:12:32', '2023-08-11 15:12:32'),
+(18, '6', 'ODR_c0h96KQWpAGvbtTqESDW', '126', '520', '2', NULL, NULL, '2023-08-11 15:12:32', '2023-08-11 15:12:32'),
+(19, '7', 'ODR_nquxbAY2l2dczkyYeWaU', '127', '90', '1', NULL, NULL, '2023-08-11 16:25:02', '2023-08-11 16:25:02'),
+(20, '7', 'ODR_nquxbAY2l2dczkyYeWaU', '27', '880', '2', NULL, NULL, '2023-08-11 16:25:02', '2023-08-11 16:25:02'),
+(21, '7', 'ODR_nquxbAY2l2dczkyYeWaU', '24', '590', '1', NULL, NULL, '2023-08-11 16:25:02', '2023-08-11 16:25:02'),
+(22, '7', 'ODR_nquxbAY2l2dczkyYeWaU', '124', '410', '1', NULL, NULL, '2023-08-11 16:25:02', '2023-08-11 16:25:02'),
+(23, '6', 'ODR_V1mma3Q3xMAdoGQPaSpI', '216', '90', '1', NULL, NULL, '2023-08-14 14:36:23', '2023-08-14 14:36:23'),
+(24, '6', 'ODR_V1mma3Q3xMAdoGQPaSpI', '134', '65', '3', NULL, NULL, '2023-08-14 14:36:23', '2023-08-14 14:36:23'),
+(25, '6', 'ODR_V1mma3Q3xMAdoGQPaSpI', '239', '1575', '2', NULL, NULL, '2023-08-14 14:36:23', '2023-08-14 14:36:23'),
+(26, '6', 'ODR_V1mma3Q3xMAdoGQPaSpI', '237', '840', '1', NULL, NULL, '2023-08-14 14:36:23', '2023-08-14 14:36:23'),
+(27, '6', 'ODR_V1mma3Q3xMAdoGQPaSpI', '239', '1575', '1', NULL, NULL, '2023-08-14 14:36:23', '2023-08-14 14:36:23'),
+(28, '6', 'ODR_V1mma3Q3xMAdoGQPaSpI', '126', '520', '2', NULL, NULL, '2023-08-14 14:36:23', '2023-08-14 14:36:23'),
+(29, '6', 'ODR_V1mma3Q3xMAdoGQPaSpI', '268', '1800', '1', NULL, NULL, '2023-08-14 14:36:23', '2023-08-14 14:36:23'),
+(30, '6', 'ODR_V1mma3Q3xMAdoGQPaSpI', '38', '4120', '1', NULL, NULL, '2023-08-14 14:36:23', '2023-08-14 14:36:23'),
+(31, '6', 'ODR_V1mma3Q3xMAdoGQPaSpI', '369', '40', '1', NULL, NULL, '2023-08-14 14:36:23', '2023-08-14 14:36:23'),
+(32, '6', 'ODR_V1mma3Q3xMAdoGQPaSpI', '337', '90', '1', NULL, NULL, '2023-08-14 14:36:23', '2023-08-14 14:36:23'),
+(33, '6', 'ODR_V1mma3Q3xMAdoGQPaSpI', '55', '3220', '1', NULL, NULL, '2023-08-14 14:36:23', '2023-08-14 14:36:23'),
+(34, '6', 'ODR_V1mma3Q3xMAdoGQPaSpI', '46', '990', '1', NULL, NULL, '2023-08-14 14:36:23', '2023-08-14 14:36:23'),
+(35, '6', 'ODR_V1mma3Q3xMAdoGQPaSpI', '199', '16', '1', NULL, NULL, '2023-08-14 14:36:23', '2023-08-14 14:36:23'),
+(36, '6', 'ODR_V1mma3Q3xMAdoGQPaSpI', '455', '120', '2', NULL, NULL, '2023-08-14 14:36:23', '2023-08-14 14:36:23'),
+(37, '6', 'ODR_V1mma3Q3xMAdoGQPaSpI', '27', '880', '1', NULL, NULL, '2023-08-14 14:36:23', '2023-08-14 14:36:23'),
+(38, '6', 'ODR_V1mma3Q3xMAdoGQPaSpI', '187', '1230', '1', NULL, NULL, '2023-08-14 14:36:23', '2023-08-14 14:36:23'),
+(39, '6', 'ODR_V1mma3Q3xMAdoGQPaSpI', '179', '1570', '1', NULL, NULL, '2023-08-14 14:36:23', '2023-08-14 14:36:23'),
+(40, '6', 'ODR_eqFzCDklaWvF9NejgvOb', '216', '90', '2', NULL, NULL, '2023-11-03 04:33:15', '2023-11-03 04:33:15'),
+(41, '6', 'ODR_eqFzCDklaWvF9NejgvOb', '239', '1575', '1', NULL, NULL, '2023-11-03 04:33:15', '2023-11-03 04:33:15'),
+(42, '6', 'ODR_eqFzCDklaWvF9NejgvOb', '126', '520', '2', NULL, NULL, '2023-11-03 04:33:15', '2023-11-03 04:33:15'),
+(43, '6', 'ODR_eqFzCDklaWvF9NejgvOb', '369', '40', '1', NULL, NULL, '2023-11-03 04:33:15', '2023-11-03 04:33:15'),
+(44, '6', 'ODR_eqFzCDklaWvF9NejgvOb', '337', '90', '1', NULL, NULL, '2023-11-03 04:33:15', '2023-11-03 04:33:15'),
+(45, '6', 'ODR_eqFzCDklaWvF9NejgvOb', '46', '990', '1', NULL, NULL, '2023-11-03 04:33:15', '2023-11-03 04:33:15'),
+(46, '6', 'ODR_eqFzCDklaWvF9NejgvOb', '101', '1000', '1', NULL, NULL, '2023-11-03 04:33:15', '2023-11-03 04:33:15'),
+(47, '6', 'ODR_eqFzCDklaWvF9NejgvOb', '99', '700', '1', NULL, NULL, '2023-11-03 04:33:15', '2023-11-03 04:33:15'),
+(48, '6', 'ODR_ohuDNHJPLuqoONLupFde', '216', '90', '2', NULL, NULL, '2023-11-03 04:35:52', '2023-11-03 04:35:52'),
+(49, '6', 'ODR_ohuDNHJPLuqoONLupFde', '239', '1575', '1', NULL, NULL, '2023-11-03 04:35:52', '2023-11-03 04:35:52'),
+(50, '6', 'ODR_ohuDNHJPLuqoONLupFde', '126', '520', '2', NULL, NULL, '2023-11-03 04:35:52', '2023-11-03 04:35:52'),
+(51, '6', 'ODR_ohuDNHJPLuqoONLupFde', '369', '40', '1', NULL, NULL, '2023-11-03 04:35:52', '2023-11-03 04:35:52'),
+(52, '6', 'ODR_ohuDNHJPLuqoONLupFde', '337', '90', '1', NULL, NULL, '2023-11-03 04:35:52', '2023-11-03 04:35:52'),
+(53, '6', 'ODR_ohuDNHJPLuqoONLupFde', '46', '990', '1', NULL, NULL, '2023-11-03 04:35:52', '2023-11-03 04:35:52'),
+(54, '6', 'ODR_ohuDNHJPLuqoONLupFde', '101', '1000', '1', NULL, NULL, '2023-11-03 04:35:52', '2023-11-03 04:35:52'),
+(55, '6', 'ODR_ohuDNHJPLuqoONLupFde', '99', '700', '1', NULL, NULL, '2023-11-03 04:35:52', '2023-11-03 04:35:52'),
+(56, '6', 'ODR_o02ad39ADuUuzokSdRQz', '216', '90', '2', NULL, NULL, '2023-11-03 04:36:17', '2023-11-03 04:36:17'),
+(57, '6', 'ODR_o02ad39ADuUuzokSdRQz', '239', '1575', '1', NULL, NULL, '2023-11-03 04:36:17', '2023-11-03 04:36:17'),
+(58, '6', 'ODR_o02ad39ADuUuzokSdRQz', '126', '520', '2', NULL, NULL, '2023-11-03 04:36:17', '2023-11-03 04:36:17'),
+(59, '6', 'ODR_o02ad39ADuUuzokSdRQz', '369', '40', '1', NULL, NULL, '2023-11-03 04:36:17', '2023-11-03 04:36:17'),
+(60, '6', 'ODR_o02ad39ADuUuzokSdRQz', '337', '90', '1', NULL, NULL, '2023-11-03 04:36:17', '2023-11-03 04:36:17'),
+(61, '6', 'ODR_o02ad39ADuUuzokSdRQz', '46', '990', '1', NULL, NULL, '2023-11-03 04:36:17', '2023-11-03 04:36:17'),
+(62, '6', 'ODR_o02ad39ADuUuzokSdRQz', '101', '1000', '1', NULL, NULL, '2023-11-03 04:36:17', '2023-11-03 04:36:17'),
+(63, '6', 'ODR_o02ad39ADuUuzokSdRQz', '99', '700', '1', NULL, NULL, '2023-11-03 04:36:17', '2023-11-03 04:36:17'),
+(64, '6', 'ODR_KhiIX33JXKGsMADU6vHZ', '216', '90', '2', NULL, NULL, '2023-11-03 04:37:20', '2023-11-03 04:37:20'),
+(65, '6', 'ODR_KhiIX33JXKGsMADU6vHZ', '239', '1575', '1', NULL, NULL, '2023-11-03 04:37:20', '2023-11-03 04:37:20'),
+(66, '6', 'ODR_KhiIX33JXKGsMADU6vHZ', '126', '520', '2', NULL, NULL, '2023-11-03 04:37:20', '2023-11-03 04:37:20'),
+(67, '6', 'ODR_KhiIX33JXKGsMADU6vHZ', '369', '40', '1', NULL, NULL, '2023-11-03 04:37:20', '2023-11-03 04:37:20'),
+(68, '6', 'ODR_KhiIX33JXKGsMADU6vHZ', '337', '90', '1', NULL, NULL, '2023-11-03 04:37:20', '2023-11-03 04:37:20'),
+(69, '6', 'ODR_KhiIX33JXKGsMADU6vHZ', '46', '990', '1', NULL, NULL, '2023-11-03 04:37:20', '2023-11-03 04:37:20'),
+(70, '6', 'ODR_KhiIX33JXKGsMADU6vHZ', '101', '1000', '1', NULL, NULL, '2023-11-03 04:37:20', '2023-11-03 04:37:20'),
+(71, '6', 'ODR_KhiIX33JXKGsMADU6vHZ', '99', '700', '1', NULL, NULL, '2023-11-03 04:37:20', '2023-11-03 04:37:20'),
+(72, '6', 'ODR_SnI9Qf4fE2RLvX82G4Pa', '216', '90', '2', NULL, NULL, '2023-11-03 04:47:54', '2023-11-03 04:47:54'),
+(73, '6', 'ODR_SnI9Qf4fE2RLvX82G4Pa', '239', '1575', '1', NULL, NULL, '2023-11-03 04:47:54', '2023-11-03 04:47:54'),
+(74, '6', 'ODR_SnI9Qf4fE2RLvX82G4Pa', '126', '520', '2', NULL, NULL, '2023-11-03 04:47:54', '2023-11-03 04:47:54'),
+(75, '6', 'ODR_SnI9Qf4fE2RLvX82G4Pa', '369', '40', '1', NULL, NULL, '2023-11-03 04:47:54', '2023-11-03 04:47:54'),
+(76, '6', 'ODR_SnI9Qf4fE2RLvX82G4Pa', '337', '90', '1', NULL, NULL, '2023-11-03 04:47:54', '2023-11-03 04:47:54'),
+(77, '6', 'ODR_SnI9Qf4fE2RLvX82G4Pa', '46', '990', '1', NULL, NULL, '2023-11-03 04:47:54', '2023-11-03 04:47:54'),
+(78, '6', 'ODR_SnI9Qf4fE2RLvX82G4Pa', '101', '1000', '1', NULL, NULL, '2023-11-03 04:47:54', '2023-11-03 04:47:54'),
+(79, '6', 'ODR_SnI9Qf4fE2RLvX82G4Pa', '99', '700', '1', NULL, NULL, '2023-11-03 04:47:54', '2023-11-03 04:47:54'),
+(80, '6', 'ODR_fyDU9QW7HlbsKcMOcx7C', '216', '90', '2', NULL, NULL, '2023-11-03 05:04:39', '2023-11-03 05:04:39'),
+(81, '6', 'ODR_fyDU9QW7HlbsKcMOcx7C', '239', '1575', '1', NULL, NULL, '2023-11-03 05:04:39', '2023-11-03 05:04:39'),
+(82, '6', 'ODR_fyDU9QW7HlbsKcMOcx7C', '369', '40', '1', NULL, NULL, '2023-11-03 05:04:39', '2023-11-03 05:04:39'),
+(83, '6', 'ODR_fyDU9QW7HlbsKcMOcx7C', '337', '90', '1', NULL, NULL, '2023-11-03 05:04:39', '2023-11-03 05:04:39'),
+(84, '6', 'ODR_Iw8cfC8FguZqLL0KlLCo', '216', '90', '2', NULL, NULL, '2023-11-03 05:05:56', '2023-11-03 05:05:56'),
+(85, '6', 'ODR_Iw8cfC8FguZqLL0KlLCo', '239', '1575', '1', NULL, NULL, '2023-11-03 05:05:56', '2023-11-03 05:05:56'),
+(86, '6', 'ODR_Iw8cfC8FguZqLL0KlLCo', '369', '40', '1', NULL, NULL, '2023-11-03 05:05:56', '2023-11-03 05:05:56'),
+(87, '6', 'ODR_Iw8cfC8FguZqLL0KlLCo', '337', '90', '1', NULL, NULL, '2023-11-03 05:05:56', '2023-11-03 05:05:56'),
+(88, '6', 'ODR_M1PPGypgYnhBhfKOyUQ8', '48', '1610', '2', NULL, NULL, '2023-11-03 05:47:23', '2023-11-03 05:47:23'),
+(89, '6', 'ODR_M1PPGypgYnhBhfKOyUQ8', '239', '1575', '2', NULL, NULL, '2023-11-03 05:47:23', '2023-11-03 05:47:23'),
+(90, '6', 'ODR_M1PPGypgYnhBhfKOyUQ8', '45', '10150', '2', NULL, NULL, '2023-11-03 05:47:23', '2023-11-03 05:47:23'),
+(91, '14', 'ODR_ga0UuyNFdsR6G6E3e9Wj', '116', '2570', '1', NULL, NULL, '2023-11-08 03:57:11', '2023-11-08 03:57:11'),
+(92, '14', 'ODR_ga0UuyNFdsR6G6E3e9Wj', '467', '1000', '3', 'White', 495, '2023-11-08 03:57:11', '2023-11-08 03:57:11');
 
 -- --------------------------------------------------------
 
@@ -443,24 +450,24 @@ INSERT INTO `ordered_products` (`id`, `user_id`, `order_id`, `product_id`, `prod
 
 CREATE TABLE `orders` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` varchar(255) NOT NULL,
-  `order_id` varchar(255) NOT NULL,
-  `billing_name` varchar(255) NOT NULL,
-  `billing_username` varchar(255) DEFAULT NULL,
-  `billing_email` varchar(255) NOT NULL,
-  `billing_phone` text DEFAULT NULL,
-  `billing_address1` text NOT NULL,
-  `billing_address2` text DEFAULT NULL,
-  `billing_country` varchar(255) NOT NULL,
-  `billing_town` text DEFAULT NULL,
-  `billing_state` varchar(255) NOT NULL,
-  `billing_zip` varchar(255) NOT NULL,
-  `total_amount` text DEFAULT NULL,
-  `order_notes` text DEFAULT NULL,
-  `txn_id` text DEFAULT NULL,
-  `transaction_details` text DEFAULT NULL,
-  `status` varchar(50) NOT NULL DEFAULT '0' COMMENT '0=>not paid, 1=> paid',
-  `order_status` text DEFAULT 'active',
+  `user_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `order_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `billing_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `billing_username` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `billing_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `billing_phone` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `billing_address1` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `billing_address2` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `billing_country` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `billing_town` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `billing_state` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `billing_zip` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `total_amount` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `order_notes` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `txn_id` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `transaction_details` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0' COMMENT '0=>not paid, 1=> paid',
+  `order_status` text COLLATE utf8mb4_unicode_ci DEFAULT 'active',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -481,7 +488,8 @@ INSERT INTO `orders` (`id`, `user_id`, `order_id`, `billing_name`, `billing_user
 (9, '6', 'ODR_SnI9Qf4fE2RLvX82G4Pa', 'Katelyn Stephens Finley', NULL, 'hudujaqi@mailinator.com', '+1 (372) 712-5138', '792 North Second Court', 'Fugit voluptatibus', 'Iste id illo archit', 'Omnis et ad laboris', 'Rem neque incidunt', '61404', NULL, 'Autem est lorem debi', 'PAYID-MVCMRUY8SH07879UE472281A', '\"{\\\"id\\\":\\\"PAYID-MVCMRUY8SH07879UE472281A\\\",\\\"intent\\\":\\\"sale\\\",\\\"state\\\":\\\"approved\\\",\\\"cart\\\":\\\"7W1646890R067092V\\\",\\\"payer\\\":{\\\"payment_method\\\":\\\"paypal\\\",\\\"status\\\":\\\"UNVERIFIED\\\",\\\"payer_info\\\":{\\\"email\\\":\\\"kopyxyfa@mailinator.com\\\",\\\"first_name\\\":\\\"test\\\",\\\"last_name\\\":\\\"t\\\",\\\"payer_id\\\":\\\"8GEJYFYZA5T6C\\\",\\\"shipping_address\\\":{\\\"recipient_name\\\":\\\"test t\\\",\\\"id\\\":\\\"7783176223982539026\\\",\\\"line1\\\":\\\"demo\\\",\\\"city\\\":\\\"los angeles\\\",\\\"state\\\":\\\"AP\\\",\\\"postal_code\\\":\\\"90002\\\",\\\"country_code\\\":\\\"US\\\",\\\"type\\\":\\\"HOME_OR_WORK\\\",\\\"default_address\\\":false,\\\"preferred_address\\\":true,\\\"primary_address\\\":true,\\\"disable_for_transaction\\\":false},\\\"country_code\\\":\\\"US\\\"}},\\\"transactions\\\":[{\\\"amount\\\":{\\\"total\\\":\\\"5615.00\\\",\\\"currency\\\":\\\"USD\\\",\\\"details\\\":{\\\"subtotal\\\":\\\"5615.00\\\",\\\"tax\\\":\\\"0.00\\\",\\\"shipping\\\":\\\"0.00\\\",\\\"insurance\\\":\\\"0.00\\\",\\\"handling_fee\\\":\\\"0.00\\\",\\\"shipping_discount\\\":\\\"0.00\\\",\\\"discount\\\":\\\"0.00\\\"}},\\\"payee\\\":{\\\"merchant_id\\\":\\\"Y9WH78BGKVZPE\\\",\\\"email\\\":\\\"sb-ohwc726188538@business.example.com\\\"},\\\"description\\\":\\\"Test\\\",\\\"soft_descriptor\\\":\\\"PAYPAL *TEST STORE\\\",\\\"item_list\\\":{\\\"shipping_address\\\":{\\\"recipient_name\\\":\\\"test t\\\",\\\"id\\\":\\\"7783176223982539026\\\",\\\"line1\\\":\\\"demo\\\",\\\"city\\\":\\\"los angeles\\\",\\\"state\\\":\\\"AP\\\",\\\"postal_code\\\":\\\"90002\\\",\\\"country_code\\\":\\\"US\\\",\\\"type\\\":\\\"HOME_OR_WORK\\\",\\\"default_address\\\":false,\\\"preferred_address\\\":true,\\\"primary_address\\\":true,\\\"disable_for_transaction\\\":false}},\\\"related_resources\\\":[{\\\"sale\\\":{\\\"id\\\":\\\"2AW44158T7680782K\\\",\\\"state\\\":\\\"completed\\\",\\\"amount\\\":{\\\"total\\\":\\\"5615.00\\\",\\\"currency\\\":\\\"USD\\\",\\\"details\\\":{\\\"subtotal\\\":\\\"5615.00\\\",\\\"tax\\\":\\\"0.00\\\",\\\"shipping\\\":\\\"0.00\\\",\\\"insurance\\\":\\\"0.00\\\",\\\"handling_fee\\\":\\\"0.00\\\",\\\"shipping_discount\\\":\\\"0.00\\\",\\\"discount\\\":\\\"0.00\\\"}},\\\"payment_mode\\\":\\\"INSTANT_TRANSFER\\\",\\\"protection_eligibility\\\":\\\"ELIGIBLE\\\",\\\"protection_eligibility_type\\\":\\\"ITEM_NOT_RECEIVED_ELIGIBLE,UNAUTHORIZED_PAYMENT_ELIGIBLE\\\",\\\"transaction_fee\\\":{\\\"value\\\":\\\"196.45\\\",\\\"currency\\\":\\\"USD\\\"},\\\"parent_payment\\\":\\\"PAYID-MVCMRUY8SH07879UE472281A\\\",\\\"create_time\\\":\\\"2023-11-03T10:19:12Z\\\",\\\"update_time\\\":\\\"2023-11-03T10:19:12Z\\\",\\\"links\\\":[{\\\"href\\\":\\\"https:\\/\\/api.sandbox.paypal.com\\/v1\\/payments\\/sale\\/2AW44158T7680782K\\\",\\\"rel\\\":\\\"self\\\",\\\"method\\\":\\\"GET\\\"},{\\\"href\\\":\\\"https:\\/\\/api.sandbox.paypal.com\\/v1\\/payments\\/sale\\/2AW44158T7680782K\\/refund\\\",\\\"rel\\\":\\\"refund\\\",\\\"method\\\":\\\"POST\\\"},{\\\"href\\\":\\\"https:\\/\\/api.sandbox.paypal.com\\/v1\\/payments\\/payment\\/PAYID-MVCMRUY8SH07879UE472281A\\\",\\\"rel\\\":\\\"parent_payment\\\",\\\"method\\\":\\\"GET\\\"}],\\\"soft_descriptor\\\":\\\"PAYPAL *TEST STORE\\\"}}]}],\\\"failed_transactions\\\":[],\\\"create_time\\\":\\\"2023-11-03T10:17:55Z\\\",\\\"update_time\\\":\\\"2023-11-03T10:19:12Z\\\",\\\"links\\\":[{\\\"href\\\":\\\"https:\\/\\/api.sandbox.paypal.com\\/v1\\/payments\\/payment\\/PAYID-MVCMRUY8SH07879UE472281A\\\",\\\"rel\\\":\\\"self\\\",\\\"method\\\":\\\"GET\\\"}]}\"', '1', 'active', '2023-11-03 04:47:54', '2023-11-03 04:49:12'),
 (10, '6', 'ODR_fyDU9QW7HlbsKcMOcx7C', 'Shelly Gentry Mckinney', NULL, 'coqy@mailinator.com', '+1 (855) 678-6401', '45 Fabien Road', 'Iusto ea itaque aut', 'Ea iure occaecat sin', 'Officiis illum comm', 'Est ex doloribus eos', '31776', '1885.00', 'Pariatur Magna labo', NULL, NULL, '0', 'active', '2023-11-03 05:04:39', '2023-11-03 05:04:39'),
 (11, '6', 'ODR_Iw8cfC8FguZqLL0KlLCo', 'Melyssa Blanchard Garcia', NULL, 'hege@mailinator.com', '+1 (286) 953-1485', '73 New Court', 'Dolorum fugiat tenet', 'Nulla animi quam mi', 'Ut aut do aspernatur', 'Assumenda voluptate', '72328', '1885.00', 'Ratione et doloribus', 'PAYID-MVCM2DQ9DA15472EP766060Y', '\"{\\\"id\\\":\\\"PAYID-MVCM2DQ9DA15472EP766060Y\\\",\\\"intent\\\":\\\"sale\\\",\\\"state\\\":\\\"approved\\\",\\\"cart\\\":\\\"8UW49459SE708702V\\\",\\\"payer\\\":{\\\"payment_method\\\":\\\"paypal\\\",\\\"status\\\":\\\"UNVERIFIED\\\",\\\"payer_info\\\":{\\\"email\\\":\\\"kopyxyfa@mailinator.com\\\",\\\"first_name\\\":\\\"test\\\",\\\"last_name\\\":\\\"t\\\",\\\"payer_id\\\":\\\"8GEJYFYZA5T6C\\\",\\\"shipping_address\\\":{\\\"recipient_name\\\":\\\"test t\\\",\\\"id\\\":\\\"7783176223982539026\\\",\\\"line1\\\":\\\"demo\\\",\\\"city\\\":\\\"los angeles\\\",\\\"state\\\":\\\"AP\\\",\\\"postal_code\\\":\\\"90002\\\",\\\"country_code\\\":\\\"US\\\",\\\"type\\\":\\\"HOME_OR_WORK\\\",\\\"default_address\\\":false,\\\"preferred_address\\\":true,\\\"primary_address\\\":true,\\\"disable_for_transaction\\\":false},\\\"country_code\\\":\\\"US\\\"}},\\\"transactions\\\":[{\\\"amount\\\":{\\\"total\\\":\\\"1885.00\\\",\\\"currency\\\":\\\"USD\\\",\\\"details\\\":{\\\"subtotal\\\":\\\"1885.00\\\",\\\"tax\\\":\\\"0.00\\\",\\\"shipping\\\":\\\"0.00\\\",\\\"insurance\\\":\\\"0.00\\\",\\\"handling_fee\\\":\\\"0.00\\\",\\\"shipping_discount\\\":\\\"0.00\\\",\\\"discount\\\":\\\"0.00\\\"}},\\\"payee\\\":{\\\"merchant_id\\\":\\\"Y9WH78BGKVZPE\\\",\\\"email\\\":\\\"sb-ohwc726188538@business.example.com\\\"},\\\"description\\\":\\\"Test\\\",\\\"soft_descriptor\\\":\\\"PAYPAL *TEST STORE\\\",\\\"item_list\\\":{\\\"shipping_address\\\":{\\\"recipient_name\\\":\\\"test t\\\",\\\"id\\\":\\\"7783176223982539026\\\",\\\"line1\\\":\\\"demo\\\",\\\"city\\\":\\\"los angeles\\\",\\\"state\\\":\\\"AP\\\",\\\"postal_code\\\":\\\"90002\\\",\\\"country_code\\\":\\\"US\\\",\\\"type\\\":\\\"HOME_OR_WORK\\\",\\\"default_address\\\":false,\\\"preferred_address\\\":true,\\\"primary_address\\\":true,\\\"disable_for_transaction\\\":false}},\\\"related_resources\\\":[{\\\"sale\\\":{\\\"id\\\":\\\"0YR3467254740172C\\\",\\\"state\\\":\\\"completed\\\",\\\"amount\\\":{\\\"total\\\":\\\"1885.00\\\",\\\"currency\\\":\\\"USD\\\",\\\"details\\\":{\\\"subtotal\\\":\\\"1885.00\\\",\\\"tax\\\":\\\"0.00\\\",\\\"shipping\\\":\\\"0.00\\\",\\\"insurance\\\":\\\"0.00\\\",\\\"handling_fee\\\":\\\"0.00\\\",\\\"shipping_discount\\\":\\\"0.00\\\",\\\"discount\\\":\\\"0.00\\\"}},\\\"payment_mode\\\":\\\"INSTANT_TRANSFER\\\",\\\"protection_eligibility\\\":\\\"ELIGIBLE\\\",\\\"protection_eligibility_type\\\":\\\"ITEM_NOT_RECEIVED_ELIGIBLE,UNAUTHORIZED_PAYMENT_ELIGIBLE\\\",\\\"transaction_fee\\\":{\\\"value\\\":\\\"66.28\\\",\\\"currency\\\":\\\"USD\\\"},\\\"parent_payment\\\":\\\"PAYID-MVCM2DQ9DA15472EP766060Y\\\",\\\"create_time\\\":\\\"2023-11-03T10:36:29Z\\\",\\\"update_time\\\":\\\"2023-11-03T10:36:29Z\\\",\\\"links\\\":[{\\\"href\\\":\\\"https:\\/\\/api.sandbox.paypal.com\\/v1\\/payments\\/sale\\/0YR3467254740172C\\\",\\\"rel\\\":\\\"self\\\",\\\"method\\\":\\\"GET\\\"},{\\\"href\\\":\\\"https:\\/\\/api.sandbox.paypal.com\\/v1\\/payments\\/sale\\/0YR3467254740172C\\/refund\\\",\\\"rel\\\":\\\"refund\\\",\\\"method\\\":\\\"POST\\\"},{\\\"href\\\":\\\"https:\\/\\/api.sandbox.paypal.com\\/v1\\/payments\\/payment\\/PAYID-MVCM2DQ9DA15472EP766060Y\\\",\\\"rel\\\":\\\"parent_payment\\\",\\\"method\\\":\\\"GET\\\"}],\\\"soft_descriptor\\\":\\\"PAYPAL *TEST STORE\\\"}}]}],\\\"failed_transactions\\\":[],\\\"create_time\\\":\\\"2023-11-03T10:35:58Z\\\",\\\"update_time\\\":\\\"2023-11-03T10:36:29Z\\\",\\\"links\\\":[{\\\"href\\\":\\\"https:\\/\\/api.sandbox.paypal.com\\/v1\\/payments\\/payment\\/PAYID-MVCM2DQ9DA15472EP766060Y\\\",\\\"rel\\\":\\\"self\\\",\\\"method\\\":\\\"GET\\\"}]}\"', '1', 'active', '2023-11-03 05:05:56', '2023-11-03 05:06:30'),
-(12, '6', 'ODR_M1PPGypgYnhBhfKOyUQ8', 'Russell Nelson Finch', NULL, 'vogiramot@mailinator.com', '+1 (111) 704-5461', '21 Fabien Boulevard', 'Ab magnam culpa est', 'Excepteur eaque aut', 'Iure eligendi in dol', 'Ut est elit ut pers', '68543', '26670.00', 'Corporis unde quidem', 'PAYID-MVCNNRQ19W02187PA543814U', '\"{\\\"id\\\":\\\"PAYID-MVCNNRQ19W02187PA543814U\\\",\\\"intent\\\":\\\"sale\\\",\\\"state\\\":\\\"approved\\\",\\\"cart\\\":\\\"3EU88809NK285870V\\\",\\\"payer\\\":{\\\"payment_method\\\":\\\"paypal\\\",\\\"status\\\":\\\"UNVERIFIED\\\",\\\"payer_info\\\":{\\\"email\\\":\\\"kopyxyfa@mailinator.com\\\",\\\"first_name\\\":\\\"test\\\",\\\"last_name\\\":\\\"t\\\",\\\"payer_id\\\":\\\"8GEJYFYZA5T6C\\\",\\\"shipping_address\\\":{\\\"recipient_name\\\":\\\"test t\\\",\\\"line1\\\":\\\"demo\\\",\\\"city\\\":\\\"los angeles\\\",\\\"state\\\":\\\"AP\\\",\\\"postal_code\\\":\\\"90002\\\",\\\"country_code\\\":\\\"US\\\"},\\\"country_code\\\":\\\"US\\\"}},\\\"transactions\\\":[{\\\"amount\\\":{\\\"total\\\":\\\"26670.00\\\",\\\"currency\\\":\\\"USD\\\",\\\"details\\\":{\\\"subtotal\\\":\\\"26670.00\\\",\\\"tax\\\":\\\"0.00\\\",\\\"shipping\\\":\\\"0.00\\\",\\\"insurance\\\":\\\"0.00\\\",\\\"handling_fee\\\":\\\"0.00\\\",\\\"shipping_discount\\\":\\\"0.00\\\",\\\"discount\\\":\\\"0.00\\\"}},\\\"payee\\\":{\\\"merchant_id\\\":\\\"Y9WH78BGKVZPE\\\",\\\"email\\\":\\\"sb-ohwc726188538@business.example.com\\\"},\\\"description\\\":\\\"Test\\\",\\\"soft_descriptor\\\":\\\"PAYPAL *TEST STORE\\\",\\\"item_list\\\":{\\\"shipping_address\\\":{\\\"recipient_name\\\":\\\"test t\\\",\\\"line1\\\":\\\"demo\\\",\\\"city\\\":\\\"los angeles\\\",\\\"state\\\":\\\"AP\\\",\\\"postal_code\\\":\\\"90002\\\",\\\"country_code\\\":\\\"US\\\"}},\\\"related_resources\\\":[{\\\"sale\\\":{\\\"id\\\":\\\"04H24793EV418715A\\\",\\\"state\\\":\\\"completed\\\",\\\"amount\\\":{\\\"total\\\":\\\"26670.00\\\",\\\"currency\\\":\\\"USD\\\",\\\"details\\\":{\\\"subtotal\\\":\\\"26670.00\\\",\\\"tax\\\":\\\"0.00\\\",\\\"shipping\\\":\\\"0.00\\\",\\\"insurance\\\":\\\"0.00\\\",\\\"handling_fee\\\":\\\"0.00\\\",\\\"shipping_discount\\\":\\\"0.00\\\",\\\"discount\\\":\\\"0.00\\\"}},\\\"payment_mode\\\":\\\"INSTANT_TRANSFER\\\",\\\"protection_eligibility\\\":\\\"ELIGIBLE\\\",\\\"protection_eligibility_type\\\":\\\"ITEM_NOT_RECEIVED_ELIGIBLE,UNAUTHORIZED_PAYMENT_ELIGIBLE\\\",\\\"transaction_fee\\\":{\\\"value\\\":\\\"931.27\\\",\\\"currency\\\":\\\"USD\\\"},\\\"parent_payment\\\":\\\"PAYID-MVCNNRQ19W02187PA543814U\\\",\\\"create_time\\\":\\\"2023-11-03T11:17:38Z\\\",\\\"update_time\\\":\\\"2023-11-03T11:17:38Z\\\",\\\"links\\\":[{\\\"href\\\":\\\"https:\\/\\/api.sandbox.paypal.com\\/v1\\/payments\\/sale\\/04H24793EV418715A\\\",\\\"rel\\\":\\\"self\\\",\\\"method\\\":\\\"GET\\\"},{\\\"href\\\":\\\"https:\\/\\/api.sandbox.paypal.com\\/v1\\/payments\\/sale\\/04H24793EV418715A\\/refund\\\",\\\"rel\\\":\\\"refund\\\",\\\"method\\\":\\\"POST\\\"},{\\\"href\\\":\\\"https:\\/\\/api.sandbox.paypal.com\\/v1\\/payments\\/payment\\/PAYID-MVCNNRQ19W02187PA543814U\\\",\\\"rel\\\":\\\"parent_payment\\\",\\\"method\\\":\\\"GET\\\"}],\\\"soft_descriptor\\\":\\\"PAYPAL *TEST STORE\\\"}}]}],\\\"failed_transactions\\\":[],\\\"create_time\\\":\\\"2023-11-03T11:17:25Z\\\",\\\"update_time\\\":\\\"2023-11-03T11:17:38Z\\\",\\\"links\\\":[{\\\"href\\\":\\\"https:\\/\\/api.sandbox.paypal.com\\/v1\\/payments\\/payment\\/PAYID-MVCNNRQ19W02187PA543814U\\\",\\\"rel\\\":\\\"self\\\",\\\"method\\\":\\\"GET\\\"}]}\"', '1', 'active', '2023-11-03 05:47:23', '2023-11-03 05:47:39');
+(12, '6', 'ODR_M1PPGypgYnhBhfKOyUQ8', 'Russell Nelson Finch', NULL, 'vogiramot@mailinator.com', '+1 (111) 704-5461', '21 Fabien Boulevard', 'Ab magnam culpa est', 'Excepteur eaque aut', 'Iure eligendi in dol', 'Ut est elit ut pers', '68543', '26670.00', 'Corporis unde quidem', 'PAYID-MVCNNRQ19W02187PA543814U', '\"{\\\"id\\\":\\\"PAYID-MVCNNRQ19W02187PA543814U\\\",\\\"intent\\\":\\\"sale\\\",\\\"state\\\":\\\"approved\\\",\\\"cart\\\":\\\"3EU88809NK285870V\\\",\\\"payer\\\":{\\\"payment_method\\\":\\\"paypal\\\",\\\"status\\\":\\\"UNVERIFIED\\\",\\\"payer_info\\\":{\\\"email\\\":\\\"kopyxyfa@mailinator.com\\\",\\\"first_name\\\":\\\"test\\\",\\\"last_name\\\":\\\"t\\\",\\\"payer_id\\\":\\\"8GEJYFYZA5T6C\\\",\\\"shipping_address\\\":{\\\"recipient_name\\\":\\\"test t\\\",\\\"line1\\\":\\\"demo\\\",\\\"city\\\":\\\"los angeles\\\",\\\"state\\\":\\\"AP\\\",\\\"postal_code\\\":\\\"90002\\\",\\\"country_code\\\":\\\"US\\\"},\\\"country_code\\\":\\\"US\\\"}},\\\"transactions\\\":[{\\\"amount\\\":{\\\"total\\\":\\\"26670.00\\\",\\\"currency\\\":\\\"USD\\\",\\\"details\\\":{\\\"subtotal\\\":\\\"26670.00\\\",\\\"tax\\\":\\\"0.00\\\",\\\"shipping\\\":\\\"0.00\\\",\\\"insurance\\\":\\\"0.00\\\",\\\"handling_fee\\\":\\\"0.00\\\",\\\"shipping_discount\\\":\\\"0.00\\\",\\\"discount\\\":\\\"0.00\\\"}},\\\"payee\\\":{\\\"merchant_id\\\":\\\"Y9WH78BGKVZPE\\\",\\\"email\\\":\\\"sb-ohwc726188538@business.example.com\\\"},\\\"description\\\":\\\"Test\\\",\\\"soft_descriptor\\\":\\\"PAYPAL *TEST STORE\\\",\\\"item_list\\\":{\\\"shipping_address\\\":{\\\"recipient_name\\\":\\\"test t\\\",\\\"line1\\\":\\\"demo\\\",\\\"city\\\":\\\"los angeles\\\",\\\"state\\\":\\\"AP\\\",\\\"postal_code\\\":\\\"90002\\\",\\\"country_code\\\":\\\"US\\\"}},\\\"related_resources\\\":[{\\\"sale\\\":{\\\"id\\\":\\\"04H24793EV418715A\\\",\\\"state\\\":\\\"completed\\\",\\\"amount\\\":{\\\"total\\\":\\\"26670.00\\\",\\\"currency\\\":\\\"USD\\\",\\\"details\\\":{\\\"subtotal\\\":\\\"26670.00\\\",\\\"tax\\\":\\\"0.00\\\",\\\"shipping\\\":\\\"0.00\\\",\\\"insurance\\\":\\\"0.00\\\",\\\"handling_fee\\\":\\\"0.00\\\",\\\"shipping_discount\\\":\\\"0.00\\\",\\\"discount\\\":\\\"0.00\\\"}},\\\"payment_mode\\\":\\\"INSTANT_TRANSFER\\\",\\\"protection_eligibility\\\":\\\"ELIGIBLE\\\",\\\"protection_eligibility_type\\\":\\\"ITEM_NOT_RECEIVED_ELIGIBLE,UNAUTHORIZED_PAYMENT_ELIGIBLE\\\",\\\"transaction_fee\\\":{\\\"value\\\":\\\"931.27\\\",\\\"currency\\\":\\\"USD\\\"},\\\"parent_payment\\\":\\\"PAYID-MVCNNRQ19W02187PA543814U\\\",\\\"create_time\\\":\\\"2023-11-03T11:17:38Z\\\",\\\"update_time\\\":\\\"2023-11-03T11:17:38Z\\\",\\\"links\\\":[{\\\"href\\\":\\\"https:\\/\\/api.sandbox.paypal.com\\/v1\\/payments\\/sale\\/04H24793EV418715A\\\",\\\"rel\\\":\\\"self\\\",\\\"method\\\":\\\"GET\\\"},{\\\"href\\\":\\\"https:\\/\\/api.sandbox.paypal.com\\/v1\\/payments\\/sale\\/04H24793EV418715A\\/refund\\\",\\\"rel\\\":\\\"refund\\\",\\\"method\\\":\\\"POST\\\"},{\\\"href\\\":\\\"https:\\/\\/api.sandbox.paypal.com\\/v1\\/payments\\/payment\\/PAYID-MVCNNRQ19W02187PA543814U\\\",\\\"rel\\\":\\\"parent_payment\\\",\\\"method\\\":\\\"GET\\\"}],\\\"soft_descriptor\\\":\\\"PAYPAL *TEST STORE\\\"}}]}],\\\"failed_transactions\\\":[],\\\"create_time\\\":\\\"2023-11-03T11:17:25Z\\\",\\\"update_time\\\":\\\"2023-11-03T11:17:38Z\\\",\\\"links\\\":[{\\\"href\\\":\\\"https:\\/\\/api.sandbox.paypal.com\\/v1\\/payments\\/payment\\/PAYID-MVCNNRQ19W02187PA543814U\\\",\\\"rel\\\":\\\"self\\\",\\\"method\\\":\\\"GET\\\"}]}\"', '1', 'active', '2023-11-03 05:47:23', '2023-11-03 05:47:39'),
+(13, '14', 'ODR_ga0UuyNFdsR6G6E3e9Wj', 'Lawrence Keith Collier', NULL, 'syhijurov@mailinator.com', '+1 (957) 228-6157', '319 Milton Extension', 'Aut tempor aspernatu', 'Pariatur Dolorem in', 'Consequuntur laudant', 'Rerum ipsum exercita', '32132', '5570.00', 'Libero rerum tempor', 'PAYID-MVFVI4A2B961892UC2258112', '\"{\\\"id\\\":\\\"PAYID-MVFVI4A2B961892UC2258112\\\",\\\"intent\\\":\\\"sale\\\",\\\"state\\\":\\\"approved\\\",\\\"cart\\\":\\\"08678616NN079910B\\\",\\\"payer\\\":{\\\"payment_method\\\":\\\"paypal\\\",\\\"status\\\":\\\"VERIFIED\\\",\\\"payer_info\\\":{\\\"email\\\":\\\"sb-bi434b26437176@personal.example.com\\\",\\\"first_name\\\":\\\"John\\\",\\\"last_name\\\":\\\"Doe\\\",\\\"payer_id\\\":\\\"4AWV8ZBXLHJP2\\\",\\\"shipping_address\\\":{\\\"recipient_name\\\":\\\"John Doe\\\",\\\"line1\\\":\\\"1 Main St\\\",\\\"city\\\":\\\"San Jose\\\",\\\"state\\\":\\\"CA\\\",\\\"postal_code\\\":\\\"95131\\\",\\\"country_code\\\":\\\"US\\\"},\\\"country_code\\\":\\\"US\\\"}},\\\"transactions\\\":[{\\\"amount\\\":{\\\"total\\\":\\\"5570.00\\\",\\\"currency\\\":\\\"USD\\\",\\\"details\\\":{\\\"subtotal\\\":\\\"5570.00\\\",\\\"tax\\\":\\\"0.00\\\",\\\"shipping\\\":\\\"0.00\\\",\\\"insurance\\\":\\\"0.00\\\",\\\"handling_fee\\\":\\\"0.00\\\",\\\"shipping_discount\\\":\\\"0.00\\\",\\\"discount\\\":\\\"0.00\\\"}},\\\"payee\\\":{\\\"merchant_id\\\":\\\"Y9WH78BGKVZPE\\\",\\\"email\\\":\\\"sb-ohwc726188538@business.example.com\\\"},\\\"description\\\":\\\"Test\\\",\\\"soft_descriptor\\\":\\\"PAYPAL *TEST STORE\\\",\\\"item_list\\\":{\\\"shipping_address\\\":{\\\"recipient_name\\\":\\\"John Doe\\\",\\\"line1\\\":\\\"1 Main St\\\",\\\"city\\\":\\\"San Jose\\\",\\\"state\\\":\\\"CA\\\",\\\"postal_code\\\":\\\"95131\\\",\\\"country_code\\\":\\\"US\\\"}},\\\"related_resources\\\":[{\\\"sale\\\":{\\\"id\\\":\\\"66N94258A4094214Y\\\",\\\"state\\\":\\\"completed\\\",\\\"amount\\\":{\\\"total\\\":\\\"5570.00\\\",\\\"currency\\\":\\\"USD\\\",\\\"details\\\":{\\\"subtotal\\\":\\\"5570.00\\\",\\\"tax\\\":\\\"0.00\\\",\\\"shipping\\\":\\\"0.00\\\",\\\"insurance\\\":\\\"0.00\\\",\\\"handling_fee\\\":\\\"0.00\\\",\\\"shipping_discount\\\":\\\"0.00\\\",\\\"discount\\\":\\\"0.00\\\"}},\\\"payment_mode\\\":\\\"INSTANT_TRANSFER\\\",\\\"protection_eligibility\\\":\\\"ELIGIBLE\\\",\\\"protection_eligibility_type\\\":\\\"ITEM_NOT_RECEIVED_ELIGIBLE,UNAUTHORIZED_PAYMENT_ELIGIBLE\\\",\\\"transaction_fee\\\":{\\\"value\\\":\\\"194.88\\\",\\\"currency\\\":\\\"USD\\\"},\\\"parent_payment\\\":\\\"PAYID-MVFVI4A2B961892UC2258112\\\",\\\"create_time\\\":\\\"2023-11-08T10:02:04Z\\\",\\\"update_time\\\":\\\"2023-11-08T10:02:04Z\\\",\\\"links\\\":[{\\\"href\\\":\\\"https:\\/\\/api.sandbox.paypal.com\\/v1\\/payments\\/sale\\/66N94258A4094214Y\\\",\\\"rel\\\":\\\"self\\\",\\\"method\\\":\\\"GET\\\"},{\\\"href\\\":\\\"https:\\/\\/api.sandbox.paypal.com\\/v1\\/payments\\/sale\\/66N94258A4094214Y\\/refund\\\",\\\"rel\\\":\\\"refund\\\",\\\"method\\\":\\\"POST\\\"},{\\\"href\\\":\\\"https:\\/\\/api.sandbox.paypal.com\\/v1\\/payments\\/payment\\/PAYID-MVFVI4A2B961892UC2258112\\\",\\\"rel\\\":\\\"parent_payment\\\",\\\"method\\\":\\\"GET\\\"}],\\\"soft_descriptor\\\":\\\"PAYPAL *TEST STORE\\\"}}]}],\\\"failed_transactions\\\":[],\\\"create_time\\\":\\\"2023-11-08T09:27:11Z\\\",\\\"update_time\\\":\\\"2023-11-08T10:02:04Z\\\",\\\"links\\\":[{\\\"href\\\":\\\"https:\\/\\/api.sandbox.paypal.com\\/v1\\/payments\\/payment\\/PAYID-MVFVI4A2B961892UC2258112\\\",\\\"rel\\\":\\\"self\\\",\\\"method\\\":\\\"GET\\\"}]}\"', '1', 'active', '2023-11-08 03:57:11', '2023-11-08 04:32:05');
 
 -- --------------------------------------------------------
 
@@ -491,24 +499,24 @@ INSERT INTO `orders` (`id`, `user_id`, `order_id`, `billing_name`, `billing_user
 
 CREATE TABLE `pages` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `title` varchar(255) DEFAULT NULL,
-  `featured_img` varchar(255) DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `featured_img` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `description` blob DEFAULT NULL,
-  `address` text DEFAULT NULL,
-  `phone` text DEFAULT NULL,
-  `email` text DEFAULT NULL,
-  `map_link` text DEFAULT NULL,
-  `img2` text DEFAULT NULL,
-  `img3` text DEFAULT NULL,
-  `img4` text DEFAULT NULL,
-  `img5` text DEFAULT NULL,
-  `description2` text DEFAULT NULL,
-  `description3` text DEFAULT NULL,
-  `description4` text DEFAULT NULL,
-  `description5` text DEFAULT NULL,
-  `youtube_link1` text DEFAULT NULL,
-  `youtube_link2` text DEFAULT NULL,
+  `address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `map_link` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `img2` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `img3` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `img4` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `img5` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description2` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description3` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description4` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description5` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `youtube_link1` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `youtube_link2` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -528,8 +536,8 @@ INSERT INTO `pages` (`id`, `name`, `title`, `featured_img`, `description`, `addr
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(255) NOT NULL,
-  `token` varchar(255) NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -541,8 +549,8 @@ CREATE TABLE `password_resets` (
 
 CREATE TABLE `pdf_downloads` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `title` text NOT NULL,
-  `pdf` text NOT NULL,
+  `title` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pdf` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -565,11 +573,11 @@ INSERT INTO `pdf_downloads` (`id`, `title`, `pdf`, `created_at`, `updated_at`) V
 
 CREATE TABLE `personal_access_tokens` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) NOT NULL,
+  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tokenable_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `token` varchar(64) NOT NULL,
-  `abilities` text DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -583,34 +591,34 @@ CREATE TABLE `personal_access_tokens` (
 
 CREATE TABLE `products` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `category_id` varchar(255) NOT NULL,
-  `sub_category_id` varchar(255) DEFAULT NULL,
-  `added_by` varchar(255) DEFAULT NULL,
-  `name` text NOT NULL,
-  `title` text DEFAULT NULL,
-  `description` text DEFAULT NULL,
-  `short_description` text DEFAULT NULL,
-  `featured_img` varchar(255) DEFAULT NULL,
-  `price` varchar(255) NOT NULL DEFAULT '0',
-  `discount` varchar(255) NOT NULL DEFAULT '0',
-  `delivary_charge` varchar(255) DEFAULT NULL,
-  `gallery` varchar(255) DEFAULT NULL,
-  `sku_code` varchar(255) DEFAULT NULL,
-  `video` varchar(255) DEFAULT NULL,
-  `website_link` text DEFAULT NULL,
-  `no_in_stock` varchar(50) DEFAULT NULL,
-  `stock_status` varchar(50) DEFAULT NULL,
-  `slug` text DEFAULT NULL,
-  `rating` varchar(50) DEFAULT '0',
-  `tags` text DEFAULT NULL,
-  `weight` text DEFAULT NULL,
-  `length` text DEFAULT NULL,
-  `width` text DEFAULT NULL,
-  `height` text DEFAULT NULL,
-  `status` varchar(255) NOT NULL DEFAULT 'active',
-  `features` text DEFAULT NULL,
-  `color_added` text DEFAULT NULL,
-  `qty_check` text DEFAULT NULL,
+  `category_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sub_category_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `added_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `short_description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `featured_img` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `price` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
+  `discount` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
+  `delivary_charge` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `gallery` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sku_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `video` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `website_link` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `no_in_stock` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `stock_status` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slug` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `rating` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT '0',
+  `tags` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `weight` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `length` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `width` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `height` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
+  `features` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `color_added` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `qty_check` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -1088,7 +1096,8 @@ INSERT INTO `products` (`id`, `category_id`, `sub_category_id`, `added_by`, `nam
 (463, '24', NULL, '3', 'Gregory Klein', NULL, '<p>gh</p>', '<p>hfv</p>', '1698910317.jpg', '879', '91', '28', NULL, 'Fugiat ut ut adipisi', NULL, 'https://www.muhemafeloluxu.info', NULL, 'Out of Stock', 'gregory-klein', NULL, 'Odio voluptatem dict', 'Veritatis voluptate', 'Culpa aute atque eu', 'Ut pariatur Et arch', 'Ad cumque veniam an', 'inactive', '<p>hg</p>', NULL, NULL, NULL, '2023-11-02 02:01:57', '2023-11-02 02:01:57'),
 (464, '24', NULL, '3', 'Gregory Klein', NULL, '<p>gh</p>', '<p>hfv</p>', '1698912214.jpg', '879', '91', '28', NULL, 'Fugiat ut ut adipisi', NULL, 'https://www.muhemafeloluxu.info', NULL, 'Out of Stock', 'gregory-klein', NULL, 'Odio voluptatem dict', 'Veritatis voluptate', 'Culpa aute atque eu', 'Ut pariatur Et arch', 'Ad cumque veniam an', 'inactive', '<p>hg</p>', NULL, NULL, NULL, '2023-11-02 02:33:34', '2023-11-02 02:33:34'),
 (465, '24', NULL, '3', 'Gregory Klein', NULL, '<p>gh</p>', '<p>hfv</p>', '1698913908.jpg', '879', '91', '28', NULL, 'Fugiat ut ut adipisi', NULL, 'https://www.muhemafeloluxu.info', NULL, 'Out of Stock', 'gregory-klein', NULL, 'Odio voluptatem dict', 'Veritatis voluptate', 'Culpa aute atque eu', 'Ut pariatur Et arch', 'Ad cumque veniam an', 'inactive', '<p>hg</p>', NULL, NULL, NULL, '2023-11-02 03:01:48', '2023-11-02 03:01:48'),
-(466, '6', NULL, '3', 'Chandler Rice', NULL, '<p>DEsc001</p>', '<p>Test</p>', '1698921483.jpg', '768', '4', '0', NULL, 'Quia recusandae Vol', NULL, 'https://www.nixifenofycumiw.co', '100', 'In Stock', 'chandler-rice', NULL, 'Id quasi est odit e', 'Esse ducimus exerc', 'Totam magnam eaque l', 'Ipsam sit culpa cup', 'Lorem et iste elit', 'active', '<p>Test Features</p>', 'on', 'on', NULL, '2023-11-02 05:08:03', '2023-11-02 05:36:50');
+(466, '6', NULL, '3', 'Chandler Rice', NULL, '<p>DEsc001</p>', '<p>Test</p>', '1698921483.jpg', '768', '4', '0', NULL, 'Quia recusandae Vol', NULL, 'https://www.nixifenofycumiw.co', '100', 'In Stock', 'chandler-rice', NULL, 'Id quasi est odit e', 'Esse ducimus exerc', 'Totam magnam eaque l', 'Ipsam sit culpa cup', 'Lorem et iste elit', 'active', '<p>Test Features</p>', 'on', 'on', NULL, '2023-11-02 05:08:03', '2023-11-02 05:36:50'),
+(467, '13', NULL, '3', 'Vaccume Cleaner', NULL, '<p>asdsdasdasd</p>', '<p>Description of vaccume</p>', '1699427202.jpg', '50', '45', '10', NULL, '215152', NULL, NULL, '5', 'In Stock', 'vaccume-cleaner', NULL, NULL, NULL, NULL, NULL, NULL, 'active', '<p>Features of god</p>', 'on', 'on', NULL, '2023-11-08 01:36:42', '2023-11-08 01:36:42');
 
 -- --------------------------------------------------------
 
@@ -1103,44 +1112,15 @@ CREATE TABLE `product_compares` (
   `prod_id` text DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `product_compares`
 --
 
 INSERT INTO `product_compares` (`id`, `user_id`, `unique_id`, `prod_id`, `created_at`, `updated_at`) VALUES
-(1, NULL, 'WfinqexSNTXR4MqeT13nN0lckOZz1e', '127', '2023-11-06 23:55:23', '2023-11-06 23:55:23'),
-(2, NULL, '8vQhqSPLWAzeKrgyxrVAQiCQoll3I4', '131', '2023-11-06 23:55:39', '2023-11-06 23:55:39'),
-(3, NULL, 'hHH7TOK6xBGVHhFO2Z8UVVzHqfylPn', '135', '2023-11-06 23:57:35', '2023-11-06 23:57:35'),
-(4, NULL, 'ZSKyem7uN9es2qQgcmjX0E0QmuHE0t', '23', '2023-11-06 23:57:49', '2023-11-06 23:57:49'),
-(5, NULL, 'CZXo39qRBfREVUDBoYKXABSSLRcekD', '125', '2023-11-06 23:58:49', '2023-11-06 23:58:49'),
-(6, NULL, '5dY3qFKSLI7IAIjUMf538wWQtolFdQ', '128', '2023-11-06 23:58:58', '2023-11-06 23:58:58'),
-(7, NULL, 'nz4qayt9VxWeGRhsHKd541W4rMEmNt', '125', '2023-11-07 00:03:24', '2023-11-07 00:03:24'),
-(8, NULL, 'pSYkZ35cRzcFEhpkYXQ9PQ8H8nFubb', '126', '2023-11-07 00:03:27', '2023-11-07 00:03:27'),
-(9, NULL, 'Fb38W2IhwuG6f61QniKOWycYQQff9v', '124', '2023-11-07 00:04:16', '2023-11-07 00:04:16'),
-(10, NULL, 'GdpRAuYrFEcwJ59xmPhJRCALGB6mrB', '125', '2023-11-07 00:04:20', '2023-11-07 00:04:20'),
-(11, NULL, 'cMgnSy01nefiJhf2XP7XnOqZbcv0lk', '131', '2023-11-07 00:05:19', '2023-11-07 00:05:19'),
-(12, NULL, 'JLXjAvn6kWdBECusWuvcGNqneRxm5N', '132', '2023-11-07 00:05:22', '2023-11-07 00:05:22'),
-(13, NULL, 'tK96RQ5xgmcKg03PBNaxjztBa15VBt', '125', '2023-11-07 00:09:07', '2023-11-07 00:09:07'),
-(14, NULL, 'pkGYO9oXrvA4egthawwO2mOhkiyNsW', '128', '2023-11-07 00:09:09', '2023-11-07 00:09:09'),
-(15, NULL, '1h5UqRR62pDm6VLLxfUmKDv51Gtceu', '128', '2023-11-07 00:09:41', '2023-11-07 00:09:41'),
-(16, NULL, 'm8nUOhis1NLa49IUsheJ6gA79BE3kU', '130', '2023-11-07 00:09:45', '2023-11-07 00:09:45'),
-(17, NULL, 'HuRLSQdbve8LGnAPd864fgCbnKPPQp', '125', '2023-11-07 00:46:48', '2023-11-07 00:46:48'),
-(18, NULL, 'DHGgHFa2U7SETtEfmB54xXgep7DlKq', '126', '2023-11-07 00:46:52', '2023-11-07 00:46:52'),
-(19, NULL, 'q1L2u4cNAMt7F4uu5M8kQer5l0Pywo', '125', '2023-11-07 00:46:55', '2023-11-07 00:46:55'),
-(20, NULL, 'etOknPtWJS0LbfbVJXIiKfDe2NhMWB', '124', '2023-11-07 00:47:03', '2023-11-07 00:47:03'),
-(21, NULL, 'xU5tuSQ2emu2v4xn1xSDXIhjuaSbTZ', '125', '2023-11-07 00:47:06', '2023-11-07 00:47:06'),
-(22, NULL, 'BpAyhtRc57LiTqYsYN1TXLp9r2goDt', '128', '2023-11-07 00:49:05', '2023-11-07 00:49:05'),
-(23, NULL, 'g0nm5cbO9u6tt4GWE7oaKV6RVVGoL3', '132', '2023-11-07 00:49:10', '2023-11-07 00:49:10'),
-(24, NULL, 'wfaforppCAC7zAh5YR1BAO4rlMTdRH', '124', '2023-11-07 01:17:20', '2023-11-07 01:17:20'),
-(25, NULL, '83VVaaqwK4xsLk9SGtt3woBuTn7iJ8', '124', '2023-11-07 01:34:50', '2023-11-07 01:34:50'),
-(26, NULL, '2HkbmUCCKMTfS2MWKTb6gnn3hEJOuQ', '124', '2023-11-07 01:43:11', '2023-11-07 01:43:11'),
-(27, NULL, '1BL94R4kbh7fRcsTXQa34amEH8jsKl', '124', '2023-11-07 01:44:56', '2023-11-07 01:44:56'),
-(28, NULL, 'CSPhn9bX8HxqHmtLbZFx57XHRqMrEu', '132', '2023-11-07 01:46:00', '2023-11-07 01:46:00'),
-(29, NULL, 'TkQvwcMsUaHlqo0b8ZBkJ9DJcFpEXX', '128', '2023-11-07 01:47:21', '2023-11-07 01:47:21'),
-(30, NULL, 'x7B00YNcAkumxs6fXZXtTPzBicrfnZ', '446', '2023-11-07 01:48:22', '2023-11-07 01:48:22'),
-(31, NULL, 'WqongAEgofHwfFodjDL08a8ZRhhKGP', '124', '2023-11-07 01:48:54', '2023-11-07 01:48:54');
+(1, NULL, 'IFvEp5f24H3DQWPsahzf2EQ7bzpQuO', '92', '2023-11-08 02:30:48', '2023-11-08 02:30:48'),
+(2, NULL, 'QvcWVnTbmRmYsMQoqVEkrOaoJECMiq', '92', '2023-11-08 02:30:54', '2023-11-08 02:30:54');
 
 -- --------------------------------------------------------
 
@@ -1150,9 +1130,9 @@ INSERT INTO `product_compares` (`id`, `user_id`, `unique_id`, `prod_id`, `create
 
 CREATE TABLE `product_galleries` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `product_id` varchar(100) NOT NULL,
-  `color` text DEFAULT NULL,
-  `gallery_image` varchar(255) DEFAULT NULL,
+  `product_id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `color` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `gallery_image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1617,7 +1597,9 @@ INSERT INTO `product_galleries` (`id`, `product_id`, `color`, `gallery_image`, `
 (454, '389', 'Black', '1698911082asidebar-img.jpg', '2023-11-02 02:14:42', '2023-11-02 02:14:42'),
 (455, '389', 'Black', '1698911122asidebar-img.jpg', '2023-11-02 02:15:22', '2023-11-02 02:15:22'),
 (456, '389', 'Black', '1698911293man-mony.jpg', '2023-11-02 02:18:13', '2023-11-02 02:18:13'),
-(457, '466', 'Black', '169892149626040.jpg', '2023-11-02 05:08:16', '2023-11-02 05:08:16');
+(457, '466', 'Black', '169892149626040.jpg', '2023-11-02 05:08:16', '2023-11-02 05:08:16'),
+(458, '467', 'Red', '16994272083-380x434.jpg', '2023-11-08 01:36:48', '2023-11-08 01:36:48'),
+(460, '467', 'Black', '16994272235-1-380x434.jpg', '2023-11-08 01:37:03', '2023-11-08 01:37:03');
 
 -- --------------------------------------------------------
 
@@ -1627,11 +1609,11 @@ INSERT INTO `product_galleries` (`id`, `product_id`, `color`, `gallery_image`, `
 
 CREATE TABLE `ratings` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` varchar(255) NOT NULL,
-  `product_id` varchar(255) NOT NULL,
-  `rate` varchar(255) NOT NULL,
-  `comment` text DEFAULT NULL,
-  `type` varchar(255) DEFAULT NULL,
+  `user_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `product_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rate` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `comment` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1659,21 +1641,21 @@ INSERT INTO `ratings` (`id`, `user_id`, `product_id`, `rate`, `comment`, `type`,
 
 CREATE TABLE `services` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `service_id` varchar(255) NOT NULL,
-  `added_by` varchar(50) DEFAULT NULL,
-  `title` varchar(255) NOT NULL,
-  `img` varchar(255) NOT NULL,
-  `category` varchar(255) NOT NULL,
-  `gallery` text DEFAULT NULL,
-  `description` text DEFAULT NULL,
-  `title2` text DEFAULT NULL,
-  `img2` text DEFAULT NULL,
-  `description2` text DEFAULT NULL,
-  `y_video_link1` text DEFAULT NULL,
-  `y_video_link2` text DEFAULT NULL,
-  `steps_inv` text DEFAULT NULL,
-  `video` text DEFAULT NULL,
-  `status` text NOT NULL DEFAULT 'active',
+  `service_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `added_by` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `img` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `gallery` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title2` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `img2` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description2` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `y_video_link1` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `y_video_link2` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `steps_inv` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `video` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` text COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1694,9 +1676,9 @@ INSERT INTO `services` (`id`, `service_id`, `added_by`, `title`, `img`, `categor
 
 CREATE TABLE `settings` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `key` varchar(255) NOT NULL,
-  `input_type` varchar(255) NOT NULL,
-  `value` varchar(255) NOT NULL,
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `input_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1720,8 +1702,8 @@ INSERT INTO `settings` (`id`, `key`, `input_type`, `value`, `created_at`, `updat
 
 CREATE TABLE `settings_options` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `settings_key` varchar(255) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `settings_key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1739,14 +1721,49 @@ INSERT INTO `settings_options` (`id`, `name`, `settings_key`, `created_at`, `upd
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `shops`
+--
+
+CREATE TABLE `shops` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address2` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `city` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `state` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `zip_code` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `country` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `latitude` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `longitude` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tel` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `fax` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `url` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `shops`
+--
+
+INSERT INTO `shops` (`id`, `name`, `address`, `address2`, `city`, `state`, `zip_code`, `country`, `latitude`, `longitude`, `tel`, `fax`, `email`, `url`, `created_at`, `updated_at`) VALUES
+(3, 'GreenCoast Portland', '3365 SE 17th Ave', NULL, 'Portland', 'OR', '97202', 'United States', '45.498399', '-122.64857', '5032358040', NULL, NULL, 'https://www.gchydro.com/hydroponic-store-locations/portland-or/', '2023-11-08 04:52:41', '2023-11-08 04:52:41'),
+(4, 'GreenCoast Orange', '496 W Meats Ave', NULL, 'Orange', 'CA', '92865', 'United States', '33.823196', '-117.857471', '7149744769', NULL, NULL, 'https://www.gchydro.com/hydroponic-store-locations/orange/', '2023-11-08 04:53:36', '2023-11-08 04:53:36'),
+(5, 'GreenCoast Ontario', '1920 S Rochester Ave', NULL, 'Ontario', 'CA', '91761', '91761', '34.038294', '-117.551511', '9096055777', NULL, NULL, 'https://www.gchydro.com/hydroponic-store-locations/ontario-inland-empire/', '2023-11-08 04:54:16', '2023-11-08 04:54:16'),
+(6, 'GreenCoast North Hollywood', '11360 Sherman Way', NULL, 'Sun Valley', 'CA', '91352', 'United States', '34.200492', '-118.378522', '8185304498', NULL, NULL, 'https://www.gchydro.com/hydroponic-store-locations/north-hollywood/', '2023-11-08 04:55:02', '2023-11-08 04:55:02');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `subcategories`
 --
 
 CREATE TABLE `subcategories` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `category_id` varchar(50) NOT NULL,
-  `name` text NOT NULL,
-  `slug` text NOT NULL,
+  `category_id` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1772,14 +1789,14 @@ INSERT INTO `subcategories` (`id`, `category_id`, `name`, `slug`, `created_at`, 
 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `phone` text DEFAULT NULL,
-  `address` text DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) NOT NULL,
-  `remember_token` varchar(100) DEFAULT NULL,
-  `user_type` varchar(255) NOT NULL DEFAULT 'user',
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'user',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1800,7 +1817,9 @@ INSERT INTO `users` (`id`, `name`, `email`, `phone`, `address`, `email_verified_
 (9, 'Hakeem French', 'qetybyho@mailinator.com', NULL, NULL, NULL, '$2y$10$VcnmgVpwSAu5G3ufSLuZIe5miF5YzwGUFRpRc.dTS2SSB/nlTkFk2', NULL, 'user', '2023-08-17 08:53:34', '2023-08-17 08:53:34'),
 (10, 'miri@mailinator.com', 'hefu@mailinator.com', 'miza@mailinator.com', 'Et ullam aut dolore', NULL, '$2y$10$m3EO/mJhwEYZuOmlVF9pwOJwxptzR8gzhnBVCnTZX9YBB4FpWe8Wq', NULL, 'user', '2023-08-21 13:40:24', '2023-08-21 13:47:16'),
 (11, 'biswajit', 'admin@admin.in', NULL, NULL, NULL, '$2y$10$DvGs/hnqzgTn1e84osc8B.R/oxF3nEBh7Qs1oHqwFLDkdYHY1CO0a', NULL, 'user', '2023-08-22 08:35:29', '2023-08-22 08:35:29'),
-(12, 'sati@mailinator.com hyka@mailinator.com', 'xagu@mailinator.com', '33', NULL, NULL, '$2y$10$jEStc5kdtPvkZxLClwl2BOT9S5vHsGJDUwPwWXrxx5RS9.hgRyRuS', NULL, 'wholesale', '2023-11-07 03:26:58', '2023-11-07 03:26:58');
+(12, 'sati@mailinator.com hyka@mailinator.com', 'xagu@mailinator.com', '33', NULL, NULL, '$2y$10$jEStc5kdtPvkZxLClwl2BOT9S5vHsGJDUwPwWXrxx5RS9.hgRyRuS', NULL, 'wholesale', '2023-11-07 03:26:58', '2023-11-07 03:26:58'),
+(13, 'jypilewik@mailinator.com byjofikece@mailinator.com', 'jevakyzaci@mailinator.com', '1234456789', NULL, NULL, '$2y$10$qnweW1hwaMXDTxQ5Y4.wWOz7XmgG1cowMgNwOJCz8wjderYNbVxEu', NULL, 'wholesale', '2023-11-07 05:47:46', '2023-11-07 05:47:46'),
+(14, 'Sayandip Saha', 'sayandip@yopmail.com', NULL, NULL, NULL, '$2y$10$uE/3qjXpQI9WxKKfcmgU8ufTQjsH9rvYhX3Q6JwRJUzssip4d1CQe', NULL, 'user', '2023-11-08 01:34:58', '2023-11-08 01:34:58');
 
 -- --------------------------------------------------------
 
@@ -1810,15 +1829,15 @@ INSERT INTO `users` (`id`, `name`, `email`, `phone`, `address`, `email_verified_
 
 CREATE TABLE `variations` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `product_id` varchar(255) NOT NULL,
-  `variation` varchar(255) DEFAULT NULL,
-  `carat` varchar(255) DEFAULT NULL,
-  `size` varchar(255) DEFAULT NULL,
-  `amount` varchar(255) DEFAULT NULL,
-  `color` varchar(255) DEFAULT NULL,
-  `discount` varchar(255) DEFAULT NULL,
-  `final_price` varchar(255) DEFAULT NULL,
-  `image` varchar(255) DEFAULT NULL,
+  `product_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `variation` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `carat` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `size` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `amount` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `color` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `discount` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `final_price` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -2305,7 +2324,9 @@ INSERT INTO `variations` (`id`, `product_id`, `variation`, `carat`, `size`, `amo
 (479, '464', 'NA', 'NA', 'NA', 'NA', 'NA', 'NA', 'NA', NULL, '2023-11-02 02:33:34', '2023-11-02 02:33:34'),
 (480, '465', 'NA', 'NA', 'NA', 'NA', 'NA', 'NA', 'NA', NULL, '2023-11-02 03:01:48', '2023-11-02 03:01:48'),
 (492, '466', 'Ex velit eiusmod nob-002', 'NA', 'NA', 'NA', 'NA', 'NA', '1500', NULL, '2023-11-02 05:36:50', '2023-11-02 05:36:50'),
-(493, '466', 'Ex velit eiusmod nob-0021', 'NA', 'NA', 'NA', 'NA', 'NA', '15000', NULL, '2023-11-02 05:36:50', '2023-11-02 05:36:50');
+(493, '466', 'Ex velit eiusmod nob-0021', 'NA', 'NA', 'NA', 'NA', 'NA', '15000', NULL, '2023-11-02 05:36:50', '2023-11-02 05:36:50'),
+(494, '467', 'Variation 1000', 'NA', 'NA', 'NA', 'NA', 'NA', '500', NULL, '2023-11-08 01:36:42', '2023-11-08 01:36:42'),
+(495, '467', 'variation of 2000', 'NA', 'NA', 'NA', 'NA', 'NA', '1000', NULL, '2023-11-08 01:36:42', '2023-11-08 01:36:42');
 
 -- --------------------------------------------------------
 
@@ -2315,8 +2336,8 @@ INSERT INTO `variations` (`id`, `product_id`, `variation`, `carat`, `size`, `amo
 
 CREATE TABLE `variation_images` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `var_id` varchar(100) NOT NULL,
-  `var_image` varchar(250) DEFAULT NULL,
+  `var_id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `var_image` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -2354,7 +2375,7 @@ CREATE TABLE `video_banner` (
   `video_link` text NOT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `video_banner`
@@ -2376,7 +2397,7 @@ CREATE TABLE `website_galleries` (
   `img` text DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `website_galleries`
@@ -2414,14 +2435,15 @@ CREATE TABLE `wholesale_infos` (
   `country` varchar(200) NOT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `wholesale_infos`
 --
 
 INSERT INTO `wholesale_infos` (`id`, `user_id`, `phone`, `company_name`, `resellerId`, `resellerFile`, `address_line1`, `address_line2`, `city`, `state`, `zip`, `country`, `created_at`, `updated_at`) VALUES
-(1, '12', '33', 'kahecuq@mailinator.com', 'poqecyt@mailinator.com', '1699347417garda.png', 'hokebokode@mailinator.com', 'pizoroduxa@mailinator.com', 'libemo@mailinator.com', 'wego@mailinator.com', 'lyqa@mailinator.com', 'USA', '2023-11-07 03:26:58', '2023-11-07 03:26:58');
+(1, '12', '33', 'kahecuq@mailinator.com', 'poqecyt@mailinator.com', '1699347417garda.png', 'hokebokode@mailinator.com', 'pizoroduxa@mailinator.com', 'libemo@mailinator.com', 'wego@mailinator.com', 'lyqa@mailinator.com', 'USA', '2023-11-07 03:26:58', '2023-11-07 03:26:58'),
+(2, '13', '1234456789', 'fatyliqo@mailinator.com', 'cakytosu@mailinator.com', '1699355866Dubai-Sports-World-cover.jpg', 'visokaly@mailinator.com', 'wyromy@mailinator.com', 'talo@mailinator.com', 'socinoco@mailinator.com', 'tyvapek@mailinator.com', 'India', '2023-11-07 05:47:46', '2023-11-07 05:47:46');
 
 -- --------------------------------------------------------
 
@@ -2441,7 +2463,7 @@ CREATE TABLE `why_choose_us` (
   `img` text DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `why_choose_us`
@@ -2458,9 +2480,9 @@ INSERT INTO `why_choose_us` (`id`, `details`, `reason_title_1`, `reason_1`, `rea
 
 CREATE TABLE `wish_lists` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` varchar(255) NOT NULL,
-  `product_id` varchar(255) NOT NULL,
-  `quantity` varchar(255) NOT NULL,
+  `user_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `product_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `quantity` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -2484,7 +2506,9 @@ INSERT INTO `wish_lists` (`id`, `user_id`, `product_id`, `quantity`, `created_at
 (22, '11', '398', '1', '2023-08-22 09:36:41', '2023-08-22 09:36:41'),
 (23, '11', '21', '1', '2023-08-22 12:49:30', '2023-08-22 12:49:30'),
 (24, '11', '99', '1', '2023-08-22 12:49:44', '2023-08-22 12:49:44'),
-(25, '11', '397', '1', '2023-08-22 12:50:20', '2023-08-22 12:50:20');
+(25, '11', '397', '1', '2023-08-22 12:50:20', '2023-08-22 12:50:20'),
+(26, '14', '235', '1', '2023-11-08 05:57:03', '2023-11-08 05:57:03'),
+(27, '14', '467', '1', '2023-11-08 05:57:36', '2023-11-08 05:57:36');
 
 --
 -- Indexes for dumped tables
@@ -2632,6 +2656,12 @@ ALTER TABLE `settings_options`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `shops`
+--
+ALTER TABLE `shops`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `subcategories`
 --
 ALTER TABLE `subcategories`
@@ -2700,7 +2730,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -2754,13 +2784,13 @@ ALTER TABLE `notifications`
 -- AUTO_INCREMENT for table `ordered_products`
 --
 ALTER TABLE `ordered_products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `pages`
@@ -2784,19 +2814,19 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=467;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=468;
 
 --
 -- AUTO_INCREMENT for table `product_compares`
 --
 ALTER TABLE `product_compares`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `product_galleries`
 --
 ALTER TABLE `product_galleries`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=458;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=461;
 
 --
 -- AUTO_INCREMENT for table `ratings`
@@ -2823,6 +2853,12 @@ ALTER TABLE `settings_options`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT for table `shops`
+--
+ALTER TABLE `shops`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `subcategories`
 --
 ALTER TABLE `subcategories`
@@ -2832,13 +2868,13 @@ ALTER TABLE `subcategories`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `variations`
 --
 ALTER TABLE `variations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=494;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=496;
 
 --
 -- AUTO_INCREMENT for table `variation_images`
@@ -2862,7 +2898,7 @@ ALTER TABLE `website_galleries`
 -- AUTO_INCREMENT for table `wholesale_infos`
 --
 ALTER TABLE `wholesale_infos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `why_choose_us`
@@ -2874,7 +2910,7 @@ ALTER TABLE `why_choose_us`
 -- AUTO_INCREMENT for table `wish_lists`
 --
 ALTER TABLE `wish_lists`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

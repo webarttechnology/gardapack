@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-use App\Models\{Product, Variations, Category, VariationImages, ProductGallery, Notification};
+use App\Models\{Product, Variations, Category, ProductRequest, VariationImages, ProductGallery, Notification};
 
 class AdminProductsController extends Controller
 {
@@ -394,5 +394,10 @@ class AdminProductsController extends Controller
 
               return back()->with('product_update', 'Successfully Updated');
         }
+    }
+
+    public function prod_req(){
+        $products = ProductRequest::orderBy('id', 'desc')->get();
+        return view('admin.product.prod_req', compact('products'));
     }
 }

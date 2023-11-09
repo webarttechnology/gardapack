@@ -158,6 +158,7 @@
 					<li> <a href="{{ url('admin/product/lists') }}"><i class="bx bx-right-arrow-alt"></i>All Products</a></li>
 					<li> <a href="{{ url('admin/product/add') }}"><i class="bx bx-right-arrow-alt"></i>Add New Products</a></li>
 					 <li> <a href="{{ url('admin/stock/page', 'in-stock') }}"><i class="bx bx-right-arrow-alt"></i>Manage Stocks</a></li>
+					 <li> <a href="{{ url('admin/product/request/page') }}"><i class="bx bx-right-arrow-alt"></i>Product Requests</a></li>
 					</ul>
 				</li>
 

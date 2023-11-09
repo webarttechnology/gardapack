@@ -1,10 +1,6 @@
-@php
-    $productsCompares = App\Models\ProductCompare::orderBy('id', 'desc')
-        ->limit(4)
-        ->get();
-@endphp
-
 <x-userHeader />
+
+@if($prodCount > 0)
 <section class="prdctcmpsect py-5">
     <div class="container">
         <div class="row">
@@ -13,10 +9,9 @@
                     <thead>
                         <tr class="brdrls">
                             <th></th>
-                            <th scope="col"><a href=""><i class="fa fa-times" aria-hidden="true"></i></a></th>
-                            <th scope="col"><a href=""><i class="fa fa-times" aria-hidden="true"></i></a></th>
-                            <th scope="col"><a href=""><i class="fa fa-times" aria-hidden="true"></i></a></th>
-                            <th scope="col"><a href=""><i class="fa fa-times" aria-hidden="true"></i></a></th>
+                            @foreach($productsCompares as $productsCompare)
+                             <th scope="col"><a href="{{ route('product.compare.delete', $productsCompare->id) }}"><i class="fa fa-times" aria-hidden="true"></i></a></th>
+                            @endforeach
                         </tr>
                     </thead>
                     <tbody>
@@ -121,4 +116,15 @@
         </div>
     </div>
 </section>
+@else
+<section class="prdctcmpsect py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+  <h3 class="text-center">No Product Found</h3>
+            </div>
+        </div>
+    </div>
+</section>
+@endif
 <x-userFooter />

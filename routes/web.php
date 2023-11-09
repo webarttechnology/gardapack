@@ -118,6 +118,8 @@ Route::controller(ProductController::class)->group(function () {
 
     // product compare
     Route::get('product/compare/{product_id}', 'product_compare')->name('product.compare');
+    Route::get('product/compare/page/view', 'prodCompareView')->name('product.compare.page');
+    Route::get('product/compare/delete/{id}', 'product_compare_delete')->name('product.compare.delete');
     Route::get('single/product/details/{product_id}', 'SingleProductDetails')->name('single.product.details');
 
     /**

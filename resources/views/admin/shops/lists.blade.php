@@ -36,6 +36,7 @@
                                     <th>FAX</th>
                                     <th>Email</th>
                                     <th>URL</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -55,6 +56,15 @@
                                         <td>{{ $shop->fax }}</td>
                                         <td>{{ $shop->email }}</td>
                                         <td>{{ $shop->url }}</td>
+                                        <td>
+                                            <a href="#"><button class="btn btn-success radius-30"><i class="lni lni-arrow-right"></i>Update</button></a>
+
+                                            @if(Auth::guard('admin')->user()->type == "admin")
+                                            |
+                                            <a href="#"
+                                                onclick="return confirm('Are you sure you want to delete this item?');"><button class="btn btn-danger radius-30"><i class="bx bx-trash"></i>Delete</button></a>
+                                            @endif
+                                        </td>
                                     </tr>
                                 @endforeach
 

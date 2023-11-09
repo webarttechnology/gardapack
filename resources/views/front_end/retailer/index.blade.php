@@ -123,6 +123,11 @@
 
         $('#search-form').submit(function(event) {
             event.preventDefault();
+            markers.forEach(function(marker) {
+                marker.setMap(null);
+            });
+
+            markers = [];
             var locationInput = $('#location-input').val();
 
             if (locationInput == '') {

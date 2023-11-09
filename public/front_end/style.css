@@ -4242,6 +4242,7 @@ Retailer
 
 .header-part3 {
     background-color: transparent !important;
+    padding: 0 !important;
 }
 
 .productInfoDetail .form-control {

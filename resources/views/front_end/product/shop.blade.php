@@ -115,9 +115,11 @@
                                             <li class="mr-2 overflow-hidden"><a href="javascript:void(0)"
                                                     onclick="return addToCart({{ $product->id }}, 'single', 'pc')"
                                                     class="icon-cart d-block"></a></li>
-                                            {{-- <li class="mr-2 overflow-hidden"><a
+
+                                            <!-- product compare -->
+                                            <li class="mr-2 overflow-hidden"><a
                                                     href="{{ url('product/compare', $product->id) }}" target="_blank"
-                                                    class="d-block"><i class="bi bi-arrow-clockwise"></i></a></li> --}}
+                                                    class="d-block"><i class="bi bi-arrow-clockwise"></i></a></li>
                                             <li class="mr-2 overflow-hidden"><a href="javascript:void(0)"
                                                     class="icon-search d-block"
                                                     onclick="quickViewProduct({{ $product->id }})"></a></li>

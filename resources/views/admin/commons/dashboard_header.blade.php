@@ -115,7 +115,7 @@
 					<a href="{{ route('shops.lists') }}">
 						<div class="parent-icon"><i class="bx bx-user-circle"></i>
 						</div>
-						<div class="menu-title">Shops</div>
+						<div class="menu-title">Retailer Shops</div>
 					</a>
 				</li>
 

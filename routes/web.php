@@ -203,14 +203,6 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('wholesaler/lists', [WholeSaleManageController::class, 'wholesaler_lists']);
 
 
-    Route::get('shops/show', [ShopsController::class, 'index'])->name('shops.lists');
-    Route::get('shops/add', [ShopsController::class, 'add'])->name('shops.add');
-    Route::post('shops/store', [ShopsController::class, 'store'])->name('shops.store');
-    Route::get('shops/edit/{id}', [ShopsController::class, 'edit'])->name('shops.edit');
-    Route::put('shops/update/{id}', [ShopsController::class, 'update'])->name('shops.update');
-    Route::get('shops/delete/{id}', [ShopsController::class, 'delete'])->name('shops.delete');
-
-
     // controller grouping
     Route::controller(AdminAuthController::class)->group(function () {
         Route::get('login', 'login_page')->name('login');
@@ -254,6 +246,16 @@ Route::group(['prefix' => 'admin'], function () {
             Route::post('sub-admin/post/save', 'admin_post_save')->name('sub-admin/post/save');
         });
 
+        // Retailer Shops
+        Route::controller(ShopsController::class)->group(function () {
+            Route::get('shops/show', 'index')->name('shops.lists');
+            Route::get('shops/add', 'add')->name('shops.add');
+            Route::post('shops/store', 'store')->name('shops.store');
+            Route::get('shops/edit/{id}', 'edit')->name('shops.edit');
+            Route::put('shops/update/{id}', 'update')->name('shops.update');
+            Route::get('shops/delete/{id}', 'delete')->name('shops.delete');
+        });
+        
         // Settings ..
         Route::controller(AdminSettingsController::class)
             ->prefix('settings')

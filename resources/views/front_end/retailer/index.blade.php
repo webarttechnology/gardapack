@@ -282,11 +282,19 @@
                         '<address>' +
                         '<p>' + store.address + '</p>' +
                         '</address>' +
-                        '<p class="phone"><strong>Phone: </strong> <a href="tel:' + store.tel + '">' + (store
+                        '<p class="phone m-0"><strong>Phone: </strong> <a href="tel:' + store.tel + '">' + (
+                            store
                             .tel ||
                             'NA') +
                         '</a>' +
-                        '<p>' +
+                        '</p>' +
+                        '<p class="email m-0"><strong>Email: </strong> <a href="mailto:' + store.email + '">' +
+                        (
+                            store
+                            .email ||
+                            'NA') +
+                        '</a>' +
+                        '</p>' +
                         '<br><a href="#!" class="directions-link" onclick="directionUpdate(this, event)" data-lat="' +
                         store.latitude + '" data-lng="' + store.longitude +
                         '">Directions</a></p>' +

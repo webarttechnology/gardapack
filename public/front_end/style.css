@@ -4419,3 +4419,7 @@ Retailer
 .wholesale .form-title p {
     color: #fff !important;
 }
+
+.dealofday {
+    background: transparent !important;
+}

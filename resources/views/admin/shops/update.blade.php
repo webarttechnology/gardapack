@@ -40,6 +40,15 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="mb-3">
+                                <label class="form-label"> Name *</label>
+                                <input type="text" class="form-control" placeholder="Shop Name" name="name" required  value="{{old('name', $shops->name)}}"/>
+                                @if ($errors->has('name'))
+                                <span class="text-danger">{{ $errors->first('name') }}</span>
+                                @endif
+                            </div>
+                            <br>
+
+                            <div class="mb-3">
                                 <label class="form-label"> Address *</label>
                                 <input type="text" class="form-control datepicker" placeholder="Address" name="address" required  value="{{old('address', $shops->address)}}"/>
                                 @if ($errors->has('address'))
@@ -48,8 +57,8 @@
                             </div>
                             <br>
                             <div class="mb-3">
-                                <label class="form-label"> Other Address *</label>
-                                <input type="text" class="form-control datepicker" placeholder="Address" name="address2" required value="{{old('address2', $shops->address2)}}"/>
+                                <label class="form-label"> Other Address</label>
+                                <input type="text" class="form-control datepicker" placeholder="Address" name="address2" value="{{old('address2', $shops->address2)}}"/>
                                 @if ($errors->has('address2'))
                                 <span class="text-danger">{{ $errors->first('address2') }}</span>
                                 @endif
@@ -74,8 +83,8 @@
                             <div class="mb-3">
                                 <label class="form-label"> Zip Code* </label>
                                 <input type="text" class="form-control datepicker" placeholder="Zip Code" name="zip_code" value="{{old('zip_code', $shops->zip_code)}}" required />
-                                @if ($errors->has('zip'))
-                                <span class="text-danger">{{ $errors->first('zip') }}</span>
+                                @if ($errors->has('zip_code'))
+                                <span class="text-danger">{{ $errors->first('zip_code') }}</span>
                                 @endif
                             </div>
                             <br>

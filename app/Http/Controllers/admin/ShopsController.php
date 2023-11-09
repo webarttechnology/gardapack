@@ -21,7 +21,17 @@ class ShopsController extends Controller
 
     public function store(Request $request)
     {
-        //dd($request->all());
+        $request->validate([
+            'name' => 'required|max:200',
+            'address' => 'required',
+            'city' => 'required',
+            'state' => 'required',
+            'zip' => 'required',
+            'country' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required',
+        ]);
+
         Shop::create([
             'name' => $request->name,
             'address' => $request->address,
@@ -48,8 +58,20 @@ class ShopsController extends Controller
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name' => 'required|max:200',
+            'address' => 'required',
+            'city' => 'required',
+            'state' => 'required',
+            'zip_code' => 'required',
+            'country' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required',
+        ]);
+
         $shops = Shop::find($id);
         $shops->update([
+            'name' => $request->name,
             'address' => $request->address,
             'address2' => $request->address2,
             'city' => $request->city,

@@ -86,8 +86,8 @@
                                     <label class="form-label"> Zip Code </label>
                                     <input type="text" class="form-control datepicker" placeholder="Zip Code"
                                         name="zip_code" />
-                                    @if ($errors->has('zip'))
-                                        <span class="text-danger">{{ $errors->first('zip') }}</span>
+                                    @if ($errors->has('zip_code'))
+                                        <span class="text-danger">{{ $errors->first('zip_code') }}</span>
                                     @endif
                                 </div>
                                 <br>

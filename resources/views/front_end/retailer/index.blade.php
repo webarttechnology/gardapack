@@ -44,6 +44,9 @@
         <div class="map">
             <div class="row">
                 <div class="col-md-4">
+                    <div id="directions-list">
+
+                    </div>
                     <div class="lists">
                         <ul>
                             <p>No Results Found</p>
@@ -68,7 +71,9 @@
 </script>
 
 <script>
+    var str = '';
     var nextPageToken;
+    var lists = $('.lists');
     var newLocation;
     var markers = [];
     var geocoder = new google.maps.Geocoder();
@@ -194,7 +199,7 @@
         // }
 
         function displayStores(stores) {
-            var lists = $('.lists');
+
             lists.empty();
 
             // Clear existing markers
@@ -239,6 +244,25 @@
                         infowindow.open(map, this);
                     });
 
+                    var destination = new google.maps.LatLng(store.latitude, store.longitude);
+
+                    var request = {
+                        origin: newLocation,
+                        destination: destination,
+                        travelMode: 'DRIVING'
+                    };
+
+                    directionsService.route(request, function(result, status) {
+                        if (status == 'OK') {
+                            directionsDisplay.setDirections(result);
+                            var route = result.routes[0];
+
+                            route.legs.forEach(function(leg) {
+                                str = leg.distance.text;
+                            });
+                        }
+                    });
+
                     var storeInfo = '<ul><li>' +
                         '<h4><a target="_blank" href="' + store.url + '">' + store.name + '</a></h4>' +
                         '<address>' +
@@ -248,7 +272,8 @@
                             .tel ||
                             'NA') +
                         '</a>' +
-                        '<p><a href="#!" class="directions-link" onclick="directionUpdate(this, event)" data-lat="' +
+                        '<p>' +
+                        '<br><a href="#!" class="directions-link" onclick="directionUpdate(this, event)" data-lat="' +
                         store.latitude + '" data-lng="' + store.longitude +
                         '">Directions</a></p>' +
                         '</li></ul>';
@@ -275,7 +300,7 @@
         return degrees * (Math.PI / 180);
     }
 
-    function calculateAndDisplayRoute(destinationLat, destinationLng) {
+    function calculateAndDisplayRoute(destinationLat, destinationLng, type) {
         var destination = new google.maps.LatLng(destinationLat, destinationLng);
 
         var request = {
@@ -284,12 +309,43 @@
             travelMode: 'DRIVING'
         };
 
-        directionsService.route(request, function(result, status) {
-            if (status == 'OK') {
-                directionsDisplay.setDirections(result);
-            } else {
-                alert('Directions request failed due to ' + status);
-            }
+        if (type == 'list') {
+            directionsService.route(request, function(result, status) {
+                if (status == 'OK') {
+                    directionsDisplay.setDirections(result);
+                    var route = result.routes[0];
+                    displayTurnByTurnDirections(route);
+                } else {
+                    // alert('Directions request failed due to ' + status);
+                }
+            });
+        }
+    }
+
+    function displayTurnByTurnDirections(route) {
+        lists.empty();
+        lists.append(
+            "<div class='text-left pb-2'><a onclick='triggerForm()' href='#!'>Back</a></div>");
+
+        route.legs.forEach(function(leg) {
+
+            var totalDistance = 0;
+            var totalDuration = 0;
+
+            lists.append(
+                "<div class='text-left pb-2'>" + leg.distance.text + ' - ' + leg.duration.text +
+                "</div>");
+
+            leg.steps.forEach(function(step, index) {
+                console.log(step);
+                var directionInfo = '<ul class="pl-0"><li class="d-flex ">' +
+                    '<div class="mr-3">' + (index + 1) + ' </div> ' +
+                    '<div>' +
+                    step.instructions +
+                    '<br>' + step.distance.text +
+                    '</div></li></ul>';
+                lists.append(directionInfo);
+            });
         });
     }
 
@@ -298,7 +354,11 @@
         var destinationLat = $(elm).data('lat');
         var destinationLng = $(elm).data('lng');
 
-        calculateAndDisplayRoute(destinationLat, destinationLng);
+        calculateAndDisplayRoute(destinationLat, destinationLng, 'list');
+    }
+
+    function triggerForm() {
+        $('#search-form').trigger('submit');
     }
 </script>
 <x-userFooter />

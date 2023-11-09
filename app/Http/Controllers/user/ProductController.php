@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
-use App\Models\{Product, Category, ProductGallery, Rating, Variations, ProductCompare};
+use App\Models\{Product, Category, ProductGallery, Rating, Variations, ProductCompare, ProductRequest};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
@@ -217,4 +217,36 @@ class ProductController extends Controller
             'details' => $product, 'quantity' => $prod_quantity,
         ]);
     }
+
+    /**
+     * Product Request
+    */
+
+  public function productRequest(){
+        return view('front_end.prod_req.index');
+  }
+
+  public function productRequestSave(Request $request){
+         $request->validate([
+            'product_model_no' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required',
+            'date_of_purchase' => 'required',
+         ]);
+
+         ProductRequest::create([
+            'product_model_no' => $request->product_model_no,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'phone_no' => $request->phone_no,
+            'purchased_from' => $request->purchased_from,
+            'date_of_purchase' => $request->date_of_purchase,
+            'delivery_date' => $request->delivery_date,
+            'receive_emails_status' => 'no'
+         ]);
+
+         return redirect()->back()->with('success', 'Successfully Saved');
+  }
 }

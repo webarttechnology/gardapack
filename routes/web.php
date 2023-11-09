@@ -88,7 +88,7 @@ Route::controller(PageManageController::class)->group(function () {
     Route::get('wholesale-application', 'wholesale_application');
 
     // Retailer
-    Route::get('retailers', 'retailer');
+    Route::get('retailers', 'retailer');    
 });
 
 Route::post('wholesale/application/action', [WholeSaleManageController::class, 'wholesaler_add']);
@@ -126,6 +126,10 @@ Route::controller(ProductController::class)->group(function () {
      * Shop
      */
     Route::get('shop', 'shop');
+
+    // Product Request
+    Route::get('product/request', 'productRequest');
+    Route::post('product/request/save', 'productRequestSave');
 });
 
 Route::get('paypal/success', [PaypalPaymentController::class, 'success'])->name('payment.success');
@@ -316,6 +320,9 @@ Route::group(['prefix' => 'admin'], function () {
                 Route::get('gallery/delete/{id}', 'gallery_delete')->name('product/gallery/delete');
                 Route::get('gallery/update/{id}', 'gallery_update')->name('product/gallery/update');
                 Route::post('gallery/update/{id}', 'gallery_update')->name('product/gallery/update/action');
+
+                // product request
+                Route::get('request/page', 'prod_req');
             });
 
 

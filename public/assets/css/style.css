@@ -58,14 +58,16 @@ a {
 }
 
 .log {
-    border-right: 1px solid var(--color-light);
+    /*border-right: 1px solid var(--color-light);*/
+    border-right: 1px solid #ffc41c;
 }
 
 .header-part p {
     font-size: 12px;
     padding-top: 17px;
     font-family: var(--font-secondary);
-    color: var(--color-light);
+    /*color: var(--color-light);*/
+    color: #ffc41c;
 }
 
 .header-part nav {
@@ -93,7 +95,8 @@ a {
 }
 
 .header-log a {
-    color: var(--color-light);
+    /*color: var(--color-light);*/
+    color: #ffc41c;
 }
 
 .header-part3 {
@@ -154,12 +157,18 @@ a {
 .home-wrap2 {
     padding-top: 5px;
     padding-left: 17px;
+    padding-bottom: 3px;
 }
 
 .home-wrap2 input {
     border: none;
     background-color: transparent;
+    width: 400px !important;
+}
 
+.home-wrap2 input:focus {
+    border:0 !important;
+    box-shadow:none !important;
 }
 
 .home-wrap2 input::placeholder {
@@ -221,7 +230,7 @@ a {
     font-size: 18px;
 }
 .stellarnav>ul>li>a {
-    padding: 20px 40px;
+    padding: 5px 40px;
 }
 
 
@@ -787,7 +796,7 @@ article:last-of-type {
 
 /* --------------Blog Css Start---------------- */
 .blog {
-    background-image: url("../images/gb2.png");
+    /*background-image: url("../images/gb2.png");*/
     background-position: center;
     background-size: cover;
 }

@@ -115,18 +115,18 @@
         <div class="header-part2 clearfix">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="home-logo">
                             <a href="{{ url('/') }}"><img src="{{ asset('assets/images/Nav_Logo.png') }}"></a>
                         </div>
                     </div>
 
-                    <div class="col-md-4 col-sm-6">
+                    <div class="col-md-6 col-sm-6">
                         <form action="{{ url('product-search') }}" method="post">
                             @csrf
 
                             <div class="home-form">
-                                <div class="home-wrap">
+                                <div class="home-wrap d-none">
                                     <select class="form-select" name="search_category"
                                         aria-label="Default select example">
                                         <option value="" selected>All Catagories</option>
@@ -146,15 +146,25 @@
                         </form>
                     </div>
 
-                    <div class="col-md-4 col-sm-6 ">
-                        <nav>
-                            @if (Auth::user())
-                                <a href="{{ url('user/wishlist/page') }}"><i class="bi bi-heart"></i></a>
-                                <a href="{{ url('user/wishlist/page') }}"><i class="fa fa-user"
-                                        aria-hidden="true"></i></a>
-                            @endif
-
-                            <a href="{{ url('user/cart/page') }}"><i class="bi bi-cart4"></i></a>
+                    <div class="col-md-3 col-sm-6 ">
+                        <nav class="icnstty">
+                            <ul>
+                                <li>
+                                    <a href="#" class="rgstrprt me-2"><i class="bi bi-headphones"></i></a>
+                                    <ul class="sbmnu">
+                                        <li><a href="{{ url('product/request') }}">Product Registration</a></li>
+                                       </ul>
+                                </li>
+                                @if (Auth::user())
+                                    <li>
+                                    <a href="{{ url('user/wishlist/page') }}"><i class="bi bi-heart"></i></a></li>
+                                    <li>
+                                    <a href="{{ url('user/wishlist/page') }}"><i class="fa fa-user"
+                                            aria-hidden="true"></i></a>
+                                    </li>
+                                @endif
+                                <li><a href="{{ url('user/cart/page') }}"><i class="bi bi-cart4"></i></a></li>
+                            </ul>
                         </nav>
                     </div>
 
@@ -180,5 +190,65 @@
                     <li><a href="{{ url('retailers') }}">Retailers</a></li>
                 </ul>
             </div><!-- .stellarnav -->
+        </div>
+        <div class="headerctgry">
+          <div class="container">    
+            <div class="row justify-content-center">
+                <div class="col-md-2 text-center">
+                    <div class="headerglry">
+                        <div class="headerimg">
+                           <!--<img src="https://www.urbanmonkey.com/cdn/shop/collections/4b1-all-bottoms_120x120.jpg?v=1680173271"> -->
+                           <img src="https://t4.ftcdn.net/jpg/06/01/26/55/360_F_601265575_JkTPQdyLZgN1murpRHVUdE63u97W52DL.jpg">
+                        </div>
+                        <h6>Clear/Black Bags</h6>
+                    </div>
+                </div>
+                <div class="col-md-2 text-center">
+                    <div class="headerglry">
+                        <div class="headerimg">
+                           <!--<img src="https://www.urbanmonkey.com/cdn/shop/collections/1-all-headwear_120x120.jpg?v=1680249946">-->
+                           <img src="https://cdn-icons-png.flaticon.com/512/706/706956.png">
+                        </div>
+                        <h6>Clear/Black Rolls</h6>
+                    </div>
+                </div>
+                <div class="col-md-2 text-center">
+                    <div class="headerglry">
+                        <div class="headerimg">
+                           <!--<img src="https://www.urbanmonkey.com/cdn/shop/collections/3-eyewear_120x120.jpg?v=1680513152"> -->
+                           <img src="https://us.123rf.com/450wm/semenchenko/semenchenko1803/semenchenko180300023/96799529-blank-food-stand-up-flexible-pouch-snack-sachet-bag-mock-up-template-illustration-isolated-on-white.jpg?ver=6">
+                        </div>
+                        <h6>Mylar Bags</h6>
+                    </div>
+                </div>
+                <div class="col-md-2 text-center">
+                    <div class="headerglry">
+                        <div class="headerimg">
+                           <!--<img src="https://www.urbanmonkey.com/cdn/shop/collections/5c-backpack_120x120.jpg?v=1680258901"> -->
+                           <img src="https://images.assetsdelivery.com/compings_v2/vectorhome/vectorhome1907/vectorhome190700032.jpg">
+                        </div>
+                        <h6>Vacuum Machine</h6>
+                    </div>
+                </div>
+                <div class="col-md-2 text-center">
+                    <div class="headerglry">
+                        <div class="headerimg">
+                           <!--<img src="https://www.urbanmonkey.com/cdn/shop/collections/5b-belts_120x120.jpg?v=1680257700"> -->
+                           <img src="https://static.thenounproject.com/png/4454610-200.png"> 
+                        </div>
+                        <h6>Vacuum Seal Bags</h6>
+                    </div>
+                </div>
+                <div class="col-md-2 text-center">
+                    <div class="headerglry">
+                        <div class="headerimg">
+                           <!--<img src="https://www.urbanmonkey.com/cdn/shop/collections/um-steals-menu_120x120.svg?v=1678955365">-->
+                           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHmzP9zCtYGKheN4K2ZL8l4ha-s5si1kiHJg&usqp=CAU">
+                        </div>
+                        <h6>Vacuum Seal Rolls</h6>
+                    </div>
+                </div>
+            </div>
+           </div>    
         </div>
     </header>

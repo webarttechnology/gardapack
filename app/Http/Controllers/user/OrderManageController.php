@@ -8,6 +8,7 @@ use App\Models\{Order, OrderedProduct, Cart, Product};
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\payment\PaypalPaymentController;
+use Illuminate\Support\Facades\Session;
 
 class OrderManageController extends Controller
 {
@@ -41,7 +42,7 @@ class OrderManageController extends Controller
                ]
           );
 
-          $order_id = "ODR_" . Str::random(20);
+          $order_id = "ODR_" . Str::random(30);
 
           // add order details
           $order = Order::create([
@@ -79,6 +80,7 @@ class OrderManageController extends Controller
           }
 
           Cart::where('user_id', Auth::user()->id)->delete();
+          Session::put('orderEmail', $request->email);
 
           $link = PaypalPaymentController::paypalPay($request, $order->id, $request->total_price);
           return $link;

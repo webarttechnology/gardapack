@@ -5,8 +5,9 @@ namespace App\Http\Controllers\payment;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Epmnzava\PaypalLaravel\PaypalLaravel as Paypal;
+use App\Http\Controllers\mail\MailManageController;
 use Illuminate\Support\Facades\Session;
-use App\Models\{Order};
+use App\Models\{Order, OrderedProduct, Product};
 
 class PaypalPaymentController extends Controller
 {
@@ -38,9 +39,30 @@ class PaypalPaymentController extends Controller
         $response = $paypal->executePayment($request->paymentId, $request->PayerID);
 
         if (json_decode($response)->state == "approved") {
+            
+            /**
+              * send order confirmation mail to user
+            */
+            $order = Order::whereId(Session::get("paymentDetails.orderId"))->first();
+            $email = Session::get('orderEmail');
+            MailManageController::mailSend('mail.order_confirm', ['order' => $order], 'Order Confirmed', $email);
+            
+            /**
+             * CHange product quantity when order places & succeed
+            */
+
+            $orderProducts = OrderedProduct::where('order_id', $order->order_id)->get();
+            foreach($orderProducts as $orderProduct){
+                $product = Product::whereId($orderProduct->product_id)->first();
+                    Product::whereId($orderProduct->product_id)->update([
+                        'no_in_stock' => ($product->no_in_stock - $orderProduct->product_quantity),
+                    ]);
+            }
+
+
             /**
              * Update db if payment done 
-             */
+            */
 
             Order::whereId(Session::get("paymentDetails.orderId"))->update([
                 'txn_id' => Session::get("paymentDetails.payment_id"),
@@ -49,6 +71,7 @@ class PaypalPaymentController extends Controller
             ]);
 
             Session::forget('paymentDetails');
+            Session::forget('orderEmail');
             return redirect('/')->with('success', 'Order is successfully placed');
         } else {
             /**

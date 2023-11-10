@@ -1,9 +1,9 @@
 <x-userHeader />
-<section class="contactSecBlock container pt-xl-23 pb-xl-24 pt-lg-20 pb-lg-10 pt-md-16 pb-md-8 py-10">
+<section class="contactSecBlock container pt-lg-10 pb-lg-10 pt-md-16 pb-md-8 py-10">
     <div class="row">
         <header class="col-12 mainHeader mb-10 text-center">
             {{-- <h1 class="headingIV playfair fwEblod mb-7">Get In Touch</h1> --}}
-            <p>Register your new FoodSaver Vacuum Sealing Appliance and receive 25% off any FoodSaver bags, rolls or specialty bags purchased on FoodSaver.com. Simply fill out the below registration to receive your one-time 25% off coupon.<br class="d-block"> aliquam erat volutpatcommodo consequat.</p>
+            <h2>Registration Form</h2>
         </header>
     </div>
     <div class="row">
@@ -85,9 +85,16 @@
                     @endif
                 </div>
                 </div>
+                
+                <div class="form-check mb-10">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Sign up to receive emails regarding promotions, recipe inspiration, vacuum sealing 101 tips and new product launches.
+                  </label>
+                </div>
 
                 <div class="text-center">
-                    <button type="submit" class="btn btnTheme btnShop md-round fwEbold text-white py-3 px-4 py-md-3 px-md-4">Register</button>
+                    <button type="submit" class="btn btnTheme btnShop md-round fwEbold text-white py-3 px-4 py-md-3 px-md-4">Register and receive 25% off consumables coupon</button>
                 </div>
             </form>
             

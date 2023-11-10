@@ -141,7 +141,7 @@
 
                             <div class="">
                                 <label class="form-label">Product Price</label>
-                                <input type="number" class="form-control" value="{{ $products->price }}"
+                                <input type="text" class="form-control" value="{{ $products->price }}"
                                     name="product_price" />
                             </div>
                             <br>
@@ -219,7 +219,7 @@
                                 <div class="col-md-12 col-12 mt-3">
                                     <div class="form-group">
                                         <label>Final Price</label>
-                                        <input type="num" name="final_price[]" id="final_price1" class="form-control"
+                                        <input type="text" name="final_price[]" id="final_price1" class="form-control"
                                             placeholder="Final Price" value="{{ $variation->final_price }}" />
                                         <!-- <input type="hidden" name="discount_amt[]" id="discount_amt1" class="form-control" placeholder="Final Price" value="{{ old('discount_amt') }}" />  -->
                                         @if ($errors->has('final_price'))

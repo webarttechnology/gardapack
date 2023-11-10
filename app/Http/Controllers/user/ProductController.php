@@ -152,35 +152,36 @@ class ProductController extends Controller
     {
         $unique_id = Session::has('compareUniqueId') ? Session::get('compareUniqueId') : Str::random(30);
         Session::put('compareUniqueId', $unique_id);
-        
+
         $prod_no = count(ProductCompare::where('unique_id', Session::get('compareUniqueId'))->get());
-        
-        if($prod_no == 4){
+
+        if ($prod_no == 4) {
             ProductCompare::where('unique_id', $unique_id)->first()->delete();
         }
 
         $check = ProductCompare::where('unique_id', $unique_id)
             ->where('prod_id', $product_id)->first();
 
-            if ($check === null) {
-                ProductCompare::create([
-                    'unique_id' => $unique_id,
-                    'prod_id' => $product_id,
-                ]);
-            }
+        if ($check === null) {
+            ProductCompare::create([
+                'unique_id' => $unique_id,
+                'prod_id' => $product_id,
+            ]);
+        }
 
         return redirect('product/compare/page/view');
     }
 
     /**
      * product compare delete
-    */
+     */
 
-    public function product_compare_delete($id){
+    public function product_compare_delete($id)
+    {
         $prod_no = count(ProductCompare::where('unique_id', Session::get('compareUniqueId'))->get());
-        
-        if($prod_no == 1){
-             Session::forget('compareUniqueId');
+
+        if ($prod_no == 1) {
+            Session::forget('compareUniqueId');
         }
 
         ProductCompare::whereId($id)->delete();
@@ -189,16 +190,17 @@ class ProductController extends Controller
         return redirect()->route('product.compare.page')->with('success', 'Successfully Removed');
     }
 
-    public function prodCompareView(){
+    public function prodCompareView()
+    {
         $productsCompares = ProductCompare::where('unique_id', Session::get('compareUniqueId'))
-        ->orderBy('id', 'desc')
-        ->limit(4)
-        ->get();
-    
+            ->orderBy('id', 'desc')
+            ->limit(4)
+            ->get();
+
         $prodCount = count($productsCompares);
-        if($prodCount > 0){
+        if ($prodCount > 0) {
             return view('front_end.product.compare', compact('productsCompares', 'prodCount'));
-        }else{
+        } else {
             return redirect('shop')->with('error', 'No Product to Compare');
         }
     }
@@ -220,22 +222,24 @@ class ProductController extends Controller
 
     /**
      * Product Request
-    */
+     */
 
-  public function productRequest(){
+    public function productRequest()
+    {
         return view('front_end.prod_req.index');
-  }
+    }
 
-  public function productRequestSave(Request $request){
-         $request->validate([
+    public function productRequestSave(Request $request)
+    {
+        $request->validate([
             'product_model_no' => 'required',
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required',
             'date_of_purchase' => 'required',
-         ]);
+        ]);
 
-         ProductRequest::create([
+        ProductRequest::create([
             'product_model_no' => $request->product_model_no,
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
@@ -245,8 +249,8 @@ class ProductController extends Controller
             'date_of_purchase' => $request->date_of_purchase,
             'delivery_date' => $request->delivery_date,
             'receive_emails_status' => 'no'
-         ]);
+        ]);
 
-         return redirect()->back()->with('success', 'Successfully Saved');
-  }
+        return redirect()->back()->with('success', 'Successfully Saved');
+    }
 }

@@ -24,10 +24,17 @@ class Order extends Model
         'order_notes',
         'billing_state',
         'billing_zip',
+        'ship_station_order_id',
+        'ship_station_order_details',
         'status',
         'order_status',
         'txn_id',
         'transaction_details',
         'total_amount'
     ];
+
+    public function orderProduct()
+    {
+            return $this->hasMany(OrderedProduct::class);
+    }
 }

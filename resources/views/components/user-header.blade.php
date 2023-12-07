@@ -126,7 +126,7 @@
                             @csrf
 
                             <div class="home-form">
-                                <div class="home-wrap">
+                                <div class="home-wrap d-none">
                                     <select class="form-select" name="search_category"
                                         aria-label="Default select example">
                                         <option value="" selected>All Catagories</option>

@@ -1,0 +1,63 @@
+@extends('admin.commons.dashboard_header')
+@section('content')
+
+<div class="page-wrapper">
+    <div class="page-content">
+        <!--breadcrumb-->
+        <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+
+
+        </div>
+        <!--end breadcrumb-->
+        @if(Session::has('success'))
+        <div class="alert alert-success">
+            {{ Session::get('success') }}
+            @php
+            Session::forget('success');
+            @endphp
+        </div>
+        @endif
+
+
+        <div class="row">
+            <div class="col-xl-9 mx-auto">
+                <h6 class="mb-0 text-uppercase">Video Banner</h6>
+                <hr />
+
+                <form action="{{ url('admin/video/banner/update', $list->id) }}" method="post" enctype="multipart/form-data">
+                    @csrf
+
+                    <div class="card">
+                        <div class="card-body">
+
+                            <div class="">
+                                <label class="form-label">Video</label><br>
+                                <iframe width="100%" height="300" src="{{ $list->video_link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+                                <input type="text" class="form-control" name="video_link" value="{{ $list->video_link }}"  placeholder="Enter Youtube Video Link"/>
+                                @if ($errors->has('video_link'))
+                                <span class="text-danger">{{ $errors->first('video_link') }}</span>
+                                @endif
+                            </div>
+                            <br>
+                            
+                            <div class="">
+                                <input type="submit" class="form-control btn btn-primary px-4" value="Update" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        <!--end row-->
+    </div>
+</div>
+
+<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.ckeditor').ckeditor();
+});
+</script>
+@endsection

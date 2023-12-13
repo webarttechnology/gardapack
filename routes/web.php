@@ -93,6 +93,8 @@ Route::controller(PageManageController::class)->group(function () {
 });
 
 Route::post('wholesale/application/action', [WholeSaleManageController::class, 'wholesaler_add']);
+Route::get('wholesale/password/change/{code}', [WholeSaleManageController::class, 'wholesaler_password_change']);
+Route::post('wholesale/password/change/action/{code}', [WholeSaleManageController::class, 'password_change_action']);
 
 // User Register & Login
 Route::controller(UserAuthController::class)->group(function () {
@@ -206,6 +208,7 @@ Route::group(['prefix' => 'admin'], function () {
     // Wholesaller
 
     Route::get('wholesaler/lists', [WholeSaleManageController::class, 'wholesaler_lists']);
+    Route::get('wholesaler/status/{id}/{status}', [WholeSaleManageController::class, 'wholesaler_status']);
 
 
     // controller grouping

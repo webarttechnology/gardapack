@@ -1,5 +1,4 @@
 <x-userHeader />
-
 <main>
 
     <!-- introBannerHolder -->
@@ -36,71 +35,35 @@
 
     <!--</section>-->
 
-
-
-
-
     @php
 
         $segment = \Request::getRequestUri();
-
         $str = str_contains($segment, 'page');
 
-
-
         if ($str == true) {
-
             $page_no = explode('=', $str)[0];
-
-
-
             if ($page_no == 1) {
-
                 $start_from = 1;
-
                 $end_upto = $per_page;
-
             } else {
-
                 $start_from = $per_page + ($page_no - 1);
-
                 $end_upto = $start_from + $per_page;
-
             }
-
         } else {
-
             if ($total_products == 0) {
-
                 $start_from = 0;
-
             } else {
-
                 $start_from = 1;
-
             }
-
-
-
             //
 
-
-
             if ($total_products > $per_page) {
-
                 $end_upto = $per_page;
-
             } else {
-
                 $end_upto = $total_products;
-
             }
-
         }
-
     @endphp
-
-
 
     <!-- twoColumns -->
 
@@ -121,7 +84,6 @@
                         <ul class="list-unstyled viewFilterLinks d-flex flex-nowrap align-items-center">
 
                             <li class="mr-2"><a href="javascript:void(0);" class="active"><i
-
                                         class="fas fa-th-large"></i></a></li>
 
                             <li class="mr-2"><a href="javascript:void(0);"><i class="fas fa-list"></i></a></li>
@@ -130,7 +92,7 @@
 
                                 {{ $total_products }} results</li>
 
-                            <li class="mr-2 filterBtn"><i class="fas fa-filter"></i></li>    
+                            <li class="mr-2 filterBtn"><i class="fas fa-filter"></i></li>
 
                         </ul>
 
@@ -175,6 +137,21 @@
 
 
                         @foreach ($products as $product)
+                            @php
+                                $rating = App\Models\Rating::where('product_id', $product->id)->get();
+
+                                $rating_no = count($rating);
+                                if ($rating_no > 0) {
+                                    $total = 0;
+                                    for ($i = 0; $i < $rating_no; $i++) {
+                                        $total = $total + $rating[$i]->rate;
+                                    }
+
+                                    $rate = ceil($total / $rating_no);
+                                } else {
+                                    $rate = 0;
+                                }
+                            @endphp
 
                             <div class="col-12 col-sm-6 col-lg-4 featureCol mb-7">
 
@@ -183,48 +160,54 @@
                                     <div class="imgHolder position-relative w-100 overflow-hidden">
 
                                         <a href="{{ url('product-details', $product->slug) }}"><img
-
                                                 src="{{ asset('admin/product/featured_img/' . $product->featured_img) }}"
-
                                                 alt="image description" class="img-fluid w-100"></a>
 
                                         <ul class="list-unstyled postHoverLinskList d-flex justify-content-center m-0">
 
                                             @if (Auth::user())
-
                                                 @php
-
                                                     $wish = App\Models\WishList::where('user_id', Auth::user()->id)
-
                                                         ->where('product_id', $product->id)
-
                                                         ->first();
-
                                                 @endphp
 
+                                                {{-- @if (Auth::user()) --}}
+                                                @if (Auth::user()->user_type == 'wholesale')
+                                                    @if ($product->qty_check != null)
+                                                        <li class="mr-2 overflow-hidden"><a href="javascript:void(0)"
+                                                                data-toggle="tooltip" data-placement="left"
+                                                                title="Add to cart"
+                                                                onclick="return addToCart({{ $product->id }}, 'single', 'pc')"
+                                                                class="icon-cart d-block"></a></li>
+                                                    @endif
+                                                @endif
+                                                {{-- @else
+                                                <li class="mr-2 overflow-hidden"><a href="javascript:void(0)"
+                                                    data-toggle="tooltip" data-placement="left" title="Add to cart"
+                                                    onclick="return addToCart({{ $product->id }}, 'single', 'pc')"
+                                                    class="icon-cart d-block"></a></li>
+                                                @endif --}}
 
-
-                                                <li class="mr-2 overflow-hidden"><a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="Whishlist" onclick="addWishList({{ $product->id }}, 1, 'category')"
-
+                                                <li class="mr-2 overflow-hidden"><a href="javascript:void(0)"
+                                                        data-toggle="tooltip" data-placement="left" title="Whishlist"
+                                                        onclick="addWishList({{ $product->id }}, 1, 'category')"
                                                         class="icon-heart d-block @if ($wish) active @endif"></a>
-
                                                 </li>
-
                                             @else
+                                            <li class="mr-2 overflow-hidden"><a href="javascript:void(0)"
+                                                data-toggle="tooltip" data-placement="left"
+                                                title="Add to cart"
+                                                onclick="return addToCart({{ $product->id }}, 'single', 'pc')"
+                                                class="icon-cart d-block"></a></li>
 
-                                                <!-- <li class="mr-2 overflow-hidden"><a href="javascript:void(0)"
-
-                                                        onclick="warningAlert('pc')" class="icon-heart d-block"></a>
-
-                                                </li> -->
-
+                                            <li class="mr-2 overflow-hidden"><a href="javascript:void(0)"
+                                                    data-toggle="tooltip" data-placement="left" title="Whishlist"
+                                                    onclick="addWishList({{ $product->id }}, 1, 'category')"
+                                                    class="icon-heart d-block"></a>
+                                            </li>
                                             @endif
 
-
-
-
-
-                                            {{-- <li class="mr-2 overflow-hidden"><a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="Add to cart" onclick="return addToCart({{ $product->id }}, 'single', 'pc')" class="icon-cart d-block @if ($cart_details) active @endif"></a></li> --}}
 
                                             <!-- <li class="mr-2 overflow-hidden"><a href="javascript:void(0)"
 
@@ -233,14 +216,12 @@
                                                     class="icon-cart d-block"></a></li> -->
 
                                             <li class="mr-2 overflow-hidden"><a
-
                                                     href="{{ url('product/compare', $product->id) }}" target="_blank"
-
-                                                    class="d-block" data-toggle="tooltip" data-placement="left" title="compare"><i class="fas fa-balance-scale"></i></a></li>
-                                            <li class="mr-2 overflow-hidden"><a href="javascript:void(0)"  data-toggle="tooltip" data-placement="left" title="Search"
-
+                                                    class="d-block" data-toggle="tooltip" data-placement="left"
+                                                    title="compare"><i class="fas fa-balance-scale"></i></a></li>
+                                            <li class="mr-2 overflow-hidden"><a href="javascript:void(0)"
+                                                    data-toggle="tooltip" data-placement="left" title="Search"
                                                     class="fas fa-search"
-
                                                     onclick="quickViewProduct({{ $product->id }})"></a></li>
 
                                         </ul>
@@ -248,87 +229,66 @@
                                     </div>
 
                                     <div class="stars">
-
-                                        <i class="bi bi-star-fill"></i>
-
-                                        <i class="bi bi-star-fill"></i>
-
-                                        <i class="bi bi-star-fill"></i>
-
-                                        <i class="bi bi-star-fill"></i>
-
-                                        <i class="bi bi-star-fill"></i>
-
+                                        <i class="@if ($rate > 0) bi bi-star-fill @else bi bi-star @endif"></i>
+                                        <i class="@if ($rate > 1) bi bi-star-fill @else bi bi-star @endif"></i>
+                                        <i class="@if ($rate > 2) bi bi-star-fill @else bi bi-star @endif"></i>
+                                        <i class="@if ($rate > 3) bi bi-star-fill @else bi bi-star @endif"></i>
+                                        <i class="@if ($rate > 4) bi bi-star-fill @else bi bi-star @endif"></i>
                                     </div>
 
 
                                     <div class="text-center py-5 px-4">
 
-                                        <span class="title d-block mb-2"><a 
-
+                                        <span class="title d-block mb-2"><a
                                                 href="{{ url('product-details', $product->slug) }}">{{ $product->name }}</a></span>
 
                                         <span class="price fwEbold">
 
                                             @if ($product->discount != 0)
-
                                                 <del>$ {{ $product->price }}</del>$ {{ $product->discount }}
-
                                             @else
-
                                                 $ {{ $product->price }}
-
                                             @endif
 
                                         </span>
 
                                         <ul class="itembtns">
-                                            <li class="btn btn-wrning overflow-hidden"><a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="Add to cart"
+                                            <li class="btn btn-wrning overflow-hidden"><a href="javascript:void(0)"
+                                                    data-toggle="tooltip" data-placement="top" title="Add to cart"
+                                                    onclick="return addToCart({{ $product->id }}, 'single', 'pc')"
+                                                    class="fas fa-shopping-bag"></a></li>
 
-                                            onclick="return addToCart({{ $product->id }}, 'single', 'pc')"
-
-                                            class="fas fa-shopping-bag"></a></li>
-
-                                            <li class="btn btn-wrning overflow-hidden"><a href="javascript:void(0)"  data-toggle="tooltip" data-placement="top" title="Wishlist"
-
-                                                onclick="warningAlert('pc')" class="fas fa-heart"></a>
+                                            <li class="btn btn-wrning overflow-hidden"><a href="javascript:void(0)"
+                                                    data-toggle="tooltip" data-placement="top" title="Wishlist"
+                                                    onclick="addWishList({{ $product->id }}, 1, 'category')"
+                                                    class="fas fa-heart"></a>
 
                                             </li>
                                         </ul>
 
 
-                                        {{-- <span class="hotOffer fwEbold text-uppercase text-white position-absolute d-block">HOT</span> --}}
+                                        {{-- <span
+                                        class="hotOffer fwEbold text-uppercase text-white position-absolute d-block">HOT</span>
+                                    --}}
 
-                                        {{-- <span class="hotOffer green fwEbold text-uppercase text-white position-absolute d-block ml-8">Sale</span> --}}
+                                        {{-- <span
+                                        class="hotOffer green fwEbold text-uppercase text-white position-absolute d-block ml-8">Sale</span>
+                                    --}}
 
                                     </div>
-
                                 </div>
-
                             </div>
-
                         @endforeach
-
-
-
 
 
                         <div class="col-12 pt-3 mb-lg-0 mb-md-6 mb-3">
 
                             <ul class="list-unstyled pagination d-flex justify-content-center align-items-end">
-
-                                <li>{{ $products->links() }}</li>
-
+                              <li>{{ $products->links() }}</li>
                             </ul>
-
                         </div>
-
-
-
                     </div>
-
                 </article>
-
             </div>
 
             <div class="col-12 col-lg-3 order-lg-1">
@@ -342,25 +302,16 @@
                     <section class="widget overflow-hidden mb-3">
 
                         <form action="{{ url('product-search') }}" class="searchForm position-relative border"
-
                             method="post">
 
                             @csrf
-
-
-
                             <fieldset>
 
                                 <input type="search" class="form-control" placeholder="Search product..."
-
                                     name="p_search">
-
                                 <button class="position-absolute" type="submit"><i class="icon-search"></i></button>
-
                             </fieldset>
-
                         </form>
-
                     </section>
 
                     <!-- widget -->
@@ -374,7 +325,6 @@
 
 
                             @foreach ($product_categories as $product_category)
-
                                 @php
 
                                     $tot_products = count(App\Models\Product::where('category_id', $product_category->id)->get());
@@ -382,13 +332,10 @@
                                 @endphp
 
                                 <li class="mb-2 overflow-hidden"><a
-
                                         href="{{ url('product-category', ['subcategory_id' => 0, 'category_slug' => $product_category->slug]) }}">
 
                                         {{ $product_category->name }} <span
-
                                             class="num border float-right">{{ $tot_products }}</span></a></li>
-
                             @endforeach
 
 
@@ -407,11 +354,12 @@
 
                         <!-- filter ranger form -->
 
-                        
 
-                        
 
-                        <form action="{{ url('product-filter', $category->slug) }}" class="filter-ranger-form" method="post">
+
+
+                        <form action="{{ url('product-filter', $category->slug) }}" class="filter-ranger-form"
+                            method="post">
 
                             @csrf
 
@@ -425,7 +373,8 @@
 
                             <div class="get-results-wrap d-flex align-items-center justify-content-between">
 
-                                <button type="submit" class="btn btnTheme btn-shop fwEbold md-round px-3 pt-1 pb-2 text-uppercase">Filter</button>
+                                <button type="submit"
+                                    class="btn btnTheme btn-shop fwEbold md-round px-3 pt-1 pb-2 text-uppercase">Filter</button>
 
                                 <p id="amount" class="mb-0"></p>
 
@@ -433,15 +382,7 @@
 
                         </form>
 
-                        
-
-                        
-
                     </section> --}}
-
-
-
-
 
                     <!-- widget -->
 
@@ -454,15 +395,12 @@
 
 
                             @foreach ($top_rated_products as $top_rated_product)
-
                                 <li class="mb-5 d-flex flex-nowrap">
 
                                     <div class="alignleft">
 
                                         <a href="{{ url('product-details', $top_rated_product->slug) }}"><img
-
                                                 src="{{ asset('admin/product/featured_img/' . $top_rated_product->featured_img) }}"
-
                                                 alt="image description" class="img-fluid"></a>
 
                                     </div>
@@ -470,7 +408,6 @@
                                     <div class="description-wrap pl-1">
 
                                         <h4 class="headingVII mb-1"><a
-
                                                 href="{{ url('product-details', $top_rated_product->slug) }}">{{ $top_rated_product->name }}</a>
 
                                         </h4>
@@ -482,22 +419,13 @@
                                     </div>
 
                                 </li>
-
                             @endforeach
-
-
-
-
 
                         </ul>
 
                     </section>
 
                     <!-- widget -->
-
-
-
-
 
                 </aside>
 
@@ -507,19 +435,8 @@
 
     </div>
 
-
-
-
-
 </main>
-
-
 
 <!-- Product Compare MOdal -->
 
-
-
-
-
 <x-userFooter />
-

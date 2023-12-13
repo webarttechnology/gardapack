@@ -1,23 +1,16 @@
 var line_no = 1;
 
 function addRows() {
-    const variations = document.getElementById("variations");
-    const new_variations = document.getElementById("more_variations");
-    const clone = variations.cloneNode(true);
-    new_variations.appendChild(clone);
+    var html = $("#variations").html();
+    $(html).removeAttr('id');
+    $(html).show();
+    $("#existing_var").append("<div class='row'>"+ html +"</div>");
 }
 
-// function removeRows(){
-//     var line_no = document.getElementById("line_no").innerHTML;
-
-//     // var new_variations = document.getElementById("more_variations");
-//     // var element = new_variations.lastElementChild;
-//     // while (element) {
-//     //     new_variations.removeChild(element);
-//     //     element = new_variations.lastElementChild;
-//     // }
-// }
-
+function removeRows(button) {
+    // Traverse up the DOM to find the parent row and remove it
+    $(button).closest('.row').remove();
+}
 
 /**
  * product status
@@ -72,4 +65,18 @@ function subCategoryDetails(){
              console.log(data);
          }
      });
+}
+
+function QtyAdd(){
+    let qty = document.getElementById("qty_checkbox");
+    var removedVariations = [];
+    
+    if(qty.checked){
+        $('#existing_var').show();
+        if( $("#existing_var").html().trim() === "" ) {
+            addRows();
+        }
+    }else{
+        $('#existing_var').hide();
+    }
 }

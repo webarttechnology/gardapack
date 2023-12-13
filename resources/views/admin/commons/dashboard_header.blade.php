@@ -471,6 +471,7 @@
         @endforeach
     @endif
 </script>
+@yield('custom_js')
 
 </body>
 

@@ -41,12 +41,27 @@ class UserAuthController extends Controller
      {
           $this->validate($request, [
               'email'   => 'required|email',
-              'password' => 'required|min:6'
+              'password' => 'required'
           ]);
   
           if(Auth::attempt(['email' => $request -> input('email'), 'password' => $request -> input('password')])){
             CartManageController::cartSync();
-             return redirect()->route('user.home');
+            if(Auth::user()->user_type == "wholesale"){
+                 if(Auth::user()->is_accept == "accept"){
+                    return redirect()->route('user.home');
+                 }else{
+                    if(Auth::user()->is_accept != "reject"){
+                        Auth::logout();
+                        return redirect()->route('user.signup')->with('danger', 'Your Wholesaler Application Still Pending');
+                    }else{
+                        Auth::logout();
+                        return redirect()->route('user.signup')->with('danger', 'Your Wholesaler Application has been Rejected');
+                    }
+                 }
+            }else{
+                return redirect()->route('user.home');
+            }
+
             //   dd(Auth::user()->id);
           }
           else{

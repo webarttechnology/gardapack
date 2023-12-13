@@ -26,6 +26,8 @@
                                 <th>Phone</th>
                                 <th>Address</th>
                                 <th>Company Name</th>
+                                <th>Status</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -37,6 +39,23 @@
                                 <td>{{ $list->info->phone }}</td>
                                 <td>{{ $list->info->address_line1 }}</td>
                                 <td>{{ $list->info->company_name }}</td>
+                                <td>
+                                    @if($list->is_accept == '')
+                                        <label class="badge bg-primary">Pending</label>
+                                    @elseif($list->is_accept == 'accept')
+                                        <label class="badge bg-success">Accept</label>
+                                    @else
+                                        <label class="badge bg-danger">Reject</label>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($list->is_accept == '')
+                                    <a href="{{ url('admin/wholesaler/status', ['id' => $list->id, 'status' => 'accept']) }}"  onclick="return confirm('Are You Sure, You want to Accept this Wholseller?')" class="btn btn-primary btn-sm">Accept</a>
+                                    <a href="{{ url('admin/wholesaler/status', ['id' => $list->id, 'status' => 'reject']) }}" onclick="return confirm('Are You Sure, You want to Reject this Wholseller?')" class="btn btn-danger btn-sm">Reject</a>
+                                    @else
+                                    NA
+                                    @endif
+                                </td>
                             </tr>
                             @endforeach
 
@@ -48,6 +67,8 @@
                                 <th>Phone</th>
                                 <th>Address</th>
                                 <th>Company Name</th>
+                                <th>Status</th>
+                                <th>Action</th>
                             </tr>
                         </tfoot>
                     </table>

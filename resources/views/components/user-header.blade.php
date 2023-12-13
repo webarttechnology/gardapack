@@ -251,10 +251,6 @@
 
                                         aria-label="Default select example">
 
-                                        <option value="" selected>All Catagories</option>
-
-
-
                                         @foreach ($categories as $category)
 
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -344,30 +340,18 @@
                 <ul>
 
                     <li><a href="{{ url('/') }}" class="active">Home</a></li>
-
                     <li><a href="{{ url('about-us') }}">About</a></li>
-
                     <li><a href="{{ url('shop') }}">Shop</a></li>
                     <li><a href="{{ url('technology') }}">Technology</a></li>
-
                     <li><a href="{{ url('contact-us') }}">Contact Us</a></li>
-
                     <li>
-
                         @if (Auth::user())
-
                             <a href="{{ url('my-account') }}">My Account</a>
-
                         @else
-
                             <a href="{{ url('my-account') }}">My Account</a>
-
                         @endif
-
                     </li>
-
                     <li><a href="{{ url('wholesale-application') }}">Wholesale</a></li>
-
                     <li><a href="{{ url('retailers') }}">Retailers</a></li>
 
                 </ul>

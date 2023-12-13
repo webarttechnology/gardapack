@@ -1,14 +1,6 @@
     function removeRows(button){
-        // var row = button.parentNode;
-        // var container = row.parentNode;
-        // container.removeChild(row);
-
-        // button.parentNode.removeChild(button);
+        $(button).closest('.row').remove();
     }
-
-    /**
-     * working ........
-    */
 
     function addRows(){
         var container = document.getElementById('more_variations');
@@ -31,10 +23,10 @@
                                         <input type="hidden" name="discount_amt[]" id="discount_amt1" class="form-control" placeholder="Final Price"  /> \
                                     </div>\
                                 </div>\
-                                <div class="col-md-2 col-12 rope-chan mt-3">\
-                                <p id="line_no" ></p>\
+                                <div class="col-md-3 col-12  mt-3">\
+                                <p id="line_no"></p>\
                                         <span class="btn btn-primary m-b-5 m-t-5" id="addrow" onclick="return addRows();" style="float: left;" ><i class="bx bx-plus" aria-hidden="true"></i></span>\
-                                        <!-- <span class="btn btn-primary m-b-5 m-t-5" id="removerow" style="float: right;" onclick="return removeRows(this);"><i class="bx bx-minus" aria-hidden="true"></i></span> --> \
+                                        <span class="btn btn-danger m-b-5 m-t-5" id="removerow" style="float: center;" onclick="return removeRows(this);"><i class="bx bx-trash" aria-hidden="true"></i></span> \
                                 </div>\
                             </div>`;
                 

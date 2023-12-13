@@ -1,5 +1,10 @@
 <x-userHeader />
 <main>
+
+    @php
+        $variations = App\Models\Variations::where('product_id', $product->id)->get();
+    @endphp
+
     <!-- introBannerHolder -->
     {{-- <section class="introBannerHolder d-flex w-100 bgCover" style="background-image: url({{ asset('front_end/images/b-bg7.jpg')}} );">
         <div class="container">
@@ -116,7 +121,26 @@
 
                         <li>( {{ $rating_no }} customer reviews )</li>
                     </ul>
+
+                    @if(Auth::user())
+                    @if(Auth::user()->user_type != "wholesale")
+                        <strong class="price d-block mb-3 text-green" id="total_price">$ {{ $product->price }}</strong>
+                    @else
+                    @if ($product->qty_check != null)
+                    @foreach($variations as $key => $variation)
+                        @if($variation->variation != "NA")
+                           <strong class="price d-block mb-3 text-green" id="total_price">$ {{ $variation->final_price }}</strong>
+                           @break
+                        @endif
+                    @endforeach
+                    @else
+                        <strong class="price d-block mb-3 text-green" id="total_price">NA</strong>
+                    @endif
+                    @endif
+                    @else
                     <strong class="price d-block mb-3 text-green" id="total_price">$ {{ $product->price }}</strong>
+                    @endif
+
                     <hr>
                     {{-- <p class="mb-5">{!! $product->short_description !!}</p> --}}
                     <ul class="list-unstyled productInfoDetail mb-2 overflow-hidden">
@@ -145,20 +169,23 @@
                             </span></li>
 
                         @if ($product->qty_check != null)
-                            @php
-                                $variations = App\Models\Variations::where('product_id', $product->id)->get();
-                            @endphp
-
+                        @if(Auth::user())
+                       @if(Auth::user()->user_type == "wholesale")
                             <li class="mb-2 mt-2"><hr>
                                 <label for="">Qty</label>
                                 <select name="variation" id="variation" required class="form-control bg-light"
                                     onchange="variationChange({{ $product->id }})">
-                                    <option value="">Select a Option</option>
                                     @foreach ($variations as $variation)
+                                    @if($variation->variation != "NA")
                                         <option value="{{ $variation->id }}">{{ $variation->variation }}</option>
+                                    @endif
                                     @endforeach
                                 </select>
                             </li>
+                        @endif
+                        
+
+                        @endif
                         @endif
 
                         @if ($product->color_added != null)
@@ -180,19 +207,45 @@
                     
                     @if ($product->no_in_stock != null)
                         <div class="holder overflow-hidden d-flex flex-wrap mb-6">
+
+                            @if(Auth::user())
+                            @if(Auth::user()->user_type != "wholesale")
                             <input type="number" name="cart_quantity" id="cart_quantity" placeholder="1" min="1"
                                 value="1">
                             <a href="javascript:void(0);"
                                 class="btn btnTheme btnShop fwEbold text-white md-round py-3 px-4 py-md-3 px-md-4"
                                 onclick="return addToCart({{ $product->id }}, 'multiple')"> Add To Cart <i
                                     class="fas fa-arrow-right ml-2"></i></a>
+                            @else
+                            @if ($product->qty_check != null)
+                            <a href="javascript:void(0);"
+                            class="btn btnTheme btnShop fwEbold text-white md-round py-3 px-4 py-md-3 px-md-4"
+                            onclick="return addToCart({{ $product->id }}, 'single')"> Add To Cart <i
+                                class="fas fa-arrow-right ml-2"></i></a>
+                            @endif
+                            @endif
+                            @else
+                            <input type="number" name="cart_quantity" id="cart_quantity" placeholder="1" min="1"
+                            value="1">
+                             <a href="javascript:void(0);"
+                            class="btn btnTheme btnShop fwEbold text-white md-round py-3 px-4 py-md-3 px-md-4"
+                            onclick="return addToCart({{ $product->id }}, 'multiple')"> Add To Cart <i
+                                class="fas fa-arrow-right ml-2"></i></a>
+                            @endif
 
 
                             <!-- wishlist section  -->
 
                             @if (Auth::user())
+                            @if(Auth::user()->user_type == "wholesale")
+                            @if ($product->qty_check != null)
                                 <a href="javascript:void(0);" onclick="addWishList({{ $product->id }}, 1, 'details')"
                                     class="icon-heart btn btnTheme ml-1 fwEbold text-white md-round py-3 px-4 py-md-3 px-md-4"></a>
+                            @endif
+                            @else
+                                    <a href="javascript:void(0);" onclick="addWishList({{ $product->id }}, 1, 'details')"
+                                        class="icon-heart btn btnTheme ml-1 fwEbold text-white md-round py-3 px-4 py-md-3 px-md-4"></a>
+                            @endif
                             @else
                                 <a href="javascript:void(0);" onclick="warningAlert()"
                                     class="icon-heart btn btnTheme ml-1 fwEbold text-white md-round py-3 px-4 py-md-3 px-md-4"></a>

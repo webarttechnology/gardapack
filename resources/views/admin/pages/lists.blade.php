@@ -12,7 +12,7 @@
         </div>
 
         <div>
-            <!--<a href="{{url('admin/add/pages')}}"><button class="btn btn-primary radius-30"><i class="bx bx-plus"></i>Add New</button></a>-->
+            {{-- <a href="{{url('admin/add/pages')}}"><button class="btn btn-primary radius-30"><i class="bx bx-plus"></i>Add New</button></a> --}}
         </div>
         <br>
 

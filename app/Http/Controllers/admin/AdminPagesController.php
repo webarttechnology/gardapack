@@ -4,7 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Pages, Notification};
+use App\Models\{Pages, Notification, Technology};
 use Illuminate\Support\Facades\Auth;
 
 class AdminPagesController extends Controller
@@ -25,7 +25,12 @@ class AdminPagesController extends Controller
     public function update_pages($id)
     {
           $details = Pages::whereId($id)->first();
-          return view('admin.pages.update', compact('details'));
+          if($details->title != "technology"){
+              return view('admin.pages.update', compact('details'));
+          }else{
+              $technology = Technology::first();
+              return view('admin.pages.technology', compact('technology'));
+          }
     }
 
     public function admin_save_pages(Request $request)

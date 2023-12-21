@@ -37,6 +37,7 @@ use App\Http\Controllers\user\ContactUsManageController;
 use App\Http\Controllers\payment\PaypalPaymentController;
 use App\Http\Controllers\shop\ShopController;
 use App\Http\Controllers\user\WholeSaleManageController;
+use App\Http\Controllers\admin\TechnologyManageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -209,6 +210,9 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::get('wholesaler/lists', [WholeSaleManageController::class, 'wholesaler_lists']);
     Route::get('wholesaler/status/{id}/{status}', [WholeSaleManageController::class, 'wholesaler_status']);
+    
+    // Technology CMS
+    Route::post('technology/save/action', [TechnologyManageController::class, 'save']);
 
 
     // controller grouping

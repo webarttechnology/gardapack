@@ -1,7 +1,8 @@
 @php
 
     $address = App\Models\Pages::where('name', 'Contact Us Page')->first();
-
+    $technology = App\Models\Technology::first();
+    $graphData = $technology->graph_data;
 @endphp
 
 
@@ -1068,13 +1069,63 @@ $(document).ready(function(){
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 <script>
+    var graphData = JSON.parse({!! json_encode($graphData) !!});
+    var categories = [];
+    var seriesData1 = [];
+    var seriesData2 = [];
+
+    
+    graphData.forEach(function (item) {
+        categories.push(item.key);
+        seriesData1.push([parseFloat(item.value1)]);
+        seriesData2.push([parseFloat(item.value2)]);
+    });
+
+    var sd1 = seriesData1.map(function(subArray) {
+         return subArray[0];
+     });
+
+    var sd2 = seriesData2.map(function(subArray) {
+         return subArray[0];
+     });
+
+
+        var category = categories.map(function (item) {
+        // Split each string into an array of words
+        var words = item.split(' ');
+        
+        // Iterate through the words and handle splitting longer words
+        var result = [];
+        var currentLine = '';
+
+        for (var i = 0; i < words.length; i++) {
+            if (currentLine.length + words[i].length <= 15) {
+            // Add the word to the current line
+            currentLine += (currentLine.length > 0 ? ' ' : '') + words[i];
+            } else {
+            // Start a new line with the current word
+            result.push(currentLine);
+            currentLine = words[i];
+            }
+        }
+
+        // Add the last line if it's not empty
+        if (currentLine.length > 0) {
+            result.push(currentLine);
+        }
+
+        return result;
+        });
+
         var options = {
-          series: [{
-          data: 
-          [0.56, 1.13, 1.79, 1.79, 32.38, 55.82, 112.48]
-            }, {
-            data: [1.13, 1.96, 2.64, 2.64, 3.67, 3.13, 3.16]
-            }],
+          series: [
+
+         {
+            data:sd1,
+          },{
+            data:sd2,
+          }
+        ],
           chart: {
           type: 'bar',
           height: 500
@@ -1088,7 +1139,7 @@ $(document).ready(function(){
             },
           }
         },
-        
+    
         dataLabels: {
           enabled: true,
           offsetX:30,
@@ -1113,15 +1164,8 @@ $(document).ready(function(){
           intersect: false
         },
         xaxis: {
-            categories: [
-                ['Gradapack high','barrler pro 5.5' ,' mill vaccum ', 'seal bags'],
-                ['steelpack (shieldpro)', ' 4 mill' , 'embossed mylar ', 'vaccum seal bags'],
-                ['Gradapack high ', 'barrler 5.5','mill vaccum', 'vaccum seal bags'],
-                ['Gradapack super', 'heavy-duty  5.5 mill', 'seal bags'],
-                ['Leading brand 5', 'mill vaccum seal bags'],
-                ['generic brand 5 mill', 'vaccum seal bags'],
-                ['Landing Brand 4 mill', 'polymer pouch bags'],
-            ]
+
+            categories: category
         },
         yaxis: {
             labels: {
@@ -1129,6 +1173,8 @@ $(document).ready(function(){
             }
         },
         };
+
+        console.log(options);
 
         var chart = new ApexCharts(document.querySelector("#chart"), options);
         chart.render();

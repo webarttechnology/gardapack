@@ -4,7 +4,7 @@ namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Product, PdfDownloads, Category, ProductGallery, Service, WebsiteGallery, Faq, Course, Pages, Cart, User, Order};
+use App\Models\{Product, PdfDownloads, Category, Technology, ProductGallery, Service, WebsiteGallery, Faq, Course, Pages, Cart, User, Order};
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
@@ -47,8 +47,8 @@ class PageManageController extends Controller
     
     public function technology()
     {
-        // $details = Pages::whereName('Contact Us Page')->first();
-        return view('front_end.technology');
+        $detail = Technology::first();
+        return view('front_end.technology', compact('detail'));
     }
 
     public function gallery()

@@ -56,6 +56,7 @@
 	
 	@php
 	     $segment = Request::segment(1);	
+		 $website_logo = App\Models\Settings::whereKey('app_logo')->first();
 	@endphp
 	
 	<div id="pageWrapper">
@@ -75,7 +76,7 @@
 							</div>
 							<div class="col-md-3">
 								<li class="nav-item text-center">
-									<a class="nLogo" href="{{ url('/') }}"><img src="{{ asset('front_end/images/greenlogo.png')}}" alt="" class="img-fluid"></a>
+									<a class="nLogo" href="{{ url('/') }}"><img src="{{ asset('settings/app_logo/'.$website_logo->value)}}" alt="" class="img-fluid"></a>
 								</li>
 							</div>
 							<div class="col-md-5">
@@ -242,7 +243,7 @@
 							</div>
 						</nav>
 						 <div class="logo">
-							<a href="index.html"><img src="images/logo.png" alt="" class="img-fluid"></a>
+							<a href="{{ url('/') }}"><img src="images/logo.png" alt="" class="img-fluid"></a>
 						</div>
 					</div>
 				</div>

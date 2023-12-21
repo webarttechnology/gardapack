@@ -141,13 +141,13 @@
 				
 				
 				<!-- gallery --> 
-				<li class="menu-label">Gallery</li>
+				{{-- <li class="menu-label">Gallery</li>
 				<li>
 					<ul>
 					<li> <a href="{{ url('admin/gallery/list') }}"><i class="bx bx-right-arrow-alt"></i>Gallery List</a></li>
                     <li> <a href="{{ url('admin/gallery/page') }}"><i class="bx bx-right-arrow-alt"></i>Add Gallery</a></li>
 					</ul>
-				</li>
+				</li> --}}
 
 				<li class="menu-label">Products</li>
 				
@@ -158,7 +158,7 @@
 					<li> <a href="{{ url('admin/product/lists') }}"><i class="bx bx-right-arrow-alt"></i>All Products</a></li>
 					<li> <a href="{{ url('admin/product/add') }}"><i class="bx bx-right-arrow-alt"></i>Add New Products</a></li>
 					 <li> <a href="{{ url('admin/stock/page', 'in-stock') }}"><i class="bx bx-right-arrow-alt"></i>Manage Stocks</a></li>
-					 <li> <a href="{{ url('admin/product/request/page') }}"><i class="bx bx-right-arrow-alt"></i>Product Requests</a></li>
+					 {{-- <li> <a href="{{ url('admin/product/request/page') }}"><i class="bx bx-right-arrow-alt"></i>Product Requests</a></li> --}}
 					</ul>
 				</li>
 
@@ -181,7 +181,7 @@
 				<!--	</ul>-->
 				<!--</li>-->
 				
-				<li class="menu-label">Services</li>
+				{{-- <li class="menu-label">Services</li>
 				
 				<li>
 					<ul>
@@ -189,42 +189,42 @@
                     <li> <a href="{{ url('admin/services/all') }}"><i class="bx bx-right-arrow-alt"></i>All Services</a></li>
 					<li> <a href="{{ url('admin/services/add/page') }}"><i class="bx bx-right-arrow-alt"></i>Add New Service</a></li>
 					</ul>
-				</li>
+				</li> --}}
 				
 				
 				<!-- Download Pdf -->
-				<li class="menu-label">Download PDF</li>
+				{{-- <li class="menu-label">Download PDF</li>
 				<li>
 					<ul>
 						<li> <a href="{{ url('admin/pdf/list') }}"><i class="bx bx-right-arrow-alt"></i>All Pdf</a></li>
 						<li> <a href="{{ url('admin/pdf/add') }}"><i class="bx bx-right-arrow-alt"></i>Add Pdf</a></li>
 					</ul>
-				</li>
+				</li> --}}
 				
 				<!-- Video Banner -->
-				<li class="menu-label">Video Banner</li>
+				{{-- <li class="menu-label">Video Banner</li>
 				<li>
 					<ul>
 						<li> <a href="{{ url('admin/video/banner/page') }}"><i class="bx bx-right-arrow-alt"></i>Video</a></li>
 					</ul>
-				</li>
+				</li> --}}
 				
 				<!-- Why Choose Us -->
-				<li class="menu-label">Why Choose Us</li>
+				{{-- <li class="menu-label">Why Choose Us</li>
 				<li>
 					<ul>
 						<li> <a href="{{ url('admin/others/choose-page') }}"><i class="bx bx-right-arrow-alt"></i>Why Choose Us</a></li>
 					</ul>
-				</li>
+				</li> --}}
 
                 <!-- course -->
-				<li class="menu-label">Course</li>
+				{{-- <li class="menu-label">Course</li>
 				<li>
 					<ul>
                     <li> <a href="{{ url('admin/course/list') }}"><i class="bx bx-right-arrow-alt"></i>Course Lists</a></li>
 					<li> <a href="{{ url('admin/course/add') }}"><i class="bx bx-right-arrow-alt"></i>Add Course</a></li>
 					</ul>
-				</li>
+				</li> --}}
 			
 			    <!-- faq -->
 				<li class="menu-label">FAQ</li>
@@ -236,21 +236,21 @@
 				</li>
 				
 				<!-- newsletter -->
-				<li class="menu-label">Newsletter</li>
+				{{-- <li class="menu-label">Newsletter</li>
 				<li>
 					<ul>
                     <li> <a href="{{ url('admin/newsletter') }}"><i class="bx bx-right-arrow-alt"></i>Newsletter</a></li>
 					</ul>
-				</li>
+				</li> --}}
 				
 				
 				<!-- User's Message -->
-				<li class="menu-label">User's Message</li>
+				{{-- <li class="menu-label">User's Message</li>
 				<li>
 					<ul>
                     <li> <a href="{{ url('admin/user-msg') }}"><i class="bx bx-right-arrow-alt"></i>User's Message</a></li>
 					</ul>
-				</li>
+				</li> --}}
 
 				@php
                     $options = App\Models\SettingsOptions::all();

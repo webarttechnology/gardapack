@@ -38,6 +38,7 @@ use App\Http\Controllers\payment\PaypalPaymentController;
 use App\Http\Controllers\shop\ShopController;
 use App\Http\Controllers\user\WholeSaleManageController;
 use App\Http\Controllers\admin\TechnologyManageController;
+use App\Http\Controllers\admin\HomePageCmsManageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -466,6 +467,8 @@ Route::group(['prefix' => 'admin'], function () {
                 Route::get('choose-page', 'choose_page');
                 Route::post('choose-page/action/{id}', 'choose_page_action');
             });
+
+        Route::post('home/cms/save', [HomePageCmsManageController::class, 'save']);
 
         // delete routes are only accessable for admin not for sub-admins
 

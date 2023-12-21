@@ -3,6 +3,7 @@
     $address = App\Models\Pages::where('name', 'Contact Us Page')->first();
     $technology = App\Models\Technology::first();
     $graphData = $technology->graph_data;
+    $website_logo = App\Models\Settings::where('key','app_logo')->first();
 @endphp
 
 
@@ -18,7 +19,7 @@
         <div class="row mt-5" data-aos="zoom-in" data-aos-duration="2000">
 
             <div class="col-sm-6 col-md-3">
-                <span class="mb-5" style="display:block"> <a href="{{ url('/') }}"><img src="{{ asset('assets/images/Nav_Logo.png') }}"></a></span>
+                <span class="mb-5" style="display:block"> <a href="{{ url('/') }}"><img src="{{ asset('settings/app_logo/'.$website_logo->value)}}"></a></span>
                 <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
                 <ul class="d-flex socials">
                     <li><a href="#"><i class="bi bi-facebook"></i></a></li>

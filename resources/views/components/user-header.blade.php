@@ -1,10 +1,9 @@
 @php
 
     $categories = App\Models\Category::where('type', 'product')->get();
-
+    $website_logo = App\Models\Settings::where('key','app_logo')->first();
+    $website_name = App\Models\Settings::where('key','app_name')->first();
 @endphp
-
-
 
 <!DOCTYPE html>
 
@@ -56,7 +55,7 @@
     <!-- Staller Nav CSS -->
 
     <link href="{{ asset('assets/css/stellarnav.min.css') }}" rel="stylesheet">
-
+    <link rel="icon" href="{{ asset('settings/app_logo/'.$website_logo->value)}}" type="image/png" />
     <!-- Custom CSS -->
 
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
@@ -65,7 +64,7 @@
 
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
 
-    <title>Grada </title>
+    <title>{{ $website_name->value }}</title>
 
 
 
@@ -141,22 +140,6 @@
 
 <body>
 
-
-
-
-
-
-
-    <!-- Ria -->
-
-
-
-
-
-    <!-- --------home-header--------------- -->
-
-
-
     <header>
 
         <div class="header-part clearfix">
@@ -227,7 +210,7 @@
 
                         <div class="home-logo">
 
-                            <a href="{{ url('/') }}"><img src="{{ asset('assets/images/Nav_Logo.png') }}"></a>
+                            <a href="{{ url('/') }}"><img src="{{ asset('settings/app_logo/'.$website_logo->value)}}"></a>
 
                         </div>
 

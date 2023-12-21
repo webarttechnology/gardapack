@@ -4,7 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Pages, Notification, Technology};
+use App\Models\{Pages, Notification, Technology, HomeCms};
 use Illuminate\Support\Facades\Auth;
 
 class AdminPagesController extends Controller
@@ -26,8 +26,16 @@ class AdminPagesController extends Controller
     {
           $details = Pages::whereId($id)->first();
           if($details->title != "technology"){
-              return view('admin.pages.update', compact('details'));
-          }else{
+            if($details->title == "home"){
+                  $details = HomeCms::first();
+                  return view('admin.pages.home', compact('details'));
+              }
+              else{
+                  return view('admin.pages.update', compact('details'));
+              }
+          }
+
+          if($details->title == "technology"){
               $technology = Technology::first();
               return view('admin.pages.technology', compact('technology'));
           }

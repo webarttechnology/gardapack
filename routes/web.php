@@ -190,6 +190,8 @@ Route::controller(OrderManageController::class)
     ->prefix('user/product/order/')
     ->group(function () {
         Route::post('add', [OrderManageController::class, 'order_add']);
+        Route::get('getShipServices/{carrierCode}', [OrderManageController::class, 'getShipServices']);
+        Route::get('getShipServiceRate/{carrierCode}/{serviceCode}/{toState?}/{toCountry?}/{toZip?}/{toCity?}', [OrderManageController::class, 'getShipServicesRate']);
     });
 
 

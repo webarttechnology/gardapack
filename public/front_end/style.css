@@ -1293,7 +1293,8 @@ a {
 
 .introBannerHolder {
 
-  min-height: 130px;
+  min-height: auto !important;
+  /* min-height: 130px; */
 
 }
 
@@ -5936,7 +5937,7 @@ a {
 
 .introBannerHolder {
 
-  padding-top: 10rem;
+  /* padding-top: 10rem; */
 
 }
 

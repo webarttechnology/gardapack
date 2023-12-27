@@ -8,6 +8,7 @@ use App\Models\{Product, PdfDownloads, Category, Technology, ProductGallery, Ser
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Order\ShipStationManageController;
 
 class PageManageController extends Controller
 {
@@ -75,6 +76,8 @@ class PageManageController extends Controller
         if (Auth::user()) {
             $carts = Cart::where('user_id', Auth::user()->id)->paginate(10);
             $all_carts = Cart::where('user_id', Auth::user()->id)->get();
+            $carriers = json_decode(ShipStationManageController::getCarriers(), true);
+            $countries = DB::table('countries')->get();
 
             // find sum
             $total = 0;
@@ -82,7 +85,7 @@ class PageManageController extends Controller
                 $total = number_format((float)($total + ($cart->cart_quantity * $cart->amount)), 2, '.', '');
             }
 
-            return view('front_end.checkout', compact('total', 'carts'));
+            return view('front_end.checkout', compact('total', 'carts', 'carriers', 'countries'));
         } else {
             return redirect()->route('user.signup')->with('danger', 'Please Login First');
         }

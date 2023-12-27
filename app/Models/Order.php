@@ -30,7 +30,11 @@ class Order extends Model
         'order_status',
         'txn_id',
         'transaction_details',
-        'total_amount'
+        'total_amount',
+        'carrier',
+        'service_code',
+        'shipping_cost',
+        'other_cost'
     ];
     
     public function orderProduct()

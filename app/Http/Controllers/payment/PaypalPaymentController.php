@@ -81,9 +81,11 @@ class PaypalPaymentController extends Controller
                     'postalCode' => $order->billing_zip,
                     'country' => 'US',
                 ],
+                "carrierCode" => $order->carrier,
+                "serviceCode" => $order->service_code,
             ];
 
-            
+           
             foreach($order_products as $prod)
             {
 
@@ -98,8 +100,10 @@ class PaypalPaymentController extends Controller
                     'quantity' => $prod->product_quantity,
                 ];
             }
-
+            
             $ship_res = ShipStationManageController::createOrUpdateOrder($shipStation_order_details);
+            
+            // dd($ship_res); 
             $ship_res2 = json_decode($ship_res, true);
             $ship_orderId = $ship_res2['orderId'];
             

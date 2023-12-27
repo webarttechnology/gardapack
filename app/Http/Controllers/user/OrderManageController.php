@@ -8,6 +8,7 @@ use App\Models\{Order, OrderedProduct, Cart, Product};
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\payment\PaypalPaymentController;
+use App\Http\Controllers\Order\ShipStationManageController;
 use Illuminate\Support\Facades\Session;
 
 class OrderManageController extends Controller
@@ -27,7 +28,8 @@ class OrderManageController extends Controller
                     'country' => 'required',
                     'state' => 'required',
                     'zip' => 'required',
-                    'town' => 'required'
+                    'town' => 'required',
+                    'carrier' => 'required',
              ],
              [
                     'fname.required' => 'First Name is Required',
@@ -39,6 +41,7 @@ class OrderManageController extends Controller
                     'state.required' => 'State is Required',
                     'zip.required' => 'Zip is Required',
                     'town.required' => 'Town is Required',
+                    'carrier.required' => 'Carrier is Required',
              ]
          );
 
@@ -60,6 +63,8 @@ class OrderManageController extends Controller
              'billing_zip' => $request->zip,
              'total_amount' => $request->total_price,
              'order_notes' => $request->order_notes,
+             'carrier' => $request->carrier,
+             'service_code' => $request->service,
          ]);
 
          // add orderted products details
@@ -86,5 +91,35 @@ class OrderManageController extends Controller
          return $link;
 
          //    return redirect()->back()->with('order_submit', 'Order Submitted Successfully');
+     }
+
+     //////
+     public function getShipServices($carrierCode){
+        $services = ShipStationManageController::getServiceDetails($carrierCode);
+        return response()->json(['services' => $services]);
+     }
+
+     public function getShipServicesRate($carrierCode, $serviceCode, $toState, $toCountry, $toZip, $toCity){
+        $arr = [
+           'carrierCode' => $carrierCode,
+           'serviceCode' => $serviceCode,
+           "packageCode" => null,
+           'fromPostalCode' => "78703",
+           "toState"=> $toState,
+           "toCountry"=> "US",
+           "toPostalCode"=> $toZip,
+           "toCity"=> $toCity,
+        //    "toState"=> "DC",
+        //    "toCountry"=> "US",
+        //    "toPostalCode"=> "20500",
+        //    "toCity"=> "Washington",
+           "weight" => [
+                "value"=> 3,
+                "units"=> "ounces"
+           ],
+        ];
+
+        $detail = ShipStationManageController::getSpecificServiceRate($arr);
+        return response()->json($detail);
      }
 }

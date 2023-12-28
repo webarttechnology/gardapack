@@ -12,12 +12,12 @@ use App\Models\{Order, OrderedProduct, Product};
 
 class PaypalPaymentController extends Controller
 {
-    public static function paypalPay(Request $request, $order_id, $totalPrice)
+    public static function paypalPay(Request $request, $order_id, $totalPrice, $shippingPrice, $otherCost)
     {
         $description = "Test";
 
         $paypal_payments = new paypal;
-        $total_amount = $totalPrice;
+        $total_amount = number_format(($totalPrice + $shippingPrice + $otherCost), 2);
         $tax = 0;
         $shipping = 0;
         $handling_fee = 0;
@@ -71,16 +71,17 @@ class PaypalPaymentController extends Controller
                     'city' => $order->billing_town,
                     'state' => $order->billing_state,
                     'postalCode' => $order->billing_zip,
-                    'country' => 'US',
+                    'country' => $order->billing_country,
                 ],
                 'shipTo' => [
-                    'name' => $order->billing_name,
-                    'street1' => $order->billing_address1,
-                    'city' => $order->billing_town,
-                    'state' => $order->billing_state,
-                    'postalCode' => $order->billing_zip,
-                    'country' => 'US',
+                    'name' => $order->shipping_name,
+                    'street1' => $order->shipping_address1,
+                    'city' => $order->shipping_town,
+                    'state' => $order->shipping_state,
+                    'postalCode' => $order->shipping_zip,
+                    'country' => $order->shipping_country,
                 ],
+                'shippingAmount' => $order->shipping_cost,
                 "carrierCode" => $order->carrier,
                 "serviceCode" => $order->service_code,
             ];

@@ -14,13 +14,21 @@
               <li class="list-group-item"><strong>Name: </strong> {{ $order->billing_name }}</li>
               <li class="list-group-item"><strong>Email: </strong> {{ $order->billing_email }}</li>
               <li class="list-group-item"><strong>Phone: </strong> {{ $order->billing_phone }}</li>
-              <li class="list-group-item"><strong>Delivary Address: </strong> {{ $order->billing_address1 }} <br> 
+              <li class="list-group-item"><strong>Billing Address: </strong> {{ $order->billing_address1 }} <br> 
                 {{ $order->billing_address2 }}, <br> Country - {{ $order->billing_country }}, Town/City - {{ $order->billing_town }}, State - {{ $order->billing_state }}
                 <br> Zip - {{ $order->billing_zip }}
               </li>
-              @if ($order->order_notes != null)
-                  <li><strong>Order Notes: {{ $order->order_notes }}</strong></li>
-              @endif
+              <li class="list-group-item"><strong>Shipping Address: </strong> {{ $order->shipping_address1 }} <br> 
+                {{ $order->shipping_address2 }}, <br> Country - {{ $order->shipping_country }}, Town/City - {{ $order->shipping_town }}, State - {{ $order->shipping_state }}
+                <br> Zip - {{ $order->shipping_zip }}
+              </li>
+              
+                  <li class="list-group-item">
+                    @if ($order->order_notes != null)
+                    <strong>Order Notes: {{ $order->order_notes }}</strong>
+                    @endif
+                </li>
+              
             </ul>
         </div>
 
@@ -47,6 +55,7 @@
                             @php
                                 $product = App\Models\Product::whereId($order->product_id)->first();
                             @endphp
+                            @if($product != null)
                             <tr>
                                 <td>{{ ($key + 1) }}</td>
                                 <td>{{ $product->name }}</td>
@@ -57,6 +66,7 @@
                                     class="card-img-top" alt="..." height="75" width="90">
                                 </td>
                             </tr>
+                            @endif
                             @endforeach
 
                         </tbody>

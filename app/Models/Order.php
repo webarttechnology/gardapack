@@ -21,6 +21,17 @@ class Order extends Model
         'billing_address2',
         'billing_country',
         'billing_town',
+        
+        'shipping_name',
+        'shipping_email',
+        'shipping_phone',
+        'shipping_address1',
+        'shipping_address2',
+        'shipping_country',
+        'shipping_town',
+        'shipping_state',
+        'shipping_zip',
+
         'order_notes',
         'billing_state',
         'ship_station_order_id',

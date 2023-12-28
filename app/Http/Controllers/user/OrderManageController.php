@@ -17,7 +17,6 @@ class OrderManageController extends Controller
 
      public function order_add(Request $request)
      {
-
          $request->validate(
              [
                     'fname' => 'required|max:200',
@@ -29,6 +28,17 @@ class OrderManageController extends Controller
                     'state' => 'required',
                     'zip' => 'required',
                     'town' => 'required',
+                    
+                    'bill_fname' => 'required|max:200',
+                    'bill_lname' => 'required|max:200',
+                    'bill_email' => 'required|email|max:200',
+                    'bill_phone' => 'required',
+                    'bill_address1' => 'required',
+                    'bill_country' => 'required',
+                    'bill_state' => 'required',
+                    'bill_zip' => 'required',
+                    'bill_town' => 'required',
+
                     'carrier' => 'required',
              ],
              [
@@ -41,6 +51,17 @@ class OrderManageController extends Controller
                     'state.required' => 'State is Required',
                     'zip.required' => 'Zip is Required',
                     'town.required' => 'Town is Required',
+
+                    'bill_fname.required' => 'Billing First Name is Required',
+                    'bill_lname.required' => 'Billing Last Name is Required',
+                    'bill_email.required' => 'Billing Email is Required',
+                    'bill_phone.required' => 'Billing Phone is Required',
+                    'bill_address1.required' => 'Billing Address is Required',
+                    'bill_country.required' => 'Billing Country is Required',
+                    'bill_state.required' => 'Billing State is Required',
+                    'bill_zip.required' => 'Billing Zip is Required',
+                    'bill_town.required' => 'Billing Town is Required',
+                    
                     'carrier.required' => 'Carrier is Required',
              ]
          );
@@ -51,20 +72,34 @@ class OrderManageController extends Controller
          $order = Order::create([
              'user_id' => Auth::user()->id,
              'order_id' => $order_id,
-             'billing_name' => $request->fname . " " . $request->lname,
+
+             'shipping_name' => $request->fname . " " . $request->lname,
+             'shipping_email' => $request->email,
+             'shipping_phone' => $request->phone,
+             'shipping_address1' => $request->address1,
+             'shipping_address2' => $request->address2,
+             'shipping_country' => $request->country,
+             'shipping_town' => $request->town,
+             'shipping_state' => $request->state,
+             'shipping_zip' => $request->zip,
              'billing_username' => $request->username,
-             'billing_email' => $request->email,
-             'billing_phone' => $request->phone,
-             'billing_address1' => $request->address1,
-             'billing_address2' => $request->address2,
-             'billing_country' => $request->country,
-             'billing_town' => $request->town,
-             'billing_state' => $request->state,
-             'billing_zip' => $request->zip,
+
+             'billing_name' => $request->bill_fname . " " . $request->bill_lname,
+             'billing_email' => $request->bill_email,
+             'billing_phone' => $request->bill_phone,
+             'billing_address1' => $request->bill_address1,
+             'billing_address2' => $request->bill_address2,
+             'billing_country' => $request->bill_country,
+             'billing_town' => $request->bill_town,
+             'billing_state' => $request->bill_state,
+             'billing_zip' => $request->bill_zip,
+
              'total_amount' => $request->total_price,
              'order_notes' => $request->order_notes,
              'carrier' => $request->carrier,
              'service_code' => $request->service,
+             'shipping_cost' => $request->shipCost,
+             'other_cost' => $request->otherCost,
          ]);
 
          // add orderted products details
@@ -87,7 +122,7 @@ class OrderManageController extends Controller
          Cart::where('user_id', Auth::user()->id)->delete();
          Session::put('orderEmail', $request->email);
 
-         $link = PaypalPaymentController::paypalPay($request, $order->id, $request->total_price);
+         $link = PaypalPaymentController::paypalPay($request, $order->id, $request->total_price, $request->shipCost, $request->otherCost);
          return $link;
 
          //    return redirect()->back()->with('order_submit', 'Order Submitted Successfully');
@@ -106,7 +141,7 @@ class OrderManageController extends Controller
            "packageCode" => null,
            'fromPostalCode' => "78703",
            "toState"=> $toState,
-           "toCountry"=> "US",
+           "toCountry"=> $toCountry,
            "toPostalCode"=> $toZip,
            "toCity"=> $toCity,
         //    "toState"=> "DC",

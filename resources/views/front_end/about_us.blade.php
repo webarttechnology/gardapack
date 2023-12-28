@@ -41,7 +41,6 @@
 		<div class="container">
 
 			<div class="row">
-
 				<div class="col-md-4">
 
 					<div class="blockbx">
@@ -59,7 +58,6 @@
 					</div>
 
 				</div>
-
 				<div class="col-md-4">
 
 					<div class="blockbx">
@@ -77,7 +75,6 @@
 					</div>
 
 				</div>
-
 				<div class="col-md-4">
 
 					<div class="blockbx">
@@ -95,7 +92,6 @@
 					</div>
 
 				</div>
-
 			</div>
 
 		</div>
@@ -113,25 +109,17 @@
 				<div class="col-md-6">
 
 					<div class="servcnt mb-5">
-
 						<h3>Lorem Ipsum is simply dummy text</h3>
-
 						<p>{!! $details->description !!}</p>
 
 						<!-- <p>One of the primary benefits of rooftop gardening is the ability to grow your food. This is particularly important for urban areas with limited access to fresh produce. With a rooftop garden, you can grow fresh fruits, vegetables, and herbs that are fresh and free from pesticides and chemicals. This not only improves your diet’s nutritional value but also helps reduce your carbon footprint.</p> -->
-
 					</div>
-
 				</div>
 
 				<div class="col-md-6">
-
 					<div class="servdetimg mb-5">
-
 						<img src="{{asset('pages/featured_img/'.$details->featured_img)}}" alt="">
-
 					</div>
-
 				</div>
 
 				<div class="col-md-6">
@@ -292,31 +280,31 @@
 
 	</section>
 
-	<section class="landscp">
+	<!--<section class="landscp">-->
 
-		<div class="container">
+	<!--	<div class="container">-->
 
-			<div class="row">
+	<!--		<div class="row">-->
 
-				<div class="col-md-12">
+	<!--			<div class="col-md-12">-->
 
-					<div class="landscp-head">
+	<!--				<div class="landscp-head">-->
 
-						<h1 Stretches for Your Benefit</h1>
+	<!--					<h1 Stretches for Your Benefit</h1>-->
 
-					</div>
+	<!--				</div>-->
 
-				</div>
+	<!--			</div>-->
 
-			</div>
+	<!--		</div>-->
 
-			<div class="row">
+	<!--		<div class="row">-->
 
-				<div class="col-md-6">
+	<!--			<div class="col-md-6">-->
 
-					<div class="landscp-content mt-5 mb-5">
+	<!--				<div class="landscp-content mt-5 mb-5">-->
 
-					    <p> {!! $details->description3 !!} </p>
+	<!--				    <p> {!! $details->description3 !!} </p>-->
 
 					    
 
@@ -330,39 +318,39 @@
 
 						<!--<p><i class="fa fa-angle-double-right" aria-hidden="true"></i> A large range of succulents and cacti have been added to our collection for the first time.</p>-->
 
-					</div>
+	<!--				</div>-->
 
-				</div>
+	<!--			</div>-->
 
-				<div class="col-md-6">
+	<!--			<div class="col-md-6">-->
 
-					<div class="landscp-img mt-2 mb-5">
+	<!--				<div class="landscp-img mt-2 mb-5">-->
 
-						<img src="{{asset('pages/img3/'.$details->img3)}}" alt="">
+	<!--					<img src="{{asset('pages/img3/'.$details->img3)}}" alt="">-->
 
-					</div>
+	<!--				</div>-->
 
-				</div>
+	<!--			</div>-->
 
-			</div>
+	<!--		</div>-->
 
-			<div class="row">
+	<!--		<div class="row">-->
 
-				<div class="col-md-6">
+	<!--			<div class="col-md-6">-->
 
-					<div class="landscp-img mt-2 mb-5">
+	<!--				<div class="landscp-img mt-2 mb-5">-->
 
-						<img src="{{asset('pages/img4/'.$details->img4)}}" alt="">
+	<!--					<img src="{{asset('pages/img4/'.$details->img4)}}" alt="">-->
 
-					</div>
+	<!--				</div>-->
 
-				</div>
+	<!--			</div>-->
 
-				<div class="col-md-6">
+	<!--			<div class="col-md-6">-->
 
-					<div class="landscp-content mt-5 mb-5">
+	<!--				<div class="landscp-content mt-5 mb-5">-->
 
-					    <p> {!! $details->description4 !!} </p>
+	<!--				    <p> {!! $details->description4 !!} </p>-->
 
 						<!--<p><i class="fa fa-angle-double-right" aria-hidden="true"></i> Over 700 types of imported and Indian ceramic pots have been added, and a new section of 2000 Sq ft of the showroom is dedicated to their display.</p>-->
 
@@ -374,45 +362,45 @@
 
 						<!--</p>-->
 
-					</div>
+	<!--				</div>-->
 
-				</div>
+	<!--			</div>-->
 
-			</div>
+	<!--		</div>-->
 
-		</div>
+	<!--	</div>-->
 
-		</div>
+	<!--	</div>-->
 
-	</section>
+	<!--</section>-->
 
-	<section class="know-more">
+	<!--<section class="know-more">-->
 
-		<div class="container">
+	<!--	<div class="container">-->
 
-			<div class="row text-center">
+	<!--		<div class="row text-center">-->
 
-				<div class="col-md-12">
+	<!--			<div class="col-md-12">-->
 
-					<div class="know-more-head">
+	<!--				<div class="know-more-head">-->
 
-						<h1>Know More</h1>
+	<!--					<h1>Know More</h1>-->
 
-					</div>
+	<!--				</div>-->
 
-				</div>
+	<!--			</div>-->
 
-			</div>
+	<!--		</div>-->
 
-			<div class="row">
+	<!--		<div class="row">-->
 
-				<div class="col-md-6">
+	<!--			<div class="col-md-6">-->
 
-					<div class="know-more-content mt-5 mb-5">
+	<!--				<div class="know-more-content mt-5 mb-5">-->
 
 					    
 
-					    <p>{!! $details->description5 !!}</p>
+	<!--				    <p>{!! $details->description5 !!}</p>-->
 
 					    
 
@@ -440,25 +428,25 @@
 
 						<!--<p><i class="fa fa-angle-double-right" aria-hidden="true"></i> is a great place to learn about gardening, purchase plants and supplies, and get advice from the experts. It is also a great place to relax and enjoy the beauty of nature.</p>-->
 
-					</div>
+	<!--				</div>-->
 
-				</div>
+	<!--			</div>-->
 
-				<div class="col-md-6">
+	<!--			<div class="col-md-6">-->
 
-					<div class="green-tree">
+	<!--				<div class="green-tree">-->
 
-						<img src="{{asset('pages/img5/'.$details->img5)}}" alt="">
+	<!--					<img src="{{asset('pages/img5/'.$details->img5)}}" alt="">-->
 
-					</div>
+	<!--				</div>-->
 
-				</div>
+	<!--			</div>-->
 
-			</div>
+	<!--		</div>-->
 
-		</div>
+	<!--	</div>-->
 
-	</section>
+	<!--</section>-->
 
 	
 

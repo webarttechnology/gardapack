@@ -4,6 +4,7 @@
     $technology = App\Models\Technology::first();
     $graphData = $technology->graph_data;
     $website_logo = App\Models\Settings::where('key','app_logo')->first();
+    $footer = App\Models\WebsiteFoter::first();
 @endphp
 
 
@@ -16,39 +17,53 @@
 
     <div class="container">
 
-        <div class="row mt-5" data-aos="zoom-in" data-aos-duration="2000">
+        <div class="row mt-5" >
 
             <div class="col-sm-6 col-md-3">
                 <span class="mb-5" style="display:block"> <a href="{{ url('/') }}"><img src="{{ asset('settings/app_logo/'.$website_logo->value)}}"></a></span>
-                <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                <p>@if($footer!=null) {!! $footer->footer_desc !!} @endif</p>
                 <ul class="d-flex socials">
-                    <li><a href="#"><i class="bi bi-facebook"></i></a></li>
-                    <li><a href="#"><i class="bi bi-twitter"></i></a></li>
-                    <li><a href="#"><i class="bi bi-google"></i></a></li>
-                    <li><a href="#"><i class="bi bi-instagram"></i></a></li>
+                    @if($footer!=null && $footer->fb_status == "active")
+                      <li><a href="{{ $footer->fb_link }}" target="_blank"><i class="bi bi-facebook"></i></a></li>
+                    @endif
+                    @if($footer!=null && $footer->twitter_status == "active")
+                    <li><a href="{{ $footer->twitter_link }}" target="_blank"><i class="bi bi-twitter"></i></a></li>
+                    @endif
+                    @if($footer!=null && $footer->goog_status == "active")
+                    <li><a href="{{ $footer->goog_link }}" target="_blank"><i class="bi bi-google"></i></a></li>
+                    @endif
+                    @if($footer!=null && $footer->pint_status == "active")
+                    <li><a href="{{ $footer->pint_link }}" target="_blank"><i class="bi bi-instagram"></i></a></li>
+                    @endif
                 </ul>
             </div>
 
             <div class="col-sm-6 col-md-3">
                 <h4 class="mb-5" style="display:block">INFORMATION</h4>
                 <ul>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Shop</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Wholesale</a></li>
-                    <li><a href="#">Retailers</a></li>
+                    <li><a href="{{ url('about-us') }}">About</a></li>
+                    <li><a href="{{ url('shop') }}">Shop</a></li>
+                    <li><a href="{{ url('contact-u') }}">Contact Us</a></li>
+                    <li><a href="{{ url('wholesale-application') }}">Wholesale</a></li>
+                    <li><a href="{{ url('retailers') }}">Retailers</a></li>
                 </ul>
             </div>
 
+            
             <div class="col-sm-6 col-md-3">
                 <h4 class="mb-5" style="display:block">MY ACCOUNT</h4>
+                
                 <ul>
-                    <li><a href="#">My Account</a></li>
-                    <li><a href="#">My Shop</a></li>
-                    <li><a href="#">My Cart</a></li>
-                    <li><a href="#">Checkout</a></li>
-                    <li><a href="#">My Wishlist</a></li>
+                    <li><a href="{{ url('my-account') }}">My Account</a></li>
+                    
+                   
+                    <li><a href="{{ url('user/cart/page') }}">My Cart</a></li>
+                    <li><a href="{{ url('user/wishlist/page') }}">My Wishlist</a></li>
+                    
+
+                    <li><a href="{{ url('shop') }}">My Shop</a></li>
                 </ul>
+                
             </div>
 
             <div class="col-sm-6 col-md-3">
@@ -60,15 +75,11 @@
                     <ul>
 
                         <li>
-
                             <p><span><i class="bi bi-geo-alt-fill"></i></span> {{ $address->address }}</p>
-
                         </li>
 
                         <li>
-
-                        <p><span><i class="bi bi-envelope-fill"></i></span><a href="javascript:void(0)"> {{ $address->email }} </a>
-</p>
+                        <p><span><i class="bi bi-envelope-fill"></i></span><a href="javascript:void(0)"> {{ $address->email }} </a></p>
                         </li>
 
                         <li></li>
@@ -201,11 +212,7 @@
 
                 <div class="ftrbtm">
 
-                    <p>Copyright 2022 © Grada Packs. Powered by <a href="{{ url('/') }}" target="_blank">
-
-                            WebArt
-
-                            Technology All Rights Reserved.</a></p>
+                    <p>@if($footer !=null ) {!! $footer->copy_right_text !!} @endif</p>
 
                 </div>
 
@@ -214,9 +221,11 @@
             <div class="col-md-4">
 
                 <div class="ftrlogo">
-
+                    @if($footer !=null && $footer->foot_img != null)
+                    <img src="{{ asset('uploads/foot_img/'.$footer->foot_img) }}" alt="">
+                    @else
                     <img src="{{ asset('assets/images/ftr-logo.png') }}" alt="">
-
+                    @endif
                 </div>
 
             </div>

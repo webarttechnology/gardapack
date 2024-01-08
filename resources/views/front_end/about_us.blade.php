@@ -1,62 +1,20 @@
 <x-userHeader />
-
 <main>
 
 	<!-- introBannerHolder -->
 
-	{{-- <section class="introBannerHolder d-flex w-100 bgCover" style="background-image: url({{ asset('front_end/images/innerBanner.png') }});">
-
-		<div class="container">
-
-			<div class="row">
-
-				<div class="col-12 pt-sm-10 text-center">
-
-					<h1 class="headingIV fwEbold playfair mb-4">About-Us</h1>
-
-					<ul class="list-unstyled breadCrumbs d-flex justify-content-center">
-
-						<li class="mr-2"><a href="{{ url('/') }}">Home</a></li>
-
-						<li class="mr-2">/</li>
-
-						<li class="active">About Us</li>
-
-					</ul>
-
-				</div>
-
-			</div>
-
-		</div>
-
-	</section> --}}
-
-
-
-
-
 	<section class="blocksec">
-
 		<div class="container">
-
 			<div class="row">
 				<div class="col-md-4">
-
 					<div class="blockbx">
-
 						<div class="cinbx">
-
 							<i class="fa fa-pagelines" aria-hidden="true"></i>
-
 						</div>
 
-						<h3>Lorem Ipsum is simply dummy text</h3>
-
-						<p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-
+						<h3>{{ $details->text3 }}</h3>
+						<p>{!! $details->description3 !!}</p>
 					</div>
-
 				</div>
 				<div class="col-md-4">
 
@@ -68,9 +26,8 @@
 
 						</div>
 
-						<h3>Lorem Ipsum is simply dummy text</h3>
-
-						<p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+						<h3>{{ $details->text4 }}</h3>
+						<p>{!! $details->description4 !!}</p>
 
 					</div>
 
@@ -85,15 +42,12 @@
 
 						</div>
 
-						<h3>Lorem Ipsum is simply dummy text</h3>
-
-						<p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+						<h3>{{ $details->text5 }}</h3>
+						<p>{!! $details->description6 !!}</p>
 
 					</div>
-
 				</div>
 			</div>
-
 		</div>
 
 	</section>
@@ -109,7 +63,7 @@
 				<div class="col-md-6">
 
 					<div class="servcnt mb-5">
-						<h3>Lorem Ipsum is simply dummy text</h3>
+						<h3>{{ $details->feature_heading }}</h3>
 						<p>{!! $details->description !!}</p>
 
 						<!-- <p>One of the primary benefits of rooftop gardening is the ability to grow your food. This is particularly important for urban areas with limited access to fresh produce. With a rooftop garden, you can grow fresh fruits, vegetables, and herbs that are fresh and free from pesticides and chemicals. This not only improves your diet’s nutritional value but also helps reduce your carbon footprint.</p> -->
@@ -125,25 +79,17 @@
 				<div class="col-md-6">
 
 					<div class="servdetimg mb-5">
-
 						<img src="{{asset('pages/img2/'.$details->img2)}}" alt="">
-
 					</div>
 
 				</div>
 
 				<div class="col-md-6">
-
 					<div class="servcnt mb-5">
-
 						<p>{!! $details->description2 !!}</p>
-
 					</div>
-
 				</div>
-
 			</div>
-
 		</div>
 
 	</section>
@@ -156,7 +102,7 @@
 
 			<header class="col-12 mainHeader mb-7 text-center">
 
-				<h1 class="headingIV playfair fwEblod mb-4">How it Works?</h1>
+				<h1 class="headingIV playfair fwEblod mb-4">{{ $details->how_work_heading }}</h1>
 
 				<span class="headerBorder d-block mb-md-5 mb-3"><img src="{{ asset('front_end/images/hbdr.png')}}" alt="Header Border" class="img-fluid img-bdr"></span>
 
@@ -174,10 +120,8 @@
 
 						</div>
 
-						<h4>Lorem Ipsum is simply dummy text
-</h4>
-
-<p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+						<h4>{{ $details->how_work_text1 }}</h4>
+                        <p>{!! $details->how_work_desc1 !!}</p>
 
 					</div>
 
@@ -193,11 +137,8 @@
 
 						</div>
 
-						<h4>Lorem Ipsum is simply dummy text
-</h4>
-
-<p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-
+						<h4>{{ $details->how_work_text2 }}</h4>
+                        <p>{!! $details->how_work_desc2 !!}</p>
 					</div>
 
 				</div>
@@ -212,11 +153,8 @@
 
 						</div>
 
-						<h4>Lorem Ipsum is simply dummy text
-</h4>
-
-<p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-
+						<h4>{{ $details->how_work_text3 }}</h4>
+                        <p>{!! $details->how_work_desc3 !!}</p>
 					</div>
 
 				</div>
@@ -231,11 +169,8 @@
 
 						</div>
 
-						<h4>Lorem Ipsum is simply dummy text
-</h4>
-
-						<p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-
+						<h4>{{ $details->how_work_text4 }}</h4>
+                        <p>{!! $details->how_work_desc4 !!}</p>
 					</div>
 
 				</div>

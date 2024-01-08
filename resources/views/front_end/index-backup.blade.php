@@ -1,6 +1,6 @@
 <x-userHeader />
 
-<section class="home-banner clearfix" @if($home != null) style="background-image: url('{{ 'uploads/banners/'.$home->banner }}') !important;" @endif>
+<section class="home-banner clearfix" style="background-image: url('{{ 'uploads/banners/'.$home->banner }}') !important;">
 
     <div class="container">
 
@@ -10,8 +10,19 @@
 
                 {!!$home->banner_des!!}
 
-                <div class="home-button"><a href="@if($home!= null) {{ $home->btn1_link }} @endif" target="_blank"><button type="button" class="btn btn-secondary">@if($home!= null) {{ $home->btn1_txt }} @endif</button></a>
-                <span class="home-button2"><a href="@if($home!= null) {{ $home->btn1_link }} @endif" target="_blank"><button type="button" class="btn btn-secondary">@if($home!= null) {{ $home->btn2_txt }} @endif</button></a></span>
+                <!--<p>Grove Bags TerpLoc® product line is the evolution in packaging the cannabis<br>-->
+
+                <!--    industry has been waiting for. Designed around the plant’s physiological properties,<br>-->
+
+                <!--    it utilizes a blend of several film elements to create the optimal cannabis climate<br>-->
+
+                <!--    inside every package.</p>-->
+
+                <div class="home-button"><button type="button" class="btn btn-secondary">Shop Now</button>
+
+                    <span class="home-button2"><button type="button" class="btn btn-secondary">See
+
+                            Now</button></span>
 
                 </div>
 
@@ -43,7 +54,7 @@
 
             <div class="col-md-10">
 
-                <h2 class="effectCenter">{{$home->home_about_heading}}</h2>
+                <h2 class="effectCenter"> {{$home->home_about_heading}}</h2>
 
                 <p>{!! $home->home_about_des !!}</p>
 
@@ -75,7 +86,7 @@
 
                 <div class="btnbox">
 
-                    <a href="{{ url('shop') }}">View All <i class="bi bi-arrow-right"></i></a>
+                    <a href="#">View All <i class="bi bi-arrow-right"></i></a>
 
                 </div>
 
@@ -216,10 +227,9 @@
 
             <div class="col-md-12">
 
-                <div class="ftrhdng">
+                <div class="ftrhdng" data-aos="zoom-in" data-aos-duration="1500">
 
-                    {{-- <h1 class="effectCenter">Special <span>Features</span></h1> --}}
-                    <h1 class="effectCenter">@if($home != null) {{ $home->feature_heading }} @else Special <span>Features</span> @endif</span></h1>
+                    <h1 class="effectCenter">Special <span>Features</span></h1>
 
                 </div>
 
@@ -233,108 +243,66 @@
 
                 <div class="maincircle forDesktop">
 
-                    <div class="roundimg" >
+                    <div class="roundimg" data-aos="zoom-in" data-aos-duration="2000">
 
                         <div class="circleimg">
 
-                            @if($home != null)
-                            <img src="{{ asset('uploads/feature_side_imgs/'.$home->feature_side_img) }}" alt="">
-                            @else
-                            <img src="assets/images/Special fetures post.png" alt="">    
-                            @endif
+                            <img src="assets/images/Special fetures post.png" alt="">
 
                         </div>
 
                     </div>
 
-                    <div class="roundcircle" >
+                    <div class="roundcircle" data-aos="zoom-in" data-aos-duration="2000">
+
                         <div class="halfcirle">
+
                             <img src="assets/images/packet-design.png" alt="" class="w-100">
+
                         </div>
+
                     </div>
+
+
 
                     <div class="feacontent">
-                        <div class="circlehdng it1" >
-                            <span>
-                                @if($home != null)
-                                   <img src="{{ asset('uploads/feature_img_1/'.$home->feature_img_1) }}" alt="" class="img-fluid">
-                                @else
-                                   <img src="assets/images/2.png" alt="" class="img-fluid">
-                                @endif
-                            </span>
-                            <h5>
-                            @if($home != null)
-                            {{ $home->feature_title_1 }}    
-                            @endif</h5>
+                        <div class="circlehdng it1" data-aos="fade-left">
+                            <span><img src="assets/images/2.png" alt="" class="img-fluid"></span>
+                            <h5>Durability</h5>
 
-                            @if($home != null) {!! $home->feature_description_1 !!} @endif
+                            <p>An industrial strength element is added for maximum puncture resistance</p>
 
                         </div>
 
-                        <div class="circlehdng it2" >
-                            <span>
-                                @if($home != null)
-                                   <img src="{{ asset('uploads/feature_img_2/'.$home->feature_img_2) }}" alt="" class="img-fluid">
-                                @else
-                                   <img src="assets/images/3.png" alt="" class="img-fluid">
-                                @endif
-                            </span>
-                            <h5>
-                            @if($home != null)
-                            {{ $home->feature_title_2 }}    
-                            @endif</h5>
+                        <div class="circlehdng it2" data-aos="fade-left">
+                            <span><img src="assets/images/3.png" alt="" class="img-fluid"></span>
+                            <h5>Odor</h5>
 
-                            @if($home != null) {!! $home->feature_description_2 !!} @endif
+                            <p>An industrial strength element is added for maximum puncture resistance</p>
 
                         </div>
 
-                        <div class="circlehdng it3">
-                            <span>
-                                @if($home != null)
-                                   <img src="{{ asset('uploads/feature_img_3/'.$home->feature_img_3) }}" alt="" class="img-fluid">
-                                @else
-                                   <img src="assets/images/4.png" alt="" class="img-fluid">
-                                @endif
-                            </span>
-                            <h5>
-                            @if($home != null)
-                            {{ $home->feature_title_3 }}    
-                            @endif</h5>
+                        <div class="circlehdng it3" data-aos="fade-left">
+                            <span><img src="assets/images/4.png" alt="" class="img-fluid"></span>
+                            <h5>Humidity</h5>
 
-                            @if($home != null) {!! $home->feature_description_3 !!} @endif
+                            <p>An industrial strength element is added for maximum puncture resistance</p>
 
                         </div>
 
-                        <div class="circlehdng it4">
-                            <span>
-                                @if($home != null)
-                                   <img src="{{ asset('uploads/feature_img_4/'.$home->feature_img_4) }}" alt="" class="img-fluid">
-                                @else
-                                   <img src="assets/images/5.png" alt="" class="img-fluid">
-                                @endif
-                            </span>
-                            <h5>
-                            @if($home != null)
-                            {{ $home->feature_title_4 }}    
-                            @endif</h5>
+                        <div class="circlehdng it4" data-aos="fade-left">
+                            <span><img src="assets/images/5.png" alt="" class="img-fluid"></span>
+                            <h5>UV</h5>
 
-                            @if($home != null) {!! $home->feature_description_4 !!} @endif
+                            <p>An industrial strength element is added for maximum puncture resistance</p>
+
                         </div>
 
-                        <div class="circlehdng it5" >
-                            <span>
-                                @if($home != null)
-                                   <img src="{{ asset('uploads/feature_img_5/'.$home->feature_img_5) }}" alt="" class="img-fluid">
-                                @else
-                                   <img src="assets/images/6.png" alt="" class="img-fluid">
-                                @endif
-                            </span>
-                            <h5>
-                            @if($home != null)
-                            {{ $home->feature_title_5 }}    
-                            @endif</h5>
+                        <div class="circlehdng it5" data-aos="fade-left">
+                            <span><img src="assets/images/6.png" alt="" class="img-fluid"></span>
+                            <h5>Oxygen</h5>
+                            <p>An industrial strength element is added for maximum puncture resistance</p>
 
-                            @if($home != null) {!! $home->feature_description_5 !!} @endif
                         </div>
 
                     </div>
@@ -349,11 +317,7 @@
 
                             <div class="circleimg" data-aos="zoom-in" data-aos-duration="2000">
 
-                                @if($home != null)
-                                <img src="{{ asset('uploads/feature_side_imgs/'.$home->feature_side_img) }}" alt="">
-                                @else
-                                <img src="assets/images/Special fetures post.png" alt="">    
-                                @endif
+                                <img src="assets/images/Special fetures post.png" alt="">
 
                             </div>
 
@@ -368,8 +332,11 @@
                         <div class="col-md-6">
 
                             <div class="circlehdng it1 mt-5" data-aos="fade-up">
-                                <h5>@if($home != null) {{ $home->feature_title_1 }} @endif</h5>
-                                <p>@if($home != null) {!! $home->feature_description_1 !!} @endif</p>
+
+                                <h5>Durability</h5>
+
+                                <p>An industrial strength element is added for maximum puncture resistance</p>
+
                             </div>
 
                         </div>
@@ -377,8 +344,11 @@
                         <div class="col-md-6">
 
                             <div class="circlehdng it2 mt-5" data-aos="fade-up">
-                                <h5>@if($home != null) {{ $home->feature_title_2 }} @endif</h5>
-                                <p>@if($home != null) {!! $home->feature_description_2 !!} @endif</p>
+
+                                <h5>Odor</h5>
+
+                                <p>An industrial strength element is added for maximum puncture resistance</p>
+
                             </div>
 
                         </div>
@@ -386,8 +356,11 @@
                         <div class="col-md-6">
 
                             <div class="circlehdng it3 mt-5" data-aos="fade-up">
-                                <h5>@if($home != null) {{ $home->feature_title_3 }} @endif</h5>
-                                <p>@if($home != null) {!! $home->feature_description_3 !!} @endif</p>
+
+                                <h5>Humidity</h5>
+
+                                <p>An industrial strength element is added for maximum puncture resistance</p>
+
                             </div>
 
                         </div>
@@ -395,8 +368,11 @@
                         <div class="col-md-6">
 
                             <div class="circlehdng it4 mt-5" data-aos="fade-up">
-                                <h5>@if($home != null) {{ $home->feature_title_4 }} @endif</h5>
-                                <p>@if($home != null) {!! $home->feature_description_4 !!} @endif</p>
+
+                                <h5>UV</h5>
+
+                                <p>An industrial strength element is added for maximum puncture resistance</p>
+
                             </div>
 
                         </div>
@@ -404,15 +380,23 @@
                         <div class="col-md-6">
 
                             <div class="circlehdng it5 mt-5" data-aos="fade-up">
-                                <h5>@if($home != null) {{ $home->feature_title_5 }} @endif</h5>
-                                <p>@if($home != null) {!! $home->feature_description_5 !!} @endif</p>
+
+                                <h5>Oxygen</h5>
+
+                                <p>An industrial strength element is added for maximum puncture resistance</p>
+
                             </div>
 
                         </div>
+
                     </div>
+
                 </div>
+
             </div>
+
         </div>
+
     </div>
 
 </section>
@@ -429,13 +413,19 @@
         <div class="row" data-aos="fade-up" data-aos-duration="2000">
 
             <div class="col-sm-8 col-md-6">
+
                 <h2 class="effectLeft">Shop By Categories</h2>
+
             </div>
 
             <div class="col-sm-4 col-md-6">
+
                 <div class="btnbox">
-                    <a href="{{ url('shop') }}">View All <i class="bi bi-arrow-right"></i></a>
+
+                    <a href="#">View All <i class="bi bi-arrow-right"></i></a>
+
                 </div>
+
             </div>
 
         </div>
@@ -463,7 +453,9 @@
                                 @else
 
                                 <a href="{{ url('product-category', ['subcategory_id' => 0, 'category_slug' => $category->slug]) }}">
+
                                     <img src="{{asset('pages/featured_img/no_imge_found.jpg')}}" height="100" width="175" alt="">
+
                                 </a>
 
                                 @endif
@@ -523,20 +515,20 @@
   <div class="container">
     <div class="row">
         <div class="col-sm-6 mb-5">
-            <div class="offersbox left" @if($home != null) style="background-image: url('{{ 'uploads/offer_banner_1/'.$home->offer_banner_1 }}') !important;" @endif>
+            <div class="offersbox left">
                 <div class="texts text-center">
-                    <h3>@if($home != null) {{ $home->offer_title_1 }} @endif</h3>
-                    <h4>@if($home != null) {{ $home->offer_subtitle_1 }} @endif</h4>
-                    <span><a @if($home != null) href="{{ $home->offer_link_1 }}" @endif target="_blank" class="btn btn-dark">Order Now</a></span>
+                    <h3>5% To 60% OFF</h3>
+                    <h4>Wholesale Discount On Bulk Orders</h4>
+                    <span><a href="#" class="btn btn-dark">Order Now</a></span>
                 </div>
             </div>
         </div>
         <div class="col-sm-6 mb-5">
-            <div class="offersbox" @if($home != null) style="background-image: url('{{ 'uploads/offer_banner_2/'.$home->offer_banner_2 }}') !important;" @endif>
+            <div class="offersbox">
                 <div class="texts text-center">
-                    <h3>@if($home != null) {{ $home->offer_title_2 }} @endif</h3>
-                    <h4>@if($home != null) {{ $home->offer_subtitle_2 }} @endif</h4>
-                    <span><a @if($home != null) href="{{ $home->offer_link_2 }}" @endif target="_blank" class="btn btn-dark">Order Now</a></span>
+                    <h3>5% To 60% OFF</h3>
+                    <h4>Wholesale Discount On Bulk Orders</h4>
+                    <span><a href="#" class="btn btn-dark">Order Now</a></span>
                 </div>
             </div>
         </div>
@@ -547,69 +539,25 @@
 
 <!-- explore -->
 
-<section class="explore" @if($home != null) style="background-image: url('{{ 'uploads/explore_tech_banner/'.$home->explore_tech_banner }}') !important;" @endif>
+<section class="explore">
 
     <div class="container">
+
         <div class="sec-title" data-aos="zoom-in" data-aos-duration="1500">
-            <h2 class="effectCenter">
-                @if($home != null)
-                    {{ $home->explore_tech_heading }}
-                @endif
-            </h2>
+
+            <h2 class="effectCenter">Explore <span> TerpLoc® </span>Technology</h2>
+
         </div>
+
     </div>
 
     <div class="expcontent">
+
         <div class="container">
+
             <div class="row justify-content-center">
+
                 <div class="col-md-9  exfitm">
-                    <div class="expitems" data-aos="fade-up" data-aos-duration="2500">
-                        <div class="item-img">
-                            <div class="img">
-                                @if($home != null)
-                                   <img src="{{ asset('uploads/tech_img_1/'.$home->tech_img_1) }}" alt="">
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="item-text">
-
-                            <div class="item-title">@if($home != null) {{ $home->tech_title_1 }} @endif</div>
-                            <h3>
-                                @if($home != null)
-                                    {!! $home->technology_description_1 !!}
-                                @endif
-                            </h3>
-                        </div>
-                    </div>
-
-                    <div class="expitems" data-aos="fade-up" data-aos-duration="2500">
-
-                        <div class="item-text">
-
-                            <div class="item-title">@if($home != null) {{ $home->tech_title_2 }} @endif</div>
-
-                            <h3>
-                                @if($home != null)
-                                    {!! $home->technology_description_2 !!}
-                                @endif 
-                           </h3>
-
-                        </div>
-
-                        <div class="item-img">
-
-                            <div class="img">
-
-                                @if($home != null)
-                                   <img src="{{ asset('uploads/tech_img_2/'.$home->tech_img_2) }}" alt="">
-                                @endif
-
-                            </div>
-
-                        </div>
-
-                    </div>
 
                     <div class="expitems" data-aos="fade-up" data-aos-duration="2500">
 
@@ -617,9 +565,7 @@
 
                             <div class="img">
 
-                                @if($home != null)
-                                   <img src="{{ asset('uploads/tech_img_3/'.$home->tech_img_3) }}" alt="">
-                                @endif
+                                <img src="./assets/images/exp1.png" alt="">
 
                             </div>
 
@@ -627,16 +573,68 @@
 
                         <div class="item-text">
 
-                            <div class="item-title">@if($home != null) {{ $home->tech_title_3 }} @endif</div>
+                            <div class="item-title">Terpene Preservation</div>
 
-                            <h3>@if($home != null)
-                                {!! $home->technology_description_3 !!}
-                            @endif </h3>
+                            <h3>Terpenes are Essential for </br>
+
+                                Preserving Cannabis Synergy.</h3>
 
                         </div>
+
                     </div>
+
+                    <div class="expitems" data-aos="fade-up" data-aos-duration="2500">
+
+                        <div class="item-text">
+
+                            <div class="item-title">Mold Prevention</div>
+
+                            <h3>Mold can occur early on </br>
+
+                                in the curing process. </h3>
+
+                        </div>
+
+                        <div class="item-img">
+
+                            <div class="img">
+
+                                <img src="./assets/images/exp2.png" alt="">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="expitems" data-aos="fade-up" data-aos-duration="2500">
+
+                        <div class="item-img">
+
+                            <div class="img">
+
+                                <img src="./assets/images/exp3.png" alt="">
+
+                            </div>
+
+                        </div>
+
+                        <div class="item-text">
+
+                            <div class="item-title">Weight Retension</div>
+
+                            <h3>Moisture loss is a consistent </br>
+
+                                problem across legal markets.</h3>
+
+                        </div>
+
+                    </div>
+
                 </div>
+
             </div>
+
         </div>
 
     </div>
@@ -647,49 +645,133 @@
 
 <!-- dealofday -->
 
+<!-- <section class="dealofday">
+
+    <div class="container">
+
+        <div class="row" data-aos="fade-up" data-aos-duration="2000">
+
+            <div class="col-sm-8 col-md-6">
+
+                <h2>Deals of the Day</h2>
+
+            </div>
+
+            <div class="col-sm-4 col-md-6">
+
+                <div class="btnbox">
+
+                    <a href="#">View All <i class="bi bi-arrow-right"></i></a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row py-3">
+
+            <div class="col-md-3 my-3"  data-aos="fade-up" data-aos-duration="2500">
+
+                <div class="deal-item">
+
+                    <div class="img">
+
+                        <img src="./assets/images/deal1.png" alt="">
+
+                    </div>
+
+                    <h5>Vaccum Seal Bags</h5>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3 my-3"  data-aos="fade-up" data-aos-duration="2800">
+
+                <div class="deal-item">
+
+                    <div class="img">
+
+                        <img src="./assets/images/deal2.png" alt="">
+
+                    </div>
+
+                    <h5>Vaccum Seal Rolls</h5>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3 my-3"  data-aos="fade-up" data-aos-duration="3100">
+
+                <div class="deal-item">
+
+                    <div class="img">
+
+                        <img src="./assets/images/deal3.jpg" alt="">
+
+                    </div>
+
+                    <h5>Clear/Black Bags</h5>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3 my-3"  data-aos="fade-up" data-aos-duration="3400">
+
+                <div class="deal-item">
+
+                    <div class="img">
+
+                        <img src="./assets/images/deal4.jpg" alt="">
+
+                    </div>
+
+                    <h5>All Black Bags</h5>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section> -->
+
 <section class="p-v-50 featuresSec">
-  <div class="fetureHead">
-    @if($home != null)
-    <h2>{{ $home->why_us_heading }}</h2>
-    @else
-    <h2>why choose us</h2>
-    @endif
-</div>  
+  <div class="fetureHead"><h2>why choose us</h2></div>  
   <div class="container">
     <div class="row justify-content-around align-items-start">
         <div class="col-sm-4 d-flex fetureBoxes"> 
-            <span>
-                <i class="fas fa-certificate"></i>
-
-                {{-- @if($home != null)
-                     <img src="{{ asset('uploads/why_us_img_1/'.$home->why_us_img_1) }}" alt="">
-                @endif --}}
-            </span>
+            <span><i class="fas fa-certificate"></i></span>
             <div>
-                <h4>@if($home != null) {{ $home->why_us_title_1 }} @endif</h4>
-                <p>@if($home != null) {!! $home->why_us_desc_1 !!} @endif </p>
+                <h4>Quality</h4>
+                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti </p>
             </div>
         </div>
         <div class="col-sm-4 d-flex fetureBoxes"> 
             <span><i class="fas fa-money-check-alt"></i></span>
             <div>
-                <h4>@if($home != null) {{ $home->why_us_title_2 }} @endif</h4>
-                <p>@if($home != null) {!! $home->why_us_desc_2 !!} @endif </p>
+                <h4>Low Price</h4>
+                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti </p>
             </div>
         </div>
         <div class="clearfix"></div>
         <div class="col-sm-4 d-flex fetureBoxes"> 
             <span><i class="far fa-clock"></i></span>
             <div>
-                <h4>@if($home != null) {{ $home->why_us_title_3 }} @endif</h4>
-                <p>@if($home != null) {!! $home->why_us_desc_3 !!} @endif </p>
+                <h4>On Time</h4>
+                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti </p>
             </div>
         </div>
         <div class="col-sm-4 d-flex fetureBoxes"> 
             <span><i class="fas fa-balance-scale-left"></i></span>
             <div>
-                <h4>@if($home != null) {{ $home->why_us_title_4 }} @endif</h4>
-                <p>@if($home != null) {!! $home->why_us_desc_4 !!} @endif </p>
+                <h4>Compare</h4>
+                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti </p>
             </div>
         </div>
     </div>
@@ -700,7 +782,7 @@
 
 <!-- FAQ -->
 
-<section class="faq" @if($home != null) style="background-image: url('{{ 'uploads/faq_banner/'.$home->faq_banner }}') !important;" @endif>
+<section class="faq">
 
     <div class="container">
 
@@ -964,56 +1046,6 @@
 
     </div>
 
-</section>
-
-<section class="testimonials">
-
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="hdng text-center" data-aos="fade-up" data-aos-duration="2000">
-                    <h2 class="effectCenter">
-                        @if($home != null)
-                           {{ $home->testimonial_heading }} 
-                        @else
-                           Customer <span>Feedback</span> 
-                        @endif
-                    </h2>
-                </div>
-            </div>
-            
-            <div class="col-md-10">
-                
-                <!-- Carousel -->
-                <div id="demo" class="carousel slide" data-bs-ride="carousel">
-                
-                  <!-- Indicators/dots -->
-                  <div class="carousel-indicators">
-                    @for($i = 0; $i < count($testimonials); $i++)
-                       <button type="button" data-bs-target="#demo" data-bs-slide-to="{{ $i }}" class="@if($i == 0) active @endif"></button>
-                    @endfor
-                  </div>
-                
-                  <!-- The slideshow/carousel -->
-                  <div class="carousel-inner">
-
-                    @foreach($testimonials as $key => $testimonial)    
-                        <div class="carousel-item  @if($key == 0) active @endif testimonyBox">
-                            <center>
-                                {{-- <div class="d-flex mt-2 mb-4 justify-content-center align-items-center">
-                                    <span><i class="fa fa-quote-left"></i></span><span><img src="images/testi-02.webp" alt=""></span><span><i class="fa fa-quote-right"></i></span>
-                                </div> --}}
-                                <p>{!! $testimonial->message !!}</p>
-                                <h5>{{ $testimonial->name }}</h5>
-                            </center>
-                        </div>
-                    @endforeach
-                  </div>
-                </div>
-               </div> 
-
-        </div>
-    </div>
 </section>
 
 <x-userFooter />

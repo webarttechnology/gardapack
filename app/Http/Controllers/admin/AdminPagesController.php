@@ -4,7 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Pages, Notification, Technology, HomeCms};
+use App\Models\{HomePge, Pages, Notification, Support, Technology};
 use Illuminate\Support\Facades\Auth;
 
 class AdminPagesController extends Controller
@@ -26,15 +26,20 @@ class AdminPagesController extends Controller
     {
           $details = Pages::whereId($id)->first();
           if($details->title != "technology"){
-            if($details->title == "home"){
-                  $details = HomeCms::first();
-                  return view('admin.pages.home', compact('details'));
-              }
-              else{
-                  return view('admin.pages.update', compact('details'));
-              }
+                if($details->title == "home"){
+                    $data = HomePge::first();
+                    return view('admin.pages.home', compact('data'));
+                }
+                else if($details->title == "support"){
+                    // return redirect()->route('admin.support.list');
+                    $data = Support::first();
+                    return view('admin.pages.support', compact('data'));
+                }
+                else{
+                    return view('admin.pages.update', compact('details'));
+                }
           }
-
+          
           if($details->title == "technology"){
               $technology = Technology::first();
               return view('admin.pages.technology', compact('technology'));
@@ -149,8 +154,24 @@ class AdminPagesController extends Controller
                     'description3' => $request->description3,
                     'description4' => $request->description4,
                     'description5' => $request->description5,
+                    
                     'youtube_link1' => str_replace("watch?v=", "embed/", $request->youtube_link1),
-                    'youtube_link2' => str_replace("watch?v=", "embed/", $request->youtube_link2)
+                    'youtube_link2' => str_replace("watch?v=", "embed/", $request->youtube_link2),
+
+                    'text3' => $request->text3,
+                    'text4' => $request->text4,
+                    'text5' => $request->text5,
+                    'description6' => $request->description6,
+                    'how_work_text1' => $request->how_work_text1,
+                    'how_work_text2' => $request->how_work_text2,
+                    'how_work_text3' => $request->how_work_text3,
+                    'how_work_text4' => $request->how_work_text4,
+                    'how_work_desc1' => $request->how_work_desc1,
+                    'how_work_desc2' => $request->how_work_desc2,
+                    'how_work_desc3' => $request->how_work_desc3,
+                    'how_work_desc4' => $request->how_work_desc4,
+                    'feature_heading' => $request->feature_heading,
+                    'how_work_heading' => $request->how_work_heading,
                  ]);
             //   }
 

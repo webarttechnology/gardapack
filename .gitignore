@@ -15,3 +15,5 @@ yarn-error.log
 /.vscode
 /public/admin/product
 /public/uploads
+/public/category_img
+/public/category_top_img

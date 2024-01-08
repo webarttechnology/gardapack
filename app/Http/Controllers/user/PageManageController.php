@@ -4,7 +4,7 @@ namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Product, PdfDownloads, Category, Technology, ProductGallery, Service, WebsiteGallery, Faq, Course, Pages, Cart, User, Order};
+use App\Models\{Product, PdfDownloads, Category, Technology, ProductGallery, Service, WebsiteGallery, Faq, Course, Pages, Cart, HomePge, User, Order, Support, Testimonial};
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
@@ -16,17 +16,19 @@ class PageManageController extends Controller
 
     public function index()
     {
-        // $products = Product::inRandomOrder()->limit(12)->get();
-        $products = Product::with('productGalleries', 'category')->latest()->limit(4)->get();
-        $categories = Category::where('type', 'product')->inRandomOrder()->limit(12)->get();
-        $daily_deals = Product::orderBy('id', 'desc')->limit(10)->get();
-        $courses = Course::orderBy('id', 'desc')->limit(6)->get();
-        $pdfs = PdfDownloads::all();
-        $video_banner = DB::table('video_banner')->first();
-        $why_us = DB::table('why_choose_us')->first();
-        $faqs = Faq::all();
-
-        return view('front_end.index', compact('products', 'faqs', 'why_us', 'categories', 'daily_deals', 'courses', 'pdfs', 'video_banner'));
+         // $products = Product::inRandomOrder()->limit(12)->get();
+         $products = Product::with('productGalleries', 'category')->latest()->limit(4)->get();
+         $categories = Category::where('type', 'product')->inRandomOrder()->limit(12)->get();
+         $daily_deals = Product::orderBy('id', 'desc')->limit(10)->get();
+         $courses = Course::orderBy('id', 'desc')->limit(6)->get();
+         $pdfs = PdfDownloads::all();
+         $video_banner = DB::table('video_banner')->first();
+         $why_us = DB::table('why_choose_us')->first();
+         $faqs = Faq::all();
+         $home = HomePge::first();
+         $testimonials = Testimonial::orderBy('id', 'desc')->get();
+ 
+         return view('front_end.index', compact('products', 'faqs', 'why_us', 'categories', 'daily_deals', 'courses', 'pdfs', 'video_banner', 'home', 'testimonials'));
     }
 
     public function signup_signin()
@@ -56,6 +58,12 @@ class PageManageController extends Controller
     {
         $galleries = WebsiteGallery::all();
         return view('front_end.gallery', compact('galleries'));
+    }
+
+    public function support()
+    {
+        $support = Support::first();
+        return view('front_end.support', compact('support'));
     }
 
     public function faq()

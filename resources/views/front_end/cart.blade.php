@@ -1,27 +1,6 @@
 <x-userHeader />
 <main>
 
-    <!-- introBannerHolder -->
-
-    <section class="d-flex w-100 bgCover" style="background:#eee;">
-
-        <div class="container">
-            <div class="row">
-                <div class="col-12 pt-sm-10 mb-10 text-center">
-                    <h1 class="headingIV fwEbold playfair mb-4">Cart</h1>
-                    <ul class="list-unstyled breadCrumbs d-flex justify-content-center">
-                        <li class="mr-2"><a href="#">Home</a></li>
-                        <li class="mr-2">/</li>
-                        <li class="mr-2"><a href="#">Cart</a></li>
-                        <li class="mr-2">/</li>
-                        <li class="active">Pellentesque aliquet</li>
-                   </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
     <section class="cart-list">
         <div class="container">
             <div class="cart">

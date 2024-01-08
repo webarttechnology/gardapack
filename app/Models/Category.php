@@ -16,7 +16,9 @@ class Category extends Model
         'category_img',
         'added_by',
         'type',
-        'slug'
+        'slug',
+        'category_top_img',
+        'display_top'
     ];
 
 }

@@ -18,15 +18,15 @@
         </div>
         @endif
 
-        @if(Session::has('cat_err'))
+        @if($errors->any())
         <div class="alert alert-danger">
-            {{ Session::get('cat_err') }}
-            @php
-            Session::forget('cat_err');
-            @endphp
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         </div>
         @endif
-
 
         <div class="row">
             <div class="col-xl-9 mx-auto">
@@ -57,6 +57,28 @@
                             </div>
                             <br>
 
+                            <div class="mb-3">
+                                <label class="form-label">Want to Display the Category on Top?</label>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="want_to_display" id="yes" value="yes" onchange="toggleImageField()">
+                                    <label class="form-check-label" for="yes">Yes</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="want_to_display" id="no" value="no" checked onchange="toggleImageField()">
+                                    <label class="form-check-label" for="no">No</label>
+                                </div>
+                            </div>
+
+                            <!-- Image field (initially hidden) -->
+                            <div class="mb-3" id="imageField" style="display: none;">
+                                <label class="form-label">Category Top Image</label>
+                                <input type="file" class="form-control" name="category_top_img" />
+                                @if ($errors->has('category_top_img'))
+                                    <span class="text-danger">{{ $errors->first('category_top_img') }}</span>
+                                @endif
+                            </div>
+
+
                             <div class="">
                                 <input type="submit" class="form-control btn btn-primary px-4" value="Add" />
                             </div>
@@ -75,5 +97,19 @@
 $(document).ready(function() {
     $('.ckeditor').ckeditor();
 });
+</script>
+
+<script>
+    function toggleImageField() {
+        var wantToDisplay = document.querySelector('input[name="want_to_display"]:checked').value;
+        var imageField = document.getElementById('imageField');
+
+        // If "Yes" is selected, show the image field; otherwise, hide it
+        if (wantToDisplay === 'yes') {
+            imageField.style.display = 'block';
+        } else {
+            imageField.style.display = 'none';
+        }
+    }
 </script>
 @endsection

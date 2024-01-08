@@ -4,7 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Admin, Product};
+use App\Models\{Admin, Product, User};
 use Illuminate\Support\Facades\Auth;
 
 class AdminAuthController extends Controller
@@ -27,7 +27,33 @@ class AdminAuthController extends Controller
 
     public function dashboard_page()
     {
-          return view('admin.dashboard');
+        $currentYear = now()->year;
+         //For Monthly User
+         $user = User::selectRaw('MONTH(created_at) as month, COUNT(*) as count')
+         ->whereYear('created_at', $currentYear)
+         ->groupBy('month')
+         ->orderBy('month')
+         ->get();
+         $monthWiseUserCounts = [];
+         foreach ($user as $users) {
+             $monthWiseUserCounts[$users->month] = $users->count;
+         }
+         $userCounts = [
+             'January' => $monthWiseUserCounts[1] ?? 0,
+             'February' => $monthWiseUserCounts[2] ?? 0,
+             'March' => $monthWiseUserCounts[3] ?? 0,
+             'April' => $monthWiseUserCounts[4] ?? 0,
+             'May' => $monthWiseUserCounts[5] ?? 0,
+             'June' => $monthWiseUserCounts[6] ?? 0,
+             'July' => $monthWiseUserCounts[7] ?? 0,
+             'August' => $monthWiseUserCounts[8] ?? 0,
+             'September' => $monthWiseUserCounts[9] ?? 0,
+             'October' => $monthWiseUserCounts[10] ?? 0,
+             'November' => $monthWiseUserCounts[11] ?? 0,
+             'December' => $monthWiseUserCounts[12] ?? 0,
+         ];
+
+          return view('admin.dashboard', compact('userCounts'));
     }
 
     public function post_registration(Request $request)

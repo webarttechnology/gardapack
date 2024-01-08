@@ -130,10 +130,26 @@
 					</a>
 				</li>
 
+				<!-- Order Management -->
+				<li class="menu-label">Order</li>
+				
+				<li>
+					<ul>
+                         <li> <a href="{{ url('admin/order/list') }}"><i class="bx bx-right-arrow-alt"></i>Orders</a></li>
+					</ul>
+				</li>
+
 				<li class="menu-label">Pages</li>
 				<li>
 					<ul>
                     <li> <a href="{{url('admin/pages-lists')}}"><i class="bx bx-right-arrow-alt"></i>Pages</a></li>
+					</ul>
+				</li>
+
+				<li class="menu-label">Menubar Manage</li>
+				<li>
+					<ul>
+                    <li> <a href="{{ url('admin/menu/list') }}"><i class="bx bx-right-arrow-alt"></i>Menubars</a></li>
 					</ul>
 				</li>
 				
@@ -163,14 +179,7 @@
 				</li>
 
 
-                <!-- Order Management -->
-				<li class="menu-label">Order</li>
-				
-				<li>
-					<ul>
-                         <li> <a href="{{ url('admin/order/list') }}"><i class="bx bx-right-arrow-alt"></i>Orders</a></li>
-					</ul>
-				</li>
+                
 				<!-- -->
 				
                 <!-- Stock Manage -->
@@ -234,6 +243,14 @@
 					<li> <a href="{{ url('admin/faq/add/page') }}"><i class="bx bx-right-arrow-alt"></i>Add FAQ</a></li>
 					</ul>
 				</li>
+
+				<li class="menu-label">Testimonial</li>
+				<li>
+					<ul>
+                    <li> <a href="{{ url('admin/testimonial/list') }}"><i class="bx bx-right-arrow-alt"></i>Lists</a></li>
+					<li> <a href="{{ url('admin/testimonial/add/page') }}"><i class="bx bx-right-arrow-alt"></i>Add New</a></li>
+					</ul>
+				</li>
 				
 				<!-- newsletter -->
 				{{-- <li class="menu-label">Newsletter</li>
@@ -263,9 +280,11 @@
 					@foreach($options as $option)
                     <li> <a href="{{url('admin/settings/page', $option->settings_key)}}"><i class="bx bx-right-arrow-alt"></i>{{ $option->name }}</a></li>
 					@endforeach
+                    
+					<li> <a href="{{ url('admin/website/footer/page') }}"><i class="bx bx-right-arrow-alt"></i>Website Footer</a></li>
 				</ul>
 				</li>
-				
+
 				<li>
 					<ul>
                          <li> <a href="{{url('admin/logout')}}"><i class="bx bx-log-out-circle"></i>Logout</a></li>

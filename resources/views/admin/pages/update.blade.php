@@ -42,6 +42,75 @@
                             </div>
                             <br>
 
+                            <!-- Green Mall Benefit -->
+                            <h3>Top Boxes</h3>
+                            <div class="">
+                                <label class="form-label">Text 1</label>
+                                <input type="text" class="form-control" name="text3" value="{{ $details->text3 }}" />
+                                @if ($errors->has('text3'))
+                                <span class="text-danger">{{ $errors->first('text3') }}</span>
+                                @endif
+                            </div>
+                            <br>
+
+
+                            <div class="">
+                                <label class="form-label">Description1</label>
+                                <textarea class="ckeditor form-control"
+                                    name="description3">{!! $details->description3 !!}</textarea>
+                                @if ($errors->has('description3'))
+                                <span class="text-danger">{{ $errors->first('description3') }}</span>
+                                @endif
+                            </div>
+                            <br>
+
+                            <div class="">
+                                <label class="form-label">Text 2</label>
+                                <input type="text" class="form-control" name="text4" value="{{ $details->text4 }}" />
+                                @if ($errors->has('text4'))
+                                <span class="text-danger">{{ $errors->first('text4') }}</span>
+                                @endif
+                            </div>
+                            <br>
+                            
+                            <div class="">
+                                <label class="form-label">Description2</label>
+                                <textarea class="ckeditor form-control"
+                                    name="description4">{!! $details->description4 !!}</textarea>
+                                @if ($errors->has('description4'))
+                                <span class="text-danger">{{ $errors->first('description4') }}</span>
+                                @endif
+                            </div>
+                            <br>
+
+                            <div class="">
+                                <label class="form-label">Text 3</label>
+                                <input type="text" class="form-control" name="text5" value="{{ $details->text5 }}" />
+                                @if ($errors->has('text5'))
+                                <span class="text-danger">{{ $errors->first('text5') }}</span>
+                                @endif
+                            </div>
+                            <br>
+                            
+                            <div class="">
+                                <label class="form-label">Description3</label>
+                                <textarea class="ckeditor form-control"
+                                    name="description6">{!! $details->description6 !!}</textarea>
+                                @if ($errors->has('description6'))
+                                <span class="text-danger">{{ $errors->first('description6') }}</span>
+                                @endif
+                            </div>
+                            <br>
+
+                            <h4>Main Content</h4>
+                            <div class="">
+                                <label class="form-label">Heading</label>
+                                <input type="text" class="form-control" name="feature_heading" value="{{ $details->feature_heading }}" />
+                                @if ($errors->has('feature_heading'))
+                                <span class="text-danger">{{ $errors->first('feature_heading') }}</span>
+                                @endif
+                            </div>
+                            <br>
                             <div class="">
                                 <label class="form-label">Image 1</label><br>
 
@@ -107,111 +176,108 @@
                             </div>
                             <br>
 
-                            <!-- Green Mall Benefit -->
-                            <h3>Green Mall Benefit</h3>
-                            <div class="">
-                                <label class="form-label">Benefit Img1</label><br>
-
-                                @if($details->img3 != null)
-                                <a href="{{asset('pages/img3/'.$details->img3)}}" target="_blank">
-                                    <img src="{{asset('pages/img3/'.$details->img3)}}" height="100" width="175" alt="">
-                                </a>
-                                @else
-                                <a href="{{asset('pages/featured_img/no_imge_found.jpg')}}" target="_blank">
-                                    <img src="{{asset('pages/featured_img/no_imge_found.jpg')}}" height="100" width="175" alt="">
-                                </a>
-                                @endif
-                                
-                                <br>
-                                <input type="file" class="form-control" name="img3" />
-                                @if ($errors->has('img3'))
-                                <span class="text-danger">{{ $errors->first('img3') }}</span>
-                                @endif
-                            </div>
-                            <br>
-
-
-                            <div class="">
-                                <label class="form-label">Benefit Description1</label>
-                                <textarea class="ckeditor form-control"
-                                    name="description3">{!! $details->description3 !!}</textarea>
-                                @if ($errors->has('description3'))
-                                <span class="text-danger">{{ $errors->first('description3') }}</span>
-                                @endif
-                            </div>
-                            <br>
-
-                            <div class="">
-                                <label class="form-label">Benefit Image 2</label><br>
-
-                                @if($details->img4 != null)
-                                <a href="{{asset('pages/img4/'.$details->img4)}}" target="_blank">
-                                    <img src="{{asset('pages/img4/'.$details->img4)}}" height="100" width="175" alt="">
-                                </a>
-                                @else
-                                <a href="{{asset('pages/featured_img/no_imge_found.jpg')}}" target="_blank">
-                                    <img src="{{asset('pages/featured_img/no_imge_found.jpg')}}" height="100" width="175" alt="">
-                                </a>
-                                @endif
-                                
-                                <br>
-                                <input type="file" class="form-control" name="img4" />
-                                @if ($errors->has('img4'))
-                                <span class="text-danger">{{ $errors->first('img4') }}</span>
-                                @endif
-                            </div>
-                            <br>
-
-
-                            <div class="">
-                                <label class="form-label">Description2</label>
-                                <textarea class="ckeditor form-control"
-                                    name="description4">{!! $details->description4 !!}</textarea>
-                                @if ($errors->has('description4'))
-                                <span class="text-danger">{{ $errors->first('description4') }}</span>
-                                @endif
-                            </div>
-                            <br>
                             
-
                             <!-- How It Works -->
 
                             <!-- More About Greenmall -->
-                            <h3>Know More About Green Mall</h3>
+                            <h3>How It Works</h3>
                             <div class="">
-                                <label class="form-label">More Img1</label><br>
+                                <label class="form-label">Heading</label><br>
 
-                                @if($details->img5 != null)
-                                <a href="{{asset('pages/img5/'.$details->img5)}}" target="_blank">
-                                    <img src="{{asset('pages/img5/'.$details->img5)}}" height="100" width="175" alt="">
-                                </a>
-                                @else
-                                <a href="{{asset('pages/featured_img/no_imge_found.jpg')}}" target="_blank">
-                                    <img src="{{asset('pages/featured_img/no_imge_found.jpg')}}" height="100" width="175" alt="">
-                                </a>
-                                @endif
-                                
                                 <br>
-                                <input type="file" class="form-control" name="img5" />
-                                @if ($errors->has('img5'))
-                                <span class="text-danger">{{ $errors->first('img5') }}</span>
+                                <input type="text" class="form-control" name="how_work_heading" value="{{  $details->how_work_heading  }}" />
+                                @if ($errors->has('how_work_heading'))
+                                <span class="text-danger">{{ $errors->first('how_work_heading') }}</span>
                                 @endif
                             </div>
                             <br>
 
+                            <div class="">
+                                <label class="form-label">Text 1</label><br>
+
+                                <br>
+                                <input type="text" class="form-control" name="how_work_text1" value="{{  $details->how_work_text1  }}" />
+                                @if ($errors->has('how_work_text1'))
+                                <span class="text-danger">{{ $errors->first('how_work_text1') }}</span>
+                                @endif
+                            </div>
+                            <br>
 
                             <div class="">
-                                <label class="form-label">More Description</label>
+                                <label class="form-label">Description 1</label>
                                 <textarea class="ckeditor form-control"
-                                    name="description5">{!! $details->description5 !!}</textarea>
-                                @if ($errors->has('description5'))
-                                <span class="text-danger">{{ $errors->first('description5') }}</span>
+                                    name="how_work_desc1">{!! $details->how_work_desc1 !!}</textarea>
+                                @if ($errors->has('how_work_desc1'))
+                                <span class="text-danger">{{ $errors->first('how_work_desc1') }}</span>
+                                @endif
+                            </div>
+                            <br>
+
+                            <div class="">
+                                <label class="form-label">Text 2</label><br>
+
+                                <br>
+                                <input type="text" class="form-control" name="how_work_text2" value="{{  $details->how_work_text2  }}" />
+                                @if ($errors->has('how_work_text2'))
+                                <span class="text-danger">{{ $errors->first('how_work_text2') }}</span>
+                                @endif
+                            </div>
+                            <br>
+
+                            <div class="">
+                                <label class="form-label">Description 2</label>
+                                <textarea class="ckeditor form-control"
+                                    name="how_work_desc2">{!! $details->how_work_desc2 !!}</textarea>
+                                @if ($errors->has('how_work_desc2'))
+                                <span class="text-danger">{{ $errors->first('how_work_desc2') }}</span>
+                                @endif
+                            </div>
+                            <br>
+                            <div class="">
+                                <label class="form-label">Text 3</label><br>
+
+                                <br>
+                                <input type="text" class="form-control" name="how_work_text3" value="{{  $details->how_work_text3  }}" />
+                                @if ($errors->has('how_work_text3'))
+                                <span class="text-danger">{{ $errors->first('how_work_text3') }}</span>
+                                @endif
+                            </div>
+                            <br>
+
+                            <div class="">
+                                <label class="form-label">Description 3</label>
+                                <textarea class="ckeditor form-control"
+                                    name="how_work_desc3">{!! $details->how_work_desc3 !!}</textarea>
+                                @if ($errors->has('how_work_desc3'))
+                                <span class="text-danger">{{ $errors->first('how_work_desc3') }}</span>
+                                @endif
+                            </div>
+                            <br>
+
+                            <div class="">
+                                <label class="form-label">Text 4</label><br>
+
+                                <br>
+                                <input type="text" class="form-control" name="how_work_text4" value="{{  $details->how_work_text4  }}" />
+                                @if ($errors->has('how_work_text4'))
+                                <span class="text-danger">{{ $errors->first('how_work_text4') }}</span>
+                                @endif
+                            </div>
+                            <br>
+
+                            <div class="">
+                                <label class="form-label">Description 4</label>
+                                <textarea class="ckeditor form-control"
+                                    name="how_work_desc4">{!! $details->how_work_desc4 !!}</textarea>
+                                @if ($errors->has('how_work_desc4'))
+                                <span class="text-danger">{{ $errors->first('how_work_desc4') }}</span>
                                 @endif
                             </div>
                             <br>
 
 
                             <!-- youtube Links -->
+                            <h4>Youtube Links</h4>
                             <div class="">
                                 <label class="form-label">Youtube Link1</label>
                                 <input type="text" class="form-control" name="youtube_link1" value="{{ $details->youtube_link1 }}"

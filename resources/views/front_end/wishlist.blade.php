@@ -1,24 +1,7 @@
 <x-userHeader />
 
 <main>
-    <!-- introBannerHolder -->
-    <section class="introBannerHolder d-flex w-100 bgCover" style="background-image: url({{ asset('front_end/images/b-bg7.jpg') }});">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 pt-sm-10 text-center">
-                    <h1 class="headingIV fwEbold playfair mb-4">Wish List</h1>
-                    <ul class="list-unstyled breadCrumbs d-flex justify-content-center">
-                        <li class="mr-2"><a href="#">Home</a></li>
-                        <li class="mr-2">/</li>
-                        <li class="mr-2"><a href="#" class="active">Wish List</a></li>
-                        {{-- <li class="mr-2">/</li> --}}
-                        {{-- <li class="active">Page</li> --}}
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    
     <section class="cart-list">
         <div class="container">
             <div class="cart">

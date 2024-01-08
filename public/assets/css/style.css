@@ -2788,6 +2788,16 @@ transform: scale(1.15);
     border-radius: 50%;
 }
 .footersec h4 , .footersec h5 {color: var(--color-light);}
+.testimonials {background:#eee; padding:100px 0;}
+.testimonyBox span {display: inline-block; padding:0 10px;}
+.testimonyBox span img {width: 100px; border-radius: 50%; border:var(--bs-white) 5px solid;-webkit-box-shadow: -1px 0px 25px -6px rgba(0,0,0,0.33); -moz-box-shadow: -1px 0px 25px -6px rgba(0,0,0,0.33); box-shadow: -1px 0px 25px -6px rgba(0,0,0,0.33);}
+.testimonyBox span i {font-size: 70px; color: #ccc;}
+.testimonials .carousel-indicators {
+    bottom: -50px !important;
+}
+.testimonials .carousel-indicators [data-bs-target] {
+    background-color: #999 !important;
+}
 @media only screen and (max-width: 767px) {
    
     

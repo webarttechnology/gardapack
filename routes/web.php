@@ -40,6 +40,12 @@ use App\Http\Controllers\user\WholeSaleManageController;
 use App\Http\Controllers\admin\TechnologyManageController;
 use App\Http\Controllers\admin\HomePageCmsManageController;
 
+use App\Http\Controllers\admin\HomePageController;
+use App\Http\Controllers\admin\SupportController;
+use App\Http\Controllers\admin\TestimonialManage;
+use App\Http\Controllers\admin\MenubarManageController;
+use App\Http\Controllers\admin\WebsiteFooterManageController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -91,7 +97,8 @@ Route::controller(PageManageController::class)->group(function () {
     Route::get('wholesale-application', 'wholesale_application');
 
     // Retailer
-    Route::get('retailers', 'retailer');    
+    Route::get('retailers', 'retailer');
+    Route::get('support', 'support');     
 });
 
 Route::post('wholesale/application/action', [WholeSaleManageController::class, 'wholesaler_add']);
@@ -469,6 +476,59 @@ Route::group(['prefix' => 'admin'], function () {
                 Route::get('choose-page', 'choose_page');
                 Route::post('choose-page/action/{id}', 'choose_page_action');
             });
+
+        // Support
+        Route::controller(SupportController::class)
+        ->prefix('support')
+        ->group(function () {
+            Route::get('/', 'list')->name('admin.support.list');
+            Route::post('store', 'store')->name('admin.support');
+            Route::put('update/{id}', 'update')->name('admin.support.update');
+        });
+
+
+         // Support
+         Route::controller(HomePageController::class)
+         ->prefix('home')
+         ->group(function () {
+             Route::get('/', 'list')->name('admin.home.list');
+             Route::post('store', 'store')->name('admin.home.store');
+             Route::put('update/{id}', 'update')->name('admin.home.update');
+         });
+
+         // Testimonial
+
+        Route::controller(TestimonialManage::class)
+        ->prefix('testimonial')
+        ->group(function () {
+            Route::get('list', 'list');
+            Route::get('add/page', 'add_page');
+            Route::post('add/action', 'add_action');
+            Route::get('delete/{id}', 'delete');
+            Route::get('update/page/{id}', 'update');
+            Route::post('update/action/{id}', 'update_action');
+            Route::post('heading/save/action', 'heading_save');
+        });
+
+        // Menubars
+        Route::controller(MenubarManageController::class)
+        ->prefix('menu')
+        ->group(function () {
+            Route::get('list', 'list')->name('admin.menu.list');
+            Route::get('add/page', 'add_page');
+            Route::post('add/action', 'add_action');
+            Route::get('update/page/{id}', 'update');
+            Route::post('update/action/{id}', 'update_action');
+            Route::get('delete/{id}', 'delete');
+        });
+
+        // Website footer
+        Route::controller(WebsiteFooterManageController::class)
+        ->prefix('website/footer')
+        ->group(function () {
+              Route::get('page', 'page');
+              Route::post('store', 'store');
+        });
 
         Route::post('home/cms/save', [HomePageCmsManageController::class, 'save']);
 

@@ -3,6 +3,16 @@
     $categories = App\Models\Category::where('type', 'product')->get();
     $website_logo = App\Models\Settings::where('key','app_logo')->first();
     $website_name = App\Models\Settings::where('key','app_name')->first();
+    $home_menubars = App\Models\Menubar::where('old_page', 'yes')->whereTitle('Home')->first();
+    $about_menubars = App\Models\Menubar::where('old_page', 'yes')->whereTitle('About')->first();
+    $shop_menubars = App\Models\Menubar::where('old_page', 'yes')->whereTitle('Shop')->first();
+    $technology_menubars = App\Models\Menubar::where('old_page', 'yes')->whereTitle('Technology')->first();
+    $contact_menubars = App\Models\Menubar::where('old_page', 'yes')->whereTitle('Contact Us')->first();
+    $account_menubars = App\Models\Menubar::where('old_page', 'yes')->whereTitle('My Account')->first();
+    $wholesale_menubars = App\Models\Menubar::where('old_page', 'yes')->whereTitle('Wholesale')->first();
+    $retailer_menubars = App\Models\Menubar::where('old_page', 'yes')->whereTitle('Retailer')->first();
+    
+    $new_menubars = App\Models\Menubar::where('old_page', 'no')->whereStatus('active')->orderBy('id', 'desc')->get();
 @endphp
 
 <!DOCTYPE html>
@@ -280,7 +290,9 @@
                                     <ul class="sbmnu">
 
                                         <li><a href="{{ url('product/request') }}">Product Registration</a></li>
-
+                                        <li><a href="{{ url('faq') }}">FAQ</a></li>
+                                        <li><a href="{{ url('support') }}">Support</a></li>
+                                        <li><a href="{{ url('contact-us') }}">Contact Us</a></li>
                                        </ul>
 
                                 </li>
@@ -293,7 +305,7 @@
 
                                     <li>
 
-                                    <a href="{{ url('user/wishlist/page') }}"><i class="fa fa-user"
+                                    <a href="{{ url('my-account') }}"><i class="fa fa-user"
 
                                             aria-hidden="true"></i></a>
 
@@ -325,11 +337,29 @@
 
                 <ul>
 
+                    
+
+                    @if($home_menubars->status == "active")
                     <li><a href="{{ url('/') }}" class="active">Home</a></li>
+                    @endif
+
+                    @if($about_menubars->status == "active")
                     <li><a href="{{ url('about-us') }}">About</a></li>
+                    @endif
+
+                    @if($shop_menubars->status == "active")
                     <li><a href="{{ url('shop') }}">Shop</a></li>
+                    @endif
+
+                    @if($technology_menubars->status == "active")
                     <li><a href="{{ url('technology') }}">Technology</a></li>
+                    @endif
+
+                    @if($contact_menubars->status == "active")
                     <li><a href="{{ url('contact-us') }}">Contact Us</a></li>
+                    @endif
+
+                    @if($account_menubars->status == "active")
                     <li>
                         @if (Auth::user())
                             <a href="{{ url('my-account') }}">My Account</a>
@@ -337,136 +367,48 @@
                             <a href="{{ url('my-account') }}">My Account</a>
                         @endif
                     </li>
-                    <li><a href="{{ url('wholesale-application') }}">Wholesale</a></li>
-                    <li><a href="{{ url('retailers') }}">Retailers</a></li>
+                    @endif
 
+                    @if($wholesale_menubars->status == "active")
+                    <li><a href="{{ url('wholesale-application') }}">Wholesale</a></li>
+                    @endif
+
+                    @if($retailer_menubars->status == "active")
+                    <li><a href="{{ url('retailers') }}">Retailers</a></li>
+                    @endif
+                    
+                    @foreach($new_menubars as $key => $new_menubar)
+                      <li><a href="{{ $new_menubar->link }}" target="_blank">{{ $new_menubar->title }}</a></li>
+                    @endforeach
                 </ul>
 
             </div><!-- .stellarnav -->
 
         </div>
 
-        
+        @php
+            $top_categories = App\Models\Category::where('display_top', 'yes')->orderBy('id', 'desc')->get();
+        @endphp
 
         <div class="headerctgry">
 
           <div class="container">    
-
             <div class="row justify-content-center">
-
+            @foreach ($top_categories as $top_category)                    
                 <div class="col-6 col-md-2 text-center">
-
+                    <a href="{{ url('product-category', ['subcategory_id' => 0, 'category_slug' => $top_category->slug]) }}">
                     <div class="headerglry">
-
                         <div class="headerimg">
-
-                           <!--<img src="https://www.urbanmonkey.com/cdn/shop/collections/4b1-all-bottoms_120x120.jpg?v=1680173271"> -->
-
-                           <img src="https://t4.ftcdn.net/jpg/06/01/26/55/360_F_601265575_JkTPQdyLZgN1murpRHVUdE63u97W52DL.jpg">
-
+                           <img src="{{ asset('uploads/category_top_img/'.$top_category->category_top_img) }}">
                         </div>
-
-                        <h6>Clear/Black Bags</h6>
-
+                        <h6>{{ $top_category->name }}</h6>
                     </div>
-
+                    </a>
                 </div>
-
-                <div class="col-6 col-md-2 text-center">
-
-                    <div class="headerglry">
-
-                        <div class="headerimg">
-
-                           <!--<img src="https://www.urbanmonkey.com/cdn/shop/collections/1-all-headwear_120x120.jpg?v=1680249946">-->
-
-                           <img src="https://cdn-icons-png.flaticon.com/512/706/706956.png">
-
-                        </div>
-
-                        <h6>Clear/Black Rolls</h6>
-
-                    </div>
-
-                </div>
-
-                <div class="col-6 col-md-2 text-center">
-
-                    <div class="headerglry">
-
-                        <div class="headerimg">
-
-                           <!--<img src="https://www.urbanmonkey.com/cdn/shop/collections/3-eyewear_120x120.jpg?v=1680513152"> -->
-
-                           <img src="https://us.123rf.com/450wm/semenchenko/semenchenko1803/semenchenko180300023/96799529-blank-food-stand-up-flexible-pouch-snack-sachet-bag-mock-up-template-illustration-isolated-on-white.jpg?ver=6">
-
-                        </div>
-
-                        <h6>Mylar Bags</h6>
-
-                    </div>
-
-                </div>
-
-                <div class="col-6 col-md-2 text-center">
-
-                    <div class="headerglry">
-
-                        <div class="headerimg">
-
-                           <!--<img src="https://www.urbanmonkey.com/cdn/shop/collections/5c-backpack_120x120.jpg?v=1680258901"> -->
-
-                           <img src="https://images.assetsdelivery.com/compings_v2/vectorhome/vectorhome1907/vectorhome190700032.jpg">
-
-                        </div>
-
-                        <h6>Vacuum Machine</h6>
-
-                    </div>
-
-                </div>
-
-                <div class="col-6 col-md-2 text-center">
-
-                    <div class="headerglry">
-
-                        <div class="headerimg">
-
-                           <!--<img src="https://www.urbanmonkey.com/cdn/shop/collections/5b-belts_120x120.jpg?v=1680257700"> -->
-
-                           <img src="https://static.thenounproject.com/png/4454610-200.png"> 
-
-                        </div>
-
-                        <h6>Vacuum Seal Bags</h6>
-
-                    </div>
-
-                </div>
-
-                <div class="col-6 col-md-2 text-center">
-
-                    <div class="headerglry">
-
-                        <div class="headerimg">
-
-                           <!--<img src="https://www.urbanmonkey.com/cdn/shop/collections/um-steals-menu_120x120.svg?v=1678955365">-->
-
-                           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHmzP9zCtYGKheN4K2ZL8l4ha-s5si1kiHJg&usqp=CAU">
-
-                        </div>
-
-                        <h6>Vacuum Seal Rolls</h6>
-
-                    </div>
-
-                </div>
+            @endforeach
 
             </div>
-
            </div>    
-
         </div>
 
     </header>
-

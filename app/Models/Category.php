@@ -18,8 +18,8 @@ class Category extends Model
         'type',
         'slug',
         'category_top_img',
+        'top_name',
         'display_top'
     ];
 
 }
-

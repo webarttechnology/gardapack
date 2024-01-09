@@ -112,16 +112,6 @@
 
     </div>
 
-    <!-- mapHolder -->
-
-    <div class="mapHolder">
-
-        <iframe src="{{ $details->map_link }}" style="border:0;" allowfullscreen="">
-
-        </iframe>
-
-    </div>
-
 
     <section class="contactSecBlock container pt-5 pb-5">
     <div class="container">
@@ -134,9 +124,6 @@
             <header class="col-12 mainHeader text-center">
 
                 <h1 class="headingIV playfair fwEblod mb-2">Get In Touch</h1>
-
-                <p>Lorem ipsum dolor consectetuer adipiscing elit sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna<br class="d-block"> aliquam erat volutpatcommodo consequat.</p>
-
             </header>
 
         </div>

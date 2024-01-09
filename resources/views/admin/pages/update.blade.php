@@ -32,6 +32,26 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="mb-3">
+                                <label class="form-label">Meta Title</label>
+                                <input type="text" class="form-control" name="meta_title"
+                                    value="{{ $details->meta_title }}"  />
+                                @if ($errors->has('meta_title'))
+                                <span class="text-danger">{{ $errors->first('meta_title') }}</span>
+                                @endif
+                            </div>
+                            <br>
+
+                            <div class="mb-3">
+                                <label class="form-label">Meta Description</label>
+                                <input type="text" class="form-control" name="meta_description"
+                                    value="{{ $details->meta_description }}"  />
+                                @if ($errors->has('meta_description'))
+                                <span class="text-danger">{{ $errors->first('meta_description') }}</span>
+                                @endif
+                            </div>
+                            <br>
+
+                            <div class="mb-3">
                                 <label class="form-label">Page Name</label>
                                 <input type="text" class="form-control datepicker" name="name"
                                     value="{{ $details->name }}" readonly />
@@ -314,6 +334,26 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="mb-3">
+                                <label class="form-label">Meta Title</label>
+                                <input type="text" class="form-control" name="meta_title"
+                                    value="{{ $details->meta_title }}"  />
+                                @if ($errors->has('meta_title'))
+                                <span class="text-danger">{{ $errors->first('meta_title') }}</span>
+                                @endif
+                            </div>
+                            <br>
+
+                            <div class="mb-3">
+                                <label class="form-label">Meta Description</label>
+                                <input type="text" class="form-control" name="meta_description"
+                                    value="{{ $details->meta_description }}"  />
+                                @if ($errors->has('meta_description'))
+                                <span class="text-danger">{{ $errors->first('meta_description') }}</span>
+                                @endif
+                            </div>
+                            <br>
+                            
+                            <div class="mb-3">
                                 <label class="form-label">Page Name</label>
                                 <input type="text" class="form-control datepicker" name="name"
                                     value="{{ $details->name }}" readonly />
@@ -355,7 +395,7 @@
                             </div>
                             <br>
 
-                            <div class="">
+                            {{-- <div class="">
                                 <label class="form-label">Google Map Link</label>
                                 <input type="text" class="form-control" name="map_link" value="{{ $details->map_link }}"
                                     required />
@@ -363,7 +403,7 @@
                                 <span class="text-danger">{{ $errors->first('map_link') }}</span>
                                 @endif
                             </div>
-                            <br>
+                            <br> --}}
 
                             <div class="">
                                 <label class="form-label">Page Description</label>

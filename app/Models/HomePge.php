@@ -9,6 +9,8 @@ class HomePge extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'meta_title',
+        'meta_description', 
         'banner',
         'banner_des',
         'home_about_heading',

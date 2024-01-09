@@ -11,6 +11,8 @@ class Technology extends Model
 
     protected $table = "technologies";
     protected $fillable = [
+        'meta_title',
+        'meta_description', 
         'graph_title',
         'graph_sub_title',
         'graph_sub_sub_title',

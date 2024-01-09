@@ -2802,3 +2802,18 @@ transform: scale(1.15);
    
     
 }
+
+.cart-total{
+    width: 20px;
+    height: 20px;
+    display: block;
+    background-color: #0cb24c;
+    position: absolute;
+    right: -10px;
+    top: 3px;
+    border-radius: 50%;
+    color: white;
+    font-size: 12px;
+    text-align: center;
+    font-weight: 600;
+}

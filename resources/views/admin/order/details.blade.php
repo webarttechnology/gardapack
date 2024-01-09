@@ -2,11 +2,24 @@
 @section('content')
 
 @php
+    $carriers = json_decode(App\Http\Controllers\Order\ShipStationManageController::getCarriers(), true);
+@endphp
+
+@php
    $shipment_detail = App\Models\ShippingOption::whereId($order->shipping_option)->first(); 
 @endphp
 
 <div class="page-wrapper">
     <div class="page-content">
+
+        @if(Session::has('success'))
+        <div class="alert alert-success">
+            {{ Session::get('success') }}
+            @php
+            Session::forget('success');
+            @endphp
+        </div>
+        @endif
 
         <div>
             <h4>Basic Details</h4>
@@ -36,8 +49,57 @@
                 <h5 class="mt-3">Shipment Details</h5>
                 <li class="list-group-item"><strong>Shipment Option: </strong> {{ $shipment_detail->title }}</li>
                 <li class="list-group-item"><strong>Shipment Price: </strong> ${{ $order->shipping_cost }}</li>
+
+
+                @if($order->carrier != null)    
+                    <li class="list-group-item"><strong>Carrier: </strong> {{ $order->carrier }}</li>
+                    <li class="list-group-item"><strong>Service Code: </strong> {{ $order->service_code }}</li>
+                @endif
             </ul>
         </div>
+
+        @if($order->carrier == "null")
+        @if($order->ship_station_order_id != null)    
+        <form action="{{ url('admin/save/shipment/order') }}" method="post" >
+            @csrf
+
+            <div class="col-md-12 mb-3">
+                <label for="zip">Choose a Carrier: *</label>
+    
+                <select name="carrier" id="carrier" class="form-control"
+                    onchange="getServiceDetails()">
+                    <option value="">Select A Carrier</option>
+                    @if($carriers != null)
+                    @foreach ($carriers as $carrier)
+                        <option value="{{ $carrier['code'] }}">{{ $carrier['name'] }}</option>
+                    @endforeach
+                    @endif
+                </select>
+    
+                @if ($errors->has('carrier'))
+                    <span class="text-danger">{{ $errors->first('carrier') }}</span>
+                @endif
+            </div>
+
+            <div class="col-md-12 mb-3" id="service_main">
+                <label for="service">Choose a Service: </label>
+                <select name="service" id="service" class="form-control" onchange="getServiceRate();">
+                    <option value="">Select A Service</option>
+                </select>
+
+                @if ($errors->has('service'))
+                    <span class="text-danger">{{ $errors->first('service') }}</span>
+                @endif
+            </div>
+
+            <input type="hidden" value="{{ $order->id }}" name="order_id">
+            <div class="mb-5">
+                <button class="cstmbtn btn btn-primary" type="submit">Save</button>
+            </div>
+        </form>
+        @endif
+        @endif
+
 
         <div>
             <h4>Product Details</h4>
@@ -108,5 +170,42 @@
         table.buttons().container()
             .appendTo('#example2_wrapper .col-md-6:eq(0)');
     });
+    </script>
+
+    <script>
+        function getServiceDetails() {
+        let carrier = $('#carrier').val();
+
+        $('#service_main').hide();
+
+        if (carrier != "") {
+            $.ajax({
+                type: "GET",
+                url: '{{ url('user/product/order/getShipServices/') }}' + '/' + carrier,
+                success: function(response) {
+
+                    $('#service_main').show();
+                    let services = response.services;
+
+                    // Add new options based on the services
+                    if (services.length > 0) {
+                        // Clear existing options
+                        $('#service').empty();
+
+                        $('#service').append('<option value="">Select A Service</option>');
+                        services.forEach(function(service) {
+                            $('#service').append('<option value="' + service.code + '">' + service
+                                .name + '</option>');
+                        });
+                    }
+
+                }
+            });
+
+        } else {
+            $('#service_main').hide();
+            alert("Please Select a Carrier");
+        }
+    }
     </script>
 @endsection

@@ -3,6 +3,11 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Order\ShipStationManageController;
+use App\Models\Order;
+use App\Models\OrderedProduct;
+use App\Models\Product;
+use App\Models\Settings;
 use App\Models\ShippingOption;
 use Illuminate\Http\Request;
 
@@ -63,9 +68,88 @@ class ShippingOptionsManageController extends Controller
           return redirect('admin/shipping/list')->with('success', 'Deleted');
    }
 
-   public function getShipmentPrice($id){
-          $details = ShippingOption::whereId($id)->get();
-       //    $free_ship = 
-          return response()->json($details);
+   public function getShipmentPrice($id, $total_price, $country){
+          $details = ShippingOption::whereId($id)->first();
+          $free_ship = Settings::where('key', 'free_shipping')->first();
+          $international_ship = Settings::where('key', 'international_shipping')->first();
+          
+          if ($details) {
+
+              $total_price = $total_price + $details->price;
+
+              if ($total_price >= $free_ship->value) {
+                  $shipment_cost = 0;
+                  return response()->json($shipment_cost);
+              } else {
+                  $shipment_cost = $details->price;
+
+                  if( $country != 'US' ) {
+                     $shipment_cost = $international_ship->value;
+                  }
+
+                  return response()->json($shipment_cost);
+              }
+          } else {
+              return response()->json(['error' => 'Shipping option not found'], 404);
+          }
+
+   }
+
+   public function shipment_order(Request $request){
+       $order = Order::whereId($request->order_id)->first();
+       $order_products = OrderedProduct::where('order_id', $order->order_id)->get();
+
+       $shipStation_order_details = [
+              'orderNumber' => $order->ship_station_order_id,
+              'orderDate' => date('Y-m-d H:i:s'),
+              'paymentDate' => date('Y-m-d H:i:s'),
+              'customerEmail' => $order->billing_email,
+              'orderKey' => $order->id,
+              'orderStatus' => 'awaiting_shipment',
+              'billTo' => [
+                  'name' => $order->billing_name,
+                  'street1' => $order->billing_address1,
+                  'city' => $order->billing_town,
+                  'state' => $order->billing_state,
+                  'postalCode' => $order->billing_zip,
+                  'country' => $order->billing_country,
+              ],
+              'shipTo' => [
+                  'name' => $order->shipping_name,
+                  'street1' => $order->shipping_address1,
+                  'city' => $order->shipping_town,
+                  'state' => $order->shipping_state,
+                  'postalCode' => $order->shipping_zip,
+                  'country' => $order->shipping_country,
+              ],
+              'shippingAmount' => $order->shipping_cost,
+              "carrierCode" => $request->carrier,
+              "serviceCode" => $request->service,
+          ];
+
+         
+          foreach($order_products as $prod)
+          {
+
+              $product = Product::where('id', $prod->product_id)->first();
+              $imageUrl = asset('admin/product/featured_img/' . $product->featured_img);
+
+              $shipStation_order_details['items'][] = [
+                  'sku' => $product->sku_code,
+                  'name' => $product->name,
+                  'imageUrl' => $imageUrl,
+                  'unitPrice' => $product->price,
+                  'quantity' => $prod->product_quantity,
+              ];
+          }
+          
+          $ship_res = ShipStationManageController::createOrUpdateOrder($shipStation_order_details);
+
+          $order->update([
+              "carrier" => $request->carrier,
+              "service_code" => $request->service,
+          ]);
+
+          return redirect()->back()->with('success', 'Successfully Saved');
    }
 }

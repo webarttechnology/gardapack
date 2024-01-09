@@ -83,6 +83,30 @@ class HomePageController extends Controller
              * Add Banner
              */
 
+            //  $imageName = [];
+            //  if ($request->hasFile('banner')) {
+            //     foreach ($request->banner as $ban) {
+            //         $request->validate([
+            //             'banner.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Validate each image in the array
+            //         ]);
+            
+            //         $imageName = time() . '.' . $ban->extension();
+            //         $ban->move(public_path('uploads/banners/'), $imageName);
+            
+            //         $imageNames[] = [
+            //             'img' => $imageName,
+            //         ];
+            //     }
+            // } else {
+            //     if ($home != null) {
+            //         $imageNames = $home->banner;
+            //     } else {
+            //         $imageNames = null;
+            //     }
+            // }
+            // dd($imageNames);
+
+
             if ($request->hasFile('banner')) {
                 $request->validate([
                     'banner' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -616,6 +640,8 @@ class HomePageController extends Controller
             return redirect()->back()->with('success', 'Data Successfully Updated');
             // return redirect()->route('admin.home.list')->with('success', 'Successfully Saved');
         } catch (\Exception $e) {
+            dd($e);
+            exit;
             // Handle any exceptions (e.g., file upload failure)
             return redirect()->back()->with('error', 'An error occurred: ' . $e->getMessage());
         }

@@ -108,7 +108,7 @@
                             <label for="country">Country *</label>
                             {{-- <input type="text" class="form-control" id="country" name="country" required> --}}
                             
-                            <select class="custom-select d-block w-100" id="country" name="country" required>
+                            <select onchange="getpriceDetails()" class="custom-select d-block w-100" id="country" name="country" required>
                             @foreach($countries as $key => $country)
                             @if($country->country != "country")
                                <option value="{{ $country->country }}" @if($country->country == "US") selected @endif>{{ $country->name }}</option>
@@ -604,7 +604,9 @@
 <script>
     function getpriceDetails(){
         let shipping_option = $('#shipping_option').val();
+        if( shipping_option === '' ) return false;
         let totalPrice = $('#actualTotal').val();
+        let country = $('#country').val();
         let shipCost= 0;
 
         if (shipping_option != "") {
@@ -618,15 +620,17 @@
 
             $.ajax({
                 type: "GET",
-                
-                url: '{{ url('user/shipment/price/') }}' + '/' + shipping_option + '/' + totalPrice,
+                 
+                url: '{{ url('user/shipment/price/') }}' + '/' + shipping_option + '/' + totalPrice + '/' + country,
 
                 success: function(response) {
                     // $('#loader').hide();
+                    console.log(response);
                     Swal.close();
 
                     $('#checkoutBtn').show();
-                    shipCost = response[0].price;
+                    // shipCost = response[0].price;
+                    shipCost = response;
 
                     totalPrice = (parseFloat(totalPrice) + parseFloat(shipCost)).toFixed(2);
 

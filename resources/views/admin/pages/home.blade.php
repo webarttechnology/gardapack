@@ -9,11 +9,11 @@
 
         </div>
         <!--end breadcrumb-->
-        @if(Session::has('page_success'))
+        @if(Session::has('success'))
         <div class="alert alert-success">
-            {{ Session::get('page_success') }}
+            {{ Session::get('success') }}
             @php
-            Session::forget('page_success');
+            Session::forget('success');
             @endphp
         </div>
         @endif

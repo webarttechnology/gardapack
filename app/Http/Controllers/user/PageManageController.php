@@ -24,7 +24,7 @@ class PageManageController extends Controller
          $pdfs = PdfDownloads::all();
          $video_banner = DB::table('video_banner')->first();
          $why_us = DB::table('why_choose_us')->first();
-         $faqs = Faq::all();
+         $faqs = Faq::limit(5)->get();
          $home = HomePge::first();
          $testimonials = Testimonial::orderBy('id', 'desc')->get();
  

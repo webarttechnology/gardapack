@@ -152,7 +152,7 @@
 
 
 <body>
-
+    <a href="javascript:;" class="back-to-top" id="back-to-top"><i class="bi bi-arrow-up"></i></a>
     <header>
 
         <div class="header-part clearfix">

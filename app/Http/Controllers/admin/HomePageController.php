@@ -627,7 +627,7 @@ class HomePageController extends Controller
                 ]);
             }
 
-            return redirect()->back()->with('success', 'Successfully Saved');
+            return redirect()->back()->with('success', 'Data Successfully Updated');
             // return redirect()->route('admin.home.list')->with('success', 'Successfully Saved');
         } catch (\Exception $e) {
             // Handle any exceptions (e.g., file upload failure)

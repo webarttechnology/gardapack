@@ -6,9 +6,17 @@
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
 
-
+            
         </div>
-       
+        @if(Session::has('success'))
+        <div class="alert alert-success">
+            {{ Session::get('success') }}
+            @php
+            Session::forget('success');
+            @endphp
+        </div>
+        @endif
+        
         <div class="row">
             <div class="col-xl-9 mx-auto">
                 <h6 class="mb-0 text-uppercase">Update Page</h6>

@@ -21,7 +21,7 @@
 
         <div class="row">
             <div class="col-xl-9 mx-auto">
-                <h6 class="mb-0 text-uppercase">Add FAQs</h6>
+                <h6 class="mb-0 text-uppercase">Update FAQs</h6>
                 <hr />
 
                 <form action="{{ url('admin/faq/update/action', $faq->id) }}" method="post" enctype= "multipart/form-data">

@@ -11,11 +11,11 @@
             </div>
         </div>
 
-        @if(Session::has('delete'))
-        <div class="alert alert-danger">
-            {{ Session::get('delete') }}
+        @if(Session::has('success'))
+        <div class="alert alert-success">
+            {{ Session::get('success') }}
             @php
-            Session::forget('delete');
+            Session::forget('success');
             @endphp
         </div>
         @endif

@@ -759,7 +759,7 @@
                 <center>
                     <div class="btnbox" data-aos="fade-up" data-aos-duration="">
 
-                        <a href="#">View More <i class="bi bi-arrow-right"></i></a>
+                        <a href="{{ url('faq') }}">View More <i class="bi bi-arrow-right"></i></a>
 
                     </div>
                 </center>

@@ -32,7 +32,7 @@ class MenubarManageController extends Controller
               'status' => $request->status,
           ]);
 
-          return redirect()->route('admin.menu.list')->with('success', 'success');
+          return redirect()->route('admin.menu.list')->with('success', 'Successfully Added');
    }
 
    public function update($id){
@@ -62,11 +62,11 @@ class MenubarManageController extends Controller
             'status' => $request->status,
         ]);
 
-        return redirect()->route('admin.menu.list')->with('success', 'success');
+        return redirect()->route('admin.menu.list')->with('success', 'Successfully Updated');
    }
 
    public function delete($id){
           Menubar::find($id)->delete();
-          return redirect()->route('admin.menu.list')->with('success', 'success');
+          return redirect()->route('admin.menu.list')->with('success', 'Deleted');
    }
 }

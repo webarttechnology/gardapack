@@ -297,7 +297,7 @@ class TechnologyManageController extends Controller
                ]);
            }
 
-           return redirect()->back()->with('success', 'Successfully Saved');
+           return redirect()->back()->with('success', 'Data Successfully Updated');
     }
 
     private function uploadImage($image)

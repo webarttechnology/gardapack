@@ -1,8 +1,10 @@
 @php
            $app_logo = App\Models\Settings::where('key', 'app_logo')->first();
            $app_name = App\Models\Settings::where('key', 'app_name')->first();
+           $fab_icon = App\Models\Settings::where('key', 'fab_icon')->first();
 
 		   $details = App\Models\Admin::whereId(Auth::guard('admin')->user()->id)->first();
+		   $currentUrl = url()->current();
 @endphp
 
 <!doctype html>
@@ -14,11 +16,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--favicon-->
 
-	@if($app_logo != null)
-	@if($app_logo->input_type == "Text")
-		{{ $app_logo->value }}
+	@if($fab_icon != null)
+	@if($fab_icon->input_type == "Text")
+		{{ $fab_icon->value }}
 	@else
-	<link rel="icon" href="{{asset('settings/'.$app_logo->key.'/'.$app_logo->value)}}" type="image/png" />
+	<link rel="icon" href="{{asset('settings/'.$fab_icon->key.'/'.$fab_icon->value)}}" type="image/png" />
 	@endif
 	@else
 	<link rel="icon" href="{{asset('images/webart.png')}}" type="image/png" />
@@ -51,6 +53,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
 
+	<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+	
 	<title>
 	@if($app_name != null)
 		{{ $app_name->value }}
@@ -58,9 +62,51 @@
 	     WebArt Technology
 	@endif
 	</title>
+
+	<style>
+		.bxs-up-arrow-alt:before{
+			color: white !important;
+		}
+
+		/* Back to Top Button Styles */
+		.back-to-top {
+			position: fixed;
+			bottom: 20px;
+			right: 20px;
+			display: none;
+			font-size: 24px;
+			color: #070707; /* Change the color as needed */
+			cursor: pointer;
+			z-index: 99;
+		}
+
+		.back-to-top:hover{
+			border: 1px solid #0d6efd;
+			background-color: white;
+		}
+
+		.back-to-top:hover .bxs-up-arrow-alt:before{
+			color: #0d6efd !important;
+		}
+
+		.activate {
+			background-color: #0d6efd; /* Change the background color as needed */
+		}
+
+		.active_div{
+			color: white;
+		}
+		/* .active_text{
+			color: white;
+		} */
+	</style>
 </head>
 
 <body>
+
+	<!-- Start Back To Top Button -->
+	<a href="javascript:;" class="back-to-top" id="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
+	<!-- End Back To Top Button -->
 
 	<!--wrapper-->
 	<div class="wrapper">
@@ -72,13 +118,13 @@
 			    	@if($app_logo->input_type == "Text")
                        {{ $app_logo->value }}
 					@else
-					<img src="{{asset('settings/'.$app_logo->key.'/'.$app_logo->value)}}" class="logo-icon" alt="logo icon">
+					<img src="{{asset('settings/'.$app_logo->key.'/'.$app_logo->value)}}" class="logo-icon" alt="logo icon" style="width: 160px !important">
 					@endif
 					@else
 					<img src="{{asset('images/webart.png')}}" class="logo-icon" alt="logo icon">
 					@endif
 				</div>
-				<div>
+				{{-- <div>
 					@if($app_name != null)
 			    	@if($app_name->input_type == "Text")
                       <h4 class="logo-text">{{ $app_name->value }}</h4>
@@ -88,17 +134,17 @@
 					@else
 					<h4 class="logo-text">WebArt Technology Pvt. Ltd.</h4>
 					@endif
-				</div>
-				<div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left'></i>
-				</div>
+				</div> --}}
+				{{-- <div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left'></i>
+				</div> --}}
 			</div>
 			<!--navigation-->
 			<ul class="metismenu" id="menu">
-				<li>
-					<a href="{{ url('admin/dashboard') }}" class="has-arrow">
-						<div class="parent-icon"><i class='bx bx-home-circle'></i>
+				<li @if(Str::contains($currentUrl, 'dashboard')) class="activate" @endif>
+					<a href="{{ url('admin/dashboard') }}">
+						<div class="parent-icon @if(Str::contains($currentUrl, 'dashboard')) active_div @endif"><i class='bx bx-home-circle'></i>
 						</div>
-						<div class="menu-title">Dashboard</div>
+						<div class="menu-title @if(Str::contains($currentUrl, 'dashboard')) active_div @endif">Dashboard</div>
 					</a>
 				</li>
 				
@@ -108,79 +154,98 @@
 			
 				
 				<li>
-					<a href="{{url('admin/user-lists')}}">
-						<div class="parent-icon"><i class="bx bx-user-circle"></i>
+					<a href="{{url('admin/user-lists')}}" @if(Str::contains($currentUrl, 'user')) class="activate" @endif>
+						<div class="parent-icon @if(Str::contains($currentUrl, 'user')) active_div @endif"><i class="bx bx-user-circle"></i>
 						</div>
-						<div class="menu-title">User Profile</div>
+						<div class="menu-title @if(Str::contains($currentUrl, 'user')) active_div @endif">User Profile</div>
 					</a>
-					<a href="{{url('admin/admin-lists')}}">
-						<div class="parent-icon"><i class="bx bx-user-circle"></i>
+					<!--<a href="{{url('admin/admin-lists')}}">-->
+					<!--	<div class="parent-icon"><i class="bx bx-user-circle"></i>-->
+					<!--	</div>-->
+					<!--	<div class="menu-title">Admin Profile</div>-->
+					<!--</a>-->
+					<a href="{{ url('admin/wholesaler/lists') }}" @if(Str::contains($currentUrl, 'wholesaler')) class="activate" @endif>
+						<div class="parent-icon @if(Str::contains($currentUrl, 'wholesaler')) active_div @endif"><i class="bx bx-user-circle"></i>
 						</div>
-						<div class="menu-title">Admin Profile</div>
+						<div class="menu-title @if(Str::contains($currentUrl, 'wholesaler')) active_div @endif">Wholesaller</div>
 					</a>
-					<a href="{{ url('admin/wholesaler/lists') }}">
-						<div class="parent-icon"><i class="bx bx-user-circle"></i>
+					<a href="{{ route('shops.lists') }}" @if(Str::contains($currentUrl, 'shops')) class="activate" @endif>
+						<div class="parent-icon @if(Str::contains($currentUrl, 'shops')) active_div @endif"><i class="bx bx-user-circle"></i>
 						</div>
-						<div class="menu-title">Wholesaller</div>
-					</a>
-					<a href="{{ route('shops.lists') }}">
-						<div class="parent-icon"><i class="bx bx-user-circle"></i>
-						</div>
-						<div class="menu-title">Retailer Shops</div>
+						<div class="menu-title @if(Str::contains($currentUrl, 'shops')) active_div @endif">Retailer Shops</div>
 					</a>
 				</li>
-
-				<!-- Order Management -->
+				
+				 <!-- Order Management -->
 				<li class="menu-label">Order</li>
 				
 				<li>
 					<ul>
-                         <li> <a href="{{ url('admin/order/list') }}"><i class="bx bx-right-arrow-alt"></i>Orders</a></li>
+                         <li @if(Str::contains($currentUrl, 'order')) class="activate" @endif> 
+							<a href="{{ url('admin/order/list') }}">
+								<i class="bx bx-right-arrow-alt @if(Str::contains($currentUrl, 'order')) active_div @endif"></i> 
+								<span @if(Str::contains($currentUrl, 'order')) class='active_div' @endif>Orders</span>
+							</a>
+						</li>
 					</ul>
 				</li>
+				<!-- -->
 
 				<li class="menu-label">Pages</li>
 				<li>
 					<ul>
-                    <li> <a href="{{url('admin/pages-lists')}}"><i class="bx bx-right-arrow-alt"></i>Pages</a></li>
+                    <li @if(Str::contains($currentUrl, 'pages')) class="activate" @endif> 
+						<a href="{{url('admin/pages-lists')}}">
+						<i class="bx bx-right-arrow-alt @if(Str::contains($currentUrl, 'pages')) active_div @endif"></i>
+						<span @if(Str::contains($currentUrl, 'pages')) class='active_div' @endif>Pages</span></a>
+					</li>
 					</ul>
 				</li>
-
-				<li class="menu-label">Menubar Manage</li>
+				
+				<li class="menu-label">Menu Bar Manage</li>
 				<li>
 					<ul>
-                    <li> <a href="{{ url('admin/menu/list') }}"><i class="bx bx-right-arrow-alt"></i>Menubars</a></li>
+                    <li @if(Str::contains($currentUrl, 'menu')) class="activate" @endif> 
+						<a href="{{ url('admin/menu/list') }}">
+							<i class="bx bx-right-arrow-alt @if(Str::contains($currentUrl, 'menu')) active_div @endif"></i>
+							<span @if(Str::contains($currentUrl, 'menu')) class='active_div' @endif>Menu Bars</span></a></li>
 					</ul>
 				</li>
-				
-				
 				
 				
 				<!-- gallery --> 
-				{{-- <li class="menu-label">Gallery</li>
-				<li>
-					<ul>
-					<li> <a href="{{ url('admin/gallery/list') }}"><i class="bx bx-right-arrow-alt"></i>Gallery List</a></li>
-                    <li> <a href="{{ url('admin/gallery/page') }}"><i class="bx bx-right-arrow-alt"></i>Add Gallery</a></li>
-					</ul>
-				</li> --}}
+				<!--<li class="menu-label">Gallery</li>-->
+				<!--<li>-->
+				<!--	<ul>-->
+				<!--	<li> <a href="{{ url('admin/gallery/list') }}"><i class="bx bx-right-arrow-alt"></i>Gallery List</a></li>-->
+    <!--                <li> <a href="{{ url('admin/gallery/page') }}"><i class="bx bx-right-arrow-alt"></i>Add Gallery</a></li>-->
+				<!--	</ul>-->
+				<!--</li>-->
 
 				<li class="menu-label">Products</li>
 				
 				<li>
 					<ul>
-                    <li> <a href="{{ url('admin/categories/lists', 'product') }}"><i class="bx bx-right-arrow-alt"></i>All Categories</a></li>
+                    <li @if(Str::contains($currentUrl, 'categories')) class="activate" @endif> <a href="{{ url('admin/categories/lists', 'categories') }}">
+						<i class="bx bx-right-arrow-alt @if(Str::contains($currentUrl, 'menu')) active_div @endif"></i><span @if(Str::contains($currentUrl, 'categories')) class='active_div' @endif>All Categories</span></a></li>
 					{{-- <li> <a href="#"><i class="bx bx-right-arrow-alt"></i>All Sub-Categories</a></li> --}}
-					<li> <a href="{{ url('admin/product/lists') }}"><i class="bx bx-right-arrow-alt"></i>All Products</a></li>
-					<li> <a href="{{ url('admin/product/add') }}"><i class="bx bx-right-arrow-alt"></i>Add New Products</a></li>
-					 <li> <a href="{{ url('admin/stock/page', 'in-stock') }}"><i class="bx bx-right-arrow-alt"></i>Manage Stocks</a></li>
-					 {{-- <li> <a href="{{ url('admin/product/request/page') }}"><i class="bx bx-right-arrow-alt"></i>Product Requests</a></li> --}}
+					
+				
+					 <li @if(Str::contains($currentUrl, 'product/lists') || Str::contains($currentUrl, 'product/update')) class="activate" @endif> 
+						<a href="{{ url('admin/product/lists') }}">
+							<i class="bx bx-right-arrow-alt @if(Str::contains($currentUrl, 'product/lists') || Str::contains($currentUrl, 'product/update')) active_div @endif"></i>
+							<span @if(Str::contains($currentUrl, 'product/lists') || Str::contains($currentUrl, 'product/update')) class='active_div' @endif>All Products</span>
+						</a>
+					</li>
+
+					<li @if(Str::contains($currentUrl, 'product/add')) class="activate" @endif> <a href="{{ url('admin/product/add') }}"><i class="bx bx-right-arrow-alt @if(Str::contains($currentUrl, 'product/add')) active_div @endif"></i><span @if(Str::contains($currentUrl, 'product/add')) class='active_div' @endif>Add New Products</span></a></li>
+					 <li @if(Str::contains($currentUrl, 'stock/page')) class="activate" @endif> <a href="{{ url('admin/stock/page', 'in-stock') }}"><i class="bx bx-right-arrow-alt @if(Str::contains($currentUrl, 'stock/page')) active_div @endif"></i><span @if(Str::contains($currentUrl, 'stock/page')) class='active_div' @endif>Manage Stocks</span></a></li>
+					 <!--<li> <a href="{{ url('admin/product/request/page') }}"><i class="bx bx-right-arrow-alt"></i>Product Requests</a></li>-->
 					</ul>
 				</li>
 
 
-                
-				<!-- -->
+               
 				
                 <!-- Stock Manage -->
 				<!--<li class="menu-label">Stock Manage</li>-->
@@ -190,84 +255,84 @@
 				<!--	</ul>-->
 				<!--</li>-->
 				
-				{{-- <li class="menu-label">Services</li>
+				<!--<li class="menu-label">Services</li>-->
 				
-				<li>
-					<ul>
-					<li> <a href="{{ url('admin/categories/lists', 'service') }}"><i class="bx bx-right-arrow-alt"></i>All Categories</a></li>
-                    <li> <a href="{{ url('admin/services/all') }}"><i class="bx bx-right-arrow-alt"></i>All Services</a></li>
-					<li> <a href="{{ url('admin/services/add/page') }}"><i class="bx bx-right-arrow-alt"></i>Add New Service</a></li>
-					</ul>
-				</li> --}}
+				<!--<li>-->
+				<!--	<ul>-->
+				<!--	<li> <a href="{{ url('admin/categories/lists', 'service') }}"><i class="bx bx-right-arrow-alt"></i>All Categories</a></li>-->
+    <!--                <li> <a href="{{ url('admin/services/all') }}"><i class="bx bx-right-arrow-alt"></i>All Services</a></li>-->
+				<!--	<li> <a href="{{ url('admin/services/add/page') }}"><i class="bx bx-right-arrow-alt"></i>Add New Service</a></li>-->
+				<!--	</ul>-->
+				<!--</li>-->
 				
 				
 				<!-- Download Pdf -->
-				{{-- <li class="menu-label">Download PDF</li>
-				<li>
-					<ul>
-						<li> <a href="{{ url('admin/pdf/list') }}"><i class="bx bx-right-arrow-alt"></i>All Pdf</a></li>
-						<li> <a href="{{ url('admin/pdf/add') }}"><i class="bx bx-right-arrow-alt"></i>Add Pdf</a></li>
-					</ul>
-				</li> --}}
+				<!--<li class="menu-label">Download PDF</li>-->
+				<!--<li>-->
+				<!--	<ul>-->
+				<!--		<li> <a href="{{ url('admin/pdf/list') }}"><i class="bx bx-right-arrow-alt"></i>All Pdf</a></li>-->
+				<!--		<li> <a href="{{ url('admin/pdf/add') }}"><i class="bx bx-right-arrow-alt"></i>Add Pdf</a></li>-->
+				<!--	</ul>-->
+				<!--</li>-->
 				
 				<!-- Video Banner -->
-				{{-- <li class="menu-label">Video Banner</li>
-				<li>
-					<ul>
-						<li> <a href="{{ url('admin/video/banner/page') }}"><i class="bx bx-right-arrow-alt"></i>Video</a></li>
-					</ul>
-				</li> --}}
+				<!--<li class="menu-label">Video Banner</li>-->
+				<!--<li>-->
+				<!--	<ul>-->
+				<!--		<li> <a href="{{ url('admin/video/banner/page') }}"><i class="bx bx-right-arrow-alt"></i>Video</a></li>-->
+				<!--	</ul>-->
+				<!--</li>-->
 				
 				<!-- Why Choose Us -->
-				{{-- <li class="menu-label">Why Choose Us</li>
-				<li>
-					<ul>
-						<li> <a href="{{ url('admin/others/choose-page') }}"><i class="bx bx-right-arrow-alt"></i>Why Choose Us</a></li>
-					</ul>
-				</li> --}}
+				<!--<li class="menu-label">Why Choose Us</li>-->
+				<!--<li>-->
+				<!--	<ul>-->
+				<!--		<li> <a href="{{ url('admin/others/choose-page') }}"><i class="bx bx-right-arrow-alt"></i>Why Choose Us</a></li>-->
+				<!--	</ul>-->
+				<!--</li>-->
 
                 <!-- course -->
-				{{-- <li class="menu-label">Course</li>
-				<li>
-					<ul>
-                    <li> <a href="{{ url('admin/course/list') }}"><i class="bx bx-right-arrow-alt"></i>Course Lists</a></li>
-					<li> <a href="{{ url('admin/course/add') }}"><i class="bx bx-right-arrow-alt"></i>Add Course</a></li>
-					</ul>
-				</li> --}}
+				<!--<li class="menu-label">Course</li>-->
+				<!--<li>-->
+				<!--	<ul>-->
+    <!--                <li> <a href="{{ url('admin/course/list') }}"><i class="bx bx-right-arrow-alt"></i>Course Lists</a></li>-->
+				<!--	<li> <a href="{{ url('admin/course/add') }}"><i class="bx bx-right-arrow-alt"></i>Add Course</a></li>-->
+				<!--	</ul>-->
+				<!--</li>-->
 			
 			    <!-- faq -->
 				<li class="menu-label">FAQ</li>
 				<li>
 					<ul>
-                    <li> <a href="{{ url('admin/faq/list') }}"><i class="bx bx-right-arrow-alt"></i>FAQ Lists</a></li>
-					<li> <a href="{{ url('admin/faq/add/page') }}"><i class="bx bx-right-arrow-alt"></i>Add FAQ</a></li>
+                    <li @if(Str::contains($currentUrl, 'faq/list') || Str::contains($currentUrl, 'faq/update')) class="activate" @endif> <a href="{{ url('admin/faq/list') }}"><i class="bx bx-right-arrow-alt @if(Str::contains($currentUrl, 'faq/list') || Str::contains($currentUrl, 'faq/update')) active_div @endif"></i><span @if(Str::contains($currentUrl, 'faq/list') || Str::contains($currentUrl, 'faq/update')) class='active_div' @endif>FAQ Lists</span></a></li>
+					<li @if(Str::contains($currentUrl, 'faq/add')) class="activate" @endif> <a href="{{ url('admin/faq/add/page') }}"><i class="bx bx-right-arrow-alt @if(Str::contains($currentUrl, 'faq/add')) active_div @endif"></i><span @if(Str::contains($currentUrl, 'faq/add')) class='active_div' @endif>Add FAQ</span></a></li>
 					</ul>
 				</li>
-
+				
 				<li class="menu-label">Testimonial</li>
 				<li>
 					<ul>
-                    <li> <a href="{{ url('admin/testimonial/list') }}"><i class="bx bx-right-arrow-alt"></i>Lists</a></li>
-					<li> <a href="{{ url('admin/testimonial/add/page') }}"><i class="bx bx-right-arrow-alt"></i>Add New</a></li>
+                    <li @if(Str::contains($currentUrl, 'testimonial/list') || Str::contains($currentUrl, 'testimonial/update')) class="activate" @endif> <a href="{{ url('admin/testimonial/list') }}"><i class="bx bx-right-arrow-alt @if(Str::contains($currentUrl, 'testimonial/list') || Str::contains($currentUrl, 'testimonial/update')) active_div @endif"></i><span @if(Str::contains($currentUrl, 'testimonial/list') || Str::contains($currentUrl, 'testimonial/update')) class='active_div' @endif>Lists</span></a></li>
+					<li @if(Str::contains($currentUrl, 'testimonial/add')) class="activate" @endif> <a href="{{ url('admin/testimonial/add/page') }}"><i class="bx bx-right-arrow-alt @if(Str::contains($currentUrl, 'testimonial/add')) active_div @endif"></i><span @if(Str::contains($currentUrl, 'testimonial/add')) class='active_div' @endif>Add New</span></a></li>
 					</ul>
 				</li>
 				
 				<!-- newsletter -->
-				{{-- <li class="menu-label">Newsletter</li>
-				<li>
-					<ul>
-                    <li> <a href="{{ url('admin/newsletter') }}"><i class="bx bx-right-arrow-alt"></i>Newsletter</a></li>
-					</ul>
-				</li> --}}
+				<!--<li class="menu-label">Newsletter</li>-->
+				<!--<li>-->
+				<!--	<ul>-->
+    <!--                <li> <a href="{{ url('admin/newsletter') }}"><i class="bx bx-right-arrow-alt"></i>Newsletter</a></li>-->
+				<!--	</ul>-->
+				<!--</li>-->
 				
 				
 				<!-- User's Message -->
-				{{-- <li class="menu-label">User's Message</li>
-				<li>
-					<ul>
-                    <li> <a href="{{ url('admin/user-msg') }}"><i class="bx bx-right-arrow-alt"></i>User's Message</a></li>
-					</ul>
-				</li> --}}
+				<!--<li class="menu-label">User's Message</li>-->
+				<!--<li>-->
+				<!--	<ul>-->
+    <!--                <li> <a href="{{ url('admin/user-msg') }}"><i class="bx bx-right-arrow-alt"></i>User's Message</a></li>-->
+				<!--	</ul>-->
+				<!--</li>-->
 
 				@php
                     $options = App\Models\SettingsOptions::all();
@@ -276,15 +341,15 @@
 				<li class="menu-label">Settings</li>
 				<li>
 					<ul>
-					<li><a href="{{url('admin/settings/options/lists')}}"><i class="bx bx-right-arrow-alt"></i>Manage Settings</a></li>
+					<li @if(Str::contains($currentUrl, 'settings/options/lists') || Str::contains($currentUrl, 'settings/options/update')) class="activate" @endif><a href="{{url('admin/settings/options/lists')}}"><i class="bx bx-right-arrow-alt @if(Str::contains($currentUrl, 'settings/options/lists') || Str::contains($currentUrl, 'settings/options/update')) active_div @endif"></i><span @if(Str::contains($currentUrl, 'settings/options/lists') || Str::contains($currentUrl, 'settings/options/update')) class='active_div' @endif>Manage Settings</span></a></li>
 					@foreach($options as $option)
-                    <li> <a href="{{url('admin/settings/page', $option->settings_key)}}"><i class="bx bx-right-arrow-alt"></i>{{ $option->name }}</a></li>
+                    <li @if(Str::contains($currentUrl, $option->settings_key)) class="activate" @endif> <a href="{{url('admin/settings/page', $option->settings_key)}}"><i class="bx bx-right-arrow-alt @if(Str::contains($currentUrl, $option->settings_key)) active_div @endif"></i><span @if(Str::contains($currentUrl, $option->settings_key)) class='active_div' @endif>{{ $option->name }}</span></a></li>
 					@endforeach
-                    
-					<li> <a href="{{ url('admin/website/footer/page') }}"><i class="bx bx-right-arrow-alt"></i>Website Footer</a></li>
+					
+					<li @if(Str::contains($currentUrl, 'website/footer')) class="activate" @endif> <a href="{{ url('admin/website/footer/page') }}"><i class="bx bx-right-arrow-alt @if(Str::contains($currentUrl, 'website/footer')) active_div @endif"></i><span @if(Str::contains($currentUrl, 'website/footer')) class='active_div' @endif>Website Footer</span></a></li>
 				</ul>
 				</li>
-
+				
 				<li>
 					<ul>
                          <li> <a href="{{url('admin/logout')}}"><i class="bx bx-log-out-circle"></i>Logout</a></li>
@@ -322,9 +387,9 @@
 
 							
 							<li class="nav-item dropdown dropdown-large">
-								<a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <span class="alert-count"> {{ $total_notification }} </span>
-									<i class='bx bx-bell'></i>
-								</a>
+								<!--<a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <span class="alert-count"> {{ $total_notification }} </span>-->
+								<!--	<i class='bx bx-bell'></i>-->
+								<!--</a>-->
 								<div class="dropdown-menu dropdown-menu-end">
 									<a href="javascript:;">
 										<div class="msg-header">
@@ -490,8 +555,27 @@
         @endforeach
     @endif
 </script>
-@yield('custom_js')
 
+<script>
+    $(document).ready(function () {
+        // Show or hide the back-to-top button based on scroll position
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 30) {
+                $('#back-to-top').fadeIn();
+            } else {
+                $('#back-to-top').fadeOut();
+            }
+        });
+
+        // Scroll to top on button click
+        $('#back-to-top').click(function () {
+            $('html, body').animate({ scrollTop: 0 }, 100);
+            return false;
+        });
+    });
+</script>
+
+@yield('custom_js')
 </body>
 
 </html>

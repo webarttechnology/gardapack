@@ -45,7 +45,7 @@ class SupportController extends Controller
             ]);
         }
 
-        return redirect()->route('admin.support.list')->with('success', 'Successfully Saved');
+        return redirect()->route('admin.support.list')->with('success', 'Data Successfully Updated');
     }
 
     public function update(Request $request, $id)

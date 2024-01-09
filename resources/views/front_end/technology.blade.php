@@ -7,11 +7,14 @@
 color:var(color-light)">
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <h2 class="text-center" style="color: var(--color-primary);">{{ $detail->graph_title }}</h2>
                 <h3 class="text-center" style="color: var(--color-primary);">{{ $detail->graph_sub_title }}</h3>
                 <h6 class="text-center">{{ $detail->graph_sub_sub_title }}</h6>
+
+                {{-- <div id="chart-container" style="height: 500px; overflow-y: auto;"> --}}
                 <div id="chart"></div>
+                {{-- </div> --}}
 
                 <center>
                     <h4>{{ $detail->graph_footer_title }}</h4>

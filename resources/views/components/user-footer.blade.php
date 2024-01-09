@@ -1078,7 +1078,7 @@ $(document).ready(function(){
 
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
-<script>
+{{-- <script>
     var graphData = JSON.parse({!! json_encode($graphData) !!});
     var categories = [];
     var seriesData1 = [];
@@ -1144,26 +1144,41 @@ $(document).ready(function(){
         plotOptions: {
           bar: {
             horizontal: false,
+            columnWidth: '50%',
             dataLabels: {
               position: 'top',
             },
           }
         },
     
+        // dataLabels: {
+        //   enabled: true,
+        //   offsetX:30,
+        //   style: {
+        //     fontSize: '12px',
+        //     colors: ['#fff']
+        //   }
+        // },
+
         dataLabels: {
-          enabled: true,
-          offsetX:30,
-          style: {
-            fontSize: '12px',
-            colors: ['#fff']
-          }
-        },
+    enabled: true,
+    formatter: function (val) {
+        return val.toFixed(2); // Adjust the number of decimal places as needed
+    },
+    offsetY: -20, // Adjust the offset to position labels above the bars
+    style: {
+        fontSize: '12px',
+        colors: ['#fff']
+    }
+},
+
         stroke: {
           show: true,
           width: 1,
           colors: ['#333']
         },
         legend: {
+            position: 'top',
             customLegendItems: [
                 'OTR = cm<sup>3</sup> / (m<sup>2</sup> - 24hr)',
                 'MVTR = cm<sup>3</sup> / (m<sup>2</sup> - 24hr)'
@@ -1175,7 +1190,154 @@ $(document).ready(function(){
         },
         xaxis: {
 
-            categories: category
+            categories: category,
+            labels: {
+                rotate: -45, // Rotate labels for better readability
+            }
+        },
+        yaxis: {
+            labels: {
+                maxWidth: 500,
+            }
+        },
+        };
+
+        console.log(options);
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+
+        function changeSvgColor() {
+            $('#chart').find('.apexcharts-text tspan').css('fill', '#ffc21f');
+            $('#chart').find('.apexcharts-text tspan').css('font-size', '13px');
+            $('#chart').find('.apexcharts-legend-text').css('color', '#ffc21f');
+             $('#chart').find('text').css('white-space', 'wrap');
+        }
+      
+        $(window).on('load', function() {
+            changeSvgColor();
+        });
+
+    </script> --}}
+
+
+<script>
+    var graphData = JSON.parse({!! json_encode($graphData) !!});
+    var categories = [];
+    var seriesData1 = [];
+    var seriesData2 = [];
+
+    
+    graphData.forEach(function (item) {
+        categories.push(item.key);
+        seriesData1.push([parseFloat(item.value1)]);
+        seriesData2.push([parseFloat(item.value2)]);
+    });
+
+    var sd1 = seriesData1.map(function(subArray) {
+         return subArray[0];
+     });
+
+    var sd2 = seriesData2.map(function(subArray) {
+         return subArray[0];
+     });
+
+
+        var category = categories.map(function (item) {
+        // Split each string into an array of words
+        var words = item.split(' ');
+        
+        // Iterate through the words and handle splitting longer words
+        var result = [];
+        var currentLine = '';
+
+        for (var i = 0; i < words.length; i++) {
+            if (currentLine.length + words[i].length <= 15) {
+            // Add the word to the current line
+            currentLine += (currentLine.length > 0 ? ' ' : '') + words[i];
+            } else {
+            // Start a new line with the current word
+            result.push(currentLine);
+            currentLine = words[i];
+            }
+        }
+
+        // Add the last line if it's not empty
+        if (currentLine.length > 0) {
+            result.push(currentLine);
+        }
+
+        return result;
+        });
+
+        var options = {
+          series: [
+
+         {
+            data:sd1,
+          },{
+            data:sd2,
+          }
+        ],
+          chart: {
+          type: 'bar',
+        },
+        colors:['#4a8bfc', '#f03627'],
+        plotOptions: {
+          bar: {
+            distributed: true,
+      horizontal: true,
+      columnWidth: '100%',
+      dataLabels: {
+        position: 'top',
+      },
+            barYOffset: 200,
+          }
+        },
+    
+        // dataLabels: {
+        //   enabled: true,
+        //   offsetX:30,
+        //   style: {
+        //     fontSize: '12px',
+        //     colors: ['#fff']
+        //   }
+        // },
+
+        dataLabels: {
+    enabled: true,
+    formatter: function (val) {
+        return val.toFixed(2); // Adjust the number of decimal places as needed
+    },
+    offsetY: -20, // Adjust the offset to position labels above the bars
+    style: {
+        fontSize: '12px',
+        colors: ['#fff']
+    }
+},
+
+        stroke: {
+          show: true,
+          width: 1,
+          colors: ['#333']
+        },
+        legend: {
+            position: 'top',
+            customLegendItems: [
+                'OTR = cm<sup>3</sup> / (m<sup>2</sup> - 24hr)',
+                'MVTR = cm<sup>3</sup> / (m<sup>2</sup> - 24hr)'
+            ]
+        },
+        tooltip: {
+          shared: true,
+          intersect: false
+        },
+        xaxis: {
+
+            categories: category,
+            labels: {
+                rotate: -45, // Rotate labels for better readability
+            }
         },
         yaxis: {
             labels: {
@@ -1202,5 +1364,23 @@ $(document).ready(function(){
 
     </script>
 
+<script>
+    $(document).ready(function () {
+        // Show or hide the back-to-top button based on scroll position
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 30) {
+                $('#back-to-top').fadeIn();
+            } else {
+                $('#back-to-top').fadeOut();
+            }
+        });
+
+        // Scroll to top on button click
+        $('#back-to-top').click(function () {
+            $('html, body').animate({ scrollTop: 0 }, 100);
+            return false;
+        });
+    });
+</script>
 </html>
 

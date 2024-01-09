@@ -8,12 +8,16 @@
 
 
         </div>
+
         <!--end breadcrumb-->
-        @if(Session::has('page_success'))
-        <div class="alert alert-success">
-            {{ Session::get('page_success') }}
+        
+
+        @if(Session::has('success'))
+        <div class="alert alert-success alert-custom-box">
+            {{ Session::get('success') }}
+            <i class="bx bx-check alrt-btn"></i>
             @php
-            Session::forget('page_success');
+            Session::forget('success');
             @endphp
         </div>
         @endif

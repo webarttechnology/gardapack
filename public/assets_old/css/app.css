@@ -51,7 +51,8 @@ a {
 	z-index: 5;
 	background: #fff;
 	background-clip: padding-box;
-	border-bottom: 1px solid #e4e4e4
+	border-bottom: 1px solid #e4e4e4;
+	justify-content: center;
 }
 
 .logo-icon {
@@ -220,8 +221,7 @@ a {
 
 .sidebar-wrapper .metismenu .mm-active>a,
 .sidebar-wrapper .metismenu a:active,
-.sidebar-wrapper .metismenu a:focus,
-.sidebar-wrapper .metismenu a:hover {
+.sidebar-wrapper .metismenu a:focus {
 	color: #0d6efd;
 	text-decoration: none;
 	background: rgb(13 110 253 / .12)
@@ -2415,4 +2415,13 @@ input.search-control-2::placeholder {
 .borderBp{
 	border: 1px solid #ccc;
 	padding: 10px;
+}
+
+.alrt-btn{
+	font-size: 30px;
+}
+
+.alert-custom-box{
+	display: flex;
+    align-items: center;
 }

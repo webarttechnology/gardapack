@@ -50,6 +50,7 @@
                                 </td>
                                 <td>
                                     @if($list->is_accept == '')
+                                    <a target="_blank" href="{{ url('admin/wholesaler/view-details', ['id' => $list->info->id]) }}"  class="btn btn-primary btn-sm">View</a>
                                     <a href="{{ url('admin/wholesaler/status', ['id' => $list->id, 'status' => 'accept']) }}"  onclick="return confirm('Are You Sure, You want to Accept this Wholseller?')" class="btn btn-primary btn-sm">Accept</a>
                                     <a href="{{ url('admin/wholesaler/status', ['id' => $list->id, 'status' => 'reject']) }}" onclick="return confirm('Are You Sure, You want to Reject this Wholseller?')" class="btn btn-danger btn-sm">Reject</a>
                                     @else

@@ -167,7 +167,7 @@
 					<a href="{{ url('admin/wholesaler/lists') }}" @if(Str::contains($currentUrl, 'wholesaler')) class="activate" @endif>
 						<div class="parent-icon @if(Str::contains($currentUrl, 'wholesaler')) active_div @endif"><i class="bx bx-user-circle"></i>
 						</div>
-						<div class="menu-title @if(Str::contains($currentUrl, 'wholesaler')) active_div @endif">Wholesaller</div>
+						<div class="menu-title @if(Str::contains($currentUrl, 'wholesaler')) active_div @endif">Wholeseller</div>
 					</a>
 					<a href="{{ route('shops.lists') }}" @if(Str::contains($currentUrl, 'shops')) class="activate" @endif>
 						<div class="parent-icon @if(Str::contains($currentUrl, 'shops')) active_div @endif"><i class="bx bx-user-circle"></i>

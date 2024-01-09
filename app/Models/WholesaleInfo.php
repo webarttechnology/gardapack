@@ -23,4 +23,9 @@ class WholesaleInfo extends Model
         'zip',
         'country'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

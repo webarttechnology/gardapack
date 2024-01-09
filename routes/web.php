@@ -104,7 +104,7 @@ Route::controller(PageManageController::class)->group(function () {
     Route::get('retailers', 'retailer');
     Route::get('support', 'support');
 
-    Route::get('blog/details/{id}', 'blog_details');     
+    Route::get('blog/details/{id}', 'blog_details');
 });
 
 Route::get('user/shipment/price/{id}/{total_price}', [ShippingOptionsManageController::class, 'getShipmentPrice']);
@@ -156,7 +156,7 @@ Route::get('paypal/success', [PaypalPaymentController::class, 'success'])->name(
 
 /**
  * stripe
-*/
+ */
 
 Route::get('/success', [StripePaymentController::class, 'success'])->name('stripe.success');
 Route::get('/cancel', [StripePaymentController::class, 'cancel'])->name('stripe.cancel');
@@ -234,8 +234,9 @@ Route::group(['prefix' => 'admin'], function () {
     // Wholesaller
 
     Route::get('wholesaler/lists', [WholeSaleManageController::class, 'wholesaler_lists']);
+    Route::get('wholesaler/view-details/{id}', [WholeSaleManageController::class, 'view_details']);
     Route::get('wholesaler/status/{id}/{status}', [WholeSaleManageController::class, 'wholesaler_status']);
-    
+
     // Technology CMS
     Route::post('technology/save/action', [TechnologyManageController::class, 'save']);
 
@@ -292,7 +293,7 @@ Route::group(['prefix' => 'admin'], function () {
             Route::put('shops/update/{id}', 'update')->name('shops.update');
             Route::get('shops/delete/{id}', 'delete')->name('shops.delete');
         });
-        
+
         // Settings ..
         Route::controller(AdminSettingsController::class)
             ->prefix('settings')
@@ -494,68 +495,68 @@ Route::group(['prefix' => 'admin'], function () {
 
         // Support
         Route::controller(SupportController::class)
-        ->prefix('support')
-        ->group(function () {
-            Route::get('/', 'list')->name('admin.support.list');
-            Route::post('store', 'store')->name('admin.support');
-            Route::put('update/{id}', 'update')->name('admin.support.update');
-        });
+            ->prefix('support')
+            ->group(function () {
+                Route::get('/', 'list')->name('admin.support.list');
+                Route::post('store', 'store')->name('admin.support');
+                Route::put('update/{id}', 'update')->name('admin.support.update');
+            });
 
 
-         // Support
-         Route::controller(HomePageController::class)
-         ->prefix('home')
-         ->group(function () {
-             Route::get('/', 'list')->name('admin.home.list');
-             Route::post('store', 'store')->name('admin.home.store');
-             Route::put('update/{id}', 'update')->name('admin.home.update');
-         });
+        // Support
+        Route::controller(HomePageController::class)
+            ->prefix('home')
+            ->group(function () {
+                Route::get('/', 'list')->name('admin.home.list');
+                Route::post('store', 'store')->name('admin.home.store');
+                Route::put('update/{id}', 'update')->name('admin.home.update');
+            });
 
-         // Testimonial
+        // Testimonial
 
         Route::controller(TestimonialManage::class)
-        ->prefix('testimonial')
-        ->group(function () {
-            Route::get('list', 'list');
-            Route::get('add/page', 'add_page');
-            Route::post('add/action', 'add_action');
-            Route::get('delete/{id}', 'delete');
-            Route::get('update/page/{id}', 'update');
-            Route::post('update/action/{id}', 'update_action');
-            Route::post('heading/save/action', 'heading_save');
-        });
+            ->prefix('testimonial')
+            ->group(function () {
+                Route::get('list', 'list');
+                Route::get('add/page', 'add_page');
+                Route::post('add/action', 'add_action');
+                Route::get('delete/{id}', 'delete');
+                Route::get('update/page/{id}', 'update');
+                Route::post('update/action/{id}', 'update_action');
+                Route::post('heading/save/action', 'heading_save');
+            });
 
         // Menubars
         Route::controller(MenubarManageController::class)
-        ->prefix('menu')
-        ->group(function () {
-            Route::get('list', 'list')->name('admin.menu.list');
-            Route::get('add/page', 'add_page');
-            Route::post('add/action', 'add_action');
-            Route::get('update/page/{id}', 'update');
-            Route::post('update/action/{id}', 'update_action');
-            Route::get('delete/{id}', 'delete');
-        });
+            ->prefix('menu')
+            ->group(function () {
+                Route::get('list', 'list')->name('admin.menu.list');
+                Route::get('add/page', 'add_page');
+                Route::post('add/action', 'add_action');
+                Route::get('update/page/{id}', 'update');
+                Route::post('update/action/{id}', 'update_action');
+                Route::get('delete/{id}', 'delete');
+            });
 
         // shipping options
         Route::controller(ShippingOptionsManageController::class)
-        ->prefix('shipping')
-        ->group(function () {
-            Route::get('list', 'list');
-            Route::get('add/page', 'add_page');
-            Route::post('add/action', 'add_action');
-            Route::get('update/page/{id}', 'update');
-            Route::post('update/action/{id}', 'update_action');
-            Route::get('delete/{id}', 'delete');
-        });
+            ->prefix('shipping')
+            ->group(function () {
+                Route::get('list', 'list');
+                Route::get('add/page', 'add_page');
+                Route::post('add/action', 'add_action');
+                Route::get('update/page/{id}', 'update');
+                Route::post('update/action/{id}', 'update_action');
+                Route::get('delete/{id}', 'delete');
+            });
 
         // Website footer
         Route::controller(WebsiteFooterManageController::class)
-        ->prefix('website/footer')
-        ->group(function () {
-              Route::get('page', 'page');
-              Route::post('store', 'store');
-        });
+            ->prefix('website/footer')
+            ->group(function () {
+                Route::get('page', 'page');
+                Route::post('store', 'store');
+            });
 
         //Blog Routes 
         Route::get('/blog', [BlogController::class, 'show'])->name('blog');

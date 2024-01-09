@@ -3,7 +3,7 @@
     $address = App\Models\Pages::where('name', 'Contact Us Page')->first();
     $technology = App\Models\Technology::first();
     $graphData = $technology->graph_data;
-    $website_logo = App\Models\Settings::where('key','app_logo')->first();
+    $website_logo = App\Models\Settings::where('key', 'app_logo')->first();
     $footer = App\Models\WebsiteFoter::first();
 @endphp
 
@@ -17,23 +17,28 @@
 
     <div class="container">
 
-        <div class="row mt-5" >
+        <div class="row mt-5">
 
             <div class="col-sm-6 col-md-3">
-                <span class="mb-5" style="display:block"> <a href="{{ url('/') }}"><img src="{{ asset('settings/app_logo/'.$website_logo->value)}}"></a></span>
-                <p>@if($footer!=null) {!! $footer->footer_desc !!} @endif</p>
+                <span class="mb-5" style="display:block"> <a href="{{ url('/') }}"><img
+                            src="{{ asset('settings/app_logo/' . $website_logo->value) }}"></a></span>
+                <p>
+                    @if ($footer != null)
+                        {!! $footer->footer_desc !!}
+                    @endif
+                </p>
                 <ul class="d-flex socials">
-                    @if($footer!=null && $footer->fb_status == "active")
-                      <li><a href="{{ $footer->fb_link }}" target="_blank"><i class="bi bi-facebook"></i></a></li>
+                    @if ($footer != null && $footer->fb_status == 'active')
+                        <li><a href="{{ $footer->fb_link }}" target="_blank"><i class="bi bi-facebook"></i></a></li>
                     @endif
-                    @if($footer!=null && $footer->twitter_status == "active")
-                    <li><a href="{{ $footer->twitter_link }}" target="_blank"><i class="bi bi-twitter"></i></a></li>
+                    @if ($footer != null && $footer->twitter_status == 'active')
+                        <li><a href="{{ $footer->twitter_link }}" target="_blank"><i class="bi bi-twitter"></i></a></li>
                     @endif
-                    @if($footer!=null && $footer->goog_status == "active")
-                    <li><a href="{{ $footer->goog_link }}" target="_blank"><i class="bi bi-google"></i></a></li>
+                    @if ($footer != null && $footer->goog_status == 'active')
+                        <li><a href="{{ $footer->goog_link }}" target="_blank"><i class="bi bi-instagram"></i></a></li>
                     @endif
-                    @if($footer!=null && $footer->pint_status == "active")
-                    <li><a href="{{ $footer->pint_link }}" target="_blank"><i class="bi bi-instagram"></i></a></li>
+                    @if ($footer != null && $footer->pint_status == 'active')
+                        <li><a href="{{ $footer->pint_link }}" target="_blank"><i class="bi bi-tiktok"></i></a></li>
                     @endif
                 </ul>
             </div>
@@ -49,21 +54,21 @@
                 </ul>
             </div>
 
-            
+
             <div class="col-sm-6 col-md-3">
                 <h4 class="mb-5" style="display:block">MY ACCOUNT</h4>
-                
+
                 <ul>
                     <li><a href="{{ url('my-account') }}">My Account</a></li>
-                    
-                   
+
+
                     <li><a href="{{ url('user/cart/page') }}">My Cart</a></li>
                     <li><a href="{{ url('user/wishlist/page') }}">My Wishlist</a></li>
-                    
+
 
                     <li><a href="{{ url('shop') }}">My Shop</a></li>
                 </ul>
-                
+
             </div>
 
             <div class="col-sm-6 col-md-3">
@@ -71,7 +76,8 @@
                 <h4 class="mb-5" style="display:block">Need Help?</h4>
 
                 <div class="ftr-address">
-                    <h5><small>Toll Free :</small><br><a href="javascript:void(0)" style="color:#ffc81d">{{ $address->phone }}</a></h5>
+                    <h5><small>Toll Free :</small><br><a href="javascript:void(0)"
+                            style="color:#ffc81d">{{ $address->phone }}</a></h5>
                     <ul>
 
                         <li>
@@ -79,7 +85,8 @@
                         </li>
 
                         <li>
-                        <p><span><i class="bi bi-envelope-fill"></i></span><a href="javascript:void(0)"> {{ $address->email }} </a></p>
+                            <p><span><i class="bi bi-envelope-fill"></i></span><a href="javascript:void(0)">
+                                    {{ $address->email }} </a></p>
                         </li>
 
                         <li></li>
@@ -117,10 +124,8 @@
                     <ul>
 
                         @foreach ($services as $service)
-
-                            <li><a href="{{ url('service-details', $service->slug) }}">{{ $service->name }}</a></li>
-
-                        @endforeach
+<li><a href="{{ url('service-details', $service->slug) }}">{{ $service->name }}</a></li>
+@endforeach
 
                     </ul>
 
@@ -141,8 +146,7 @@
                     <ul>
 
                         @if (Auth::user())
-
-                            <li><a href="{{ url('/') }}">Home</a></li>
+<li><a href="{{ url('/') }}">Home</a></li>
 
                             <li><a href="{{ url('my-account') }}">My accounts</a></li>
 
@@ -153,16 +157,13 @@
                             <li><a href="{{ url('about-us') }}">About Us</a></li>
 
                             <li><a href="{{ url('user.logout') }}">Logout</a></li>
-
-                        @else
-
-                            <li><a href="{{ url('/') }}">Home</a></li>
+@else
+<li><a href="{{ url('/') }}">Home</a></li>
 
                             <li><a href="{{ url('contact-us') }}">Contact Us</a></li>
 
                             <li><a href="{{ url('about-us') }}">About Us</a></li>
-
-                        @endif
+@endif
 
                     </ul>
 
@@ -212,7 +213,11 @@
 
                 <div class="ftrbtm">
 
-                    <p>@if($footer !=null ) {!! $footer->copy_right_text !!} @endif</p>
+                    <p>
+                        @if ($footer != null)
+                            {!! $footer->copy_right_text !!}
+                        @endif
+                    </p>
 
                 </div>
 
@@ -221,10 +226,10 @@
             <div class="col-md-4">
 
                 <div class="ftrlogo">
-                    @if($footer !=null && $footer->foot_img != null)
-                    <img src="{{ asset('uploads/foot_img/'.$footer->foot_img) }}" alt="">
+                    @if ($footer != null && $footer->foot_img != null)
+                        <img src="{{ asset('uploads/foot_img/' . $footer->foot_img) }}" alt="">
                     @else
-                    <img src="{{ asset('assets/images/ftr-logo.png') }}" alt="">
+                        <img src="{{ asset('assets/images/ftr-logo.png') }}" alt="">
                     @endif
                 </div>
 
@@ -243,7 +248,6 @@
 <!-- quick view modal -->
 
 <div class="modal fade prdct_mdl" id="quickViewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-
     aria-hidden="true">
 
     <div class="modal-dialog modal-lg" role="document">
@@ -252,7 +256,8 @@
 
             <div class="modal-header">
 
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="quickViewModalClose()">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                    onclick="quickViewModalClose()">
 
                     <span aria-hidden="true">&times;</span>
 
@@ -284,23 +289,28 @@
 
                                 <ul class="list-unstyled ratingList d-flex flex-nowrap mb-2" id="prodRating">
 
-                                    <li class="mr-2"><a href="javascript:void(0);"><i class=" far fa-star "></i></a>
+                                    <li class="mr-2"><a href="javascript:void(0);"><i
+                                                class=" far fa-star "></i></a>
 
                                     </li>
 
-                                    <li class="mr-2"><a href="javascript:void(0);"><i class=" far fa-star "></i></a>
+                                    <li class="mr-2"><a href="javascript:void(0);"><i
+                                                class=" far fa-star "></i></a>
 
                                     </li>
 
-                                    <li class="mr-2"><a href="javascript:void(0);"><i class=" far fa-star "></i></a>
+                                    <li class="mr-2"><a href="javascript:void(0);"><i
+                                                class=" far fa-star "></i></a>
 
                                     </li>
 
-                                    <li class="mr-2"><a href="javascript:void(0);"><i class=" far fa-star "></i></a>
+                                    <li class="mr-2"><a href="javascript:void(0);"><i
+                                                class=" far fa-star "></i></a>
 
                                     </li>
 
-                                    <li class="mr-2"><a href="javascript:void(0);"><i class=" far fa-star "></i></a>
+                                    <li class="mr-2"><a href="javascript:void(0);"><i
+                                                class=" far fa-star "></i></a>
 
                                     </li>
 
@@ -349,19 +359,15 @@
                                 <div class="holder overflow-hidden d-flex flex-wrap mb-6">
 
                                     <input type="number" placeholder="1" id="cart_quantity" value="1"
-
                                         min="1" max="1000000000">
 
                                     <a href="javascript:void(0);"
-
                                         class="btn btnTheme btnShop fwEbold text-white md-round py-3 px-4 py-md-3 px-md-4"
-
                                         onclick="return beforeAddToCart()">Add
 
                                         To Cart <i class="fas fa-arrow-right ml-2"></i></a>
 
                                     <a href="javascript:void(0);" onclick="warningAlert()"
-
                                         class="icon-heart btn btnTheme ml-1 fwEbold text-white md-round py-3 px-4 py-md-3 px-md-4"></a>
 
                                 </div>
@@ -371,23 +377,17 @@
                                     <li class="text-uppercase mr-5">SHARE THIS PRODUCT:</li>
 
                                     <li class="mr-4"><a
-
                                             href="https://www.facebook.com/sharer/sharer.php?u=https://greenmall.mypickmyvote.com/product-details/wrought-iron-bench"
-
                                             target="_blank" class="fab fa-facebook-f"></a></li>
 
                                     <!--<li class="mr-4"><a href="javascript:void(0);" class="fab fa-google-plus-g"></a></li>-->
 
                                     <li class="mr-4"><a
-
                                             href="https://twitter.com/intent/tweet?url=https://greenmall.mypickmyvote.com/product-details/wrought-iron-bench"
-
                                             target="_blank" class="fab fa-twitter"></a></li>
 
                                     <li class="mr-4"><a
-
                                             href="https://pinterest.com/pin/create/button/?url=https://greenmall.mypickmyvote.com/product-details/wrought-iron-bench"
-
                                             target="_blank" class="fab fa-pinterest-p"></a></li>
 
                                 </ul>
@@ -397,7 +397,6 @@
                                 <ul class="list-unstyled productInfoDetail mb-0">
 
                                     <li class="mb-2">Categories: <a href="javascript:void(0);"
-
                                             id="prodCategory">Garden
 
                                             Furniture</a></li>
@@ -447,17 +446,13 @@
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
 <script>
-
     AOS.init();
-
 </script>
 
 <!-- Bootstrap JS CDN -->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
-
 </script>
 
 
@@ -465,15 +460,12 @@
 <!-- jquery min-->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-
     integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <!--<script src="{{ asset('assets/js/stellarnav.min.js') }}"></script>-->
 
 <script type="text/javascript">
-
     // jQuery(document).ready(function($) {
 
     //     jQuery('.stellarnav').stellarNav({
@@ -489,7 +481,6 @@
     //     });
 
     // });
-
 </script>
 
 
@@ -525,7 +516,6 @@
 
 
 <script type="text/javascript">
-
     jQuery(document).ready(function($) {
 
         jQuery('.stellarnav').stellarNav({
@@ -542,12 +532,24 @@
 
         });
 
-    });
+        var lastScrollTop = 100;
 
+        $(window).scroll(function() {
+            var scrollPos = $(this).scrollTop();
+
+            if (scrollPos > lastScrollTop) {
+                // Scrolling down
+                $('.header-part.clearfix').slideUp(); 
+            } else {
+                // Scrolling up
+                $('.header-part.clearfix').slideDown(); 
+            }
+        });
+
+    });
 </script>
 
 <script>
-
     $(document).ready(function() {
 
         $drawerRight = $('.cart-drawer-right');
@@ -565,11 +567,9 @@
         });
 
     });
-
 </script>
 
 <script>
-
     $(document).ready(function() {
 
         $(".icon-search").click(function() {
@@ -581,7 +581,6 @@
         });
 
     });
-
 </script>
 
 
@@ -591,7 +590,6 @@
 <!-- warning alert -->
 
 <script>
-
     function warningAlert(page = "na") {
 
         Swal.fire({
@@ -637,7 +635,6 @@
         })
 
     }
-
 </script>
 
 
@@ -647,7 +644,6 @@
 <!-- audio -->
 
 <script type="text/javascript">
-
     var track = document.getElementById('track');
 
 
@@ -687,7 +683,6 @@
         controlBtn.className = "play";
 
     });
-
 </script>
 
 
@@ -697,7 +692,6 @@
 
 
 <script>
-
     function zoom(e) {
 
         var zoomer = e.currentTarget;
@@ -713,13 +707,11 @@
         zoomer.style.backgroundPosition = x + '% ' + y + '%';
 
     }
-
 </script>
 
 
 
 <script>
-
     var owlCarousel = $('.owl-carousel.catgry_carousel').owlCarousel({
 
         loop: true,
@@ -761,7 +753,6 @@
         }
 
     })
-
 </script>
 
 
@@ -775,13 +766,11 @@
 <!-- Gallery JS -->
 
 <script>
-
     Fancybox.bind("[data-fancybox]", {
 
         // Custom options for all galleries
 
     });
-
 </script>
 
 
@@ -789,7 +778,6 @@
 <!-- Product Compare -->
 
 <script>
-
     function productCompare(product_id, page = "na") {
 
 
@@ -813,7 +801,6 @@
         });
 
     }
-
 </script>
 
 
@@ -821,7 +808,6 @@
 
 
 <script>
-
     toastr.options = {
 
         "closeButton": true,
@@ -835,7 +821,6 @@
     @if (Session::has('success'))
 
         toastr.success("{{ session('success') }}");
-
     @endif
 
 
@@ -843,7 +828,6 @@
     @if (Session::has('error'))
 
         toastr.error("{{ session('error') }}");
-
     @endif
 
 
@@ -851,7 +835,6 @@
     @if (Session::has('login_error'))
 
         toastr.error("{{ session('login_error') }}");
-
     @endif
 
 
@@ -859,7 +842,6 @@
     @if (Session::has('info'))
 
         toastr.info("{{ session('info') }}");
-
     @endif
 
 
@@ -867,7 +849,6 @@
     @if (Session::has('warning'))
 
         toastr.warning("{{ session('warning') }}");
-
     @endif
 
 
@@ -877,9 +858,7 @@
         @foreach ($errors->all() as $error)
 
             toastr.error("{{ $error }}");
-
         @endforeach
-
     @endif
 
 
@@ -1036,44 +1015,43 @@
 
     }
 
-    
 
-    function quickViewModalClose(){
+
+    function quickViewModalClose() {
 
         $('#quickViewModal').modal('hide');
 
     }
-
 </script>
 
 <script>
-    $(".filterBtn").click(function(){
+    $(".filterBtn").click(function() {
         $(".asidesecty").toggleClass("open");
     });
-    $(".forClose").click(function(){
+    $(".forClose").click(function() {
         $(".asidesecty").removeClass("open");
     });
 </script>
 <!-- tooltip -->
 <script>
-$(document).ready(function(){
-  $('[data-toggle="tooltip"]').tooltip();
-});
+    $(document).ready(function() {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
 </script>
 
 <script>
     window.Promise ||
-    document.write(
-        '<script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"><\/script>'
-    )
+        document.write(
+            '<script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"><\/script>'
+        )
     window.Promise ||
-    document.write(
-        '<script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20171210/classList.min.js"><\/script>'
-    )
+        document.write(
+            '<script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20171210/classList.min.js"><\/script>'
+        )
     window.Promise ||
-    document.write(
-        '<script src="https://cdn.jsdelivr.net/npm/findindex_polyfill_mdn"><\/script>'
-    )
+        document.write(
+            '<script src="https://cdn.jsdelivr.net/npm/findindex_polyfill_mdn"><\/script>'
+        )
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
@@ -1227,38 +1205,38 @@ $(document).ready(function(){
     var seriesData1 = [];
     var seriesData2 = [];
 
-    
-    graphData.forEach(function (item) {
+
+    graphData.forEach(function(item) {
         categories.push(item.key);
         seriesData1.push([parseFloat(item.value1)]);
         seriesData2.push([parseFloat(item.value2)]);
     });
 
     var sd1 = seriesData1.map(function(subArray) {
-         return subArray[0];
-     });
+        return subArray[0];
+    });
 
     var sd2 = seriesData2.map(function(subArray) {
-         return subArray[0];
-     });
+        return subArray[0];
+    });
 
 
-        var category = categories.map(function (item) {
+    var category = categories.map(function(item) {
         // Split each string into an array of words
         var words = item.split(' ');
-        
+
         // Iterate through the words and handle splitting longer words
         var result = [];
         var currentLine = '';
 
         for (var i = 0; i < words.length; i++) {
             if (currentLine.length + words[i].length <= 15) {
-            // Add the word to the current line
-            currentLine += (currentLine.length > 0 ? ' ' : '') + words[i];
+                // Add the word to the current line
+                currentLine += (currentLine.length > 0 ? ' ' : '') + words[i];
             } else {
-            // Start a new line with the current word
-            result.push(currentLine);
-            currentLine = words[i];
+                // Start a new line with the current word
+                result.push(currentLine);
+                currentLine = words[i];
             }
         }
 
@@ -1268,33 +1246,33 @@ $(document).ready(function(){
         }
 
         return result;
-        });
+    });
 
-        var options = {
-          series: [
+    var options = {
+        series: [
 
-         {
-            data:sd1,
-          },{
-            data:sd2,
-          }
+            {
+                data: sd1,
+            }, {
+                data: sd2,
+            }
         ],
-          chart: {
-          type: 'bar',
+        chart: {
+            type: 'bar',
         },
-        colors:['#4a8bfc', '#f03627'],
+        colors: ['#4a8bfc', '#f03627'],
         plotOptions: {
-          bar: {
-            distributed: true,
-      horizontal: true,
-      columnWidth: '100%',
-      dataLabels: {
-        position: 'top',
-      },
-            barYOffset: 200,
-          }
+            bar: {
+                distributed: true,
+                horizontal: true,
+                columnWidth: '100%',
+                dataLabels: {
+                    position: 'top',
+                },
+                barYOffset: 200,
+            }
         },
-    
+
         // dataLabels: {
         //   enabled: true,
         //   offsetX:30,
@@ -1305,21 +1283,21 @@ $(document).ready(function(){
         // },
 
         dataLabels: {
-    enabled: true,
-    formatter: function (val) {
-        return val.toFixed(2); // Adjust the number of decimal places as needed
-    },
-    offsetY: -20, // Adjust the offset to position labels above the bars
-    style: {
-        fontSize: '12px',
-        colors: ['#fff']
-    }
-},
+            enabled: true,
+            formatter: function(val) {
+                return val.toFixed(2); // Adjust the number of decimal places as needed
+            },
+            offsetY: -20, // Adjust the offset to position labels above the bars
+            style: {
+                fontSize: '12px',
+                colors: ['#fff']
+            }
+        },
 
         stroke: {
-          show: true,
-          width: 1,
-          colors: ['#333']
+            show: true,
+            width: 1,
+            colors: ['#333']
         },
         legend: {
             position: 'top',
@@ -1329,8 +1307,8 @@ $(document).ready(function(){
             ]
         },
         tooltip: {
-          shared: true,
-          intersect: false
+            shared: true,
+            intersect: false
         },
         xaxis: {
 
@@ -1344,30 +1322,29 @@ $(document).ready(function(){
                 maxWidth: 500,
             }
         },
-        };
+    };
 
-        console.log(options);
+    console.log(options);
 
-        var chart = new ApexCharts(document.querySelector("#chart"), options);
-        chart.render();
+    var chart = new ApexCharts(document.querySelector("#chart"), options);
+    chart.render();
 
-        function changeSvgColor() {
-            $('#chart').find('.apexcharts-text tspan').css('fill', '#ffc21f');
-            $('#chart').find('.apexcharts-text tspan').css('font-size', '13px');
-            $('#chart').find('.apexcharts-legend-text').css('color', '#ffc21f');
-             $('#chart').find('text').css('white-space', 'wrap');
-        }
-      
-        $(window).on('load', function() {
-            changeSvgColor();
-        });
+    function changeSvgColor() {
+        $('#chart').find('.apexcharts-text tspan').css('fill', '#ffc21f');
+        $('#chart').find('.apexcharts-text tspan').css('font-size', '13px');
+        $('#chart').find('.apexcharts-legend-text').css('color', '#ffc21f');
+        $('#chart').find('text').css('white-space', 'wrap');
+    }
 
-    </script>
+    $(window).on('load', function() {
+        changeSvgColor();
+    });
+</script>
 
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         // Show or hide the back-to-top button based on scroll position
-        $(window).scroll(function () {
+        $(window).scroll(function() {
             if ($(this).scrollTop() > 30) {
                 $('#back-to-top').fadeIn();
             } else {
@@ -1376,11 +1353,13 @@ $(document).ready(function(){
         });
 
         // Scroll to top on button click
-        $('#back-to-top').click(function () {
-            $('html, body').animate({ scrollTop: 0 }, 100);
+        $('#back-to-top').click(function() {
+            $('html, body').animate({
+                scrollTop: 0
+            }, 100);
             return false;
         });
     });
 </script>
-</html>
 
+</html>

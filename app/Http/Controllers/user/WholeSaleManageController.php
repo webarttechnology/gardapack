@@ -12,6 +12,12 @@ class WholeSaleManageController extends Controller
 {
     //
 
+    public function view_details($id){
+        $wholesale = WholesaleInfo::with('user')->find($id);
+        
+        return view('admin.wholesale.details', compact('wholesale'));
+    }
+
     public function wholesaler_add(Request $request){
            $request->validate([
                'fname' => 'required',

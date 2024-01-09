@@ -76,6 +76,8 @@
         $metaTitle = '| Garda Pack';
         $metaDescription = 'Garda Pack';
     }
+
+    $footer = App\Models\WebsiteFoter::first();
 @endphp
 
 <!DOCTYPE html>
@@ -229,6 +231,19 @@
                             <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
 
                             <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+
+                             @if($footer!=null && $footer->fb_status == "active")
+                                <a href="{{ $footer->fb_link }}" target="_blank"><i class="bi bi-facebook"></i></a>
+                            @endif
+                            @if($footer!=null && $footer->twitter_status == "active")
+                                <a href="{{ $footer->twitter_link }}" target="_blank"><i class="bi bi-twitter"></i></a>
+                            @endif
+                            @if($footer!=null && $footer->goog_status == "active")
+                                <a href="{{ $footer->goog_link }}" target="_blank"><i class="bi bi-instagram"></i></a>
+                            @endif
+                            @if($footer!=null && $footer->pint_status == "active")
+                                <a href="{{ $footer->pint_link }}" target="_blank"><i class="bi bi-tiktok"></i></a>
+                            @endif
 
                         </nav>
 

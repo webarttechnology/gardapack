@@ -83,7 +83,7 @@
                             <br>
 
                             <div class="">
-                                <label class="form-label">Google+ Link</label>
+                                <label class="form-label">Instagram</label>
                                 <input type="text" class="form-control" name="goog_link" value="@if($footer != null) {{ $footer->goog_link }} @endif">
                                 @if ($errors->has('goog_link'))
                                 <span class="text-danger">{{ $errors->first('goog_link') }}</span>
@@ -92,7 +92,7 @@
                             <br>
 
                             <div class="">
-                                <label class="form-label">Google+ Link Status</label>
+                                <label class="form-label">Instagram Status</label>
                                 <select class="form-control" name="goog_status">
                                     <option value="">Select Status</option>
                                     <option value="active" @if($footer != null && $footer->goog_status == "active") selected @endif>Active</option>
@@ -105,7 +105,7 @@
                             <br>
 
                             <div class="">
-                                <label class="form-label">Pinterest Link</label>
+                                <label class="form-label">Tiktok</label>
                                 <input type="text" class="form-control" name="pint_link" value="@if($footer != null) {{ $footer->pint_link }} @endif">
                                 @if ($errors->has('pint_link'))
                                 <span class="text-danger">{{ $errors->first('pint_link') }}</span>
@@ -114,7 +114,7 @@
                             <br>
 
                             <div class="">
-                                <label class="form-label">Pinterest Link Status</label>
+                                <label class="form-label">Tiktok Status</label>
                                 <select class="form-control" name="pint_status">
                                     <option value="">Select Status</option>
                                     <option value="active" @if($footer != null && $footer->pint_status == "active") selected @endif>Active</option>

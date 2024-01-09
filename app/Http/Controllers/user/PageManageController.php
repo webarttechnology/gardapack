@@ -4,7 +4,7 @@ namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Product, PdfDownloads, Category, Technology, ProductGallery, Service, WebsiteGallery, Faq, Course, Pages, Cart, HomePge, User, Order, Support, Testimonial};
+use App\Models\{Blog, Product, PdfDownloads, Category, Technology, ProductGallery, Service, WebsiteGallery, Faq, Course, Pages, Cart, HomePge, User, Order, Support, Testimonial};
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
@@ -27,8 +27,9 @@ class PageManageController extends Controller
          $faqs = Faq::limit(5)->get();
          $home = HomePge::first();
          $testimonials = Testimonial::orderBy('id', 'desc')->get();
+         $blogs = Blog::orderBy('id', 'desc')->limit(3)->get();
  
-         return view('front_end.index', compact('products', 'faqs', 'why_us', 'categories', 'daily_deals', 'courses', 'pdfs', 'video_banner', 'home', 'testimonials'));
+         return view('front_end.index', compact('blogs', 'products', 'faqs', 'why_us', 'categories', 'daily_deals', 'courses', 'pdfs', 'video_banner', 'home', 'testimonials'));
     }
 
     public function signup_signin()
@@ -222,5 +223,10 @@ class PageManageController extends Controller
     public function retailer()
     {
         return view('front_end.retailer.index');
+    }
+    
+    public function blog_details($id){
+        $details = Blog::whereId($id)->first();
+        return view('front_end.blog_details', compact('details'));
     }
 }

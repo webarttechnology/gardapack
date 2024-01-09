@@ -14,7 +14,8 @@ class CatagoriesManageController extends Controller
 
     public function categories_lists($type)
     {
-           $categories = Category::where('type', $type)->orderBY('id', 'desc')->get();
+        //    $categories = Category::orderBY('id', 'desc')->get();
+           $categories = Category::orderBY('id', 'desc')->get();
            return view('admin.categories.lists', compact('categories', 'type'));
     }
 

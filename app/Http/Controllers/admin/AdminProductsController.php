@@ -34,7 +34,7 @@ class AdminProductsController extends Controller
     public function add(Request $request)
     {
         if ($request->method() == 'GET') {
-            $categories = Category::where('type', 'product')->get();
+            $categories = Category::get();
             return view('admin.product.add', compact('categories'));
         } else {
             $request->validate([
@@ -271,6 +271,7 @@ class AdminProductsController extends Controller
             $products = Product::whereId($id)->first();
             $variations = Product::find($id)->variations;
             $categories = Category::all();
+            // $categories = Category::where('type', 'categories')->get();
 
             return view('admin.product.update', compact('products', 'variations', 'categories'));
         } else {

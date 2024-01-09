@@ -97,7 +97,7 @@
 
                     <div class="img">
 
-                        <a href=""><img src="{{ asset('admin/product/featured_img/'.$product->featured_img)}}" alt=""></a>
+                        <a href="{{ url('product-details', $product->slug) }}"><img src="{{ asset('admin/product/featured_img/'.$product->featured_img)}}" alt=""></a>
 
                         <ul class="list-unstyled postHoverLinskList d-flex justify-content-center m-0">
 
@@ -163,7 +163,7 @@
 
                     </div>
 
-                    <a href="">
+                    <a href="{{ url('product-details', $product->slug) }}">
 
                     <h5>{{ $product->name }}</h5>
 
@@ -880,88 +880,24 @@
 
             <div class="row mt-5">
 
+                @foreach($blogs as $blog)
                 <div class="col-md-4">
-
                     <div class="blogbx">
-
-                        <img src="assets/images/blog1.png" alt="">
-
+                        <img src="{{ asset($blog->image) }}" alt="">
                     </div>
 
                     <div class="content">
-
-                        <p>December 27, 2021 - 2 Comments - By AP</p>
-
-                        <h5>Make Listening To Music A New Dark Night Delightful Experience</h5>
-
+                        <p>{{ $blog->created_at->format('F j, Y') }}</p>
+                        <h5>{{ $blog->title }}</h5>
                         <div class="blogbtn">
-
-                            <a href="#">Read More</a>
-
+                            <a href="{{ url('blog/details', $blog->id) }}">Read More</a>
                         </div>
-
                     </div>
-
-                    
-
                 </div>
-
-                <div class="col-md-4">
-
-                    <div class="main-blog">
-
-                        <div class="blogbx">
-
-                            <img src="assets/images/blog-2.png" alt="">
-
-                        </div>
-
-                        <div class="content">
-
-                            <p>December 27, 2021 - 2 Comments - By AP</p>
-
-                            <h5>Make Listening To Music A New Dark Night Delightful Experience</h5>
-
-                            <div class="blogbtn">
-
-                                <a href="#">Read More</a>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="col-md-4">
-
-                    <div class="blogbx">
-
-                        <img src="assets/images/blog1.png" alt="">
-
-                    </div>
-
-                    <div class="content">
-
-                        <p>December 27, 2021 - 2 Comments - By AP</p>
-
-                        <h5>Make Listening To Music A New Dark Night Delightful Experience</h5>
-
-                        <div class="blogbtn">
-
-                            <a href="#">Read More</a>
-
-                        </div>
-
-                    </div>
-
-                </div>
+                @endforeach
 
             </div>
-
         </div>
-
     </div>
 
 </section>

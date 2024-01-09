@@ -46,6 +46,8 @@ use App\Http\Controllers\admin\TestimonialManage;
 use App\Http\Controllers\admin\MenubarManageController;
 use App\Http\Controllers\admin\WebsiteFooterManageController;
 
+use App\Http\Controllers\admin\BlogController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -98,7 +100,9 @@ Route::controller(PageManageController::class)->group(function () {
 
     // Retailer
     Route::get('retailers', 'retailer');
-    Route::get('support', 'support');     
+    Route::get('support', 'support');
+
+    Route::get('blog/details/{id}', 'blog_details');     
 });
 
 Route::post('wholesale/application/action', [WholeSaleManageController::class, 'wholesaler_add']);
@@ -529,6 +533,14 @@ Route::group(['prefix' => 'admin'], function () {
               Route::get('page', 'page');
               Route::post('store', 'store');
         });
+
+        //Blog Routes 
+        Route::get('/blog', [BlogController::class, 'show'])->name('blog');
+        Route::get('/blog/add', [BlogController::class, 'add'])->name('blog_add');
+        Route::post('/blog/store', [BlogController::class, 'store'])->name('blog_store');
+        Route::get('/blog/edit/{id}', [BlogController::class, 'edit'])->name('blog_edit');
+        Route::put('/blog/update/{id}', [BlogController::class, 'update'])->name('blog_update');
+        Route::get('/blog/delete/{id}', [BlogController::class, 'delete'])->name('blog_delete');
 
         Route::post('home/cms/save', [HomePageCmsManageController::class, 'save']);
 

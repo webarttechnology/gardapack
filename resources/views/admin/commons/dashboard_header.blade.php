@@ -211,6 +211,16 @@
 							<span @if(Str::contains($currentUrl, 'menu')) class='active_div' @endif>Menu Bars</span></a></li>
 					</ul>
 				</li>
+
+				<li class="menu-label">Blogs</li>
+				<li>
+					<ul>
+                    <li @if(Str::contains($currentUrl, 'blog')) class="activate" @endif> 
+						<a href="{{ url('admin/blog') }}">
+							<i class="bx bx-right-arrow-alt @if(Str::contains($currentUrl, 'blog')) active_div @endif"></i>
+							<span @if(Str::contains($currentUrl, 'blog')) class='active_div' @endif>Blogs</span></a></li>
+					</ul>
+				</li>
 				
 				
 				<!-- gallery --> 

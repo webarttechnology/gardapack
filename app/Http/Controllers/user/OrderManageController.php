@@ -8,6 +8,7 @@ use App\Models\{Order, OrderedProduct, Cart, Product};
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\payment\PaypalPaymentController;
+use App\Http\Controllers\payment\StripePaymentController;
 use App\Http\Controllers\Order\ShipStationManageController;
 use Illuminate\Support\Facades\Session;
 
@@ -39,7 +40,7 @@ class OrderManageController extends Controller
                     'bill_zip' => 'required',
                     'bill_town' => 'required',
 
-                    'carrier' => 'required',
+                    // 'carrier' => 'required',
              ],
              [
                     'fname.required' => 'First Name is Required',
@@ -62,7 +63,7 @@ class OrderManageController extends Controller
                     'bill_zip.required' => 'Billing Zip is Required',
                     'bill_town.required' => 'Billing Town is Required',
                     
-                    'carrier.required' => 'Carrier is Required',
+                    // 'carrier.required' => 'Carrier is Required',
              ]
          );
 
@@ -96,10 +97,12 @@ class OrderManageController extends Controller
 
              'total_amount' => $request->total_price,
              'order_notes' => $request->order_notes,
-             'carrier' => $request->carrier,
-             'service_code' => $request->service,
+            //  'carrier' => $request->carrier,
+            //  'service_code' => $request->service,
              'shipping_cost' => $request->shipCost,
-             'other_cost' => $request->otherCost,
+            //  'other_cost' => $request->otherCost,
+
+             'shipping_option' => $request->shipping_option,
          ]);
 
          // add orderted products details
@@ -119,10 +122,11 @@ class OrderManageController extends Controller
              ]);
          }
 
-         Cart::where('user_id', Auth::user()->id)->delete();
          Session::put('orderEmail', $request->email);
 
-         $link = PaypalPaymentController::paypalPay($request, $order->id, $request->total_price, $request->shipCost, $request->otherCost);
+         $amount = number_format(($request->total_price + $request->shipCost), 2);
+        //  $link = PaypalPaymentController::paypalPay($request, $order->id, $request->total_price, $request->shipCost, $request->otherCost);
+         $link = StripePaymentController::StripePay($request, $order->id, $amount);
          return $link;
 
          //    return redirect()->back()->with('order_submit', 'Order Submitted Successfully');

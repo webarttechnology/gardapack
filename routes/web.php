@@ -47,6 +47,8 @@ use App\Http\Controllers\admin\MenubarManageController;
 use App\Http\Controllers\admin\WebsiteFooterManageController;
 
 use App\Http\Controllers\admin\BlogController;
+use App\Http\Controllers\payment\StripePaymentController;
+use App\Http\Controllers\admin\ShippingOptionsManageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -105,6 +107,8 @@ Route::controller(PageManageController::class)->group(function () {
     Route::get('blog/details/{id}', 'blog_details');     
 });
 
+Route::get('user/shipment/price/{id}/{total_price}', [ShippingOptionsManageController::class, 'getShipmentPrice']);
+
 Route::post('wholesale/application/action', [WholeSaleManageController::class, 'wholesaler_add']);
 Route::get('wholesale/password/change/{code}', [WholeSaleManageController::class, 'wholesaler_password_change']);
 Route::post('wholesale/password/change/action/{code}', [WholeSaleManageController::class, 'password_change_action']);
@@ -149,6 +153,13 @@ Route::controller(ProductController::class)->group(function () {
 });
 
 Route::get('paypal/success', [PaypalPaymentController::class, 'success'])->name('payment.success');
+
+/**
+ * stripe
+*/
+
+Route::get('/success', [StripePaymentController::class, 'success'])->name('stripe.success');
+Route::get('/cancel', [StripePaymentController::class, 'cancel'])->name('stripe.cancel');
 
 /**
  * Product Rating
@@ -519,6 +530,18 @@ Route::group(['prefix' => 'admin'], function () {
         ->prefix('menu')
         ->group(function () {
             Route::get('list', 'list')->name('admin.menu.list');
+            Route::get('add/page', 'add_page');
+            Route::post('add/action', 'add_action');
+            Route::get('update/page/{id}', 'update');
+            Route::post('update/action/{id}', 'update_action');
+            Route::get('delete/{id}', 'delete');
+        });
+
+        // shipping options
+        Route::controller(ShippingOptionsManageController::class)
+        ->prefix('shipping')
+        ->group(function () {
+            Route::get('list', 'list');
             Route::get('add/page', 'add_page');
             Route::post('add/action', 'add_action');
             Route::get('update/page/{id}', 'update');

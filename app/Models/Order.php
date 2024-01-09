@@ -45,7 +45,9 @@ class Order extends Model
         'carrier',
         'service_code',
         'shipping_cost',
-        'other_cost'
+        'other_cost',
+        
+        'shipping_option'
     ];
     
     public function orderProduct()

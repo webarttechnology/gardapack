@@ -1,6 +1,10 @@
 @extends('admin.commons.dashboard_header')
 @section('content')
 
+@php
+   $shipment_detail = App\Models\ShippingOption::whereId($order->shipping_option)->first(); 
+@endphp
+
 <div class="page-wrapper">
     <div class="page-content">
 
@@ -29,6 +33,9 @@
                     @endif
                 </li>
               
+                <h5 class="mt-3">Shipment Details</h5>
+                <li class="list-group-item"><strong>Shipment Option: </strong> {{ $shipment_detail->title }}</li>
+                <li class="list-group-item"><strong>Shipment Price: </strong> ${{ $order->shipping_cost }}</li>
             </ul>
         </div>
 

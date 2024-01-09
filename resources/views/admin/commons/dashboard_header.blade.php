@@ -221,6 +221,16 @@
 							<span @if(Str::contains($currentUrl, 'blog')) class='active_div' @endif>Blogs</span></a></li>
 					</ul>
 				</li>
+
+				<li class="menu-label">Shipping Options</li>
+				<li>
+					<ul>
+                    <li @if(Str::contains($currentUrl, 'shipping')) class="activate" @endif> 
+						<a href="{{ url('admin/shipping/list') }}">
+							<i class="bx bx-right-arrow-alt @if(Str::contains($currentUrl, 'shipping')) active_div @endif"></i>
+							<span @if(Str::contains($currentUrl, 'shipping')) class='active_div' @endif>Shipping</span></a></li>
+					</ul>
+				</li>
 				
 				
 				<!-- gallery --> 

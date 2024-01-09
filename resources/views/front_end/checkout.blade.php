@@ -1,4 +1,7 @@
 <x-userHeader />
+@php
+    $shipping_options = App\Models\ShippingOption::whereStatus('active')->get();
+@endphp
 <main>
     <section class="introBannerHolder d-flex w-100 bgCover" style="">
         {{-- <section class="introBannerHolder d-flex w-100 bgCover"
@@ -197,10 +200,10 @@
                         <strong>$ 0</strong>
                     </li>
 
-                    <li class="list-group-item d-flex justify-content-between" id="other_cost">
+                    {{-- <li class="list-group-item d-flex justify-content-between" id="other_cost">
                         <span>Other Cost</span>
                         <strong>$ 0</strong>
-                    </li>
+                    </li> --}}
 
                     <input type="hidden" id="totalPrice" name="totalPrice" value="{{ $total }}">
                     <input type="hidden" id="actualTotal" name="actualTotal" value="{{ $total }}">
@@ -213,9 +216,28 @@
                     </li>
                 </ul>
 
-
+                <!-- Shipping Options -->
 
                 <div class="col-md-12 mb-3">
+                    <label for="zip">Choose Shipping Option: *</label>
+
+                    <select name="shipping_option" id="shipping_option" class="form-control"
+                        onchange="getpriceDetails()">
+                        <option value="">Select A Option</option>
+                        @if($shipping_options != null)
+                        @foreach ($shipping_options as $carrier)
+                            <option value="{{ $carrier->id }}">{{ $carrier->title }}</option>
+                        @endforeach
+                        @endif
+                    </select>
+
+                    @if ($errors->has('shipping_option'))
+                        <span class="text-danger">{{ $errors->first('shipping_option') }}</span>
+                    @endif
+                </div> 
+
+
+                {{-- <div class="col-md-12 mb-3">
                     <label for="zip">Choose a Carrier: *</label>
 
                     <select name="carrier" id="carrier" class="form-control"
@@ -231,9 +253,9 @@
                     @if ($errors->has('carrier'))
                         <span class="text-danger">{{ $errors->first('carrier') }}</span>
                     @endif
-                </div>
+                </div> --}}
 
-                <div class="col-md-12 mb-3" id="service_main">
+                {{-- <div class="col-md-12 mb-3" id="service_main">
                     <label for="service">Choose a Service: </label>
                     <select name="service" id="service" class="form-control" onchange="getServiceRate();">
                         <option value="">Select A Service</option>
@@ -242,7 +264,7 @@
                     @if ($errors->has('service'))
                         <span class="text-danger">{{ $errors->first('service') }}</span>
                     @endif
-                </div>
+                </div> --}}
 
                 <div class="mb-5">
                     <button class="cstmbtn" type="submit" id="checkoutBtn" style="display: none;">Continue to checkout</button>
@@ -416,125 +438,125 @@
         // Enable the checkout button when required fields are filled
         $('input[name="town"], input[name="state"], input[name="zip"]').on('input', function() {
             if (validateFields()) {
-                $('#checkoutBtn').hide();
+                $('#checkoutBtn').show();
             } else {
                 $('#checkoutBtn').hide();
             }
         });
     });
 
-    function getServiceDetails() {
-        let carrier = $('#carrier').val();
+    // function getServiceDetails() {
+    //     let carrier = $('#carrier').val();
 
-        $('#service_main').hide();
+    //     $('#service_main').hide();
 
-        if (carrier != "") {
-            $.ajax({
-                type: "GET",
-                url: '{{ url('user/product/order/getShipServices/') }}' + '/' + carrier,
-                success: function(response) {
+    //     if (carrier != "") {
+    //         $.ajax({
+    //             type: "GET",
+    //             url: '{{ url('user/product/order/getShipServices/') }}' + '/' + carrier,
+    //             success: function(response) {
 
-                    $('#service_main').show();
-                    let services = response.services;
+    //                 $('#service_main').show();
+    //                 let services = response.services;
 
-                    // Add new options based on the services
-                    if (services.length > 0) {
-                        // Clear existing options
-                        $('#service').empty();
+    //                 // Add new options based on the services
+    //                 if (services.length > 0) {
+    //                     // Clear existing options
+    //                     $('#service').empty();
 
-                        $('#service').append('<option value="">Select A Service</option>');
-                        services.forEach(function(service) {
-                            $('#service').append('<option value="' + service.code + '">' + service
-                                .name + '</option>');
-                        });
-                    }
+    //                     $('#service').append('<option value="">Select A Service</option>');
+    //                     services.forEach(function(service) {
+    //                         $('#service').append('<option value="' + service.code + '">' + service
+    //                             .name + '</option>');
+    //                     });
+    //                 }
 
-                }
-            });
+    //             }
+    //         });
 
-        } else {
-            $('#service_main').hide();
-            alert("Please Select a Carrier");
-        }
-    }
+    //     } else {
+    //         $('#service_main').hide();
+    //         alert("Please Select a Carrier");
+    //     }
+    // }
 
 
-    function getServiceRate(){
-        // $('#loader').show();
-        rateDetailsFetch();
-    }
+    // function getServiceRate(){
+    //     // $('#loader').show();
+    //     rateDetailsFetch();
+    // }
 
-    function rateDetailsFetch(){
-        let carrier = $('#carrier').val();
-        let service = $('#service').val();
-        let country = $('#country').val();
-        let town = $('#town').val();
-        let state = $('#state').val();
-        let zip = $('#zip').val();
-        let totalPrice = $('#actualTotal').val();
+    // function rateDetailsFetch(){
+    //     let carrier = $('#carrier').val();
+    //     let service = $('#service').val();
+    //     let country = $('#country').val();
+    //     let town = $('#town').val();
+    //     let state = $('#state').val();
+    //     let zip = $('#zip').val();
+    //     let totalPrice = $('#actualTotal').val();
 
-        let shipCost= 0;
-        let otherCost= 0;
+    //     let shipCost= 0;
+    //     let otherCost= 0;
 
-        if (!validateField('Country', country) ||
-        !validateField('Town', town) ||
-        !validateField('State', state) ||
-        !validateField('Zip', zip)) {
-            // At least one field is empty, handle accordingly
-           return;
-        }
+    //     if (!validateField('Country', country) ||
+    //     !validateField('Town', town) ||
+    //     !validateField('State', state) ||
+    //     !validateField('Zip', zip)) {
+    //         // At least one field is empty, handle accordingly
+    //        return;
+    //     }
 
-        if (carrier != "") {
-            if (service != "") {
-            Swal.fire({
-                html: '<div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div>',
-                showCancelButton: false,
-                showConfirmButton: false,
-                allowOutsideClick: false,
-                allowEscapeKey: false
-            });
+    //     if (carrier != "") {
+    //         if (service != "") {
+    //         Swal.fire({
+    //             html: '<div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div>',
+    //             showCancelButton: false,
+    //             showConfirmButton: false,
+    //             allowOutsideClick: false,
+    //             allowEscapeKey: false
+    //         });
 
-            $.ajax({
-                type: "GET",
+    //         $.ajax({
+    //             type: "GET",
                 
-                url: '{{ url('user/product/order/getShipServiceRate/') }}' + '/' + carrier 
-                + '/' + service + '/' + state + '/' + country + '/' + zip + '/' + town,
+    //             url: '{{ url('user/product/order/getShipServiceRate/') }}' + '/' + carrier 
+    //             + '/' + service + '/' + state + '/' + country + '/' + zip + '/' + town,
 
-                success: function(response) {
-                    // $('#loader').hide();
-                    Swal.close();
+    //             success: function(response) {
+    //                 // $('#loader').hide();
+    //                 Swal.close();
 
-                    if (response.length > 0) {
-                        $('#checkoutBtn').show();
-                        shipCost = response[0].shipmentCost;
-                        otherCost = response[0].otherCost;
+    //                 if (response.length > 0) {
+    //                     $('#checkoutBtn').show();
+    //                     shipCost = response[0].shipmentCost;
+    //                     otherCost = response[0].otherCost;
 
-                        totalPrice = (parseFloat(totalPrice) + parseFloat(shipCost) + parseFloat(otherCost)).toFixed(2);
-                        $('#totalPrice').val(totalPrice);
-                        $('#totalAmt').html("<span>Total :</span><strong> $"+totalPrice+"</strong>");
-                    }else{
-                        $('#checkoutBtn').hide();
-                        getServiceDetails();
-                        $('#totalPrice').val(totalPrice);
-                        $('#totalAmt').html("<span>Total :</span><strong>"+totalPrice+"</strong>");
-                        toastr.error('Service  from this Provider is Not Available for this Location');
-                    }
+    //                     totalPrice = (parseFloat(totalPrice) + parseFloat(shipCost) + parseFloat(otherCost)).toFixed(2);
+    //                     $('#totalPrice').val(totalPrice);
+    //                     $('#totalAmt').html("<span>Total :</span><strong> $"+totalPrice+"</strong>");
+    //                 }else{
+    //                     $('#checkoutBtn').hide();
+    //                     getServiceDetails();
+    //                     $('#totalPrice').val(totalPrice);
+    //                     $('#totalAmt').html("<span>Total :</span><strong>"+totalPrice+"</strong>");
+    //                     toastr.error('Service  from this Provider is Not Available for this Location');
+    //                 }
 
-                    $('#shipCost').val(shipCost);
-                    $('#shipment_cost').html('<span>Shipment Cost</span> <strong>$'+shipCost+'</strong>');
+    //                 $('#shipCost').val(shipCost);
+    //                 $('#shipment_cost').html('<span>Shipment Cost</span> <strong>$'+shipCost+'</strong>');
                     
-                    $('#otherCost').val(otherCost);
-                    $('#other_cost').html('<span>Other Cost</span> <strong>$'+otherCost+'</strong>');
-                }
-            });
-           }
-           else {
-            toastr.error("Please Select a Service");
-           }
-        } else {
-            toastr.error("Please Select a Carrier");
-        }
-    }
+    //                 $('#otherCost').val(otherCost);
+    //                 $('#other_cost').html('<span>Other Cost</span> <strong>$'+otherCost+'</strong>');
+    //             }
+    //         });
+    //        }
+    //        else {
+    //         toastr.error("Please Select a Service");
+    //        }
+    //     } else {
+    //         toastr.error("Please Select a Carrier");
+    //     }
+    // }
 
     function validateField(fieldName, fieldValue) {
     if (fieldValue === "") {
@@ -548,11 +570,12 @@
         let town = $('#town').val();
         let state = $('#state').val();
         let zip = $('#zip').val();
-        let carrier = $('#carrier').val();
-        let service = $('#service').val();
+        let shipping_option = $('#shipping_option').val();
+        // let carrier = $('#carrier').val();
+        // let service = $('#service').val();
 
         return town.trim() !== '' && state.trim() !== '' && zip.trim() !== '' 
-        && carrier.trim() !== '' && service.trim() !== '';
+        && shipping_option.trim() !== '';
     }
 
     function toggleBillingAddress(){
@@ -575,6 +598,57 @@
             // If the checkbox is unchecked, remove readonly attribute
             $('#bill_name, #bill_lastName, #bill_email, #bill_phone, #bill_address1, #bill_address2, #bill_country, #bill_town, #bill_state, #bill_zip').prop('readonly', false);
         }
+    }
+</script>
+
+<script>
+    function getpriceDetails(){
+        let shipping_option = $('#shipping_option').val();
+        let totalPrice = $('#actualTotal').val();
+        let shipCost= 0;
+
+        if (shipping_option != "") {
+            Swal.fire({
+                html: '<div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div>',
+                showCancelButton: false,
+                showConfirmButton: false,
+                allowOutsideClick: false,
+                allowEscapeKey: false
+            });
+
+            $.ajax({
+                type: "GET",
+                
+                url: '{{ url('user/shipment/price/') }}' + '/' + shipping_option + '/' + totalPrice,
+
+                success: function(response) {
+                    // $('#loader').hide();
+                    Swal.close();
+
+                    $('#checkoutBtn').show();
+                    shipCost = response[0].price;
+
+                    totalPrice = (parseFloat(totalPrice) + parseFloat(shipCost)).toFixed(2);
+
+                    $('#totalPrice').val(totalPrice);
+                    $('#totalAmt').html("<span>Total :</span><strong> $"+totalPrice+"</strong>");
+                    
+                    $('#shipCost').val(shipCost);
+                    $('#shipment_cost').html('<span>Shipment Cost</span> <strong>$'+shipCost+'</strong>');
+                    
+                }
+            });
+           }
+           else {
+            $('#checkoutBtn').hide();
+
+            $('#totalPrice').val(totalPrice);
+            $('#totalAmt').html("<span>Total :</span><strong> $"+totalPrice+"</strong>");
+
+            $('#shipCost').val(0);
+            $('#shipment_cost').html('<span>Shipment Cost</span> <strong>$'+0+'</strong>');
+            toastr.error("Please Select a Shiping Option");
+           }
     }
 </script>
 <x-userFooter />

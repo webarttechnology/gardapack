@@ -11,13 +11,15 @@ class SupportController extends Controller
 
     public function list()
     {
-       $data = Support::first();
-       return view ('admin.pages.support', compact('data'));
+        $data = Support::first();
+        return view('admin.pages.support', compact('data'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
+            'meta_title' => 'required',
+            'meta_description' => 'required',
             'page_heading' => 'required',
             'page_des' => 'required',
             'email' => 'required',
@@ -27,16 +29,20 @@ class SupportController extends Controller
 
         $support = Support::first();
 
-        if($support == null){
+        if ($support == null) {
             Support::create([
+                'meta_title' => $request->meta_title,
+                'meta_description' => $request->meta_description,
                 'page_heading' => $request->page_heading,
                 'page_des' => $request->page_des,
                 'email' => $request->email,
                 'phone' => $request->phone,
                 'live_chat' => $request->live_chat,
             ]);
-        }else{
+        } else {
             Support::first()->update([
+                'meta_title' => $request->meta_title,
+                'meta_description' => $request->meta_description,
                 'page_heading' => $request->page_heading,
                 'page_des' => $request->page_des,
                 'email' => $request->email,

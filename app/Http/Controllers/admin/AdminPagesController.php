@@ -134,6 +134,8 @@ class AdminPagesController extends Controller
                 
                 
                  Pages::whereId($id)->update([
+                    'meta_title' => $request->meta_title,
+                    'meta_description' => $request->meta_description,
                     'name' => $request->name,
                     'title' => $request->title,
                     'description' => $request->description,
@@ -143,7 +145,7 @@ class AdminPagesController extends Controller
                     'address' => $request->address,
                     'phone' => $request->phone,
                     'email' => $request->email,
-                    'map_link' => $request->map_link,
+                    // 'map_link' => $request->map_link,
                     
                     //
                     'img2' => $imageName2,

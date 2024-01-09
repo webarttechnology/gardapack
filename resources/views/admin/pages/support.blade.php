@@ -34,6 +34,26 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="mb-3">
+                                <label class="form-label">Meta Title</label>
+                                <input type="text" class="form-control" name="meta_title"
+                                    value="{{ $data->meta_title }}"  />
+                                @if ($errors->has('meta_title'))
+                                <span class="text-danger">{{ $errors->first('meta_title') }}</span>
+                                @endif
+                            </div>
+                            <br>
+
+                            <div class="mb-3">
+                                <label class="form-label">Meta Description</label>
+                                <input type="text" class="form-control" name="meta_description"
+                                    value="{{ $data->meta_description }}"  />
+                                @if ($errors->has('meta_description'))
+                                <span class="text-danger">{{ $errors->first('meta_description') }}</span>
+                                @endif
+                            </div>
+                            <br>
+                            
+                            <div class="mb-3">
                                 <label class="form-label">Page Heading</label>                              
                                 <input type="text" class="form-control"  value="{{ old('page_heading', $data->page_heading ?? '')}}" name="page_heading">
                                 @if ($errors->has('page_heading'))

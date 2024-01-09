@@ -70,12 +70,21 @@
                             </div>
 
                             <!-- Image field (initially hidden) -->
-                            <div class="mb-3" id="imageField" style="display: none;">
-                                <label class="form-label">Category Top Image</label>
-                                <input type="file" class="form-control" name="category_top_img" />
-                                @if ($errors->has('category_top_img'))
-                                    <span class="text-danger">{{ $errors->first('category_top_img') }}</span>
-                                @endif
+                            <div class="top-fields" style="display: none">
+                                <div class="mb-3" id="imageField" >
+                                    <label class="form-label">Category Top Image</label>
+                                    <input type="file" class="form-control" name="category_top_img" />
+                                    @if ($errors->has('category_top_img'))
+                                        <span class="text-danger">{{ $errors->first('category_top_img') }}</span>
+                                    @endif
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Category Top Name</label>
+                                    <input type="text" class="form-control datepicker" placeholder="Add Category Top Name" name="top_name" required />
+                                    @if ($errors->has('top_name'))
+                                        <span class="text-danger">{{ $errors->first('top_name') }}</span>
+                                    @endif
+                                </div>
                             </div>
 
 
@@ -102,13 +111,13 @@ $(document).ready(function() {
 <script>
     function toggleImageField() {
         var wantToDisplay = document.querySelector('input[name="want_to_display"]:checked').value;
-        var imageField = document.getElementById('imageField');
+        var topFields = document.querySelector('.top-fields');
 
         // If "Yes" is selected, show the image field; otherwise, hide it
         if (wantToDisplay === 'yes') {
-            imageField.style.display = 'block';
+            topFields.style.display = 'block';
         } else {
-            imageField.style.display = 'none';
+            topFields.style.display = 'none';
         }
     }
 </script>

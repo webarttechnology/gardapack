@@ -10,6 +10,8 @@ class Support extends Model
     use HasFactory;
 
     protected $fillable = [
+        'meta_title',
+        'meta_description', 
         'page_heading',
         'page_des',
         'email',

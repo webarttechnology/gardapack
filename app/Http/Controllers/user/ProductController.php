@@ -44,7 +44,7 @@ class ProductController extends Controller
                 ->get());
         }
 
-        $product_categories = Category::where('type', 'product')->get();
+        $product_categories = Category::get();
 
 
         return view('front_end.product.product_category', compact('products', 'tags', 'category', 'per_page', 'top_rated_products', 'total_products', 'product_categories'));
@@ -60,7 +60,7 @@ class ProductController extends Controller
         $category = Category::get();
         $total_products = count(Product::all());
         $products = Product::inRandomOrder()->paginate($per_page);
-        $product_categories = Category::where('type', 'product')->get();
+        $product_categories = Category::get();
         $top_rated_products = Product::topRatedProducts(0, 0);
 
         return view('front_end.product.shop', compact('category', 'product_categories', 'products', 'total_products', 'per_page', 'top_rated_products'));
@@ -82,7 +82,7 @@ class ProductController extends Controller
         $top_rated_products = Product::topRatedProducts($category->id, 0);
         $tags = (Product::where('category_id', $category->id)->first() == null) ? null : ((Product::where('category_id', $category->id)->first())->tags);
 
-        $product_categories = Category::where('type', 'product')->get();
+        $product_categories = Category::get();
         $total_products = count(Product::where('category_id', $category->id)->get());
 
         $products = Product::where('category_id', $category->id)
@@ -107,7 +107,7 @@ class ProductController extends Controller
         $per_page = 12;
         $search_for = $request->p_search;
         $search_category = $request->search_category;
-        $product_categories = Category::where('type', 'product')->get();
+        $product_categories = Category::get();
         $products = Product::where('name', 'LIKE', '%' . $search_for . '%')->get();
         // $products = Product::where('name', 'LIKE', '%' . $search_for . '%')->where('category_id', $search_category)->get();
         $total_products = count($products);
@@ -251,6 +251,6 @@ class ProductController extends Controller
             'receive_emails_status' => 'no'
         ]);
 
-        return redirect()->back()->with('success', 'Successfully Saved');
+        return redirect()->back()->with('success', 'Your data has been successfully submitted');
     }
 }

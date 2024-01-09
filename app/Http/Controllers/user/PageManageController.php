@@ -18,7 +18,7 @@ class PageManageController extends Controller
     {
          // $products = Product::inRandomOrder()->limit(12)->get();
          $products = Product::with('productGalleries', 'category')->latest()->limit(4)->get();
-         $categories = Category::where('type', 'product')->inRandomOrder()->limit(12)->get();
+         $categories = Category::inRandomOrder()->limit(12)->get();
          $daily_deals = Product::orderBy('id', 'desc')->limit(10)->get();
          $courses = Course::orderBy('id', 'desc')->limit(6)->get();
          $pdfs = PdfDownloads::all();

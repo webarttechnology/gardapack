@@ -174,7 +174,7 @@
 
                 
 
-                <div class="form-check mb-10">
+                {{-- <div class="form-check mb-10">
 
                   <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
 
@@ -184,13 +184,13 @@
 
                   </label>
 
-                </div>
+                </div> --}}
 
 
 
                 <div class="text-center">
 
-                    <button type="submit" class="btn btnTheme btnShop md-round fwEbold text-white py-3 px-4 py-md-3 px-md-4">Register and receive 25% off consumables coupon</button>
+                    <button type="submit" class="btn btnTheme btnShop md-round fwEbold text-white py-3 px-4 py-md-3 px-md-4">Submit</button>
 
                 </div>
 

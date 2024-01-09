@@ -1,18 +1,81 @@
 @php
 
     $categories = App\Models\Category::where('type', 'product')->get();
-    $website_logo = App\Models\Settings::where('key','app_logo')->first();
-    $website_name = App\Models\Settings::where('key','app_name')->first();
-    $home_menubars = App\Models\Menubar::where('old_page', 'yes')->whereTitle('Home')->first();
-    $about_menubars = App\Models\Menubar::where('old_page', 'yes')->whereTitle('About')->first();
-    $shop_menubars = App\Models\Menubar::where('old_page', 'yes')->whereTitle('Shop')->first();
-    $technology_menubars = App\Models\Menubar::where('old_page', 'yes')->whereTitle('Technology')->first();
-    $contact_menubars = App\Models\Menubar::where('old_page', 'yes')->whereTitle('Contact Us')->first();
-    $account_menubars = App\Models\Menubar::where('old_page', 'yes')->whereTitle('My Account')->first();
-    $wholesale_menubars = App\Models\Menubar::where('old_page', 'yes')->whereTitle('Wholesale')->first();
-    $retailer_menubars = App\Models\Menubar::where('old_page', 'yes')->whereTitle('Retailer')->first();
-    
-    $new_menubars = App\Models\Menubar::where('old_page', 'no')->whereStatus('active')->orderBy('id', 'desc')->get();
+    $website_logo = App\Models\Settings::where('key', 'app_logo')->first();
+    $website_name = App\Models\Settings::where('key', 'app_name')->first();
+    $home_menubars = App\Models\Menubar::where('old_page', 'yes')
+        ->whereTitle('Home')
+        ->first();
+    $about_menubars = App\Models\Menubar::where('old_page', 'yes')
+        ->whereTitle('About')
+        ->first();
+    $shop_menubars = App\Models\Menubar::where('old_page', 'yes')
+        ->whereTitle('Shop')
+        ->first();
+    $technology_menubars = App\Models\Menubar::where('old_page', 'yes')
+        ->whereTitle('Technology')
+        ->first();
+    $contact_menubars = App\Models\Menubar::where('old_page', 'yes')
+        ->whereTitle('Contact Us')
+        ->first();
+    $account_menubars = App\Models\Menubar::where('old_page', 'yes')
+        ->whereTitle('My Account')
+        ->first();
+    $wholesale_menubars = App\Models\Menubar::where('old_page', 'yes')
+        ->whereTitle('Wholesale')
+        ->first();
+    $retailer_menubars = App\Models\Menubar::where('old_page', 'yes')
+        ->whereTitle('Retailer')
+        ->first();
+
+    $new_menubars = App\Models\Menubar::where('old_page', 'no')
+        ->whereStatus('active')
+        ->orderBy('id', 'desc')
+        ->get();
+
+    $cartNo = 0;
+
+    if (Auth::user()) {
+        $cartNo = App\Models\Cart::where('user_id', Auth::user()->id)->count();
+    } else {
+        if (Session::has('existing_cart')) {
+            $prods = json_decode(Session::get('existing_cart'), true);
+
+            foreach ($prods as $prod) {
+                $cartNo++;
+            }
+        }
+    }
+
+    if (url()->current() == url('/')) {
+        $data = App\Models\HomePge::first();
+
+        $metaTitle = ' | ' . $data->meta_title;
+        $metaDescription = $data->meta_description;
+    } elseif (url()->current() == url('technology')) {
+        $data = App\Models\Technology::first();
+
+        $metaTitle = ' | ' . $data->meta_title;
+        $metaDescription = $data->meta_description;
+    } elseif (url()->current() == url('support')) {
+        $data = App\Models\Support::first();
+
+        $metaTitle = ' | ' . $data->meta_title;
+        $metaDescription = $data->meta_description;
+    } elseif (stripos(url()->current(), 'about-us') !== false) {
+        $data = App\Models\Pages::where('name', 'About Us')->first();
+        
+        $metaTitle = ' | ' . $data->meta_title;
+        $metaDescription = $data->meta_description;
+    } elseif (stripos(url()->current(), 'contact-us') !== false) {
+        $data = App\Models\Pages::where('name', 'Contact Us Page')->first();
+        
+        $metaTitle = ' | ' . $data->meta_title;
+        $metaDescription = $data->meta_description;
+    } else {
+        $metaTitle = '| Garda Pack';
+        $metaDescription = 'Garda Pack';
+    }
 @endphp
 
 <!DOCTYPE html>
@@ -22,7 +85,7 @@
 
 
 <head>
-
+    <meta name="description" content="{{ $metaDescription }}">
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,7 +97,6 @@
     <!-- Bootstrap CSS CDN -->
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
 
@@ -58,14 +120,14 @@
 
 
     <!-- Google Font CDN -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
 
     <!-- Staller Nav CSS -->
 
     <link href="{{ asset('assets/css/stellarnav.min.css') }}" rel="stylesheet">
-    <link rel="icon" href="{{ asset('settings/app_logo/'.$website_logo->value)}}" type="image/png" />
+    <link rel="icon" href="{{ asset('settings/app_logo/' . $website_logo->value) }}" type="image/png" />
     <!-- Custom CSS -->
 
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
@@ -74,7 +136,7 @@
 
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
 
-    <title>{{ $website_name->value }}</title>
+    <title>{{ $website_name->value . $metaTitle }}</title>
 
 
 
@@ -121,13 +183,11 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0- 
 
      alpha/css/bootstrap.css"
-
         rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <link rel="stylesheet" type="text/css"
-
         href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
@@ -139,14 +199,13 @@
 
 
     <link rel="stylesheet"
-
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
 
 
-        <!-- Select2 -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <!-- Select2 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 </head>
 
 
@@ -192,15 +251,11 @@
                         <div class="header-log">
 
                             @if (Auth::user())
-
                                 <a href="{{ url('logout') }}" class="log">Log Out</a>
-
                             @else
-
                                 <a href="{{ url('signup') }}" class="log">Log in</a>
 
                                 <a href="{{ url('signup') }}">Sign Up</a>
-
                             @endif
 
                         </div>
@@ -223,7 +278,8 @@
 
                         <div class="home-logo">
 
-                            <a href="{{ url('/') }}"><img src="{{ asset('settings/app_logo/'.$website_logo->value)}}"></a>
+                            <a href="{{ url('/') }}"><img
+                                    src="{{ asset('settings/app_logo/' . $website_logo->value) }}"></a>
 
                         </div>
 
@@ -244,13 +300,10 @@
                                 <div class="home-wrap d-none">
 
                                     <select class="form-select" name="search_category"
-
                                         aria-label="Default select example">
 
                                         @foreach ($categories as $category)
-
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
-
                                         @endforeach
 
                                     </select>
@@ -263,7 +316,8 @@
 
                                     <span class="search">
 
-                                        <button class="searchBtn" type="submit"><i class="bi bi-search"></i></button>
+                                        <button class="searchBtn" type="submit"><i
+                                                class="bi bi-search"></i></button>
 
                                     </span>
 
@@ -293,27 +347,28 @@
                                         <li><a href="{{ url('faq') }}">FAQ</a></li>
                                         <li><a href="{{ url('support') }}">Support</a></li>
                                         <li><a href="{{ url('contact-us') }}">Contact Us</a></li>
-                                       </ul>
+                                    </ul>
 
                                 </li>
 
                                 @if (Auth::user())
-
                                     <li>
 
-                                    <a href="{{ url('user/wishlist/page') }}"><i class="bi bi-heart"></i></a></li>
-
-                                    <li>
-
-                                    <a href="{{ url('my-account') }}"><i class="fa fa-user"
-
-                                            aria-hidden="true"></i></a>
-
+                                        <a href="{{ url('user/wishlist/page') }}"><i class="bi bi-heart"></i></a>
                                     </li>
 
+                                    <li>
+
+                                        <a href="{{ url('my-account') }}"><i class="fa fa-user"
+                                                aria-hidden="true"></i></a>
+
+                                    </li>
                                 @endif
 
-                                <li><a href="{{ url('user/cart/page') }}"><i class="bi bi-cart4"></i></a></li>
+                                <li class="position-relative">
+                                    <a href="{{ url('user/cart/page') }}"><i class="bi bi-cart4"></i></a>
+                                    <span class="cart-total">{{ $cartNo }}</span>
+                                </li>
 
                             </ul>
 
@@ -337,48 +392,48 @@
 
                 <ul>
 
-                    
 
-                    @if($home_menubars->status == "active")
-                    <li><a href="{{ url('/') }}" class="active">Home</a></li>
+
+                    @if ($home_menubars->status == 'active')
+                        <li><a href="{{ url('/') }}" class="active">Home</a></li>
                     @endif
 
-                    @if($about_menubars->status == "active")
-                    <li><a href="{{ url('about-us') }}">About</a></li>
+                    @if ($about_menubars->status == 'active')
+                        <li><a href="{{ url('about-us') }}">About</a></li>
                     @endif
 
-                    @if($shop_menubars->status == "active")
-                    <li><a href="{{ url('shop') }}">Shop</a></li>
+                    @if ($shop_menubars->status == 'active')
+                        <li><a href="{{ url('shop') }}">Shop</a></li>
                     @endif
 
-                    @if($technology_menubars->status == "active")
-                    <li><a href="{{ url('technology') }}">Technology</a></li>
+                    @if ($technology_menubars->status == 'active')
+                        <li><a href="{{ url('technology') }}">Technology</a></li>
                     @endif
 
-                    @if($contact_menubars->status == "active")
-                    <li><a href="{{ url('contact-us') }}">Contact Us</a></li>
+                    @if ($contact_menubars->status == 'active')
+                        <li><a href="{{ url('contact-us') }}">Contact Us</a></li>
                     @endif
 
-                    @if($account_menubars->status == "active")
-                    <li>
-                        @if (Auth::user())
-                            <a href="{{ url('my-account') }}">My Account</a>
-                        @else
-                            <a href="{{ url('my-account') }}">My Account</a>
-                        @endif
-                    </li>
+                    @if ($account_menubars->status == 'active')
+                        <li>
+                            @if (Auth::user())
+                                <a href="{{ url('my-account') }}">My Account</a>
+                            @else
+                                <a href="{{ url('my-account') }}">My Account</a>
+                            @endif
+                        </li>
                     @endif
 
-                    @if($wholesale_menubars->status == "active")
-                    <li><a href="{{ url('wholesale-application') }}">Wholesale</a></li>
+                    @if ($wholesale_menubars->status == 'active')
+                        <li><a href="{{ url('wholesale-application') }}">Wholesale</a></li>
                     @endif
 
-                    @if($retailer_menubars->status == "active")
-                    <li><a href="{{ url('retailers') }}">Retailers</a></li>
+                    @if ($retailer_menubars->status == 'active')
+                        <li><a href="{{ url('retailers') }}">Retailers</a></li>
                     @endif
-                    
-                    @foreach($new_menubars as $key => $new_menubar)
-                      <li><a href="{{ $new_menubar->link }}" target="_blank">{{ $new_menubar->title }}</a></li>
+
+                    @foreach ($new_menubars as $key => $new_menubar)
+                        <li><a href="{{ $new_menubar->link }}" target="_blank">{{ $new_menubar->title }}</a></li>
                     @endforeach
                 </ul>
 
@@ -387,28 +442,32 @@
         </div>
 
         @php
-            $top_categories = App\Models\Category::where('display_top', 'yes')->orderBy('id', 'desc')->get();
+            $top_categories = App\Models\Category::where('display_top', 'yes')
+                ->orderBy('id', 'desc')
+                ->get();
         @endphp
 
         <div class="headerctgry">
 
-          <div class="container">    
-            <div class="row justify-content-center">
-            @foreach ($top_categories as $top_category)                    
-                <div class="col-6 col-md-2 text-center">
-                    <a href="{{ url('product-category', ['subcategory_id' => 0, 'category_slug' => $top_category->slug]) }}">
-                    <div class="headerglry">
-                        <div class="headerimg">
-                           <img src="{{ asset('uploads/category_top_img/'.$top_category->category_top_img) }}">
+            <div class="container">
+                <div class="row justify-content-center">
+                    @foreach ($top_categories as $top_category)
+                        <div class="col-6 col-md-2 text-center">
+                            <a
+                                href="{{ url('product-category', ['subcategory_id' => 0, 'category_slug' => $top_category->slug]) }}">
+                                <div class="headerglry">
+                                    <div class="headerimg">
+                                        <img
+                                            src="{{ asset('uploads/category_top_img/' . $top_category->category_top_img) }}">
+                                    </div>
+                                    <h6>{{ $top_category->top_name }}</h6>
+                                </div>
+                            </a>
                         </div>
-                        <h6>{{ $top_category->name }}</h6>
-                    </div>
-                    </a>
-                </div>
-            @endforeach
+                    @endforeach
 
+                </div>
             </div>
-           </div>    
         </div>
 
     </header>

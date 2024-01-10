@@ -128,7 +128,7 @@ class CartManageController extends Controller
      * Synchronize cart data at the time of login 
      */
 
-    public static function cartSync()
+    public static function cartSync($userId)
     {
         if (json_decode(Session::get('existing_cart') != null)) {
             $existing_products = json_decode(Session::get('existing_cart'));
@@ -139,7 +139,7 @@ class CartManageController extends Controller
 
                 if ($check_existing_prod_for_users == null) {
                     Cart::create([
-                        'user_id' => Auth::user()->id,
+                        'user_id' => $userId,
                         'product_id' => $existing_product->product_id,
                         'cart_quantity' => $existing_product->cart_quantity,
                         'amount' => $existing_product->amount,

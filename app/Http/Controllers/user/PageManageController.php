@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Order\ShipStationManageController;
+use App\Http\Controllers\user\CartManageController;
 
 class PageManageController extends Controller
 {
@@ -83,21 +84,40 @@ class PageManageController extends Controller
     public function checkout()
     {
         if (Auth::user()) {
-            $carts = Cart::where('user_id', Auth::user()->id)->paginate(10);
-            $all_carts = Cart::where('user_id', Auth::user()->id)->get();
-            $carriers = json_decode(ShipStationManageController::getCarriers(), true);
-            $countries = DB::table('countries')->get();
+            $user_id = Auth::user()->id;
+        }else{
+            $rand = rand(100000, 999999);
 
-            // find sum
-            $total = 0;
-            foreach ($all_carts as $cart) {
-                $total = number_format((float)($total + ($cart->cart_quantity * $cart->amount)), 2, '.', '');
-            }
+            $user = User::create([
+                'name' => 'Guest User',
+                'email' => 'guest'.$rand.'@yopmail.com',
+                'phone' => '1234567890',
+                'password' => bcrypt($rand.time()),
+            ]);
 
-            return view('front_end.checkout', compact('total', 'carts', 'carriers', 'countries'));
-        } else {
-            return redirect()->route('user.signup')->with('danger', 'Please Login First');
+            // Session::put('')
+            CartManageController::cartSync($user->id);
+            $user_id = $user->id;
         }
+
+        $carts = Cart::where('user_id', Auth::user()->id)->paginate(10);
+        $all_carts = Cart::where('user_id', Auth::user()->id)->get();
+        $carriers = json_decode(ShipStationManageController::getCarriers(), true);
+        $countries = DB::table('countries')->get();
+
+        // find sum
+        $total = 0;
+        foreach ($all_carts as $cart) {
+            $total = number_format((float)($total + ($cart->cart_quantity * $cart->amount)), 2, '.', '');
+        }
+
+        return view('front_end.checkout', compact('total', 'carts', 'carriers', 'countries'));
+        
+        // } 
+        // else {
+        //     
+        //     return redirect()->route('user.signup')->with('danger', 'Please Login First');
+        // }
     }
 
     // forgot password page

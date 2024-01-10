@@ -3,6 +3,7 @@
     $categories = App\Models\Category::where('type', 'product')->get();
     $website_logo = App\Models\Settings::where('key', 'app_logo')->first();
     $website_name = App\Models\Settings::where('key', 'app_name')->first();
+    $announcement = App\Models\Settings::where('key', 'header_announcement')->first();
     $home_menubars = App\Models\Menubar::where('old_page', 'yes')
         ->whereTitle('Home')
         ->first();
@@ -253,9 +254,7 @@
 
                     <div class="col-md-6 col-sm-6 col-2">
 
-                        <p>Custom packaging and pre-designed bags now available! <a href="#" class="learn">Learn
-
-                                more</a></p>
+                        <p>{{ $announcement->value }}</p>
 
                     </div>
 

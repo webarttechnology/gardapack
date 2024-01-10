@@ -51,7 +51,7 @@
                             <br>
                             
                             <h4>Banner Section</h4>
-                            <div class="">
+                            {{-- <div class="">
                                 <label class="form-label">Banner</label>
                                 <br>
                                 @if($data != null)
@@ -64,16 +64,30 @@
                                 <span class="text-danger">{{ $errors->first('banner') }}</span>
                                 @endif
 
+                            </div> --}}
+
+
+                            <div class="">
+                                <label class="form-label">Banner</label>
+                                <br>
+                                @if($data != null)
+                                    <img src="{{ asset('uploads/banners/'.$data->banner) }}" width="200" alt="banner">
+                                @endif
+                                <br>
+
+                                <input type="file" class="form-control" name="banner[]" />
                             </div>
-                            {{-- <div class="col-md-2 col-12 rope-chan mt-3">
+
+
+                            <div class="col-md-2 col-12 rope-chan mt-3">
                                 <p id="line_no"></p>
                                 <span class="btn btn-primary m-b-5 m-t-5" id="addrow" onclick="return addRows();" style="float: left;" ><i class="bx bx-plus" aria-hidden="true"></i></span>
                                 <span class="btn btn-danger m-b-5 m-t-5" id="removerow"
                                     style="float: right;" onclick="return removeRows(this);"><i
                                         class="bx bx-trash" aria-hidden="true"></i></span>
-                            </div> --}}
+                            </div>
                             
-                            {{-- <div id="banner_div" class="mt-5"> --}}
+                            <div id="banner_div" class="mt-5">
                             </div>
                             <br>
 

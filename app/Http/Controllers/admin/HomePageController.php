@@ -78,6 +78,7 @@ class HomePageController extends Controller
             //    $bannerPath = $request->file('banner')->storeAs('banners', time() . '_' . $request->file('banner')->getClientOriginalName(), 'public');
 
             $home = HomePge::first();
+            // dd($request->all());
 
             /**
              * Add Banner

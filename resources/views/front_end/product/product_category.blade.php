@@ -118,11 +118,6 @@
 
                         <ul class="list-unstyled viewFilterLinks d-flex flex-nowrap align-items-center">
 
-                            <li class="mr-2"><a href="javascript:void(0);" class="active"><i
-
-                                        class="fas fa-th-large"></i></a></li>
-
-                            <li class="mr-2"><a href="javascript:void(0);"><i class="fas fa-list"></i></a></li>
 
                             <li class="mr-2">Showing {{ $start_from }} – {{ $end_upto }} of
 
@@ -543,4 +538,3 @@
 
 
 <x-userFooter />
-

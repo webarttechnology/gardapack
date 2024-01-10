@@ -33,7 +33,7 @@ a {
 
 }
 
-header{
+header.main-header{
     position: sticky;
     top: 0;
     z-index: 9999999999;
@@ -130,7 +130,7 @@ header{
 
 
 .header-part p {
-
+text-align: center;
     font-size: 12px;
 
     padding-top: 17px;

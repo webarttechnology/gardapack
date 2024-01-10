@@ -45,7 +45,7 @@ class UserAuthController extends Controller
           ]);
   
           if(Auth::attempt(['email' => $request -> input('email'), 'password' => $request -> input('password')])){
-            CartManageController::cartSync();
+            CartManageController::cartSync(Auth::user()->id);
             if(Auth::user()->user_type == "wholesale"){
                  if(Auth::user()->is_accept == "accept"){
                     return redirect()->route('user.home');

@@ -1264,7 +1264,7 @@
         plotOptions: {
             bar: {
                 distributed: true,
-                horizontal: true,
+                horizontal: false,
                 columnWidth: '100%',
                 dataLabels: {
                     position: 'top',

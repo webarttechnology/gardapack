@@ -43,7 +43,46 @@
             aria-label="Slide 3"></button>
     </div>
     <div class="carousel-inner">
-        <div class="carousel-item active">
+
+        @foreach(json_decode($home->banner, true) as $key => $bann)
+        <div class="carousel-item @if($key == 0) active @endif">
+            <img src="{{ 'uploads/banners/' . $bann['img'] }}" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block" style="top: 5%">
+                <div class="container">
+
+                    <div class="row align-items-center text-center">
+
+                        <div class="col-md-12 order-md-1 order-sm-2" data-aos="zoom-in" data-aos-duration="2000">
+
+                            {!! $home->banner_des !!}
+
+                            <div class="home-button"><a
+                                    href="@if ($home != null) {{ $home->btn1_link }} @endif"
+                                    target="_blank"><button type="button" class="btn btn-secondary">
+                                        @if ($home != null)
+                                            {{ $home->btn1_txt }}
+                                        @endif
+                                    </button></a>
+                                <span class="home-button2"><a
+                                        href="@if ($home != null) {{ $home->btn1_link }} @endif"
+                                        target="_blank"><button type="button" class="btn btn-secondary">
+                                            @if ($home != null)
+                                                {{ $home->btn2_txt }}
+                                            @endif
+                                        </button></a></span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        @endforeach
+
+        {{-- <div class="carousel-item">
             <img src="{{ 'uploads/banners/' . $home->banner }}" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block" style="top: 5%">
                 <div class="container">
@@ -112,42 +151,7 @@
 
                 </div>
             </div>
-        </div>
-        <div class="carousel-item">
-            <img src="{{ 'uploads/banners/' . $home->banner }}" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block" style="top: 5%">
-                <div class="container">
-
-                    <div class="row align-items-center text-center">
-
-                        <div class="col-md-12 order-md-1 order-sm-2" data-aos="zoom-in" data-aos-duration="2000">
-
-                            {!! $home->banner_des !!}
-
-                            <div class="home-button"><a
-                                    href="@if ($home != null) {{ $home->btn1_link }} @endif"
-                                    target="_blank"><button type="button" class="btn btn-secondary">
-                                        @if ($home != null)
-                                            {{ $home->btn1_txt }}
-                                        @endif
-                                    </button></a>
-                                <span class="home-button2"><a
-                                        href="@if ($home != null) {{ $home->btn1_link }} @endif"
-                                        target="_blank"><button type="button" class="btn btn-secondary">
-                                            @if ($home != null)
-                                                {{ $home->btn2_txt }}
-                                            @endif
-                                        </button></a></span>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
+        </div> --}}
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>

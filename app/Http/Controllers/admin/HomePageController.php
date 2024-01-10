@@ -83,45 +83,62 @@ class HomePageController extends Controller
             /**
              * Add Banner
              */
+            $imageNames = [];
 
-            //  $imageName = [];
-            //  if ($request->hasFile('banner')) {
-            //     foreach ($request->banner as $ban) {
-            //         $request->validate([
-            //             'banner.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Validate each image in the array
-            //         ]);
-            
-            //         $imageName = time() . '.' . $ban->extension();
-            //         $ban->move(public_path('uploads/banners/'), $imageName);
-            
-            //         $imageNames[] = [
-            //             'img' => $imageName,
-            //         ];
-            //     }
-            // } else {
+            foreach ($request->hidden_banner as $key => $name) {
+                if (!empty($_FILES['banner']['name'][$key])) {
+                    $tmpName = $_FILES['banner']['tmp_name'][$key];
+                    $extension = pathinfo($name, PATHINFO_EXTENSION);
+                    
+                    $imageName = time() . '_' . $key . '.' . $extension;
+                    $destination = public_path('uploads/banners/') . $imageName;
+        
+                    if (move_uploaded_file($tmpName, $destination)) {
+                        $imageNames[] = [
+                            'img' => $imageName,
+                        ];
+                    } else {
+                        return redirect()->back()->with('danger', 'Unable to upload the file');
+                    }
+                } elseif($name != null){
+                    $imageNames[] = [
+                        'img' => $name,
+                    ];
+                }
+                else {
+                        if ($home != null) {
+                            $imageNames = $home->banner;
+                        } else {
+                            $imageNames = null;
+                        }
+                }
+            } 
+            // else {
             //     if ($home != null) {
             //         $imageNames = $home->banner;
             //     } else {
             //         $imageNames = null;
             //     }
             // }
+
             // dd($imageNames);
 
 
-            if ($request->hasFile('banner')) {
-                $request->validate([
-                    'banner' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-                ]);
+            // working
+            // if ($request->hasFile('banner')) {
+            //     $request->validate([
+            //         'banner' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            //     ]);
 
-                $imageName = time() . '.' . $request->banner->extension();
-                $request->banner->move(public_path('uploads/banners/'), $imageName);
-            } else {
-                if ($home != null) {
-                    $imageName = $home->banner;
-                } else {
-                    $imageName = null;
-                }
-            }
+            //     $imageName = time() . '.' . $request->banner->extension();
+            //     $request->banner->move(public_path('uploads/banners/'), $imageName);
+            // } else {
+            //     if ($home != null) {
+            //         $imageName = $home->banner;
+            //     } else {
+            //         $imageName = null;
+            //     }
+            // }
 
             /**
              * Add Banner
@@ -471,7 +488,7 @@ class HomePageController extends Controller
                 HomePge::create([
                     'meta_title' => $request->meta_title,
                     'meta_description' => $request->meta_description,
-                    'banner' => $imageName,
+                    'banner' => $imageNames,
                     'banner_des' => $request->banner_des,
 
                     'btn1_txt' => $request->btn1_txt,
@@ -556,7 +573,7 @@ class HomePageController extends Controller
                 HomePge::first()->update([
                     'meta_title' => $request->meta_title,
                     'meta_description' => $request->meta_description,
-                    'banner' => $imageName,
+                    'banner' => $imageNames,
                     'banner_des' => $request->banner_des,
 
                     'btn1_txt' => $request->btn1_txt,

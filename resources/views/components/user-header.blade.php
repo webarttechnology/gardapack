@@ -254,7 +254,7 @@
 
                     <div class="col-md-6 col-sm-6 col-2">
 
-                        <p>{{ $announcement->value }}</p>
+                        {{-- <p>{{ $announcement->value }}</p> --}}
 
                     </div>
 

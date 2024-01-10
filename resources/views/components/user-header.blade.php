@@ -215,7 +215,7 @@
 
 <body>
     <a href="javascript:;" class="back-to-top" id="back-to-top"><i class="bi bi-arrow-up"></i></a>
-    <header class="main-header">
+    <header>
 
         <div class="header-part clearfix">
 
@@ -226,6 +226,13 @@
                     <div class="col-md-3 col-sm-3 col-5">
 
                         <nav>
+
+                            <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+
+                            <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+
+                            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+
                              @if($footer!=null && $footer->fb_status == "active")
                                 <a href="{{ $footer->fb_link }}" target="_blank"><i class="bi bi-facebook"></i></a>
                             @endif

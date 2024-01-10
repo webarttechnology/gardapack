@@ -1979,7 +1979,7 @@ article:last-of-type {
     display: block;
      width: 35px; 
      height: 35px; 
-     line-height: 35px; 
+     line-height: 30px; 
      text-align: center;
      color:var(--color-dark);
      border-radius: 50%;

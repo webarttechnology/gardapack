@@ -1,6 +1,17 @@
 @extends('admin.commons.dashboard_header')
 @section('content')
 
+<style>
+    .add-remv-btn{
+        padding: 10px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+    }
+    }
+</style>
+
     <div class="page-wrapper">
         <div class="page-content">
             <!--breadcrumb-->
@@ -73,8 +84,7 @@
                                         <input type="file" class="form-control" name="banner[]" />
                                     </div>
                                     <div class="col-md-2 col-12 rope-chan mt-3">
-                                        <p id="line_no"></p>
-                                        <span class="btn btn-primary m-b-5 m-t-5" id="addrow" onclick="return addRows();"
+                                        <span class="btn btn-primary m-b-5 m-t-5 add-remv-btn" id="addrow" onclick="return addRows();"
                                             style="float: left;"><i class="bx bx-plus" aria-hidden="true"></i></span>
                                         <span class="btn btn-danger m-b-5 m-t-5" id="removerow" style="float: right;"
                                             onclick="return removeRows(this);"><i class="bx bx-trash"
@@ -83,8 +93,8 @@
                                 @else
                                     @if ($data->banner != null)
                                         @foreach (json_decode($data->banner, true) as $key => $bann)
-                                            <input type="hidden" name="hidden_banner[]" value="{{ $bann['img'] }}">
-                                            <div class="row">
+                                        <div class="row">
+                                                <input type="hidden" name="hidden_banner[]" value="{{ $bann['img'] }}">
                                                 <div class="">
                                                     @if ($key == 0)
                                                         <label class="form-label">Banner</label>
@@ -99,13 +109,12 @@
                                                 </div>
 
                                                 <div class="col-md-2 col-12 rope-chan mt-3">
-                                                    <p id="line_no"></p>
-                                                    <span class="btn btn-primary m-b-5 m-t-5" id="addrow"
+                                                    <span class="btn btn-primary m-b-5 m-t-5 add-remv-btn" id="addrow"
                                                         onclick="return addRows();" style="float: left;"><i
                                                             class="bx bx-plus" aria-hidden="true"></i></span>
 
                                                             @if ($key > 0)
-                                                    <span class="btn btn-danger m-b-5 m-t-5" id="removerow"
+                                                    <span class="btn btn-danger m-b-5 m-t-5 add-remv-btn" id="removerow"
                                                         style="float: right;" onclick="return removeRows(this);"><i
                                                             class="bx bx-trash" aria-hidden="true"></i></span>
                                                             @endif
@@ -896,9 +905,8 @@
                                 <input type="hidden" name="hidden_banner[]">
                             </div>
                             <div class="col-md-2 col-12 rope-chan mt-3">
-                                    <p id="line_no"></p>
-                                    <span class="btn btn-primary m-b-5 m-t-5" id="addrow" onclick="return addRows();" style="float: left;" ><i class="bx bx-plus" aria-hidden="true"></i></span>
-                                    <span class="btn btn-danger m-b-5 m-t-5" id="removerow"
+                                    <span class="btn btn-primary m-b-5 m-t-5 add-remv-btn" id="addrow" onclick="return addRows();" style="float: left;" ><i class="bx bx-plus" aria-hidden="true"></i></span>
+                                    <span class="btn btn-danger m-b-5 m-t-5 add-remv-btn" id="removerow"
                                         style="float: right;" onclick="return removeRows(this);"><i
                                             class="bx bx-trash" aria-hidden="true"></i></span>
                                 </div>

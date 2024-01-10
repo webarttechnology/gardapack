@@ -21,6 +21,10 @@ class WebsiteFoter extends Model
         'pint_link',
         'pint_status',
         'copy_right_text',
-        'foot_img'
+        'foot_img',
+        'pint_image',
+        'goog_image',
+        'twitter_image',
+        'fb_image'
     ];
 }

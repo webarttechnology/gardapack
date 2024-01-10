@@ -78,17 +78,15 @@ class HomePageController extends Controller
             //    $bannerPath = $request->file('banner')->storeAs('banners', time() . '_' . $request->file('banner')->getClientOriginalName(), 'public');
 
             $home = HomePge::first();
-            // dd($request->all());
 
             /**
              * Add Banner
              */
             $imageNames = [];
-
             foreach ($request->hidden_banner as $key => $name) {
                 if (!empty($_FILES['banner']['name'][$key])) {
                     $tmpName = $_FILES['banner']['tmp_name'][$key];
-                    $extension = pathinfo($name, PATHINFO_EXTENSION);
+                    $extension = pathinfo($_FILES['banner']['name'][$key], PATHINFO_EXTENSION);
                     
                     $imageName = time() . '_' . $key . '.' . $extension;
                     $destination = public_path('uploads/banners/') . $imageName;

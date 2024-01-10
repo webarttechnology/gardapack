@@ -35,51 +35,50 @@
 
 <section id="carouselExampleCaptions" class="carousel slide home-banner carousel-fade" data-bs-ride="carousel">
     <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
-            aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-            aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-            aria-label="Slide 3"></button>
+        @foreach (json_decode($home->banner, true) as $key => $bann)
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{$key}}" class="{{ $key == 0 ? 'active' : ''; }}" aria-label="Slide " {{ $key+1 }}></button>
+        @endforeach
     </div>
     <div class="carousel-inner">
 
-        @foreach(json_decode($home->banner, true) as $key => $bann)
-        <div class="carousel-item @if($key == 0) active @endif">
-            <img src="{{ 'uploads/banners/' . $bann['img'] }}" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block" style="top: 5%">
-                <div class="container">
+        @foreach (json_decode($home->banner, true) as $key => $bann)
+            <div class="carousel-item @if ($key == 0) active @endif">
+                <div style="height: 700px">
+                    <img src="{{ 'uploads/banners/' . $bann['img'] }}" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-caption d-none d-md-block" style="top: 5%">
+                    <div class="container">
 
-                    <div class="row align-items-center text-center">
+                        <div class="row align-items-center text-center">
 
-                        <div class="col-md-12 order-md-1 order-sm-2" data-aos="zoom-in" data-aos-duration="2000">
+                            <div class="col-md-12 order-md-1 order-sm-2" data-aos="zoom-in" data-aos-duration="2000">
 
-                            {!! $home->banner_des !!}
+                                {!! $home->banner_des !!}
 
-                            <div class="home-button"><a
-                                    href="@if ($home != null) {{ $home->btn1_link }} @endif"
-                                    target="_blank"><button type="button" class="btn btn-secondary">
-                                        @if ($home != null)
-                                            {{ $home->btn1_txt }}
-                                        @endif
-                                    </button></a>
-                                <span class="home-button2"><a
+                                <div class="home-button"><a
                                         href="@if ($home != null) {{ $home->btn1_link }} @endif"
                                         target="_blank"><button type="button" class="btn btn-secondary">
                                             @if ($home != null)
-                                                {{ $home->btn2_txt }}
+                                                {{ $home->btn1_txt }}
                                             @endif
-                                        </button></a></span>
+                                        </button></a>
+                                    <span class="home-button2"><a
+                                            href="@if ($home != null) {{ $home->btn1_link }} @endif"
+                                            target="_blank"><button type="button" class="btn btn-secondary">
+                                                @if ($home != null)
+                                                    {{ $home->btn2_txt }}
+                                                @endif
+                                            </button></a></span>
+
+                                </div>
 
                             </div>
 
                         </div>
 
                     </div>
-
                 </div>
             </div>
-        </div>
         @endforeach
 
         {{-- <div class="carousel-item">

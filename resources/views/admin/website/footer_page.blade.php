@@ -48,6 +48,20 @@
                             <br>
 
                             <div class="">
+                                <label class="form-label">Facebook Image</label>
+                                <br>
+                                @if($footer != null && $footer->fb_image != null)
+                                    <img src="{{ asset('uploads/social/'.$footer->fb_image) }}" alt="" width="200">
+                                @endif
+                                <br>
+                                <input type="file" class="form-control" name="fb_image">
+                                @if ($errors->has('fb_image'))
+                                <span class="text-danger">{{ $errors->first('fb_image') }}</span>
+                                @endif
+                            </div>
+                            <br>
+
+                            <div class="">
                                 <label class="form-label">Facebook Link Status</label>
                                 <select class="form-control" name="fb_status">
                                     <option value="">Select Status</option>
@@ -65,6 +79,20 @@
                                 <input type="text" class="form-control" name="twitter_link" value="@if($footer != null) {{ $footer->twitter_link }} @endif">
                                 @if ($errors->has('twitter_link'))
                                 <span class="text-danger">{{ $errors->first('twitter_link') }}</span>
+                                @endif
+                            </div>
+                            <br>
+
+                            <div class="">
+                                <label class="form-label">Twitter Image</label>
+                                <br>
+                                @if($footer != null && $footer->twitter_image != null)
+                                    <img src="{{ asset('uploads/social/'.$footer->twitter_image) }}" alt="" width="200">
+                                @endif
+                                <br>
+                                <input type="file" class="form-control" name="twitter_image">
+                                @if ($errors->has('twitter_image'))
+                                <span class="text-danger">{{ $errors->first('twitter_image') }}</span>
                                 @endif
                             </div>
                             <br>
@@ -92,6 +120,20 @@
                             <br>
 
                             <div class="">
+                                <label class="form-label">Instagram Image</label>
+                                <br>
+                                @if($footer != null && $footer->goog_image != null)
+                                    <img src="{{ asset('uploads/social/'.$footer->goog_image) }}" alt="" width="200">
+                                @endif
+                                <br>
+                                <input type="file" class="form-control" name="goog_image">
+                                @if ($errors->has('goog_image'))
+                                <span class="text-danger">{{ $errors->first('goog_image') }}</span>
+                                @endif
+                            </div>
+                            <br>
+
+                            <div class="">
                                 <label class="form-label">Instagram Status</label>
                                 <select class="form-control" name="goog_status">
                                     <option value="">Select Status</option>
@@ -109,6 +151,20 @@
                                 <input type="text" class="form-control" name="pint_link" value="@if($footer != null) {{ $footer->pint_link }} @endif">
                                 @if ($errors->has('pint_link'))
                                 <span class="text-danger">{{ $errors->first('pint_link') }}</span>
+                                @endif
+                            </div>
+                            <br>
+
+                            <div class="">
+                                <label class="form-label">Tiktok Image</label>
+                                <br>
+                                @if( !empty($footer->pint_image) )
+                                    <img src="{{ asset('uploads/social/'.$footer->pint_image) }}" alt="" width="200">
+                                @endif
+                                <br>
+                                <input type="file" class="form-control" name="pint_image">
+                                @if ($errors->has('pint_image'))
+                                <span class="text-danger">{{ $errors->first('pint_image') }}</span>
                                 @endif
                             </div>
                             <br>

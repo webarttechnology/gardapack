@@ -29,16 +29,16 @@
                 </p>
                 <ul class="d-flex socials">
                     @if ($footer != null && $footer->fb_status == 'active')
-                        <li><a href="{{ $footer->fb_link }}" target="_blank"><i class="bi bi-facebook"></i></a></li>
+                        <li><a href="{{ $footer->fb_link }}" target="_blank"><img src="{{ asset('uploads/social/' . $footer->fb_image) }}" alt=""></a></li>
                     @endif
                     @if ($footer != null && $footer->twitter_status == 'active')
-                        <li><a href="{{ $footer->twitter_link }}" target="_blank"><i class="bi bi-twitter"></i></a></li>
+                        <li><a href="{{ $footer->twitter_link }}" target="_blank"><img src="{{ asset('uploads/social/' . $footer->twitter_image) }}" alt=""></a></li>
                     @endif
                     @if ($footer != null && $footer->goog_status == 'active')
-                        <li><a href="{{ $footer->goog_link }}" target="_blank"><i class="bi bi-instagram"></i></a></li>
+                        <li><a href="{{ $footer->goog_link }}" target="_blank"><img src="{{ asset('uploads/social/' . $footer->goog_image) }}" alt=""></a></li>
                     @endif
                     @if ($footer != null && $footer->pint_status == 'active')
-                        <li><a href="{{ $footer->pint_link }}" target="_blank"><i class="bi bi-tiktok"></i></a></li>
+                        <li><a href="{{ $footer->pint_link }}" target="_blank"><img src="{{ asset('uploads/social/' . $footer->pint_image) }}" alt=""></a></li>
                     @endif
                 </ul>
             </div>
@@ -518,6 +518,12 @@
 <script type="text/javascript">
     jQuery(document).ready(function($) {
 
+        $('.home-banner').carousel({
+            interval: 5000, // Set the desired interval in milliseconds
+            pause: 'hover', // Pause on mouse hover
+        });
+
+
         jQuery('.stellarnav').stellarNav({
 
             theme: 'dark',
@@ -862,7 +868,6 @@
     @endif
 
 
-
     function quickViewProduct(productId) {
 
         $.ajax({
@@ -992,7 +997,6 @@
         });
 
     }
-
 
 
     function beforeAddToCart() {

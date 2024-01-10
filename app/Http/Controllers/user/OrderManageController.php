@@ -4,7 +4,7 @@ namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Order, OrderedProduct, Cart, Product};
+use App\Models\{Order, OrderedProduct, Cart, Product, User};
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\payment\PaypalPaymentController;
@@ -68,10 +68,27 @@ class OrderManageController extends Controller
          );
 
          $order_id = "ODR_" . Str::random(30);
+         $user_id = (Auth::user()) ? (Auth::user()->id) : (session::get('guest_user_id'));
+
+         /**
+          * Update Guest details in USer Db
+         */
+
+         if(!Auth::user()){
+             User::whereId($user_id)->update([
+                  'name' => $request->fname . " " . $request->lname,
+                  'email' => $request->email,
+                  'phone' => $request->phone,
+                  'address' => $request->address1.', '.$request->address2.', Country: '.$request->country.
+                           ', Town: '.$request->town.', State: '.$request->state.', Zip: '.$request->zip,
+                  'user_type' => 'guest',
+            ]);
+         }
+
 
          // add order details
          $order = Order::create([
-             'user_id' => Auth::user()->id,
+             'user_id' => $user_id,
              'order_id' => $order_id,
 
              'shipping_name' => $request->fname . " " . $request->lname,
@@ -106,13 +123,13 @@ class OrderManageController extends Controller
          ]);
 
          // add orderted products details
-         $carts_items = Cart::where('user_id', Auth::user()->id)->get();
+         $carts_items = Cart::where('user_id', $user_id)->get();
 
          foreach ($carts_items as $cart) {
              $price = Product::whereId($cart->product_id)->first();
 
              OrderedProduct::create([
-                    'user_id' => Auth::user()->id,
+                    'user_id' => $user_id,
                     'order_id' => $order_id,
                     'product_id' => $cart->product_id,
                     'product_price' => $cart->amount,
@@ -125,8 +142,9 @@ class OrderManageController extends Controller
          Session::put('orderEmail', $request->email);
 
          $amount = number_format(($request->total_price + $request->shipCost), 2);
+        //  dd($amount);
         //  $link = PaypalPaymentController::paypalPay($request, $order->id, $request->total_price, $request->shipCost, $request->otherCost);
-         $link = StripePaymentController::StripePay($request, $order->id, $amount);
+         $link = StripePaymentController::StripePay($request, $order->id, $amount, $user_id);
          return $link;
 
          //    return redirect()->back()->with('order_submit', 'Order Submitted Successfully');

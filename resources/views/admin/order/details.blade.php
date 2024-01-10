@@ -25,6 +25,15 @@
             <h4>Basic Details</h4>
         </div>
 
+        <input type="hidden" id="country" value="{{ $order->billing_country }}">
+        <input type="hidden" id="town" value="{{ $order->billing_town }}">
+        <input type="hidden" id="state" value="{{ $order->billing_state }}">
+        <input type="hidden" id="zip" value="{{ $order->billing_zip }}">
+        <input type="hidden" id="actualTotal" value="{{ $order->total_amount }}">
+        
+        <div id="shipCost"></div>
+
+
         <div class="card mt-3 p-2" style="width: 100%;">
             <ul class="list-group list-group-flush">
               <li class="list-group-item"><strong>Order Id: </strong> {{ $order->order_id }}</li>
@@ -54,15 +63,17 @@
                 @if($order->carrier != null)    
                     <li class="list-group-item"><strong>Carrier: </strong> {{ $order->carrier }}</li>
                     <li class="list-group-item"><strong>Service Code: </strong> {{ $order->service_code }}</li>
+                    <li class="list-group-item"><strong>Carrier Charge: </strong> ${{ $order->carrier_charge }}</li>
                 @endif
             </ul>
         </div>
 
-        @if($order->carrier == "null")
+        @if(empty($order->carrier))
         @if($order->ship_station_order_id != null)    
         <form action="{{ url('admin/save/shipment/order') }}" method="post" >
             @csrf
 
+            <input type="hidden" id="carrier_charge_val" name="carrier_charge_val" value="0">
             <div class="col-md-12 mb-3">
                 <label for="zip">Choose a Carrier: *</label>
     
@@ -86,6 +97,7 @@
                 <select name="service" id="service" class="form-control" onchange="getServiceRate();">
                     <option value="">Select A Service</option>
                 </select>
+                <p id="carrier_charge"></p>
 
                 @if ($errors->has('service'))
                     <span class="text-danger">{{ $errors->first('service') }}</span>
@@ -205,6 +217,71 @@
         } else {
             $('#service_main').hide();
             alert("Please Select a Carrier");
+        }
+    }
+
+    function getServiceRate(){
+        // $('#loader').show();
+        rateDetailsFetch();
+    }
+
+    function rateDetailsFetch(){
+        let carrier = $('#carrier').val();
+        let service = $('#service').val();
+        let country = $('#country').val();
+        let town = $('#town').val();
+        let state = $('#state').val();
+        let zip = $('#zip').val();
+        let totalPrice = $('#actualTotal').val();
+
+        let shipCost= 0;
+        let otherCost= 0;
+
+        if (carrier != "") {
+            if (service != "") {
+            
+            $.ajax({
+                type: "GET",
+                
+                url: '{{ url('user/product/order/getShipServiceRate/') }}' + '/' + carrier 
+                + '/' + service + '/' + state + '/' + country + '/' + zip + '/' + town,
+
+                success: function(response) {
+                    console.log(response);
+                    // $('#loader').hide();
+                    
+                    if (response.length > 0) {
+                        
+                        shipCost = response[0].shipmentCost;
+                        otherCost = response[0].otherCost;
+                        $('#carrier_charge').html('Carrier Charge: $'+shipCost);
+                        $('#carrier_charge_val').val(shipCost);
+
+                        totalPrice = (parseFloat(totalPrice) + parseFloat(shipCost) + parseFloat(otherCost)).toFixed(2);
+                        $('#totalPrice').val(totalPrice);
+                        $('#totalAmt').html("<span>Total :</span><strong> $"+totalPrice+"</strong>");
+                    }
+                    
+                    else{
+                        // getServiceDetails();
+                        $('#carrier_charge').html('Carrier Charge: $0');
+                        $('#carrier_charge_val').val(0);
+                        $('#totalPrice').val(totalPrice);
+                        $('#totalAmt').html("<span>Total :</span><strong>"+totalPrice+"</strong>");
+                        toastr.error('Service  from this Provider is Not Available for this Location');
+                    }
+
+                    $('#shipCost').val(shipCost);
+                    $('#shipment_cost').html('<span>Shipment Cost</span> <strong>$'+shipCost+'</strong>');
+                    
+                }
+            });
+           }
+           else {
+            toastr.error("Please Select a Service");
+           }
+        } else {
+            toastr.error("Please Select a Carrier");
         }
     }
     </script>

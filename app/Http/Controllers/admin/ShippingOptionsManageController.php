@@ -148,6 +148,7 @@ class ShippingOptionsManageController extends Controller
           $order->update([
               "carrier" => $request->carrier,
               "service_code" => $request->service,
+              'carrier_charge' => $request->carrier_charge_val,
           ]);
 
           return redirect()->back()->with('success', 'Successfully Saved');

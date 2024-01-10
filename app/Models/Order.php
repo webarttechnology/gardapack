@@ -47,7 +47,8 @@ class Order extends Model
         'shipping_cost',
         'other_cost',
         
-        'shipping_option'
+        'shipping_option',
+        'carrier_charge'
     ];
     
     public function orderProduct()

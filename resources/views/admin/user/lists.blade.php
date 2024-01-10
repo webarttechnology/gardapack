@@ -41,6 +41,7 @@
                         <tbody>
 
                             @foreach($users as $user)
+                            @if($user->guest_user == 0)
                             <tr>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
@@ -56,6 +57,7 @@
 
                                 </td>
                             </tr>
+                            @endif
                             @endforeach
 
                         </tbody>

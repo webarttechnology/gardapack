@@ -18,11 +18,12 @@ class StripePaymentController extends Controller
 {
     //
 
-    public static function StripePay(Request $request, $orderId, $amount){
+    public static function StripePay(Request $request, $orderId, $amount, $user_id){
         try {
-            
+            // dd(str_replace(',', '', $amount));
             $stripe = new \Stripe\StripeClient('sk_test_51MmXfKSCgMR7q6bkWzyl3Im8Geip19fTgonFzBjR3SMcpsNhCE7tFvgR12g7fJCAd8ppSsFCmeRzRJIjYTNkVmSx009rBYW42x');
             $product = $stripe->products->create(['name' => 'Imboxo']);
+            $amount = str_replace(',', '', $amount);
 
             $price = $stripe->prices->create(
                 [
@@ -69,6 +70,8 @@ class StripePaymentController extends Controller
 
     public function success(Request $request){
         $stripe = new \Stripe\StripeClient('sk_test_51MmXfKSCgMR7q6bkWzyl3Im8Geip19fTgonFzBjR3SMcpsNhCE7tFvgR12g7fJCAd8ppSsFCmeRzRJIjYTNkVmSx009rBYW42x');
+        
+        $user_id = (Auth::user()) ? (Auth::user()->id) : (session::get('guest_user_id'));
         
         /**
          * Update db if payment done 
@@ -168,10 +171,16 @@ class StripePaymentController extends Controller
 
             Session::forget('paymentDetails');
             Session::forget('orderEmail');
-            return redirect('/')->with('success', 'Order is successfully placed');
+            Cart::where('user_id', $user_id)->delete();
+
+            if(!Auth::user()){
+                session()->forget('existing_cart');
+                session()->forget('guest_user_id');
+            }
+
+            return redirect('thankyou')->with('success', 'Order is successfully placed');
 
         // Session::forget('paymentDetails');
-        Cart::where('user_id', Auth::user()->id)->delete();
-        return Redirect::to('/')->With('success', 'Payment Done');
+        // return Redirect::to('/')->With('success', 'Payment Done');
     }
 }

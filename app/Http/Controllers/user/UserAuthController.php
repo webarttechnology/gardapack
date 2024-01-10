@@ -57,9 +57,13 @@ class UserAuthController extends Controller
                         Auth::logout();
                         return redirect()->route('user.signup')->with('danger', 'Your Wholesaler Application has been Rejected');
                     }
-                 }
+                }
             }else{
-                return redirect()->route('user.home');
+                if(Auth::user()->guest_user == 0){
+                    return redirect()->route('user.home');
+                }else{
+                    return redirect()->route('user.signup')->with('danger', 'Invalid Credentials');
+                }
             }
 
             //   dd(Auth::user()->id);

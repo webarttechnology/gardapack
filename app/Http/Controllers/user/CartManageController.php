@@ -134,7 +134,7 @@ class CartManageController extends Controller
             $existing_products = json_decode(Session::get('existing_cart'));
 
             foreach ($existing_products as $existing_product) {
-                $check_existing_prod_for_users = Cart::where('user_id', Auth::user()->id)
+                $check_existing_prod_for_users = Cart::where('user_id', $userId)
                     ->where('product_id', $existing_product->product_id)->first();
 
                 if ($check_existing_prod_for_users == null) {
@@ -152,7 +152,9 @@ class CartManageController extends Controller
             }
         }
 
-        session()->forget('existing_cart');
+        if(Auth::user()){
+            session()->forget('existing_cart');
+        }
         return true;
     }
 

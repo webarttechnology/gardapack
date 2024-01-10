@@ -27,7 +27,7 @@ class User extends Authenticatable
         'user_type',
         'unique_code',
         'is_accept',
-        'guest_user'
+        'guest_user' 
     ];
 
     /**

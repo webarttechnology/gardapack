@@ -71,7 +71,7 @@
                     <div class="col-md-6 mb-3">
                         <label for="email">Email *<span class="text-muted"></span></label>
                         <input type="email" class="form-control" id="email" name="email"
-                            placeholder="you@example.com" value="{{ Auth::user()->email }}" required>
+                            placeholder="you@example.com" value="" required>
                         @if ($errors->has('email'))
                             <span class="text-danger">{{ $errors->first('email') }}</span>
                         @endif
@@ -223,7 +223,7 @@
 
                     <select name="shipping_option" id="shipping_option" class="form-control"
                         onchange="getpriceDetails()">
-                        <option value="">Select A Option</option>
+                        <option value="0">Select A Option</option>
                         @if($shipping_options != null)
                         @foreach ($shipping_options as $carrier)
                             <option value="{{ $carrier->id }}">{{ $carrier->title }}</option>
@@ -323,7 +323,7 @@
                     <div class="col-md-6 mb-3">
                         <label for="email">Email *<span class="text-muted"></span></label>
                         <input type="email" class="form-control" id="bill_email" name="bill_email"
-                            placeholder="you@example.com" value="{{ Auth::user()->email }}" required>
+                            placeholder="you@example.com" value="" required>
                         @if ($errors->has('bill_email'))
                             <span class="text-danger">{{ $errors->first('bill_email') }}</span>
                         @endif
@@ -575,7 +575,7 @@
         // let service = $('#service').val();
 
         return town.trim() !== '' && state.trim() !== '' && zip.trim() !== '' 
-        && shipping_option.trim() !== '';
+        && shipping_option.trim() != 0;
     }
 
     function toggleBillingAddress(){
@@ -608,8 +608,9 @@
         let totalPrice = $('#actualTotal').val();
         let country = $('#country').val();
         let shipCost= 0;
+        // alert(shipping_option);
 
-        if (shipping_option != "") {
+        if (shipping_option != 0) {
             Swal.fire({
                 html: '<div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div>',
                 showCancelButton: false,
@@ -625,7 +626,6 @@
 
                 success: function(response) {
                     // $('#loader').hide();
-                    console.log(response);
                     Swal.close();
 
                     $('#checkoutBtn').show();

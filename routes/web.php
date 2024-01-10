@@ -82,6 +82,7 @@ Route::controller(PageManageController::class)->group(function () {
 
     // checkout page
     Route::get('checkout', 'checkout');
+    Route::get('thankyou', 'thankyou');
 
     // forgot pass page
     Route::get('forgot-password', 'forgot_password');

@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Order\ShipStationManageController;
 use App\Http\Controllers\user\CartManageController;
+// use Illuminate\Contracts\Session\Session;
 
 class PageManageController extends Controller
 {
@@ -88,20 +89,28 @@ class PageManageController extends Controller
         }else{
             $rand = rand(100000, 999999);
 
-            $user = User::create([
-                'name' => 'Guest User',
-                'email' => 'guest'.$rand.'@yopmail.com',
-                'phone' => '1234567890',
-                'password' => bcrypt($rand.time()),
-            ]);
-
-            // Session::put('')
-            CartManageController::cartSync($user->id);
-            $user_id = $user->id;
+            if (session()->has('guest_user_id')) {
+                $user_id = session('guest_user_id');
+            } else {
+                $user = User::create([
+                    'name' => 'Guest User',
+                    'email' => 'guest'.$rand.'@yopmail.com',
+                    'phone' => '1234567890',
+                    'password' => bcrypt($rand.time()),
+                    'user_type' => 'guest',
+                    'guest_user' => '1',
+                ]);
+    
+                $user_id = $user->id;
+                session()->put('guest_user_id', $user_id);
+            }
+          
+            CartManageController::cartSync($user_id);
+        
         }
 
-        $carts = Cart::where('user_id', Auth::user()->id)->paginate(10);
-        $all_carts = Cart::where('user_id', Auth::user()->id)->get();
+        $carts = Cart::where('user_id', $user_id)->paginate(10);
+        $all_carts = Cart::where('user_id', $user_id)->get();
         $carriers = json_decode(ShipStationManageController::getCarriers(), true);
         $countries = DB::table('countries')->get();
 
@@ -248,5 +257,8 @@ class PageManageController extends Controller
     public function blog_details($id){
         $details = Blog::whereId($id)->first();
         return view('front_end.blog_details', compact('details'));
+    }
+    public function thankyou(){
+        return view('front_end.thankyou');
     }
 }

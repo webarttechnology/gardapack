@@ -103,42 +103,42 @@ color:var(color-light)">
         <div class="row">
             <div class="col-md-12">
                 <div class="maincircle forDesktop">
-                    <div class="roundimg" data-aos="zoom-in" data-aos-duration="2000">
+                    <div class="roundimg">
                     <div class="circleimg text-center">
                             <h3>{{ $detail->feature_title }}</h3>
                         </div>
                     </div>
-                    <div class="roundcircle" data-aos="zoom-in" data-aos-duration="2000">
+                    <div class="roundcircle">
                         <div class="halfcirle">
                             <img src="{{ asset('assets/images/packet-design.png') }}" alt="" class="w-100">
                         </div>
                     </div>
 
                     <div class="feacontent">
-                        <div class="circlehdng it1" data-aos="fade-left">
+                        <div class="circlehdng it1" >
                             <span><i class="bi bi-arrow-up-right-circle-fill"></i></span>
                             <p>{{ $detail->feature1 }}</p>
 
                         </div>
 
-                        <div class="circlehdng it2" data-aos="fade-left">
+                        <div class="circlehdng it2">
                             <span><i class="bi bi-arrow-right-circle-fill"></i></span>
                             <p>{{ $detail->feature2 }}</p>
 
                         </div>
 
-                        <div class="circlehdng it3" data-aos="fade-left">
+                        <div class="circlehdng it3">
                             <span><i class="bi bi-arrow-right-circle-fill"></i></span>
                             <p>{{ $detail->feature3 }}</p>
 
                         </div>
 
-                        <div class="circlehdng it4" data-aos="fade-left">
+                        <div class="circlehdng it4" >
                             <span><i class="bi bi-arrow-down-right-circle-fill"></i></span>
                             <p>{{ $detail->feature4 }}</p>
                         </div>
 
-                        <div class="circlehdng it5" data-aos="fade-left">
+                        <div class="circlehdng it5">
                         <span><i class="bi bi-arrow-down-right-circle-fill"></i></span>
                            <p>{{ $detail->feature5 }}</p>
                         </div>
@@ -149,7 +149,7 @@ color:var(color-light)">
                     <div class="row justify-content-center">
                         <div class="col-7 col-sm-6">
                             <center>
-                            <div class="circleimg" data-aos="zoom-in" data-aos-duration="2000">
+                            <div class="circleimg">
                                
                                 <h3>WHY DOES A LOW˨PERMEABLE<br>
                             VACUUM SEAL BAG<br>
@@ -162,28 +162,28 @@ color:var(color-light)">
                     <div class="clearfix"></div>
                     <div class="row feacontent justify-content-center">
                         <div class="col-md-6">
-                            <div class="circlehdng it1 mt-5" data-aos="fade-up">
+                            <div class="circlehdng it1 mt-5">
                                 <h5>Durability</h5>
                                 <p>An industrial strength element is added for maximum puncture resistance</p>
                             </div>
                         </div>
 
                         <div class="col-md-6">
-                            <div class="circlehdng it2 mt-5" data-aos="fade-up">
+                            <div class="circlehdng it2 mt-5">
                                 <h5>Odor</h5>
                                 <p>An industrial strength element is added for maximum puncture resistance</p>
                             </div>
                         </div>
 
                         <div class="col-md-6">
-                            <div class="circlehdng it3 mt-5" data-aos="fade-up">
+                            <div class="circlehdng it3 mt-5">
                                 <h5>Humidity</h5>
                                 <p>An industrial strength element is added for maximum puncture resistance</p>
                             </div>
                         </div>
 
                         <div class="col-md-6">
-                            <div class="circlehdng it4 mt-5" data-aos="fade-up">
+                            <div class="circlehdng it4 mt-5">
                                 <h5>UV</h5>
                                 <p>An industrial strength element is added for maximum puncture resistance</p>
                             </div>
@@ -191,7 +191,7 @@ color:var(color-light)">
 
                         <div class="col-md-6">
 
-                            <div class="circlehdng it5 mt-5" data-aos="fade-up">
+                            <div class="circlehdng it5 mt-5">
                                 <h5>Oxygen</h5>
                                 <p>An industrial strength element is added for maximum puncture resistance</p>
                             </div>

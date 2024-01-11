@@ -5,8 +5,23 @@
         font-size: 12px;
     }
     .home-logo img {width: 100%;}
+    .header-log {
+        padding-top: 3px;
+    }
+    .header-part2 .btn {
+        padding: 6px 12px;
+    }
+    .home-logo {
+        margin: 3px 0 0 0;
+    }
+    .searchs i {font-size:20px;}
+    
 }
-@media only screen and (max-width:1153px) {
+@media only screen and (max-width: 1280px) {
+   .stellarnav > ul > li > a {
+        padding: 4px 20px;
+    }
+
     .header-part3 .stellarnav>ul>li>a {
         color: var(--color-light);
         padding-left: 15px;
@@ -15,36 +30,46 @@
         font-size: 16px;
     }
     .featuressec .maincircle .feacontent {
-        left: 56%;
+        left: 44%;
     }
-    
+    .circlehdng span {
+        width: 70px;
+        height: 70px;
+        line-height: 59px;
+    }
+    .featuressec .maincircle .feacontent .circlehdng {
+        width: 308px;
+        padding-left: 40px;
+    }
+    .featuressec .maincircle .feacontent .circlehdng img {
+        width:30px; display:inline-block;
+    }
+    .featuressec .circlehdng h5 {
+        font-size: 22px;
+    }
+    .featuressec .maincircle .roundcircle {
+        left: 27%;
+    }
 }
 
 @media only screen and (max-width: 1024px) {
-    .maincircle.forMobile {
-        display: block;
-        height: auto;
-    }
-.maincircle.forDesktop {display: none;}
-.featuressec .maincircle.forMobile .feacontent .circlehdng {
-    width: 100%;
-    padding-left: 0;
-    position: static;
-}
-.featuressec .maincircle.forMobile .feacontent {
-    position: static;
-    top: 50%;
-    transform: none;
-    width: 100%;
-    left: 0;
-}
-.featuressec .circlehdng {
-    border: rgba(255,255,255,0.5) 1px solid;
-    border-radius:15px;
-    padding:6px 15px 15px !important;
-}
+    
+
 }
 @media only screen and (max-width: 991px) {
+    
+    header .container {
+        max-width: 100%;
+    }
+    .home-logo img {
+        width: 162px;
+    }
+    .header-part2 {
+        padding-right:90px;
+    }
+    .stellarnav .call-btn-mobile, .stellarnav .close-menu, .stellarnav .location-btn-mobile, .stellarnav .menu-toggle {
+        padding: 21px 15px 10px;
+    }
     .stellarnav.mobile, .stellarnav.mobile.fixed {
         display: inline-block;
         position: relative;
@@ -60,7 +85,7 @@
     }
     .header-part2 nav {
         margin-left: 0;
-        padding-right: 65px;
+        padding-right: 0;
     }
     .featuressec {
         padding-bottom: 60px;
@@ -122,17 +147,50 @@
         padding-top: 20px;
         padding-bottom: 20px;
     }
+    .maincircle.forMobile {
+        display: block;
+        height: auto;
+    }
+.maincircle.forDesktop {display: none;}
+.featuressec .maincircle.forMobile .feacontent .circlehdng {
+    width: 100%;
+    padding-left: 0;
+    position: static;
+}
+.featuressec .maincircle.forMobile .feacontent {
+    position: static;
+    top: 50%;
+    transform: none;
+    width: 100%;
+    left: 0;
+}
+.featuressec .circlehdng {
+    border: rgba(255,255,255,0.5) 1px solid;
+    border-radius:15px;
+    padding:6px 15px 15px !important;
+}
+.faq-sec button.btn-link p {
+    margin-bottom: 0;
+    font-size: 16px !important;
+}
 
 }
 
 @media only screen and (max-width: 767px) {
+    .headerglry {
+        font-family: var(--font-primary);
+        padding: 4px 0;
+    }
     .header-part2 nav {
         margin-left: 0;
         padding-right: 0;
     }
     .header-part3 .stellarnav.mobile {
-        float: left;
-        left: 15%;
+        float: none;
+        right: 0;
+        position: absolute;
+        top: 0;
+        margin: 0;
     }
     .home-banner h1 {
         font-size:50px;
@@ -172,12 +230,11 @@
 
     }
     .faq .accordion-button {
-        font-size: 28px;
         padding-left: 15px;
+        font-size: 19px;
     }
     .faq .accordion-body {
-        font-size: 22px;
-        padding-left: 15px;
+        padding-left: 15px;font-size: 16px;
     }
     .videosec {
         padding: 25px 0 !important;
@@ -195,18 +252,118 @@
     .technology_effect_left {
         padding: 30px 60px 30px 60px!important;
     }
+    .abouts h2, .featuressec .ftrhdng h1, .sec-title h2, .dealofday h2, .blog .hdng h1 {
+        font-size:25px;
+    }
+    .newproducts .deal-item a .price {
+        font-size: 18px;
+    }
+    .dealofday .mb-3, .dealofday .my-3 {
+        margin-bottom: 0px !important;
+    }
+    .item-text .item-title {
+        font-size: 16px;
+        padding: 10px 20px;
+        margin:0;
+    }
+    .expitems .item-text h3 {
+        font-size: 18px;
+        font-weight: 700;
+    }
+   .fetureBoxes span {
+        font-size: 33px;
+        flex: 0 0 80px;
+        line-height: 80px;
+        height: 80px;
+    }
+    .fetureBoxes {
+        margin:2% 0;
+    }
+    .fetureBoxes h4 {
+        font-size: 18px;
+    }
+    .fetureHead {
+        position: static;
+    }
+    .servcnt h3 {
+        font-size: 28px !important;
+    }
+    .header-part2 nav.icnstty ul {
+        margin:0 !important
+    }
+}
+
+@media only screen and (max-width:667px) {
+    .header-part2 .btn i {
+        margin-right: 2px;
+    }
+    .header-part2 .btn {
+        padding: 6px 10px;
+        font-size: 11px;
+    }
+    .header-log {
+        padding-top: 3px;
+    }
+    .header-part2 nav a {
+        font-size: 20px;
+    }
+    .searchs i {
+        font-size: 15px;
+    }
+    .stellarnav .call-btn-mobile, .stellarnav .close-menu, .stellarnav .location-btn-mobile, .stellarnav .menu-toggle {
+        padding: 11px 9px 10px;
+        font-size: 13px;
+    }
+    .header-part2 {
+        padding-right: 72px;
+    }
+    .cart-total {
+        top: -3px;
+    }
+    .home-logo {
+        margin: 0 0 3px 0;
+    }
+    .blog .content h5 {
+        font-size: 18px;
+    }
+    .effectCenter, .effectLeft {
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+    .productTextHolder h2 {
+    font-size: 22px !important;
+    line-height: 1.2 !important;
+}
+.productTextHolder .price {
+    font-size: 20px;
+    line-height: 1.2 ;
+}
+.float_search {
+    top: -5px !important;
+}
+.contactSecBlock .contactForm {
+    padding:20px !important;
+}
+
+    
 }
     
 @media only screen and (max-width: 575px) {
     .abouts h2, .featuressec .ftrhdng h1, .sec-title h2, .dealofday h2, .blog .hdng h1 {
-        font-size: 28px;
-        text-align: center;
+        text-align: center;width:100%; margin:0;
     }
-    .header-part3 .stellarnav.mobile {
-        left: 0;
+    .header-part2 nav {
+        padding-left:6px;
+        text-align: end;
+    }
+    .home-logo img {
+        width: 137px;
+    }
+    .header-log {
+        padding-top: 0;
     }
     .headerglry {
-        margin: 5px 0;
+        margin:0;
     }
     .header-log {
         text-align: end;
@@ -225,4 +382,34 @@
     .retailers .map-searchbar .searchinput .item select {
         width: 100%;
     }
+    .headerctgry .col-6 {
+        width: 33.333%;
+        flex: 0 0 33.333%;
+    }
+    .header-part2 .col-4 , .header-part2 .col-8 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .header-part2 {
+        padding-right: 0;
+    }
+    .header-log {
+        float: left;
+    }
+    .header-part2 {
+        padding: 5px 10px;
+    }
+    .servcnt h3 {
+        font-size: 1.3rem !important;
+    }
+    .headingIV {
+        font-size: 25px;
+        line-height: 1;
+    }
+    .headerctgry h6 {
+    font-size: 12px !important;
+}
+    
 }

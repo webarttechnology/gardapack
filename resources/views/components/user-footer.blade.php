@@ -868,15 +868,15 @@
     @endif
 
 
-
+@if(!str_contains(Request::url(), 'checkout'))
     @if ($errors->any())
-
+        var str = '';
         @foreach ($errors->all() as $error)
-
-            toastr.error("{{ $error }}");
+        str += "{{ $error }}<br>";
         @endforeach
+        toastr.error(str);
     @endif
-    
+@endif
 
 
     function quickViewProduct(productId) {

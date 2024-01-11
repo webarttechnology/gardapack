@@ -39,6 +39,7 @@ class OrderManageController extends Controller
                     'bill_state' => 'required',
                     'bill_zip' => 'required',
                     'bill_town' => 'required',
+                    'shipping_option' => 'required_if:country,==,US'
 
                     // 'carrier' => 'required',
              ],

@@ -121,10 +121,11 @@
 
                                                 {{-- cartUpdate({{ $cart->id }}, 'plus') --}}
 
-                                                {{-- <a href="javascript:void(0)" onclick="#" class="btn-quantity plus">
+                                                <a href="javascript:void(0)" onclick="return addToCart({{ $product->id }}, 'multiple-add', 'pc', {{ $cart['cart_quantity'] }})" class="btn-quantity plus">
                                                     <i class="bi bi-plus"></i>
-                                                </a> --}}
-
+                                                </a>
+                                                {{-- <input type="number" name="cart_quantity" id="cart_quantity" placeholder="1" min="1" --}}
+                                                
                                                 <div class="col_1of2 quantity-text">
                                                     <p><span class="current_quantity"
                                                             id="current_quantity_<?php echo $key; ?>">{{ $cart['cart_quantity'] }}</span>
@@ -134,9 +135,9 @@
 
                                                 {{-- cartUpdate({{ $cart->id }}, 'minus') --}}
 
-                                                {{-- <a href="javascript:void(0)" onclick="#" class="btn-quantity minus">
+                                                <a href="javascript:void(0)" onclick="return addToCart({{ $product->id }}, 'multiple-sub', 'pc', {{ $cart['cart_quantity'] }})" class="btn-quantity minus">
                                                     <i class="bi bi-dash"></i>
-                                                </a> --}}
+                                                </a>
 
                                                 </p>
 
@@ -172,7 +173,7 @@
                             <div class="summary-content">
                                 <div class="col_1of2 meta-data">
                                     <div class="sub-total">
-                                        <em>Sub Total: </em><span class="amount"> $ {{ $total }}</span>
+                                        {{-- <em>Sub Total: </em><span class="amount"> $ {{ $total }}</span> --}}
                                     </div>
 
                                     <!--<div class="taxes">-->

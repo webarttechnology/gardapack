@@ -110,7 +110,7 @@ Route::controller(PageManageController::class)->group(function () {
 });
 
 
-Route::get('user/shipment/price/{id}/{total_price}/{country}', [ShippingOptionsManageController::class, 'getShipmentPrice']);
+Route::get('user/shipment/price/{total_price}/{country}/{id?}', [ShippingOptionsManageController::class, 'getShipmentPrice']);
 
 Route::post('wholesale/application/action', [WholeSaleManageController::class, 'wholesaler_add']);
 Route::get('wholesale/password/change/{code}', [WholeSaleManageController::class, 'wholesaler_password_change']);

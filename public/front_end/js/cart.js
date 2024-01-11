@@ -1,12 +1,25 @@
-function addToCart(product_id, type, page = "na") {
+function addToCart(product_id, type, page = "na", quantity = 0) {
     let cart_quantity;
-    console.log(product_id);
+    // console.log(product_id);
+    // alert(quantity);
 
     if (type == "multiple") {
         cart_quantity = document.getElementById("cart_quantity").value;
     } else {
         cart_quantity = 1;
     }
+
+    if (type == "multiple-add") {
+        cart_quantity = (quantity + 1);
+    }
+
+    if (type == "multiple-sub") {
+        if(quantity > 1){
+            cart_quantity = (quantity - 1);
+        }else{
+            return false;
+        }
+    } 
 
     if ($("#variation").length) {
         if ($("#variation").val() === "") {

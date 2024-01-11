@@ -230,16 +230,16 @@
 
                         <nav>
                              @if($footer!=null && $footer->fb_status == "active")
-                                <a href="{{ $footer->fb_link }}" target="_blank"><i class="bi bi-facebook"></i></a>
+                                <a href="{{ $footer->fb_link }}" target="_blank"><img src="{{ asset('uploads/social/' . $footer->fb_image) }}" alt=""></a>
                             @endif
                             @if($footer!=null && $footer->twitter_status == "active")
-                                <a href="{{ $footer->twitter_link }}" target="_blank"><i class="bi bi-twitter"></i></a>
+                                <a href="{{ $footer->twitter_link }}" target="_blank"><img src="{{ asset('uploads/social/' . $footer->twitter_image) }}" alt=""></a>
                             @endif
                             @if($footer!=null && $footer->goog_status == "active")
-                                <a href="{{ $footer->goog_link }}" target="_blank"><i class="bi bi-instagram"></i></a>
+                                <a href="{{ $footer->goog_link }}" target="_blank"><img src="{{ asset('uploads/social/' . $footer->goog_image) }}" alt=""></a>
                             @endif
                             @if($footer!=null && $footer->pint_status == "active")
-                                <a href="{{ $footer->pint_link }}" target="_blank"><i class="bi bi-tiktok"></i></a>
+                                <a href="{{ $footer->pint_link }}" target="_blank"><img src="{{ asset('uploads/social/' . $footer->pint_image) }}" alt=""></a>
                             @endif
 
                         </nav>
@@ -282,9 +282,12 @@
 
             <div class="container">
 
-                <div class="row justify-content-end">
+                <div class="row justify-content-between">
 
-                    <div class="col-md-3 col-sm-6 col-5">
+
+                    
+
+                    <div class="col-md-3 col-4">
 
                         <div class="home-logo">
 
@@ -295,60 +298,65 @@
 
                     </div>
 
-
-
-                    <div class="col-md-4 col-sm-6 col-5">
-
-                        <form action="{{ url('product-search') }}" method="post">
-
-                            @csrf
-
-
-
-                            <div class="home-form">
-
-                                <div class="home-wrap d-none">
-
-                                    <select class="form-select" name="search_category"
-                                        aria-label="Default select example">
-
-                                        @foreach ($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                        @endforeach
-
-                                    </select>
-
-                                </div>
-
-                                <div class="home-wrap2">
-
-                                    <input type="text" name="p_search" placeholder="Search of products" required>
-
-                                    <span class="search">
-
-                                        <button class="searchBtn" type="submit"><i
-                                                class="bi bi-search"></i></button>
-
-                                    </span>
-
-                                </div>
-
-                            </div>
-
-                        </form>
-
-                    </div>
-
-
-
-                    <div class="col-md-5 col-sm-8">
+                    <div class="col-md-8 col-8">
                         <nav class="icnstty">
 
                             <ul>
+                                <li class="position-relative">
+                                    <a href="javascipt:void;" class="me-2 searchs"><i class="bi bi-search"></i></a>
+                                    
+                                    <div class="float_search">
+
+                                        <form action="{{ url('product-search') }}" method="post">
+                
+                                            @csrf
+                
+                
+                
+                                            <div class="home-form">
+                
+                                                <div class="home-wrap d-none">
+                
+                                                    <select class="form-select" name="search_category"
+                                                        aria-label="Default select example">
+                
+                                                        @foreach ($categories as $category)
+                                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                        @endforeach
+                
+                                                    </select>
+                
+                                                </div>
+                
+                                                <div class="home-wrap2">
+                
+                                                    <input type="text" name="p_search" placeholder="Search of products" required>
+                
+                                                    <span class="search">
+                
+                                                        <button class="searchBtn" type="submit"><i
+                                                                class="bi bi-search"></i></button>
+                
+                                                    </span>
+                
+                                                </div>
+                
+                                            </div>
+                
+                                        </form>
+                
+                                    </div>
+                                </li>
+                                
+                                @if(Auth::user())
+                                <li class="position-relative" data-bs-toggle="tooltip" data-bs-placement="buttom" title="My account">
+                                    <a href="{{ url('my-account') }}" class="me-2"><i class="bi bi-person"></i></a>
+                                </li>
+                                @endif
 
                                 <li>
 
-                                    <a href="#" class="rgstrprt me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Hooray!"><i class="bi bi-headphones"></i></a>
+                                    <a href="#" class="rgstrprt me-2" data-bs-toggle="tooltip" data-bs-placement="buttom" title="Support"><i class="bi bi-headphones"></i></a>
 
                                     <ul class="sbmnu">
 
@@ -368,16 +376,17 @@
 
                                     <li>
 
-                                        <a href="{{ url('my-account') }}"><i class="fa fa-user"
-                                                aria-hidden="true"></i></a>
+                                        <!--<a href="{{ url('my-account') }}"><i class="fa fa-user"-->
+                                        <!--        aria-hidden="true"></i></a>-->
 
                                     </li>
                                 @endif
 
-                                <li class="position-relative">
+                                <li class="position-relative" data-bs-toggle="tooltip" data-bs-placement="buttom" title="Cart">
                                     <a href="{{ url('user/cart/page') }}"><i class="bi bi-cart4"></i></a>
                                     <span class="cart-total">{{ $cartNo }}</span>
                                 </li>
+                                
 
                             </ul>
 
@@ -455,6 +464,10 @@
                     @if ($retailer_menubars->status == 'active')
                         <li><a href="{{ url('retailers') }}">Retailers</a></li>
                     @endif
+                    
+                    @if ($blog_menubars->status == 'active')
+                        <li><a href="{{ url('blogs') }}">Blogs</a></li>
+                    @endif
 
                     @foreach ($new_menubars as $key => $new_menubar)
                         <li><a href="{{ $new_menubar->link }}" target="_blank">{{ $new_menubar->title }}</a></li>
@@ -476,7 +489,7 @@
             <div class="container">
                 <div class="row justify-content-center">
                     @foreach ($top_categories as $top_category)
-                        <div class="col-6 col-md-2 text-center">
+                        <div class="col-6 col-sm-4 col-md-2 text-center">
                             <a
                                 href="{{ url('product-category', ['subcategory_id' => 0, 'category_slug' => $top_category->slug]) }}">
                                 <div class="headerglry">

@@ -19,7 +19,7 @@
 
         <div class="row mt-5">
 
-            <div class="col-sm-6 col-md-3">
+            <div class="col-md-12 col-lg-3">
                 <span class="mb-5" style="display:block"> <a href="{{ url('/') }}"><img
                             src="{{ asset('settings/app_logo/' . $website_logo->value) }}"></a></span>
                 <p>
@@ -43,7 +43,7 @@
                 </ul>
             </div>
 
-            <div class="col-sm-6 col-md-3">
+            <div class="col-sm-6 col-md-4 col-lg-3">
                 <h4 class="mb-5" style="display:block">INFORMATION</h4>
                 <ul>
                     <li><a href="{{ url('about-us') }}">About</a></li>
@@ -55,7 +55,7 @@
             </div>
 
 
-            <div class="col-sm-6 col-md-3">
+            <div class="col-sm-6 col-md-4 col-lg-3">
                 <h4 class="mb-5" style="display:block">MY ACCOUNT</h4>
 
                 <ul>
@@ -71,7 +71,7 @@
 
             </div>
 
-            <div class="col-sm-6 col-md-3">
+            <div class="col-sm-6 col-md-4 col-lg-3">
 
                 <h4 class="mb-5" style="display:block">Need Help?</h4>
 
@@ -493,7 +493,7 @@
 
 <script src="{{ asset('front_end/js/bootstrap.min.js') }}"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+<!--<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>-->
 <script>
     $(document).ready(function(){
       $('[data-toggle="tooltip"]').tooltip();
@@ -827,8 +827,8 @@
     toastr.options = {
 
         "closeButton": true,
-
-        "progressBar": true
+        "progressBar": true,
+        "zIndex": 1000
 
     }
 
@@ -876,7 +876,7 @@
             toastr.error("{{ $error }}");
         @endforeach
     @endif
-
+    
 
 
     function quickViewProduct(productId) {
@@ -1375,6 +1375,12 @@
             }, 100);
             return false;
         });
+    });
+</script>
+<script>
+    $(".searchs").click(function(){
+        // alert('hi');
+       $(this).next().toggleClass("open");
     });
 </script>
 

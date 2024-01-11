@@ -43,7 +43,7 @@
 
         @foreach (json_decode($home->banner, true) as $key => $bann)
             <div class="carousel-item @if ($key == 0) active @endif">
-                <div style="height: 700px">
+                <div>
                     <img src="{{ 'uploads/banners/' . $bann['img'] }}" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-caption d-none d-md-block" style="top: 5%">
@@ -876,7 +876,7 @@
     </div>
     <div class="container">
         <div class="row justify-content-around align-items-start">
-            <div class="col-sm-4 d-flex fetureBoxes">
+            <div class="col-md-6 col-lg-4 d-flex fetureBoxes">
                 <span>
                     <i class="fas fa-certificate"></i>
 
@@ -897,7 +897,7 @@
                     </p>
                 </div>
             </div>
-            <div class="col-sm-4 d-flex fetureBoxes">
+            <div class="col-md-6 col-lg-4 d-flex fetureBoxes">
                 <span><i class="fas fa-money-check-alt"></i></span>
                 <div>
                     <h4>
@@ -913,7 +913,7 @@
                 </div>
             </div>
             <div class="clearfix"></div>
-            <div class="col-sm-4 d-flex fetureBoxes">
+            <div class="col-md-6 col-lg-4 d-flex fetureBoxes">
                 <span><i class="far fa-clock"></i></span>
                 <div>
                     <h4>
@@ -928,7 +928,7 @@
                     </p>
                 </div>
             </div>
-            <div class="col-sm-4 d-flex fetureBoxes">
+            <div class="col-md-6 col-lg-4 d-flex fetureBoxes">
                 <span><i class="fas fa-balance-scale-left"></i></span>
                 <div>
                     <h4>
@@ -1128,7 +1128,7 @@
             <div class="row mt-5">
 
                 @foreach ($blogs as $blog)
-                    <div class="col-md-4">
+                    <div class="col-md-6 col-lg-4">
                         <div class="blogbx">
                             <img src="{{ asset($blog->image) }}" alt="">
                         </div>

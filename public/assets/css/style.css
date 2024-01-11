@@ -13,7 +13,9 @@
 body {
 	overflow-x: hidden; font-family: var(--font-primary);
 }
-
+html {
+    overflow-x: hidden;
+}
 
 /*Ria */
 
@@ -36,9 +38,15 @@ a {
 header.main-header{
     position: sticky;
     top: 0;
-    z-index: 9999999999;
+    z-index: 999;
 }
-
+header.main-header.fixed{
+    position: fixed;
+    top: 0;
+    width:100%;
+}
+.headerctgry a {text-decoration:none !important;}
+.headerctgry a:hover h6{color:#408137 !important;}
 .headerctgry{
     background-color: white !important;
 }
@@ -225,9 +233,8 @@ text-align: center;
 
 }
 .header-part2 {
-    padding: 5px 10px;
+    padding: 5px 10px 0;
 }
-
 .header-part2 nav a {
 
     color: var(--color-dark);
@@ -448,8 +455,8 @@ text-align: center;
 .home-banner {
 
     /* background-image: url("../images/mailbackground.png"); */
-    /* padding: 50px 0;  */
-    height: 700px;
+    /* padding: 50px 0;
+    height: 700px;  */
     background-position: top center;
 
     background-repeat: no-repeat;
@@ -2767,11 +2774,6 @@ transform: scale(1.15);
 .testimonials .carousel-indicators [data-bs-target] {
     background-color: #999 !important;
 }
-@media only screen and (max-width: 767px) {
-   
-    
-}
-
 .cart-total{
     width: 20px;
     height: 20px;
@@ -2785,4 +2787,18 @@ transform: scale(1.15);
     font-size: 12px;
     text-align: center;
     font-weight: 600;
+}
+.faq-sec button.btn-link {
+    padding: 0;
+}
+
+@media (max-width: 576px) {
+
+.wholesale form {
+        padding: 15px 15px !important;
+    }
+    .wholesale .form-title h3 {
+        margin: 0;
+    }
+
 }

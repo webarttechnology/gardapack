@@ -106,6 +106,7 @@ Route::controller(PageManageController::class)->group(function () {
     Route::get('support', 'support');
 
     Route::get('blog/details/{id}', 'blog_details');
+    Route::get('blogs', 'blogs');
 });
 
 

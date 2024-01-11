@@ -50,7 +50,8 @@
                                         <td>{{$blog->title}}</td>
                                         <td><img src="{{ asset($blog->image) }}" alt="Your Image" width="100px"></td>  
                                         <td>{{$blog->subheading}}</td>
-                                        <td>{!!$blog->description!!}</td>
+                                        <td>{!! Str::limit(strip_tags($blog->description), 20) !!}</td>
+                                        {{-- <td>{!!$blog->description!!}</td> --}}
                                         <td>{{ now()->format('F j, Y') }}</td>
                                         <td>{{ now()->format('F j, Y') }}</td>      
                                         

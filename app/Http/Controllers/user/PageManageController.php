@@ -261,4 +261,9 @@ class PageManageController extends Controller
     public function thankyou(){
         return view('front_end.thankyou');
     }
+
+    public function blogs(){
+        $blogs = Blog::orderBy('id', 'desc')->get();
+        return view('front_end.blogs', compact('blogs'));
+    }
 }

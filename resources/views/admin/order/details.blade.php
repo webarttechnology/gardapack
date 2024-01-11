@@ -106,7 +106,7 @@
 
             <input type="hidden" value="{{ $order->id }}" name="order_id">
             <div class="mb-5">
-                <button class="cstmbtn btn btn-primary" type="submit">Save</button>
+                <button class="cstmbtn btn btn-primary" type="submit" id="save_carrier">Save</button>
             </div>
         </form>
         @endif
@@ -256,7 +256,7 @@
                         otherCost = response[0].otherCost;
                         $('#carrier_charge').html('Carrier Charge: $'+shipCost);
                         $('#carrier_charge_val').val(shipCost);
-
+                        $('#save_carrier').show();
                         totalPrice = (parseFloat(totalPrice) + parseFloat(shipCost) + parseFloat(otherCost)).toFixed(2);
                         $('#totalPrice').val(totalPrice);
                         $('#totalAmt').html("<span>Total :</span><strong> $"+totalPrice+"</strong>");
@@ -268,7 +268,9 @@
                         $('#carrier_charge_val').val(0);
                         $('#totalPrice').val(totalPrice);
                         $('#totalAmt').html("<span>Total :</span><strong>"+totalPrice+"</strong>");
-                        toastr.error('Service  from this Provider is Not Available for this Location');
+                        $('#save_carrier').hide();
+                        // toastr.error('Service  from this Provider is Not Available for this Location');
+                        alert("Service  from this Provider is Not Available for this Location");
                     }
 
                     $('#shipCost').val(shipCost);
@@ -278,10 +280,10 @@
             });
            }
            else {
-            toastr.error("Please Select a Service");
+            alert("Please Select a Service");
            }
         } else {
-            toastr.error("Please Select a Carrier");
+            alert("Please Select a Carrier");
         }
     }
     </script>

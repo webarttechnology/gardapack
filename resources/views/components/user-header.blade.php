@@ -16,6 +16,9 @@
     $technology_menubars = App\Models\Menubar::where('old_page', 'yes')
         ->whereTitle('Technology')
         ->first();
+    $blog_menubars = App\Models\Menubar::where('old_page', 'yes')
+        ->whereTitle('Blogs')
+        ->first();
     $contact_menubars = App\Models\Menubar::where('old_page', 'yes')
         ->whereTitle('Contact Us')
         ->first();
@@ -215,7 +218,7 @@
 
 <body>
     <a href="javascript:;" class="back-to-top" id="back-to-top"><i class="bi bi-arrow-up"></i></a>
-    <header>
+    <header class="main-header site-header">
 
         <div class="header-part clearfix">
 
@@ -226,13 +229,6 @@
                     <div class="col-md-3 col-sm-3 col-5">
 
                         <nav>
-
-                            <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-
-                            <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-
-                            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-
                              @if($footer!=null && $footer->fb_status == "active")
                                 <a href="{{ $footer->fb_link }}" target="_blank"><i class="bi bi-facebook"></i></a>
                             @endif
@@ -252,27 +248,27 @@
 
 
 
-                    <div class="col-md-6 col-sm-6 col-2">
+                    <!--<div class="col-md-6 col-sm-6 col-2">-->
 
-                        {{-- <p>{{ $announcement->value }}</p> --}}
+                    {{-- <!--    <p>{{ $announcement->value }}</p>--> --}}
 
-                    </div>
+                    <!--</div>-->
 
 
 
                     <div class="col-md-3 col-sm-3 col-5">
 
-                        <div class="header-log">
+                        <!--<div class="header-log">-->
 
-                            @if (Auth::user())
-                                <a href="{{ url('logout') }}" class="log">Log Out</a>
-                            @else
-                                <a href="{{ url('signup') }}" class="log">Log in</a>
+                        <!--    @if (Auth::user())-->
+                        <!--        <a href="{{ url('logout') }}" class="log">Log Out</a>-->
+                        <!--    @else-->
+                        <!--        <a href="{{ url('signup') }}" class="log">Log in</a>-->
 
-                                <a href="{{ url('signup') }}">Sign Up</a>
-                            @endif
+                        <!--        <a href="{{ url('signup') }}">Sign Up</a>-->
+                        <!--    @endif-->
 
-                        </div>
+                        <!--</div>-->
 
                     </div>
 
@@ -301,7 +297,7 @@
 
 
 
-                    <div class="col-md-6 col-sm-6 col-7">
+                    <div class="col-md-4 col-sm-6 col-5">
 
                         <form action="{{ url('product-search') }}" method="post">
 
@@ -345,15 +341,14 @@
 
 
 
-                    <div class="col-md-3 col-sm-6 ">
-
+                    <div class="col-md-5 col-sm-8">
                         <nav class="icnstty">
 
                             <ul>
 
                                 <li>
 
-                                    <a href="#" class="rgstrprt me-2"><i class="bi bi-headphones"></i></a>
+                                    <a href="#" class="rgstrprt me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Hooray!"><i class="bi bi-headphones"></i></a>
 
                                     <ul class="sbmnu">
 
@@ -387,7 +382,18 @@
                             </ul>
 
                         </nav>
+                        
+                        <div class="header-log">
 
+                            @if (Auth::user())
+                                <a href="{{ url('logout') }}" class="log btn btn-sm btn-warning"><i class="fa fa-lock"></i> Log Out</a>
+                            @else
+                                <a href="{{ url('signup') }}" class="log btn btn-sm btn-warning"><i class="fa fa-unlock"></i> Log in</a>
+
+                                <a href="{{ url('signup') }}" class="btn btn-sm btn-warning"><i class="fa fa-user"></i> Sign Up</a>
+                            @endif
+
+                        </div>
                     </div>
 
 
@@ -422,6 +428,10 @@
 
                     @if ($technology_menubars->status == 'active')
                         <li><a href="{{ url('technology') }}">Technology</a></li>
+                    @endif
+
+                    @if ($blog_menubars->status == 'active')
+                        <li><a href="{{ url('blogs') }}">Blogs</a></li>
                     @endif
 
                     @if ($contact_menubars->status == 'active')

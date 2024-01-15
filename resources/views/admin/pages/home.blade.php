@@ -1,16 +1,16 @@
 @extends('admin.commons.dashboard_header')
 @section('content')
 
-<style>
-    .add-remv-btn{
-        padding: 10px 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 40px;
-    }
-    }
-</style>
+    <style>
+        .add-remv-btn {
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+        }
+        }
+    </style>
 
     <div class="page-wrapper">
         <div class="page-content">
@@ -83,9 +83,32 @@
                                         <label class="form-label">Banner</label>
                                         <input type="file" class="form-control" name="banner[]" />
                                     </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Buuton 1 Text</label>
+                                        <input type="text" class="form-control" value="" name="btn1_txt[]">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Button 1 Link</label>
+                                        <input type="text" class="form-control" value="" name="btn1_link[]">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">BUtton 2 Text</label>
+                                        <input type="text" class="form-control" value="" name="btn2_txt[]">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Button 2 Link</label>
+                                        <input type="text" class="form-control" value="" name="btn2_link[]">
+                                    </div>
+                                    <div class="">
+                                        <label class="form-label">Banner Description</label>
+                                        <textarea class="ckeditor form-control" name="banner_des[]">
+                                        </textarea>
+                                    </div>
+
                                     <div class="col-md-2 col-12 rope-chan mt-3">
-                                        <span class="btn btn-primary m-b-5 m-t-5 add-remv-btn" id="addrow" onclick="return addRows();"
-                                            style="float: left;"><i class="bx bx-plus" aria-hidden="true"></i></span>
+                                        <span class="btn btn-primary m-b-5 m-t-5 add-remv-btn" id="addrow"
+                                            onclick="return addRows();" style="float: left;"><i class="bx bx-plus"
+                                                aria-hidden="true"></i></span>
                                         <span class="btn btn-danger m-b-5 m-t-5" id="removerow" style="float: right;"
                                             onclick="return removeRows(this);"><i class="bx bx-trash"
                                                 aria-hidden="true"></i></span>
@@ -93,7 +116,7 @@
                                 @else
                                     @if ($data->banner != null)
                                         @foreach (json_decode($data->banner, true) as $key => $bann)
-                                        <div class="row">
+                                            <div class="row border border-5 m-2 p-2">
                                                 <input type="hidden" name="hidden_banner[]" value="{{ $bann['img'] }}">
                                                 <div class="">
                                                     @if ($key == 0)
@@ -107,17 +130,62 @@
 
                                                     <input type="file" class="form-control" name="banner[]" />
                                                 </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Buuton 1 Text</label>
+                                                    <input type="text" class="form-control"
+                                                        value="{{ $bann['btn1_txt'] }}" name="btn1_txt[]">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Button 1 Link</label>
+                                                    <input type="text" class="form-control"
+                                                        value="{{ $bann['btn1_link'] }}" name="btn1_link[]">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Button 1 Status</label>
+
+                                                    <select class="form-control" name="btn1_status[]">
+                                                            <option value="">Select</option>
+                                                            <option value="active" @if($bann['btn1_status'] == "active") selected @endif>Active</option>
+                                                            <option value="inactive" @if($bann['btn1_status'] == "inactive") selected @endif>Inactive</option>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">BUtton 2 Text</label>
+                                                    <input type="text" class="form-control"
+                                                        value="{{ $bann['btn2_txt'] }}" name="btn2_txt[]">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Button 2 Link</label>
+                                                    <input type="text" class="form-control"
+                                                        value="{{ $bann['btn2_link'] }}" name="btn2_link[]">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Button 2 Status</label>
+
+                                                    <select class="form-control" name="btn2_status[]">
+                                                            <option value="">Select</option>
+                                                            <option value="active" @if($bann['btn2_status'] == "active") selected @endif>Active</option>
+                                                            <option value="inactive" @if($bann['btn2_status'] == "inactive") selected @endif>Inactive</option>
+                                                    </select>
+                                                </div>
+                                                <div class="">
+                                                    <label class="form-label">Banner Description</label>
+                                                    <textarea class="ckeditor form-control" name="banner_des[]">
+                                                        {!! $bann['banner_des'] !!}
+                                                    </textarea>
+                                                </div>
 
                                                 <div class="col-md-2 col-12 rope-chan mt-3">
                                                     <span class="btn btn-primary m-b-5 m-t-5 add-remv-btn" id="addrow"
                                                         onclick="return addRows();" style="float: left;"><i
                                                             class="bx bx-plus" aria-hidden="true"></i></span>
 
-                                                            @if ($key > 0)
-                                                    <span class="btn btn-danger m-b-5 m-t-5 add-remv-btn" id="removerow"
-                                                        style="float: right;" onclick="return removeRows(this);"><i
-                                                            class="bx bx-trash" aria-hidden="true"></i></span>
-                                                            @endif
+                                                    @if ($key > 0)
+                                                        <span class="btn btn-danger m-b-5 m-t-5 add-remv-btn"
+                                                            id="removerow" style="float: right;"
+                                                            onclick="return removeRows(this);"><i class="bx bx-trash"
+                                                                aria-hidden="true"></i></span>
+                                                    @endif
                                                 </div>
                                             </div>
                                         @endforeach
@@ -128,63 +196,6 @@
 
 
                                 <div id="banner_div" class="mt-5">
-                                </div>
-                                <br>
-
-                                <div class="mb-3">
-                                    <label class="form-label">Buuton 1 Text</label>
-                                    <input type="text" class="form-control"
-                                        value="@if ($data != null) {{ $data->btn1_txt }} @endif"
-                                        name="btn1_txt">
-                                    @if ($errors->has('btn1_txt'))
-                                        <span class="text-danger">{{ $errors->first('btn1_txt') }}</span>
-                                    @endif
-                                </div>
-                                <br>
-
-                                <div class="mb-3">
-                                    <label class="form-label">Button 1 Link</label>
-                                    <input type="text" class="form-control"
-                                        value="@if ($data != null) {{ $data->btn1_link }} @endif"
-                                        name="btn1_link">
-                                    @if ($errors->has('btn1_link'))
-                                        <span class="text-danger">{{ $errors->first('btn1_link') }}</span>
-                                    @endif
-                                </div>
-                                <br>
-
-                                <div class="mb-3">
-                                    <label class="form-label">BUtton 2 Text</label>
-                                    <input type="text" class="form-control"
-                                        value="@if ($data != null) {{ $data->btn2_txt }} @endif"
-                                        name="btn2_txt">
-                                    @if ($errors->has('btn2_txt'))
-                                        <span class="text-danger">{{ $errors->first('btn2_txt') }}</span>
-                                    @endif
-                                </div>
-                                <br>
-
-                                <div class="mb-3">
-                                    <label class="form-label">Button 2 Link</label>
-                                    <input type="text" class="form-control"
-                                        value="@if ($data != null) {{ $data->btn2_link }} @endif"
-                                        name="btn2_link">
-                                    @if ($errors->has('btn2_link'))
-                                        <span class="text-danger">{{ $errors->first('btn2_link') }}</span>
-                                    @endif
-                                </div>
-                                <br>
-
-                                <div class="">
-                                    <label class="form-label">Banner Description</label>
-                                    <textarea class="ckeditor form-control" name="banner_des">
-                                    @if ($data != null)
-                                    {!! $data->banner_des !!}
-                                    @endif
-                                    </textarea>
-                                    @if ($errors->has('banner_des'))
-                                        <span class="text-danger">{{ $errors->first('banner_des') }}</span>
-                                    @endif
                                 </div>
                                 <br>
 
@@ -203,10 +214,10 @@
                                 <div class="">
                                     <label class="form-label">Home About Description</label>
                                     <textarea class="ckeditor form-control" name="home_about_des">
-@if ($data != null)
-{{ $data->home_about_des }}
-@endif
-</textarea>
+                                    @if ($data != null)
+                                    {{ $data->home_about_des }}
+                                    @endif
+                                    </textarea>
                                     @if ($errors->has('home_about_des'))
                                         <span class="text-danger">{{ $errors->first('home_about_des') }}</span>
                                     @endif
@@ -292,10 +303,10 @@
                                 <div class="">
                                     <label class="form-label">Feature Description 1</label>
                                     <textarea class="ckeditor form-control" name="feature_description_1">
-@if ($data != null)
-{{ $data->feature_description_1 }}
-@endif
-</textarea>
+                                    @if ($data != null)
+                                    {{ $data->feature_description_1 }}
+                                    @endif
+                                    </textarea>
                                     @if ($errors->has('feature_description_1'))
                                         <span class="text-danger">{{ $errors->first('feature_description_1') }}</span>
                                     @endif
@@ -329,10 +340,10 @@
                                 <div class="">
                                     <label class="form-label">Feature Description 2</label>
                                     <textarea class="ckeditor form-control" name="feature_description_2">
-@if ($data != null)
-{{ $data->feature_description_2 }}
-@endif
-</textarea>
+                                    @if ($data != null)
+                                    {{ $data->feature_description_2 }}
+                                    @endif
+                                    </textarea>
                                     @if ($errors->has('feature_description_2'))
                                         <span class="text-danger">{{ $errors->first('feature_description_2') }}</span>
                                     @endif
@@ -367,10 +378,10 @@
                                 <div class="">
                                     <label class="form-label">Feature Description 3</label>
                                     <textarea class="ckeditor form-control" name="feature_description_3">
-@if ($data != null)
-{{ $data->feature_description_3 }}
-@endif
-</textarea>
+                                    @if ($data != null)
+                                    {{ $data->feature_description_3 }}
+                                    @endif
+                                    </textarea>
                                     @if ($errors->has('feature_description_3'))
                                         <span class="text-danger">{{ $errors->first('feature_description_3') }}</span>
                                     @endif
@@ -404,10 +415,10 @@
                                 <div class="">
                                     <label class="form-label">Feature Description 4</label>
                                     <textarea class="ckeditor form-control" name="feature_description_4">
-@if ($data != null)
-{{ $data->feature_description_4 }}
-@endif
-</textarea>
+                                    @if ($data != null)
+                                    {{ $data->feature_description_4 }}
+                                    @endif
+                                    </textarea>
                                     @if ($errors->has('feature_description_4'))
                                         <span class="text-danger">{{ $errors->first('feature_description_4') }}</span>
                                     @endif
@@ -441,10 +452,10 @@
                                 <div class="">
                                     <label class="form-label">Feature Description 5</label>
                                     <textarea class="ckeditor form-control" name="feature_description_5">
-@if ($data != null)
-{{ $data->feature_description_5 }}
-@endif
-</textarea>
+                                    @if ($data != null)
+                                    {{ $data->feature_description_5 }}
+                                    @endif
+                                    </textarea>
                                     @if ($errors->has('feature_description_5'))
                                         <span class="text-danger">{{ $errors->first('feature_description_5') }}</span>
                                     @endif
@@ -838,10 +849,10 @@
                                 <div class="">
                                     <label class="form-label">Description 4</label>
                                     <textarea class="ckeditor form-control" name="why_us_desc_4">
-@if ($data != null)
-{{ $data->why_us_desc_4 }}
-@endif
-</textarea>
+                                    @if ($data != null)
+                                    {{ $data->why_us_desc_4 }}
+                                    @endif
+                                    </textarea>
                                     @if ($errors->has('why_us_desc_4'))
                                         <span class="text-danger">{{ $errors->first('why_us_desc_4') }}</span>
                                     @endif
@@ -885,8 +896,12 @@
 <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-        $('.ckeditor').ckeditor();
+        ckEditor();
     });
+
+    function ckEditor() {
+        $('.ckeditor').ckeditor();
+    }
 
     function removeRows(button) {
         $(button).closest('.row').remove();
@@ -899,11 +914,58 @@
 
         // document.getElementById("more_variations").innerHTML 
 
-        row.innerHTML = `<div class="row">
+        row.innerHTML = `<div class="row border border-5 m-2 p-2">
             <div class="">
                                 <input type="file" class="form-control" name="banner[]" />
                                 <input type="hidden" name="hidden_banner[]">
                             </div>
+                            <div class="mb-3">
+                                        <label class="form-label">Buuton 1 Text</label>
+                                        <input type="text" class="form-control"
+                                            value=""
+                                            name="btn1_txt[]">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Button 1 Link</label>
+                                        <input type="text" class="form-control"
+                                            value=""
+                                            name="btn1_link[]">
+                                    </div>
+                                    <div class="mb-3">
+                                                    <label class="form-label">Button 1 Status</label>
+
+                                                    <select class="form-control" name="btn1_status[]" id="btn1_status">
+                                                            <option value="">Select</option>
+                                                            <option value="active">Active</option>
+                                                            <option value="inactive">Inactive</option>
+                                                    </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">BUtton 2 Text</label>
+                                        <input type="text" class="form-control"
+                                            value=""
+                                            name="btn2_txt[]">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Button 2 Link</label>
+                                        <input type="text" class="form-control"
+                                            value=""
+                                            name="btn2_link[]">
+                                    </div>
+                                    <div class="mb-3">
+                                                    <label class="form-label">Button 2 Status</label>
+
+                                                    <select class="form-control" name="btn2_status[]" id="btn2_status">
+                                                            <option value="">Select</option>
+                                                            <option value="active">Active</option>
+                                                            <option value="inactive">Inactive</option>
+                                                    </select>
+                                    </div>
+                                    <div class="">
+                                        <label class="form-label">Banner Description</label>
+                                        <textarea class="ckeditor form-control" name="banner_des[]">
+                                        </textarea>
+                                    </div>
                             <div class="col-md-2 col-12 rope-chan mt-3">
                                     <span class="btn btn-primary m-b-5 m-t-5 add-remv-btn" id="addrow" onclick="return addRows();" style="float: left;" ><i class="bx bx-plus" aria-hidden="true"></i></span>
                                     <span class="btn btn-danger m-b-5 m-t-5 add-remv-btn" id="removerow"
@@ -913,6 +975,6 @@
                                 </div>`;
 
         container.appendChild(row);
-
+        ckEditor();
     }
 </script>

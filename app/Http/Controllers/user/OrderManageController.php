@@ -68,7 +68,8 @@ class OrderManageController extends Controller
              ]
          );
 
-         $order_id = "ODR_" . Str::random(30);
+        //  $order_id = "ODR_" . Str::random(30);
+         $order_id = "ODR_" . rand(100000, 999999);
          $user_id = (Auth::user()) ? (Auth::user()->id) : (session::get('guest_user_id'));
 
          /**

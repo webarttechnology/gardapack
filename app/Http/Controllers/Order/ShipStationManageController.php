@@ -117,4 +117,27 @@ class ShipStationManageController extends Controller
         curl_close($ch);
         return $rate;
     }
+
+    /**
+     * Get Webhooks
+    */
+
+    public static function getWebhooks(){
+        $url = "https://ssapi.shipstation.com/webhooks";
+        $api = self::apiKeys();
+
+        $headers = [
+            "Authorization: Basic " . base64_encode("{$api['api_key']}:{$api['api_secret']}"),
+        ];
+
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+        $response = curl_exec($ch);
+        $carriers = json_decode($response, true);
+
+        curl_close($ch);
+        return $response;
+    }
 }

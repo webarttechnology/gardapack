@@ -43,6 +43,7 @@
                                 <th>Name</th>
                                 <th>Price</th>
                                 <th>Status</th>
+                                <th>Skip Free Shipping?</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -60,6 +61,13 @@
                                       <span class="badge bg-success">{{ ucfirst($menubar->status) }}</span>
                                     @else
                                       <span class="badge bg-danger">{{ ucfirst($menubar->status) }}</span>
+                                    @endif 
+                                </td>
+                                <td>
+                                    @if($menubar->skip_free_shipping == "yes")
+                                      <span class="badge bg-success">{{ ucfirst($menubar->skip_free_shipping) }}</span>
+                                    @else
+                                      <span class="badge bg-danger">{{ ucfirst($menubar->skip_free_shipping) }}</span>
                                     @endif 
                                 </td>
                                 <td>
@@ -81,6 +89,7 @@
                                 <th>Name</th>
                                 <th>Price</th>
                                 <th>Status</th>
+                                <th>Skip Free Shipping?</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>

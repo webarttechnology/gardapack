@@ -51,6 +51,12 @@
                     <li><a href="{{ url('contact-u') }}">Contact Us</a></li>
                     <li><a href="{{ url('wholesale-application') }}">Wholesale</a></li>
                     <li><a href="{{ url('retailers') }}">Retailers</a></li>
+                    <li><a href="{{ url('product/request') }}">Product Registration</a></li>
+                    <li><a href="#">Shipping Terms</a></li>
+                    <li><a href="#">Return Policy</a></li>
+                    <li><a href="{{ url('order-history') }}">Order Status</a></li>
+                    <li><a href="#">Manual</a></li>
+                    <li><a href="{{ url('faq') }}">FAQ</a></li>
                 </ul>
             </div>
 

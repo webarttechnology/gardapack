@@ -19,7 +19,7 @@
                                 <li><a href="{{ url('my-account') }}"><i class="bi bi-pencil-square"></i>Edit Profile</a></li>
                                 <li><a href="{{ url('change-password') }}"><i class="fa fa-unlock-alt" aria-hidden="true"></i>Change
                                         Password</a>
-                                <li><a href="{{ url('order-history') }}"><i class="bi bi-bag-check-fill"></i>Order History</a></li>
+                                <li><a href="{{ url('order-history') }}"><i class="bi bi-bag-check-fill"></i>Orders</a></li>
                                 </li>
                             </ul>
                         </div>
@@ -31,12 +31,12 @@
                 <div class="col-md-8">
                     <div class="orderTab">
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Order</a>
-                            </li>
-                            <li class="nav-item">
+                            </li> --}}
+                            {{-- <li class="nav-item">
                                 <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Cancel Order</a>
-                            </li>
+                            </li> --}}
                         </ul>
                         <div class="tab-content" id="myTabContent">
 
@@ -52,10 +52,10 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div class="cncl">
+                                            <div class="cncl text-right">
                                                 @if ($order->order_status == "active")
-                                                   <button class="btn btn-success">Active</button>
-                                                   <a href="{{ url('cancel-order', $order->order_id) }}"><button class="btn btn-danger">Cancel Order</button></a>
+                                                   <button class="badge bg-success text-end">Active</button>
+                                                   {{-- <a href="{{ url('cancel-order', $order->order_id) }}"><button class="btn btn-danger">Cancel Order</button></a> --}}
                                                 @else
                                                   <button class="btn btn-danger">Canceled</button>
                                                 @endif

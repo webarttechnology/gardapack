@@ -20,7 +20,7 @@
                             <li><a href="{{ url('my-account') }}"><i class="bi bi-pencil-square"></i>Edit Profile</a></li>
                             <li><a href="{{ url('change-password') }}"><i class="fa fa-unlock-alt" aria-hidden="true"></i>Change
                                     Password</a>
-                            <li><a href="{{ url('order-history') }}"><i class="bi bi-bag-check-fill"></i>Order History</a></li>
+                            <li><a href="{{ url('order-history') }}"><i class="bi bi-bag-check-fill"></i>Orders</a></li>
                             </li>
                         </ul>
                     </div>

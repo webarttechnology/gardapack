@@ -53,22 +53,26 @@
 
                             <div class="col-md-12 order-md-1 order-sm-2" data-aos="zoom-in" data-aos-duration="2000">
 
-                                {!! $home->banner_des !!}
+                                {!! $bann['banner_des'] !!}
 
-                                <div class="home-button"><a
-                                        href="@if ($home != null) {{ $home->btn1_link }} @endif"
+                                <div class="home-button">
+                                    @if($bann['btn1_status'] == "active")
+                                    <a
+                                        href="{{ $bann['btn1_link'] }}"
                                         target="_blank"><button type="button" class="btn btn-secondary">
-                                            @if ($home != null)
-                                                {{ $home->btn1_txt }}
-                                            @endif
+                                                {{ $bann['btn1_txt'] }}
                                         </button></a>
-                                    <span class="home-button2"><a
-                                            href="@if ($home != null) {{ $home->btn1_link }} @endif"
+                                    @endif
+
+                                    <span class="home-button2">
+                                        @if($bann['btn2_status'] == "active")
+                                        <a
+                                            href="{{ $bann['btn2_link'] }}"
                                             target="_blank"><button type="button" class="btn btn-secondary">
-                                                @if ($home != null)
-                                                    {{ $home->btn2_txt }}
-                                                @endif
-                                            </button></a></span>
+                                                    {{ $bann['btn2_txt'] }}
+                                    </button></a>
+                                     @endif
+                                </span>
 
                                 </div>
 
@@ -708,7 +712,7 @@
         <div class="row">
             <div class="col-sm-6 mb-5">
                 <div class="offersbox left"
-                    @if ($home != null) style="background-image: url('{{ 'uploads/offer_banner_1/' . $home->offer_banner_1 }}') !important;" @endif>
+                    @if ($home != null) style="background-image: url('{{ 'uploads/offer_banner_1/' . $home->offer_banner_1 }}' ) !important;background-position: 43% !important;"  @endif>
                     <div class="texts text-center">
                         <h3>
                             @if ($home != null)
@@ -768,7 +772,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-9  exfitm">
-                    <div class="expitems" data-aos="fade-up" data-aos-duration="2500">
+                    <div class="expitems" >
                         <div class="item-img">
                             <div class="img">
                                 @if ($home != null)
@@ -792,7 +796,7 @@
                         </div>
                     </div>
 
-                    <div class="expitems" data-aos="fade-up" data-aos-duration="2500">
+                    <div class="expitems">
 
                         <div class="item-text">
 
@@ -824,7 +828,7 @@
 
                     </div>
 
-                    <div class="expitems" data-aos="fade-up" data-aos-duration="2500">
+                    <div class="expitems">
 
                         <div class="item-img">
 

@@ -49,6 +49,7 @@ use App\Http\Controllers\admin\WebsiteFooterManageController;
 use App\Http\Controllers\admin\BlogController;
 use App\Http\Controllers\payment\StripePaymentController;
 use App\Http\Controllers\admin\ShippingOptionsManageController;
+use App\Http\Controllers\Order\ShipStationManageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -109,6 +110,15 @@ Route::controller(PageManageController::class)->group(function () {
     Route::get('blogs', 'blogs');
 });
 
+/**
+ * Get Webhook Api
+*/
+
+Route::get('get/webhook', [ShipStationManageController::class, 'getWebhooks']);
+
+/**
+ * 
+*/
 
 Route::get('user/shipment/price/{total_price}/{country}/{id?}', [ShippingOptionsManageController::class, 'getShipmentPrice']);
 

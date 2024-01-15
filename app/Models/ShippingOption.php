@@ -13,6 +13,7 @@ class ShippingOption extends Model
     protected $fillable = [
         'title',
         'price',
-        'status'
+        'status',
+        'skip_free_shipping'
     ];
 }

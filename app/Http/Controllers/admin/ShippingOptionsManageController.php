@@ -32,12 +32,14 @@ class ShippingOptionsManageController extends Controller
             'title' => 'required',
             'price' => 'required',
             'status' => 'required',
+            'skip_free_shipping' => 'required',
         ]);
 
         ShippingOption::create([
             'title' => $request->title,
             'price' => $request->price,
             'status' => $request->status,
+            'skip_free_shipping' => $request->skip_free_shipping,
         ]);
 
         return redirect('admin/shipping/list')->with('success', 'Successfully Added');
@@ -55,6 +57,7 @@ class ShippingOptionsManageController extends Controller
             'title' => 'required',
             'price' => 'required',
             'status' => 'required',
+            'skip_free_shipping' => 'required',
         ]);
 
         $detail = ShippingOption::whereId($id)->first();
@@ -63,6 +66,7 @@ class ShippingOptionsManageController extends Controller
             'title' => $request->title,
             'price' => $request->price,
             'status' => $request->status,
+            'skip_free_shipping' => $request->skip_free_shipping,
         ]);
 
         return redirect('admin/shipping/list')->with('success', 'Successfully Updated');
@@ -84,7 +88,7 @@ class ShippingOptionsManageController extends Controller
         // $total_price = $total_price + $details->price;
         if ($country == 'US') {
             if ($details) {
-                if ($total_price >= $free_ship->value) {
+                if ($total_price >= $free_ship->value && $details->skip_free_shipping == "no") {
                     $shipment_cost = 0;
                     return response()->json($shipment_cost);
                 } else {

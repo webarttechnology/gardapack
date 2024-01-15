@@ -61,6 +61,18 @@
                             </div>
                             <br>
 
+                            <div class="">
+                                <label class="form-label">Skip Free Shipping?</label>
+                                <select class="form-control" name="skip_free_shipping">
+                                   <option value="">Select Option</option>
+                                   <option value="yes" @if($detail->skip_free_shipping == "yes") selected @endif>Yes</option>
+                                   <option value="no" @if($detail->skip_free_shipping == "no") selected @endif>No</option>
+                                </select>
+                                @if ($errors->has('skip_free_shipping'))
+                                <span class="text-danger">{{ $errors->first('skip_free_shipping') }}</span>
+                                @endif
+                            </div>
+                            <br>
 
                             <div class="">
                                 <input type="submit" class="form-control btn btn-primary px-4" value="Save" />

@@ -21,12 +21,12 @@ class HomePageController extends Controller
         $rules = [
             'meta_title' => 'required',
             'meta_description' => 'required',
-            'banner_des' => 'required',
+            // 'banner_des' => 'required',
 
-            'btn1_txt' => 'required',
-            'btn2_txt' => 'required',
-            'btn1_link' => 'required',
-            'btn2_link' => 'required',
+            // 'btn1_txt' => 'required',
+            // 'btn2_txt' => 'required',
+            // 'btn1_link' => 'required',
+            // 'btn2_link' => 'required',
 
             'home_about_heading' => 'required',
             'home_about_des' => 'required',
@@ -72,6 +72,7 @@ class HomePageController extends Controller
         ];
 
 
+        // dd($request->btn1_txt[0]);
         $request->validate($rules);
 
         try {
@@ -94,6 +95,13 @@ class HomePageController extends Controller
                     if (move_uploaded_file($tmpName, $destination)) {
                         $imageNames[] = [
                             'img' => $imageName,
+                            'btn1_txt' => $request->btn1_txt[$key],
+                            'btn1_link' => $request->btn1_link[$key],
+                            'btn2_txt' => $request->btn2_txt[$key],
+                            'btn2_link' => $request->btn2_link[$key],
+                            'banner_des' => $request->banner_des[$key],
+                            'btn1_status' => $request->btn1_status[$key],
+                            'btn2_status' => $request->btn2_status[$key],
                         ];
                     } else {
                         return redirect()->back()->with('danger', 'Unable to upload the file');
@@ -101,6 +109,13 @@ class HomePageController extends Controller
                 } elseif($name != null){
                     $imageNames[] = [
                         'img' => $name,
+                        'btn1_txt' => $request->btn1_txt[$key],
+                        'btn1_link' => $request->btn1_link[$key],
+                        'btn2_txt' => $request->btn2_txt[$key],
+                        'btn2_link' => $request->btn2_link[$key],
+                        'banner_des' => $request->banner_des[$key],
+                        'btn1_status' => $request->btn1_status[$key],
+                        'btn2_status' => $request->btn2_status[$key],
                     ];
                 }
                 else {
@@ -111,16 +126,7 @@ class HomePageController extends Controller
                         }
                 }
             } 
-            // else {
-            //     if ($home != null) {
-            //         $imageNames = $home->banner;
-            //     } else {
-            //         $imageNames = null;
-            //     }
-            // }
-
-            // dd($imageNames);
-
+           
 
             // working
             // if ($request->hasFile('banner')) {
@@ -487,12 +493,12 @@ class HomePageController extends Controller
                     'meta_title' => $request->meta_title,
                     'meta_description' => $request->meta_description,
                     'banner' => $imageNames,
-                    'banner_des' => $request->banner_des,
+                    // 'banner_des' => $request->banner_des,
 
-                    'btn1_txt' => $request->btn1_txt,
-                    'btn2_txt' => $request->btn2_txt,
-                    'btn1_link' => $request->btn1_link,
-                    'btn2_link' => $request->btn2_link,
+                    // 'btn1_txt' => $request->btn1_txt,
+                    // 'btn2_txt' => $request->btn2_txt,
+                    // 'btn1_link' => $request->btn1_link,
+                    // 'btn2_link' => $request->btn2_link,
 
                     'home_about_heading' => $request->home_about_heading,
                     'home_about_des' => $request->home_about_des,
@@ -572,12 +578,12 @@ class HomePageController extends Controller
                     'meta_title' => $request->meta_title,
                     'meta_description' => $request->meta_description,
                     'banner' => $imageNames,
-                    'banner_des' => $request->banner_des,
+                    // 'banner_des' => $request->banner_des,
 
-                    'btn1_txt' => $request->btn1_txt,
-                    'btn2_txt' => $request->btn2_txt,
-                    'btn1_link' => $request->btn1_link,
-                    'btn2_link' => $request->btn2_link,
+                    // 'btn1_txt' => $request->btn1_txt,
+                    // 'btn2_txt' => $request->btn2_txt,
+                    // 'btn1_link' => $request->btn1_link,
+                    // 'btn2_link' => $request->btn2_link,
 
                     'home_about_heading' => $request->home_about_heading,
                     'home_about_des' => $request->home_about_des,

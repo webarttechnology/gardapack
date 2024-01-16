@@ -1,6 +1,16 @@
 @extends('admin.commons.dashboard_header')
 @section('content')
 
+<style>
+    .save-button-container {
+        position: fixed;
+        bottom: 50%;
+        right: 20px;
+        top: 50%;
+        z-index: 1000;
+    }
+</style>
+
     <div class="page-wrapper">
         <div class="page-content">
             <!--breadcrumb-->
@@ -23,7 +33,7 @@
                     <hr />
 
 
-                    <form action="{{ url('admin/technology/save/action') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ url('admin/technology/save/action') }}" id="form1" method="post" enctype="multipart/form-data">
                         @csrf
 
                         <div class="card">
@@ -772,6 +782,10 @@
                                     @endif
                                 </div>
                                 <br>
+                                <!-- Inside your form -->
+                                <div class="save-button-container">
+                                    <button id="saveButton1" class="btn btn-primary">Save</button>
+                                </div>
 
                                 <div class="">
                                     <input type="submit" class="form-control btn btn-primary px-4" value="Save" />
@@ -841,4 +855,16 @@
             $(button).closest('.borderBp').remove();
         };
     </script>
+
+<script>
+    $(document).ready(function() {
+        function saveChanges() {
+            $('#form1').submit();
+        }
+
+        $('#saveButton1').on('click', function() {
+            saveChanges();
+        });
+    });
+</script>
 @endsection

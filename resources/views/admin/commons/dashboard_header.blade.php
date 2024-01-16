@@ -595,6 +595,18 @@
     });
 </script>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var form = document.querySelector('form');
+
+        form.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter' || (event.key === 'Shift' && event.key === 'Enter')) {
+                event.preventDefault();
+            }
+        });
+    });
+</script>
+
 @yield('custom_js')
 </body>
 

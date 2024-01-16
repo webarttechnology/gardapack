@@ -1,6 +1,16 @@
 @extends('admin.commons.dashboard_header')
 @section('content')
 
+<style>
+    .save-button-container {
+        position: fixed;
+        bottom: 50%;
+        right: 20px;
+        top: 50%;
+        z-index: 1000;
+    }
+</style>
+
 <div class="page-wrapper">
     <div class="page-content">
         <!--breadcrumb-->
@@ -26,7 +36,7 @@
 
                 <!-- About us page -->
                 @if($details->name == "About Us")
-                <form action="{{url('admin/save/pages')}}" method="post" enctype= "multipart/form-data">
+                <form action="{{url('admin/save/pages')}}" id="form1" method="post" enctype= "multipart/form-data">
                     @csrf
 
                     <div class="card">
@@ -318,6 +328,11 @@
                             </div>
                             <br>
 
+                            <!-- Inside your form -->
+                            <div class="save-button-container">
+                                <button id="saveButton1" class="btn btn-primary">Save</button>
+                            </div>
+
                             <div class="">
                                 <input type="submit" class="form-control btn btn-primary px-4" value="Save" />
                             </div>
@@ -328,7 +343,7 @@
 
 
                 @if($details->name == "Contact Us Page")
-                <form action="{{url('admin/save/pages')}}" method="post" enctype= "multipart/form-data">
+                <form action="{{url('admin/save/pages')}}" id="form2" method="post" enctype= "multipart/form-data">
                     @csrf
 
                     <div class="card">
@@ -415,6 +430,10 @@
                             </div>
                             <br>
 
+                            <!-- Inside your form -->
+                            <div class="save-button-container">
+                                <button id="saveButton2" class="btn btn-primary">Save</button>
+                            </div>
 
                             <div class="">
                                 <input type="submit" class="form-control btn btn-primary px-4" value="Save" />
@@ -435,5 +454,25 @@
 $(document).ready(function() {
     $('.ckeditor').ckeditor();
 });
+</script>
+
+<script>
+    $(document).ready(function() {
+        function saveChanges() {
+            $('#form1').submit();
+        }
+
+        $('#saveButton1').on('click', function() {
+            saveChanges();
+        });
+
+        function saveChanges2() {
+            $('#form2').submit();
+        }
+
+        $('#saveButton2').on('click', function() {
+            saveChanges2();
+        });
+    });
 </script>
 @endsection

@@ -1,390 +1,174 @@
 <x-userHeader />
 <main>
-
-	<!-- introBannerHolder -->
-
-	<section class="blocksec">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-4">
-					<div class="blockbx">
-						<div class="cinbx">
-							<i class="fa fa-pagelines" aria-hidden="true"></i>
-						</div>
-
-						<h3>{{ $details->text3 }}</h3>
-						<p>{!! $details->description3 !!}</p>
-					</div>
-				</div>
-				<div class="col-md-4">
-
-					<div class="blockbx">
-
-						<div class="cinbx">
-
-							<i aria-hidden="true" class="fas fa-star"></i>
-
-						</div>
-
-						<h3>{{ $details->text4 }}</h3>
-						<p>{!! $details->description4 !!}</p>
-
-					</div>
-
-				</div>
-				<div class="col-md-4">
-
-					<div class="blockbx">
-
-						<div class="cinbx">
-
-							<i class="fa fa-trophy" aria-hidden="true"></i>
-
-						</div>
-
-						<h3>{{ $details->text5 }}</h3>
-						<p>{!! $details->description6 !!}</p>
-
-					</div>
-				</div>
-			</div>
-		</div>
-
-	</section>
-
-
-
-	<section class="servdetsec py-5">
-
-		<div class="container">
-
-			<div class="row">
-
-				<div class="col-md-6">
-
-					<div class="servcnt mb-5">
-						<h3>{{ $details->feature_heading }}</h3>
-						<p>{!! $details->description !!}</p>
-
-						<!-- <p>One of the primary benefits of rooftop gardening is the ability to grow your food. This is particularly important for urban areas with limited access to fresh produce. With a rooftop garden, you can grow fresh fruits, vegetables, and herbs that are fresh and free from pesticides and chemicals. This not only improves your diet’s nutritional value but also helps reduce your carbon footprint.</p> -->
-					</div>
-				</div>
-
-				<div class="col-md-6">
-					<div class="servdetimg mb-5">
-						<img src="{{asset('pages/featured_img/'.$details->featured_img)}}" alt="">
-					</div>
-				</div>
-
-				<div class="col-md-6">
-
-					<div class="servdetimg mb-5">
-						<img src="{{asset('pages/img2/'.$details->img2)}}" alt="">
-					</div>
-
-				</div>
-
-				<div class="col-md-6">
-					<div class="servcnt mb-5">
-						<p>{!! $details->description2 !!}</p>
-					</div>
-				</div>
-			</div>
-		</div>
-
-	</section>
-
-
-
-	<section class="blocksec py-5">
-
-		<div class="container">
-
-			<header class="col-12 mainHeader mb-7 text-center">
-
-				<h1 class="headingIV playfair fwEblod mb-4">{{ $details->how_work_heading }}</h1>
-
-				<span class="headerBorder d-block mb-md-5 mb-3"><img src="{{ asset('front_end/images/hbdr.png')}}" alt="Header Border" class="img-fluid img-bdr"></span>
-
-			</header>
-
-			<div class="row">
-
-				<div class="col-md-3">
-
-					<div class="blockbx">
-
-						<div class="cinbx">
-
-							<i class="fa fa-phone-square" aria-hidden="true"></i>
-
-						</div>
-
-						<h4>{{ $details->how_work_text1 }}</h4>
-                        <p>{!! $details->how_work_desc1 !!}</p>
-
-					</div>
-
-				</div>
-
-				<div class="col-md-3">
-
-					<div class="blockbx">
-
-						<div class="cinbx">
-
-						   <i aria-hidden="true" class="fas fa-fill"></i>
-
-						</div>
-
-						<h4>{{ $details->how_work_text2 }}</h4>
-                        <p>{!! $details->how_work_desc2 !!}</p>
-					</div>
-
-				</div>
-
-				<div class="col-md-3">
-
-					<div class="blockbx">
-
-						<div class="cinbx">
-
-							<i class="fa fa-globe" aria-hidden="true"></i>
-
-						</div>
-
-						<h4>{{ $details->how_work_text3 }}</h4>
-                        <p>{!! $details->how_work_desc3 !!}</p>
-					</div>
-
-				</div>
-
-				<div class="col-md-3">
-
-					<div class="blockbx">
-
-						<div class="cinbx">
-
-							<i aria-hidden="true" class="fas fa-hand-holding-heart"></i>
-
-						</div>
-
-						<h4>{{ $details->how_work_text4 }}</h4>
-                        <p>{!! $details->how_work_desc4 !!}</p>
-					</div>
-
-				</div>
-
-			</div>
-
-		</div>
-
-	</section>
-
-
-
-	<section class="videosec">
-
-		<div class="container">
-
-			<div class="row">
-
-				<div class="col-md-6">
-
-					<div class="vidby" style="width:100%;height:100%;">
-
-						<iframe width="100%" height="350" src="{{ $details->youtube_link1 }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-					</div>
-
-				</div>
-
-				<div class="col-md-6">
-
-					<div class="vidby" style="width:100%;height:100%;">
-
-						<iframe width="100%" height="350" src="{{ $details->youtube_link2 }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-					</div>
-
-				</div>
-
-			</div>
-
-		</div>
-
-	</section>
-
-	<!--<section class="landscp">-->
-
-	<!--	<div class="container">-->
-
-	<!--		<div class="row">-->
-
-	<!--			<div class="col-md-12">-->
-
-	<!--				<div class="landscp-head">-->
-
-	<!--					<h1 Stretches for Your Benefit</h1>-->
-
-	<!--				</div>-->
-
-	<!--			</div>-->
-
-	<!--		</div>-->
-
-	<!--		<div class="row">-->
-
-	<!--			<div class="col-md-6">-->
-
-	<!--				<div class="landscp-content mt-5 mb-5">-->
-
-	<!--				    <p> {!! $details->description3 !!} </p>-->
-
-					    
-
-						<!--<p><i class="fa fa-angle-double-right" aria-hidden="true"></i> We have added 15000 Sqft of covered showroom space to store and display various categories of Non-plant items required for horticulture, gardening, and landscaping.</p>-->
-
-						<!--<p><i class="fa fa-angle-double-right" aria-hidden="true"></i> We have added 10000 Sqft of covered greenhouses to display exotic indoor plants.</p>-->
-
-						<!--<p><i class="fa fa-angle-double-right" aria-hidden="true"></i> A large range of indoor plants has been added to our collection, suitable for vertical gardens.-->
-
-						<!--<p>-->
-
-						<!--<p><i class="fa fa-angle-double-right" aria-hidden="true"></i> A large range of succulents and cacti have been added to our collection for the first time.</p>-->
-
-	<!--				</div>-->
-
-	<!--			</div>-->
-
-	<!--			<div class="col-md-6">-->
-
-	<!--				<div class="landscp-img mt-2 mb-5">-->
-
-	<!--					<img src="{{asset('pages/img3/'.$details->img3)}}" alt="">-->
-
-	<!--				</div>-->
-
-	<!--			</div>-->
-
-	<!--		</div>-->
-
-	<!--		<div class="row">-->
-
-	<!--			<div class="col-md-6">-->
-
-	<!--				<div class="landscp-img mt-2 mb-5">-->
-
-	<!--					<img src="{{asset('pages/img4/'.$details->img4)}}" alt="">-->
-
-	<!--				</div>-->
-
-	<!--			</div>-->
-
-	<!--			<div class="col-md-6">-->
-
-	<!--				<div class="landscp-content mt-5 mb-5">-->
-
-	<!--				    <p> {!! $details->description4 !!} </p>-->
-
-						<!--<p><i class="fa fa-angle-double-right" aria-hidden="true"></i> Over 700 types of imported and Indian ceramic pots have been added, and a new section of 2000 Sq ft of the showroom is dedicated to their display.</p>-->
-
-						<!--<p><i class="fa fa-angle-double-right" aria-hidden="true"></i> We have introduced new-concept Miniature Trees, which are ideal for rooftop gardens.</p>-->
-
-						<!--<p><i class="fa fa-angle-double-right" aria-hidden="true"></i> Over 50 varieties of exotic tropical grafted fruit plants have been added to our earlier fruit plant range.</p>-->
-
-						<!--<p><i class="fa fa-angle-double-right" aria-hidden="true"></i> 25 varieties of new boulders, gravels, and pebbles have been added to our existing collection.-->
-
-						<!--</p>-->
-
-	<!--				</div>-->
-
-	<!--			</div>-->
-
-	<!--		</div>-->
-
-	<!--	</div>-->
-
-	<!--	</div>-->
-
-	<!--</section>-->
-
-	<!--<section class="know-more">-->
-
-	<!--	<div class="container">-->
-
-	<!--		<div class="row text-center">-->
-
-	<!--			<div class="col-md-12">-->
-
-	<!--				<div class="know-more-head">-->
-
-	<!--					<h1>Know More</h1>-->
-
-	<!--				</div>-->
-
-	<!--			</div>-->
-
-	<!--		</div>-->
-
-	<!--		<div class="row">-->
-
-	<!--			<div class="col-md-6">-->
-
-	<!--				<div class="know-more-content mt-5 mb-5">-->
-
-					    
-
-	<!--				    <p>{!! $details->description5 !!}</p>-->
-
-					    
-
-					    
-
-						<!--<p><i class="fa fa-angle-double-right" aria-hidden="true"></i> is a garden center and day trip destination for plant lovers in Kolkata, India. It is located in Shamukpota near Bakrahat, about 11km away from Kolkata by road. was established in 2007 by gardening expert Dinesh Chandra Rawat, and claims to be India’s first garden center.</p>-->
-
-						<!--<p><i class="fa fa-angle-double-right" aria-hidden="true"></i> has a wide variety of plants, including trees, shrubs, flowers, and herbs. They also have a store for all your essential and quirky gardening equipment and accessories. In addition, offers a variety of gardening services, such as landscaping, plant care, and pest control.</p>-->
-
-						<!--<p><i class="fa fa-angle-double-right" aria-hidden="true"></i> is a great place to spend a leisurely day. You can wander through the gardens, admire the plants, and learn more about gardening. You can also purchase plants, gardening supplies, and landscaping services. is a great place to find everything you need to create a beautiful garden.</p>-->
-
-						<!--<p><i class="fa fa-angle-double-right" aria-hidden="true"></i> Here are some of the things you can do at:</p>-->
-
-						<!--<p><i class="fa fa-angle-double-right" aria-hidden="true"></i> Browse the wide variety of plants, including trees, shrubs, flowers, and herbs.</p>-->
-
-						<!--<p><i class="fa fa-angle-double-right" aria-hidden="true"></i> Purchase gardening supplies, such as pots, soil, fertilizer, and tools.</p>-->
-
-						<!--<p><i class="fa fa-angle-double-right" aria-hidden="true"></i> Get advice from the gardening experts on how to care for your plants.</p>-->
-
-						<!--<p><i class="fa fa-angle-double-right" aria-hidden="true"></i> Take a gardening class to learn more about gardening.</p>-->
-
-						<!--<p><i class="fa fa-angle-double-right" aria-hidden="true"></i> Hire a professional landscaper to design and create a beautiful garden for you.</p>-->
-
-						<!--<p><i class="fa fa-angle-double-right" aria-hidden="true"></i> Enjoy a delicious meal at the on-site restaurant.</p>-->
-
-						<!--<p><i class="fa fa-angle-double-right" aria-hidden="true"></i> is a great place to learn about gardening, purchase plants and supplies, and get advice from the experts. It is also a great place to relax and enjoy the beauty of nature.</p>-->
-
-	<!--				</div>-->
-
-	<!--			</div>-->
-
-	<!--			<div class="col-md-6">-->
-
-	<!--				<div class="green-tree">-->
-
-	<!--					<img src="{{asset('pages/img5/'.$details->img5)}}" alt="">-->
-
-	<!--				</div>-->
-
-	<!--			</div>-->
-
-	<!--		</div>-->
-
-	<!--	</div>-->
-
-	<!--</section>-->
-
-	
-
-	</main>
-
+    <section class="blocksec py-5">
+        <div class="container-fluid">
+           <div class="row align-items-center justify-content-center">
+               <div class="col-sm-6">
+                   <img src="{{asset('pages/featured_img/'.$details->featured_img)}}" alt="" class="w-100" style="border-radius:0 15% 0 15%;; border:10px #f1f1f1 solid; box-shadow: 1px 0px 26px 0px rgba(0,0,0,0.27);
+-webkit-box-shadow: 1px 0px 26px 0px rgba(0,0,0,0.27);
+-moz-box-shadow: 1px 0px 26px 0px rgba(0,0,0,0.27);">
+               </div>
+               <div class="col-sm-5 mt-3">
+                   <h2>WHO ARE WE ?</h2>
+                   <p>GardaPack’s research and development started over 10 years ago with the intent to bring to market the highest quality products in sustainable packaging solutions. Distributing out of Los Angeles, California, our team focuses on sourcing the best materials while practising the highest industry standards in manufacturing.</p>
+                   <a href="" class="btn btnTheme btnShop md-round fwEbold text py-3 text-white">Contact Us</a>
+                  
+               </div>
+           </div> 
+        </div>
+    </section>
+    <section class="blocksec py-5" style="background:#000; color:#333">
+        <div class="container">
+           <div class="row align-items-center flex-row-reverse row justify-content-center">
+                <div class="col-sm-12">
+                   <div class="d-flex flex-wrap justify-content-around">
+                       <div class="block">
+                    		<div class="box">
+                    			<p class="number">
+                    				<span class="num">95</span>
+                    				<span class="sub">%</span>
+                    			</p>
+                    			<p class="title">Development</p>
+                    		</div>
+                    		<span class="dots"></span>
+                    		<svg class="svg">
+                    			<defs>
+                    				<linearGradient id="gradientStyle">
+                    					<stop offset="0%" stop-color="#565656" />
+                    					<stop offset="100%" stop-color="#b7b5b5" />
+                    				</linearGradient>
+                    			</defs>
+                    			<circle class="circle" cx="90" cy="90" r="80" />
+                    		</svg>
+                    	</div>
+                    	<div class="block">
+                    		<div class="box">
+                    			<p class="number">
+                    				<span class="num">90</span>
+                    				<span class="sub">%</span>
+                    			</p>
+                    			<p class="title">Design</p>
+                    		</div>
+                    		<span class="dots"></span>
+                    		<svg class="svg">
+                    			<defs>
+                    				<linearGradient id="gradientStyle">
+                    					<stop offset="0%" stop-color="#565656" />
+                    					<stop offset="100%" stop-color="#b7b5b5" />
+                    				</linearGradient>
+                    			</defs>
+                    			<circle class="circle" cx="90" cy="90" r="80" />
+                    		</svg>
+                    	</div>
+                    	<div class="block">
+                    		<div class="box">
+                    			<p class="number">
+                    				<span class="num">90</span>
+                    				<span class="sub">%</span>
+                    			</p>
+                    			<p class="title">2X The Puncture Resistance
+</p>
+                    		</div>
+                    		<span class="dots"></span>
+                    		<svg class="svg">
+                    			<defs>
+                    				<linearGradient id="gradientStyle">
+                    					<stop offset="0%" stop-color="#565656" />
+                    					<stop offset="100%" stop-color="#b7b5b5" />
+                    				</linearGradient>
+                    			</defs>
+                    			<circle class="circle" cx="90" cy="90" r="80" />
+                    		</svg>
+                    	</div>
+                    	<div class="block">
+                    		<div class="box">
+                    			<p class="number">
+                    				<span class="num">100</span>
+                    				<span class="sub">%</span>
+                    			</p>
+                    			<p class="title">True 5 Mil Thick
+</p>
+                    		</div>
+                    		<span class="dots"></span>
+                    		<svg class="svg">
+                    			<defs>
+                    				<linearGradient id="gradientStyle">
+                    					<stop offset="0%" stop-color="#565656" />
+                    					<stop offset="100%" stop-color="#b7b5b5" />
+                    				</linearGradient>
+                    			</defs>
+                    			<circle class="circle" cx="90" cy="90" r="80" />
+                    		</svg>
+                    	</div>
+                    	<div class="block">
+                    		<div class="box">
+                    			<p class="number">
+                    				<span class="num">95</span>
+                    				<span class="sub">%</span>
+                    			</p>
+                    			<p class="title">Compatible</p>
+                    		</div>
+                    		<span class="dots"></span>
+                    		<svg class="svg">
+                    			<defs>
+                    				<linearGradient id="gradientStyle">
+                    					<stop offset="0%" stop-color="#565656" />
+                    					<stop offset="100%" stop-color="#b7b5b5" />
+                    				</linearGradient>
+                    			</defs>
+                    			<circle class="circle" cx="90" cy="90" r="80" />
+                    		</svg>
+                    	</div>
+                   </div>
+               </div>
+           </div> 
+        </div>
+    </section>
+	<section class="blocksec py-5" style="color:#333">
+        <div class="container-fluid">
+           <div class="row align-items-center flex-row-reverse row justify-content-center">
+<!--               <div class="col-sm-5">-->
+<!--                    <h6>Development</h6> -->
+<!--                    <div class="progress">-->
+<!--                      <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">95</div>-->
+<!--                    </div>-->
+<!--                    <h6>Design</h6> -->
+<!--                    <div class="progress">-->
+<!--                      <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">90</div>-->
+<!--                    </div>-->
+<!--                    <h6>2X The Puncture Resistance-->
+<!--</h6> -->
+<!--                    <div class="progress">-->
+<!--                      <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">90</div>-->
+<!--                    </div>-->
+<!--                     <h6>True 5 Mil Thick-->
+<!--</h6> -->
+<!--                    <div class="progress">-->
+<!--                      <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100</div>-->
+<!--                    </div>-->
+<!--                     <h6>Compatible</h6> -->
+<!--                    <div class="progress">-->
+<!--                      <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">95</div>-->
+<!--                    </div>    -->
+<!--               </div>-->
+                <div class="col-sm-6">
+                    <img src="{{asset('pages/img2/'.$details->img2)}}" alt="" class="w-100" style="border-radius:15% 0 15% 0; border:10px #f1f1f1 solid; box-shadow: 1px 0px 26px 0px rgba(0,0,0,0.27);
+-webkit-box-shadow: 1px 0px 26px 0px rgba(0,0,0,0.27);
+-moz-box-shadow: 1px 0px 26px 0px rgba(0,0,0,0.27);">
+                </div>
+               <div class="col-sm-5 mt-3">
+                   <h2>OUR SOLUTIONS</h2>
+                   <p>All of our storage solutions are built tough to withstand heavy-duty use. They are tear and puncture-resistant even under extreme conditions. When using GardaPack packaging, you can be confident that you are using the best quality on the market.<br><br>
+
+                    Our storage barrier bags are more than 5 mil thick, making them excellent for farming, gardening, fishing, the meat industry, food preparation, hunting, and more.<br><br>
+                    
+                    GuardaPack vacuum sealer bags have been taken through extensive third-party engineering laboratory testing to ensure maximum quality, durability, and performance. On an EN 14477 Puncture Resistance Test, GuardaPack scored 2.45 lbf (pound of force) compared to the lower 1.37 lbf result of the closest competitor. That’s 78% better puncture resistance!</p>
+                  
+               </div>
+               <div class="col-sm-12"></div>
+           </div> 
+        </div>
+    </section>
+    
+</main>
 <x-userFooter />

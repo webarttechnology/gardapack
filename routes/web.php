@@ -115,6 +115,7 @@ Route::controller(PageManageController::class)->group(function () {
 */
 
 Route::get('get/webhook', [ShipStationManageController::class, 'getWebhooks']);
+Route::post('ship-success', [ShipStationManageController::class, 'ship_success']);
 
 /**
  * 

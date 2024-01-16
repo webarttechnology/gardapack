@@ -27,59 +27,51 @@
                         {!! $footer->footer_desc !!}
                     @endif
                 </p>
-                <ul class="d-flex socials">
+                {{-- <ul class="d-flex socials">
                     @if ($footer != null && $footer->fb_status == 'active')
-                        <li><a href="{{ $footer->fb_link }}" target="_blank"><i class="bi bi-facebook"></i></a></li>
+                        <li><a href="{{ $footer->fb_link }}" target="_blank"><img src="{{ asset('uploads/social/' . $footer->fb_image) }}" alt=""></a></li>
                     @endif
                     @if ($footer != null && $footer->twitter_status == 'active')
-                        <li><a href="{{ $footer->twitter_link }}" target="_blank"><i class="bi bi-twitter"></i></a></li>
+                        <li><a href="{{ $footer->twitter_link }}" target="_blank"><img src="{{ asset('uploads/social/' . $footer->twitter_image) }}" alt=""></a></li>
                     @endif
                     @if ($footer != null && $footer->goog_status == 'active')
-                        <li><a href="{{ $footer->goog_link }}" target="_blank"><i class="bi bi-instagram"></i></a></li>
+                        <li><a href="{{ $footer->goog_link }}" target="_blank"><img src="{{ asset('uploads/social/' . $footer->goog_image) }}" alt=""></a></li>
                     @endif
                     @if ($footer != null && $footer->pint_status == 'active')
-                        <li><a href="{{ $footer->pint_link }}" target="_blank"><i class="bi bi-tiktok"></i></a></li>
+                        <li><a href="{{ $footer->pint_link }}" target="_blank"><img src="{{ asset('uploads/social/' . $footer->pint_image) }}" alt=""></a></li>
+                    @endif
+                </ul> --}}
+            </div>
+
+            <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+                <h4 class="mb-5" style="display:block">@if ($footer != null) {{ $footer->information_header }} @endif</h4>
+                <ul>
+                    @if($footer != null)                        
+                    @foreach (json_decode($footer->information, true) as $key => $info)    
+                        <li><a href="{{ $info['link'] }}">{{ $info['text'] }}</a></li>
+                    @endforeach
+                    @endif
+                    
+                </ul>
+            </div>
+
+
+            <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+                <h4 class="mb-5" style="display:block">@if ($footer != null) {{ $footer->my_account_header }} @endif</h4>
+
+                <ul>
+                    @if($footer != null)                        
+                    @foreach (json_decode($footer->accounts, true) as $key => $acc)    
+                        <li><a href="{{ $acc['link'] }}">{{ $acc['text'] }}</a></li>
+                    @endforeach
                     @endif
                 </ul>
-            </div>
-
-            <div class="col-sm-6 col-md-4 col-lg-3">
-                <h4 class="mb-5" style="display:block">INFORMATION</h4>
-                <ul>
-                    <li><a href="{{ url('about-us') }}">About</a></li>
-                    <li><a href="{{ url('shop') }}">Shop</a></li>
-                    <li><a href="{{ url('contact-u') }}">Contact Us</a></li>
-                    <li><a href="{{ url('wholesale-application') }}">Wholesale</a></li>
-                    <li><a href="{{ url('retailers') }}">Retailers</a></li>
-                    <li><a href="{{ url('product/request') }}">Product Registration</a></li>
-                    <li><a href="#">Shipping Terms</a></li>
-                    <li><a href="#">Return Policy</a></li>
-                    <li><a href="{{ url('order-history') }}">Order Status</a></li>
-                    <li><a href="#">Manual</a></li>
-                    <li><a href="{{ url('faq') }}">FAQ</a></li>
-                </ul>
-            </div>
-
-
-            <div class="col-sm-6 col-md-4 col-lg-3">
-                <h4 class="mb-5" style="display:block">MY ACCOUNT</h4>
-
-                <ul>
-                    <li><a href="{{ url('my-account') }}">My Account</a></li>
-
-
-                    <li><a href="{{ url('user/cart/page') }}">My Cart</a></li>
-                    <li><a href="{{ url('user/wishlist/page') }}">My Wishlist</a></li>
-
-
-                    <li><a href="{{ url('shop') }}">My Shop</a></li>
-                </ul>
 
             </div>
 
             <div class="col-sm-6 col-md-4 col-lg-3">
 
-                <h4 class="mb-5" style="display:block">Need Help?</h4>
+                <h4 class="mb-5" style="display:block">@if ($footer != null) {{ $footer->need_help_text }} @endif</h4>
 
                 <div class="ftr-address">
                     <h5><small>Toll Free :</small><br><a href="javascript:void(0)"
@@ -874,7 +866,17 @@
     @endif
 
 
-@if(!str_contains(Request::url(), 'checkout'))
+
+    // @if ($errors->any())
+
+    //     @foreach ($errors->all() as $error)
+
+    //         toastr.error("{{ $error }}");
+    //     @endforeach
+    // @endif
+    
+    
+    @if(!str_contains(Request::url(), 'checkout'))
     @if ($errors->any())
         var str = '';
         @foreach ($errors->all() as $error)
@@ -882,8 +884,8 @@
         @endforeach
         toastr.error(str);
     @endif
-@endif
-
+    @endif
+    
 
     function quickViewProduct(productId) {
 
@@ -1220,7 +1222,8 @@
 
     </script> --}}
 
-
+@if( stripos(url()->current(), 'technology') !== false )
+<!--asdasd-->
 <script>
     var graphData = JSON.parse({!! json_encode($graphData) !!});
     var categories = [];
@@ -1362,6 +1365,7 @@
         changeSvgColor();
     });
 </script>
+@endif
 
 <script>
     $(document).ready(function() {
@@ -1383,6 +1387,7 @@
         });
     });
 </script>
+
 <script>
     $(".searchs").click(function(){
         // alert('hi');
@@ -1390,5 +1395,33 @@
     });
 </script>
 
+<script>
+const block = document.querySelectorAll('.block');
+window.addEventListener('load', function(){
+  block.forEach(item => {
+    let numElement = item.querySelector('.num');
+    let num = parseInt(numElement.innerText);
+    let count = 0;
+    let time = 2000 / num;
+    let circle = item.querySelector('.circle');
+    setInterval(() => {
+      if(count == num){
+        clearInterval();
+      } else {
+        count += 1;
+        numElement.innerText = count;
+      }
+    }, time)
+    circle.style.strokeDashoffset 
+      = 503 - ( 503 * ( num / 100 ));
+    let dots = item.querySelector('.dots');
+    dots.style.transform = 
+      `rotate(${360 * (num / 100)}deg)`;
+    if(num == 100){
+      dots.style.opacity = 0;
+    }
+  })
+});
+</script>
 
 </html>

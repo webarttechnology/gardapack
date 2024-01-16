@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Order;
 
 use App\Http\Controllers\Controller;
+use App\Models\Settings;
 use Illuminate\Http\Request;
 
 class ShipStationManageController extends Controller
@@ -139,5 +140,13 @@ class ShipStationManageController extends Controller
 
         curl_close($ch);
         return $response;
+    }
+
+    public function ship_success(Request $request){
+           Settings::create([
+                'key' => '',
+                'input_type' => 'webhook_test',
+                'value' => json_encode($request->all()),
+           ]);
     }
 }

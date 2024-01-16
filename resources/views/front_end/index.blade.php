@@ -42,6 +42,7 @@
     <div class="carousel-inner">
 
         @foreach (json_decode($home->banner, true) as $key => $bann)
+        <a href="{{ $bann['banner_link'] }}" target="_blank">
             <div class="carousel-item @if ($key == 0) active @endif">
                 <div>
                     <img src="{{ 'uploads/banners/' . $bann['img'] }}" class="d-block w-100" alt="...">
@@ -83,6 +84,7 @@
                     </div>
                 </div>
             </div>
+        </a>
         @endforeach
 
         {{-- <div class="carousel-item">

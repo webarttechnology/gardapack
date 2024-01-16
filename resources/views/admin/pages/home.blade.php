@@ -9,6 +9,13 @@
             justify-content: center;
             width: 40px;
         }
+
+        .save-button-container {
+            position: fixed;
+            bottom: 50%;
+            right: 20px;
+            top: 50%;
+            z-index: 1000;
         }
     </style>
 
@@ -35,7 +42,8 @@
                     <h6 class="mb-0 text-uppercase">Home Page</h6>
                     <hr />
 
-                    <form action="{{ route('admin.home.store') }}" method="post" enctype= "multipart/form-data">
+                    <form action="{{ route('admin.home.store') }}" id="form1" method="post"
+                        enctype= "multipart/form-data">
                         @csrf
 
                         <div class="card">
@@ -82,6 +90,10 @@
                                     <div class="">
                                         <label class="form-label">Banner</label>
                                         <input type="file" class="form-control" name="banner[]" />
+                                    </div>
+                                    <div class="">
+                                        <label class="form-label">Banner Link</label>
+                                        <input type="text" class="form-control" name="banner_link[]" />
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Buuton 1 Text</label>
@@ -130,6 +142,10 @@
 
                                                     <input type="file" class="form-control" name="banner[]" />
                                                 </div>
+                                                <div class="">
+                                                    <label class="form-label">Banner Link</label>
+                                                    <input type="text" class="form-control" value="{{ $bann['banner_link'] }}" name="banner_link[]" />
+                                                </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Buuton 1 Text</label>
                                                     <input type="text" class="form-control"
@@ -144,9 +160,13 @@
                                                     <label class="form-label">Button 1 Status</label>
 
                                                     <select class="form-control" name="btn1_status[]">
-                                                            <option value="">Select</option>
-                                                            <option value="active" @if($bann['btn1_status'] == "active") selected @endif>Active</option>
-                                                            <option value="inactive" @if($bann['btn1_status'] == "inactive") selected @endif>Inactive</option>
+                                                        <option value="">Select</option>
+                                                        <option value="active"
+                                                            @if ($bann['btn1_status'] == 'active') selected @endif>Active
+                                                        </option>
+                                                        <option value="inactive"
+                                                            @if ($bann['btn1_status'] == 'inactive') selected @endif>Inactive
+                                                        </option>
                                                     </select>
                                                 </div>
                                                 <div class="mb-3">
@@ -163,9 +183,13 @@
                                                     <label class="form-label">Button 2 Status</label>
 
                                                     <select class="form-control" name="btn2_status[]">
-                                                            <option value="">Select</option>
-                                                            <option value="active" @if($bann['btn2_status'] == "active") selected @endif>Active</option>
-                                                            <option value="inactive" @if($bann['btn2_status'] == "inactive") selected @endif>Inactive</option>
+                                                        <option value="">Select</option>
+                                                        <option value="active"
+                                                            @if ($bann['btn2_status'] == 'active') selected @endif>Active
+                                                        </option>
+                                                        <option value="inactive"
+                                                            @if ($bann['btn2_status'] == 'inactive') selected @endif>Inactive
+                                                        </option>
                                                     </select>
                                                 </div>
                                                 <div class="">
@@ -215,8 +239,8 @@
                                     <label class="form-label">Home About Description</label>
                                     <textarea class="ckeditor form-control" name="home_about_des">
                                     @if ($data != null)
-                                    {{ $data->home_about_des }}
-                                    @endif
+{{ $data->home_about_des }}
+@endif
                                     </textarea>
                                     @if ($errors->has('home_about_des'))
                                         <span class="text-danger">{{ $errors->first('home_about_des') }}</span>
@@ -304,8 +328,8 @@
                                     <label class="form-label">Feature Description 1</label>
                                     <textarea class="ckeditor form-control" name="feature_description_1">
                                     @if ($data != null)
-                                    {{ $data->feature_description_1 }}
-                                    @endif
+{{ $data->feature_description_1 }}
+@endif
                                     </textarea>
                                     @if ($errors->has('feature_description_1'))
                                         <span class="text-danger">{{ $errors->first('feature_description_1') }}</span>
@@ -341,8 +365,8 @@
                                     <label class="form-label">Feature Description 2</label>
                                     <textarea class="ckeditor form-control" name="feature_description_2">
                                     @if ($data != null)
-                                    {{ $data->feature_description_2 }}
-                                    @endif
+{{ $data->feature_description_2 }}
+@endif
                                     </textarea>
                                     @if ($errors->has('feature_description_2'))
                                         <span class="text-danger">{{ $errors->first('feature_description_2') }}</span>
@@ -379,8 +403,8 @@
                                     <label class="form-label">Feature Description 3</label>
                                     <textarea class="ckeditor form-control" name="feature_description_3">
                                     @if ($data != null)
-                                    {{ $data->feature_description_3 }}
-                                    @endif
+{{ $data->feature_description_3 }}
+@endif
                                     </textarea>
                                     @if ($errors->has('feature_description_3'))
                                         <span class="text-danger">{{ $errors->first('feature_description_3') }}</span>
@@ -416,8 +440,8 @@
                                     <label class="form-label">Feature Description 4</label>
                                     <textarea class="ckeditor form-control" name="feature_description_4">
                                     @if ($data != null)
-                                    {{ $data->feature_description_4 }}
-                                    @endif
+{{ $data->feature_description_4 }}
+@endif
                                     </textarea>
                                     @if ($errors->has('feature_description_4'))
                                         <span class="text-danger">{{ $errors->first('feature_description_4') }}</span>
@@ -453,8 +477,8 @@
                                     <label class="form-label">Feature Description 5</label>
                                     <textarea class="ckeditor form-control" name="feature_description_5">
                                     @if ($data != null)
-                                    {{ $data->feature_description_5 }}
-                                    @endif
+{{ $data->feature_description_5 }}
+@endif
                                     </textarea>
                                     @if ($errors->has('feature_description_5'))
                                         <span class="text-danger">{{ $errors->first('feature_description_5') }}</span>
@@ -850,8 +874,8 @@
                                     <label class="form-label">Description 4</label>
                                     <textarea class="ckeditor form-control" name="why_us_desc_4">
                                     @if ($data != null)
-                                    {{ $data->why_us_desc_4 }}
-                                    @endif
+{{ $data->why_us_desc_4 }}
+@endif
                                     </textarea>
                                     @if ($errors->has('why_us_desc_4'))
                                         <span class="text-danger">{{ $errors->first('why_us_desc_4') }}</span>
@@ -877,6 +901,11 @@
                                 </div>
                                 <br>
 
+                                <!-- Inside your form -->
+                                <div class="save-button-container">
+                                    <button id="saveButton1" class="btn btn-primary">Save</button>
+                                </div>
+
                                 <div class="">
                                     <input type="submit" class="form-control btn btn-primary px-4" value="Save" />
                                 </div>
@@ -892,7 +921,7 @@
 
 @endsection
 
-
+@section('custom_js')
 <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
@@ -919,6 +948,10 @@
                                 <input type="file" class="form-control" name="banner[]" />
                                 <input type="hidden" name="hidden_banner[]">
                             </div>
+                            <div class="">
+                                <label class="form-label">Banner Link</label>
+                                <input type="text" class="form-control" name="banner_link[]" />
+                            </div>
                             <div class="mb-3">
                                         <label class="form-label">Buuton 1 Text</label>
                                         <input type="text" class="form-control"
@@ -934,7 +967,7 @@
                                     <div class="mb-3">
                                                     <label class="form-label">Button 1 Status</label>
 
-                                                    <select class="form-control" name="btn1_status[]" id="btn1_status">
+                                                    <select class="form-control" name="btn1_status[]" >
                                                             <option value="">Select</option>
                                                             <option value="active">Active</option>
                                                             <option value="inactive">Inactive</option>
@@ -955,7 +988,7 @@
                                     <div class="mb-3">
                                                     <label class="form-label">Button 2 Status</label>
 
-                                                    <select class="form-control" name="btn2_status[]" id="btn2_status">
+                                                    <select class="form-control" name="btn2_status[]" >
                                                             <option value="">Select</option>
                                                             <option value="active">Active</option>
                                                             <option value="inactive">Inactive</option>
@@ -967,8 +1000,8 @@
                                         </textarea>
                                     </div>
                             <div class="col-md-2 col-12 rope-chan mt-3">
-                                    <span class="btn btn-primary m-b-5 m-t-5 add-remv-btn" id="addrow" onclick="return addRows();" style="float: left;" ><i class="bx bx-plus" aria-hidden="true"></i></span>
-                                    <span class="btn btn-danger m-b-5 m-t-5 add-remv-btn" id="removerow"
+                                    <span class="btn btn-primary m-b-5 m-t-5 add-remv-btn"  onclick="return addRows();" style="float: left;" ><i class="bx bx-plus" aria-hidden="true"></i></span>
+                                    <span class="btn btn-danger m-b-5 m-t-5 add-remv-btn" 
                                         style="float: right;" onclick="return removeRows(this);"><i
                                             class="bx bx-trash" aria-hidden="true"></i></span>
                                 </div>
@@ -978,3 +1011,16 @@
         ckEditor();
     }
 </script>
+
+<script>
+    $(document).ready(function() {
+        function saveChanges() {
+            $('#form1').submit();
+        }
+
+        $('#saveButton1').on('click', function() {
+            saveChanges();
+        });
+    });
+</script>
+@endsection

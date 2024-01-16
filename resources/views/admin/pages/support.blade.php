@@ -1,6 +1,16 @@
 @extends('admin.commons.dashboard_header')
 @section('content')
- 
+
+<style>
+    .save-button-container {
+        position: fixed;
+        bottom: 50%;
+        right: 20px;
+        top: 50%;
+        z-index: 1000;
+    }
+</style>
+
 <div class="page-wrapper">
     <div class="page-content">
         <!--breadcrumb-->
@@ -28,7 +38,7 @@
                 <h6 class="mb-0 text-uppercase">Update </h6>
                 <hr />
 
-                <form action="{{ url('admin/support/store') }}" method="post" enctype= "multipart/form-data">
+                <form action="{{ url('admin/support/store') }}" id="form1" method="post" enctype= "multipart/form-data">
                     @csrf
 
                     <div class="card">
@@ -101,6 +111,11 @@
                             </div>
                             <br>
 
+                            <!-- Inside your form -->
+                            <div class="save-button-container">
+                                <button id="saveButton1" class="btn btn-primary">Save</button>
+                            </div>
+
                             <div class="">
                                 <input type="submit" class="form-control btn btn-primary px-4" value="Submit" />
                             </div>
@@ -114,11 +129,23 @@
     </div>
 </div>
 
-@endsection
-
 <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
     $('.ckeditor').ckeditor();
 });
 </script>
+
+<script>
+    $(document).ready(function() {
+        function saveChanges() {
+            $('#form1').submit();
+        }
+
+        $('#saveButton1').on('click', function() {
+            saveChanges();
+        });
+    });
+</script>
+
+@endsection

@@ -1,6 +1,24 @@
 @extends('admin.commons.dashboard_header')
 @section('content')
 
+<style>
+   .save-button-container {
+        position: fixed;
+        bottom: 50%;
+        right: 20px;
+        top: 50%;
+        z-index: 1000;
+    }
+
+    #manage_con {
+        position: fixed;
+        bottom: 40%;
+        right: 20px;
+        top: 40%;
+        z-index: 1000;
+    }
+</style>
+
 <div class="page-wrapper">
     <div class="page-content">
         <!--breadcrumb-->
@@ -23,7 +41,7 @@
                 <h6 class="mb-0 text-uppercase">Website Footer</h6>
                 <hr/>
 
-                <form action="{{ url('admin/website/footer/store') }}" method="post" enctype= "multipart/form-data">
+                <form action="{{ url('admin/website/footer/store') }}" id="form1" method="post" enctype= "multipart/form-data">
                     @csrf
 
                     <div class="card">
@@ -205,6 +223,127 @@
                             </div>
                             <br>
 
+                            <!-- Information Section -->
+
+                            <div class="">
+                                <label class="form-label">Information Header</label>
+                                <input type="text" class="form-control" name="information_header" value="@if($footer != null) {{ $footer->information_header }} @endif">
+                                @if ($errors->has('information_header'))
+                                <span class="text-danger">{{ $errors->first('information_header') }}</span>
+                                @endif
+                            </div>
+                            <br>
+
+                            @if($footer == null || $footer->information == null)
+                            <div class="row mt-2 border border-5 p-2">
+                                <div class="col-md-5">
+                                    <label class="form-label">Information Text</label>
+                                    <input type="text" class="form-control" name="information_text[]" value="">
+                                </div>
+                                <div class="col-md-5">
+                                    <label class="form-label">Information Link</label>
+                                    <input type="text" class="form-control" name="information_link[]" value="">
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="button" onclick="addInformation()" class="btn btn-primary" style="margin-top: 25px;"><i class="bx bx-plus"></i></button>
+                                </div>
+                               
+                            </div>
+                            @else
+                            @foreach (json_decode($footer->information, true) as $key => $info)
+                            <div class="row mt-2 border border-5 p-2">
+                                <div class="col-md-5">
+                                    <label class="form-label">Information Text</label>
+                                    <input type="text" class="form-control" name="information_text[]" value="{{ $info['text'] }}">
+                                </div>
+                                <div class="col-md-5">
+                                    <label class="form-label">Information Link</label>
+                                    <input type="text" class="form-control" name="information_link[]" value="{{ $info['link'] }}">
+                                </div>
+                                <div class="col-md-1">
+                                    <button type="button" onclick="addInformation()" class="btn btn-primary" style="margin-top: 25px;"><i class="bx bx-plus"></i></button>
+                                </div>
+                                @if($key > 0)                                    
+                                <div class="col-md-1">
+                                    <button type="button" onclick="removeRows(this);" class="btn btn-danger" style="margin-top: 25px;"><i class="bx bx-trash"></i></button>
+                                </div>
+                                @endif
+                            </div>
+                            @endforeach
+                            @endif
+                            
+                            <div id="information_div"></div>
+
+
+                            <!-- My Account Setion -->
+                            <div class="">
+                                <label class="form-label">My Account Header</label>
+                                <input type="text" class="form-control" name="account_header" value="@if($footer != null) {{ $footer->my_account_header }} @endif">
+                                @if ($errors->has('my_account_header'))
+                                <span class="text-danger">{{ $errors->first('my_account_header') }}</span>
+                                @endif
+                            </div>
+                            <br>
+
+                            @if($footer == null || $footer->accounts == null)
+                            <div class="row mt-2 border border-5 p-2">
+                                <div class="col-md-5">
+                                    <label class="form-label">Account Text</label>
+                                    <input type="text" class="form-control" name="account_text[]" value="">
+                                </div>
+                                <div class="col-md-5">
+                                    <label class="form-label">Account Link</label>
+                                    <input type="text" class="form-control" name="account_link[]" value="">
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="button" onclick="addAccount()" class="btn btn-primary" style="margin-top: 25px;"><i class="bx bx-plus"></i></button>
+                                </div>
+                               
+                            </div>
+                            @else
+                            @foreach (json_decode($footer->accounts, true) as $key => $acc)
+                            <div class="row mt-2 border border-5 p-2">
+                                <div class="col-md-5">
+                                    <label class="form-label">Account Text</label>
+                                    <input type="text" class="form-control" name="account_text[]" value="{{ $acc['text'] }}">
+                                </div>
+                                <div class="col-md-5">
+                                    <label class="form-label">Account Link</label>
+                                    <input type="text" class="form-control" name="account_link[]" value="{{ $acc['link'] }}">
+                                </div>
+                                <div class="col-md-1">
+                                    <button type="button" onclick="addAccount()" class="btn btn-primary" style="margin-top: 25px;"><i class="bx bx-plus"></i></button>
+                                </div>
+                                @if($key > 0)                                    
+                                <div class="col-md-1">
+                                    <button type="button" onclick="removeRows2(this);" class="btn btn-danger" style="margin-top: 25px;"><i class="bx bx-trash"></i></button>
+                                </div>
+                                @endif
+                            </div>
+                            @endforeach
+                            @endif
+                            
+                            <div id="account_div"></div>
+
+                            <div class="">
+                                <label class="form-label">Need Help Text</label>
+                                <input type="text" class="form-control" name="need_help_text" value="@if($footer != null) {{ $footer->need_help_text }} @endif">
+                                @if ($errors->has('need_help_text'))
+                                <span class="text-danger">{{ $errors->first('need_help_text') }}</span>
+                                @endif
+                            </div>
+                            <br>
+                            
+                            {{-- <div class="">
+                                <a href="{{ url('admin/update/pages/3') }}" id="manage_con" target="_balnk">
+                                    <input type="button" class="form-control btn btn-primary px-4" value="Manage Contact" />
+                                </a>
+                            </div> --}}
+
+                            <!-- Inside your form -->
+                            <div class="save-button-container">
+                                <button id="saveButton1" class="btn btn-primary">Save</button>
+                            </div>
 
                             <div class="">
                                 <input type="submit" class="form-control btn btn-primary px-4" value="Save" />
@@ -226,6 +365,89 @@ $(document).ready(function() {
 });
 </script>
 
+<!-- Add More Info -->
+<script>
+    function removeRows(button) {
+            $(button).closest('.row').remove();
+        }
+
+        function addAccount() {
+            var container = document.getElementById('account_div');
+            var row = document.createElement('div');
+            row.classList.add('row');
+
+            // document.getElementById("more_variations").innerHTML 
+
+            row.innerHTML = `<div class="row mt-2 ml-3 border border-5 p-2">
+                                <div class="col-md-5">
+                                    <label class="form-label">Account Text</label>
+                                    <input type="text" class="form-control" name="account_text[]" value="">
+                                </div>
+                                <div class="col-md-5">
+                                    <label class="form-label">Account Link</label>
+                                    <input type="text" class="form-control" name="account_link[]" value="">
+                                </div>
+                                <div class="col-md-1">
+                                    <button type="button" onclick="addAccount()" class="btn btn-primary" style="margin-top: 25px;"><i class="bx bx-plus"></i></button>
+                                </div>
+                                <div class="col-md-1">
+                                    <button type="button" onclick="removeRows(this)" class="btn btn-danger" style="margin-top: 25px;"><i class="bx bx-trash"></i></button>
+                                </div>
+                               
+                            </div>`;
+
+            container.appendChild(row);
+
+        }
+</script>
+
+<!-- Add more account -->
+<script>
+     function removeRows2(button) {
+            $(button).closest('.row').remove();
+        }
+
+        function addInformation() {
+            var container = document.getElementById('information_div');
+            var row = document.createElement('div');
+            row.classList.add('row');
+
+            // document.getElementById("more_variations").innerHTML 
+
+            row.innerHTML = `<div class="row mt-2 border border-5 p-2">
+                                <div class="col-md-5">
+                                    <label class="form-label">Information Text</label>
+                                    <input type="text" class="form-control" name="information_text[]" value="">
+                                </div>
+                                <div class="col-md-5">
+                                    <label class="form-label">Information Link</label>
+                                    <input type="text" class="form-control" name="information_link[]" value="">
+                                </div>
+                                <div class="col-md-1">
+                                    <button type="button" onclick="addInformation()" class="btn btn-primary" style="margin-top: 25px;"><i class="bx bx-plus"></i></button>
+                                </div>
+                                <div class="col-md-1">
+                                    <button type="button" onclick="removeRows2(this)" class="btn btn-danger" style="margin-top: 25px;"><i class="bx bx-trash"></i></button>
+                                </div>
+                            </div>`;
+
+            container.appendChild(row);
+
+        }
+</script>
+
 <!-- Add duplicate variations -->
 <script src="../js/product_add.js"></script>
+
+<script>
+    $(document).ready(function() {
+        function saveChanges() {
+            $('#form1').submit();
+        }
+
+        $('#saveButton1').on('click', function() {
+            saveChanges();
+        });
+    });
+</script>
 @endsection

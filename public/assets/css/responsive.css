@@ -177,6 +177,9 @@
 }
 
 @media only screen and (max-width: 767px) {
+    .tab-content ul, .productInfoDetail ul {
+        padding-left: 30px;
+    }
     .headerglry {
         font-family: var(--font-primary);
         padding: 4px 0;
@@ -291,6 +294,21 @@
     .header-part2 nav.icnstty ul {
         margin:0 !important
     }
+    .support-page h1 {
+        font-size: 40px;
+        margin:0;
+    }
+    .exfitm {
+    background-image:none; padding:30px 0;
+}
+.expitems {
+    padding: 8px 0px;
+    border: #999 1px solid; 
+    margin-bottom:15px;
+}
+.paggSlider .slick-slide .imgBlock {
+    height: 49px !important;
+}
 }
 
 @media only screen and (max-width:667px) {
@@ -298,8 +316,12 @@
         margin-right: 2px;
     }
     .header-part2 .btn {
-        padding: 6px 10px;
-        font-size: 11px;
+        padding: 0 10px;
+        font-size: 13px;
+        margin: 5px 0 0 0;
+        background: transparent;
+        border: transparent;
+        color:#ffc41c !important;
     }
     .header-log {
         padding-top: 3px;
@@ -322,6 +344,7 @@
     }
     .home-logo {
         margin: 0 0 3px 0;
+        text-align: center;
     }
     .blog .content h5 {
         font-size: 18px;
@@ -344,6 +367,9 @@
 .contactSecBlock .contactForm {
     padding:20px !important;
 }
+.loginsec {
+    padding-top: 30px;
+}
 
     
 }
@@ -363,7 +389,7 @@
         padding-top: 0;
     }
     .headerglry {
-        margin:0;
+        margin: 3px 0;
     }
     .header-log {
         text-align: end;
@@ -382,9 +408,9 @@
     .retailers .map-searchbar .searchinput .item select {
         width: 100%;
     }
-    .headerctgry .col-6 {
-        width: 33.333%;
-        flex: 0 0 33.333%;
+    .headerctgry .col-6.col-md-2 {
+        border-left: #ccc 1px solid;
+        border-bottom: #ccc 1px solid;
     }
     .header-part2 .col-4 , .header-part2 .col-8 {
         -webkit-box-flex: 0;
@@ -410,6 +436,26 @@
     }
     .headerctgry h6 {
     font-size: 12px !important;
+}
+    .mobile-reverse {flex-direction:column-reverse;}
+    .support-contact-text {
+    border: 1px solid #ddd !important;
+    background: #f8f8f8;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+.technology.featuressec .circleimg {
+    width: 260px;
+    height: 260px;
+    padding: 19px;
+}
+.featuressec .circlehdng h5 {
+    font-size: 22px;
+    margin: 5px 0 0;
+}
+.headerctgry {
+    padding: 0;
+    border-bottom:transparent !important;
 }
     
 }

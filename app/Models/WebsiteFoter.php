@@ -25,6 +25,11 @@ class WebsiteFoter extends Model
         'pint_image',
         'goog_image',
         'twitter_image',
-        'fb_image'
+        'fb_image',
+        'information_header',
+        'my_account_header',
+        'information',
+        'accounts',
+        'need_help_text'
     ];
 }

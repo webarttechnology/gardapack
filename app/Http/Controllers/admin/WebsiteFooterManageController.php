@@ -29,6 +29,13 @@ class WebsiteFooterManageController extends Controller
             'pint_link' => 'required',
             'pint_status' => 'required',
             'copy_right_text' => 'required',
+            'information_header' => 'required',
+            'account_header' => 'required',
+            'information_text.*' => 'required',
+            'information_link.*' => 'required',
+            'account_text.*' => 'required',
+            'account_link.*' => 'required',
+            'need_help_text' => 'required',
         ]);
 
         $footer = WebsiteFoter::first();
@@ -104,6 +111,28 @@ class WebsiteFooterManageController extends Controller
             }
         }
 
+        /**
+         * Information Links
+        */
+
+        foreach($request->information_text as $key => $info){
+             $information[] = [
+                'text' => $info,
+                'link' => $request->information_link[$key],
+             ];
+        }
+
+        /**
+         * Account Links
+        */
+
+        foreach($request->account_text as $key => $account){
+             $accounts[] = [
+                'text' => $account,
+                'link' => $request->account_link[$key],
+             ];
+        }
+
         if ($footer == null) {
             WebsiteFoter::create([
                 'footer_desc' => $request->footer_desc,
@@ -116,6 +145,13 @@ class WebsiteFooterManageController extends Controller
                 'pint_link' => $request->pint_link,
                 'pint_status' => $request->pint_status,
                 'copy_right_text' => $request->copy_right_text,
+
+                'information_header' => $request->information_header,
+                'my_account_header' => $request->account_header,
+                'need_help_text' => $request->need_help_text,
+                'information' => $information,
+                'accounts' => $accounts,
+
                 'foot_img' => $foot_img,
                 'fb_image' => $fb_image,
                 'twitter_image' => $twitter_image,
@@ -138,7 +174,12 @@ class WebsiteFooterManageController extends Controller
                 'fb_image' => $fb_image,
                 'twitter_image' => $twitter_image,
                 'goog_image' => $goog_image,
-                'pint_image' => $pint_image
+                'pint_image' => $pint_image,
+                'information_header' => $request->information_header,
+                'my_account_header' => $request->account_header,
+                'need_help_text' => $request->need_help_text,
+                'information' => $information,
+                'accounts' => $accounts,
             ]);
         }
 

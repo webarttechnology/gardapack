@@ -13,6 +13,6 @@ class Settings extends Model
     protected $fillable = [
         "key",
         "input_type",
-        "value"
+        "value",
     ];
 }

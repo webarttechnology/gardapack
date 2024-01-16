@@ -102,6 +102,7 @@ class HomePageController extends Controller
                             'banner_des' => $request->banner_des[$key],
                             'btn1_status' => $request->btn1_status[$key],
                             'btn2_status' => $request->btn2_status[$key],
+                            'banner_link' => $request->banner_link[$key],
                         ];
                     } else {
                         return redirect()->back()->with('danger', 'Unable to upload the file');
@@ -116,6 +117,7 @@ class HomePageController extends Controller
                         'banner_des' => $request->banner_des[$key],
                         'btn1_status' => $request->btn1_status[$key],
                         'btn2_status' => $request->btn2_status[$key],
+                        'banner_link' => $request->banner_link[$key],
                     ];
                 }
                 else {

@@ -73,7 +73,7 @@
                             <br>
 
                             <!-- Green Mall Benefit -->
-                            <h3>Top Boxes</h3>
+                            {{-- <h3>Top Boxes</h3>
                             <div class="">
                                 <label class="form-label">Text 1</label>
                                 <input type="text" class="form-control" name="text3" value="{{ $details->text3 }}" />
@@ -92,9 +92,9 @@
                                 <span class="text-danger">{{ $errors->first('description3') }}</span>
                                 @endif
                             </div>
-                            <br>
+                            <br> --}}
 
-                            <div class="">
+                            {{-- <div class="">
                                 <label class="form-label">Text 2</label>
                                 <input type="text" class="form-control" name="text4" value="{{ $details->text4 }}" />
                                 @if ($errors->has('text4'))
@@ -111,9 +111,9 @@
                                 <span class="text-danger">{{ $errors->first('description4') }}</span>
                                 @endif
                             </div>
-                            <br>
+                            <br> --}}
 
-                            <div class="">
+                            {{-- <div class="">
                                 <label class="form-label">Text 3</label>
                                 <input type="text" class="form-control" name="text5" value="{{ $details->text5 }}" />
                                 @if ($errors->has('text5'))
@@ -130,9 +130,9 @@
                                 <span class="text-danger">{{ $errors->first('description6') }}</span>
                                 @endif
                             </div>
-                            <br>
+                            <br> --}}
 
-                            <h4>Main Content</h4>
+                            <h4>WHO ARE WE ?</h4>
                             <div class="">
                                 <label class="form-label">Heading</label>
                                 <input type="text" class="form-control" name="feature_heading" value="{{ $details->feature_heading }}" />
@@ -173,8 +173,27 @@
                             </div>
                             <br>
 
+                            <div class="">
+                                <label class="form-label">Contact Button Title</label>
+                                <input type="text" class="form-control" name="contact_btn_title" value="{{ $details->contact_btn_title }}" />
+                                @if ($errors->has('contact_btn_title'))
+                                <span class="text-danger">{{ $errors->first('contact_btn_title') }}</span>
+                                @endif
+                            </div>
+                            <br>
 
                             <div class="">
+                                <label class="form-label">Contact Button Link</label>
+                                <input type="text" class="form-control" name="contact_btn_link" value="{{ $details->contact_btn_link }}" />
+                                @if ($errors->has('contact_btn_link'))
+                                <span class="text-danger">{{ $errors->first('contact_btn_link') }}</span>
+                                @endif
+                            </div>
+                            <br>
+                            
+
+
+                            {{-- <div class="">
                                 <label class="form-label">Image 2</label><br>
 
                                 @if($details->featured_img != null)
@@ -193,10 +212,10 @@
                                 <span class="text-danger">{{ $errors->first('img2') }}</span>
                                 @endif
                             </div>
-                            <br>
+                            <br> --}}
 
 
-                            <div class="">
+                            {{-- <div class="">
                                 <label class="form-label">Description2</label>
                                 <textarea class="ckeditor form-control"
                                     name="description2">{!! $details->description2 !!}</textarea>
@@ -204,14 +223,14 @@
                                 <span class="text-danger">{{ $errors->first('description2') }}</span>
                                 @endif
                             </div>
-                            <br>
+                            <br> --}}
 
                             
                             <!-- How It Works -->
 
                             <!-- More About Greenmall -->
-                            <h3>How It Works</h3>
-                            <div class="">
+                            <h3>OUR SOLUTIONS</h3>
+                            {{-- <div class="">
                                 <label class="form-label">Heading</label><br>
 
                                 <br>
@@ -220,10 +239,10 @@
                                 <span class="text-danger">{{ $errors->first('how_work_heading') }}</span>
                                 @endif
                             </div>
-                            <br>
+                            <br> --}}
 
                             <div class="">
-                                <label class="form-label">Text 1</label><br>
+                                <label class="form-label">Heading</label><br>
 
                                 <br>
                                 <input type="text" class="form-control" name="how_work_text1" value="{{  $details->how_work_text1  }}" />
@@ -244,86 +263,132 @@
                             <br>
 
                             <div class="">
-                                <label class="form-label">Text 2</label><br>
+                                <label class="form-label">Image</label><br>
 
                                 <br>
-                                <input type="text" class="form-control" name="how_work_text2" value="{{  $details->how_work_text2  }}" />
-                                @if ($errors->has('how_work_text2'))
-                                <span class="text-danger">{{ $errors->first('how_work_text2') }}</span>
+                                <input type="file" class="form-control" name="our_sol_img" value="{{  $details->our_sol_img  }}" />
+                                @if ($errors->has('our_sol_img'))
+                                <span class="text-danger">{{ $errors->first('our_sol_img') }}</span>
                                 @endif
                             </div>
                             <br>
 
+                            <h4>Circle Section</h4>
                             <div class="">
-                                <label class="form-label">Description 2</label>
-                                <textarea class="ckeditor form-control"
-                                    name="how_work_desc2">{!! $details->how_work_desc2 !!}</textarea>
-                                @if ($errors->has('how_work_desc2'))
-                                <span class="text-danger">{{ $errors->first('how_work_desc2') }}</span>
-                                @endif
-                            </div>
-                            <br>
-                            <div class="">
-                                <label class="form-label">Text 3</label><br>
+                                <label class="form-label">circle 1 Text</label><br>
 
                                 <br>
-                                <input type="text" class="form-control" name="how_work_text3" value="{{  $details->how_work_text3  }}" />
-                                @if ($errors->has('how_work_text3'))
-                                <span class="text-danger">{{ $errors->first('how_work_text3') }}</span>
+                                <input type="text" class="form-control" name="circle1_text" value="{{  $details->circle1_text  }}" />
+                                @if ($errors->has('circle1_text'))
+                                <span class="text-danger">{{ $errors->first('circle1_text') }}</span>
                                 @endif
                             </div>
                             <br>
-
                             <div class="">
-                                <label class="form-label">Description 3</label>
-                                <textarea class="ckeditor form-control"
-                                    name="how_work_desc3">{!! $details->how_work_desc3 !!}</textarea>
-                                @if ($errors->has('how_work_desc3'))
-                                <span class="text-danger">{{ $errors->first('how_work_desc3') }}</span>
-                                @endif
-                            </div>
-                            <br>
-
-                            <div class="">
-                                <label class="form-label">Text 4</label><br>
+                                <label class="form-label">circle 1 Percentage</label><br>
 
                                 <br>
-                                <input type="text" class="form-control" name="how_work_text4" value="{{  $details->how_work_text4  }}" />
-                                @if ($errors->has('how_work_text4'))
-                                <span class="text-danger">{{ $errors->first('how_work_text4') }}</span>
+                                <input type="number" class="form-control" name="circle1_percent" value="{{  $details->circle1_percent  }}" />
+                                @if ($errors->has('circle1_percent'))
+                                <span class="text-danger">{{ $errors->first('circle1_percent') }}</span>
+                                @endif
+                            </div>
+                            <br>
+
+
+                            <div class="">
+                                <label class="form-label">circle 2 Text</label><br>
+
+                                <br>
+                                <input type="text" class="form-control" name="circle2_text" value="{{  $details->circle2_text  }}" />
+                                @if ($errors->has('circle2_text'))
+                                <span class="text-danger">{{ $errors->first('circle2_text') }}</span>
+                                @endif
+                            </div>
+                            <br>
+                            <div class="">
+                                <label class="form-label">circle 2 Percentage</label><br>
+
+                                <br>
+                                <input type="number" class="form-control" name="circle2_percent" value="{{  $details->circle2_percent  }}" />
+                                @if ($errors->has('circle2_percent'))
+                                <span class="text-danger">{{ $errors->first('circle2_percent') }}</span>
+                                @endif
+                            </div>
+                            <br>
+
+
+                            <div class="">
+                                <label class="form-label">circle 3 Text</label><br>
+
+                                <br>
+                                <input type="text" class="form-control" name="circle3_text" value="{{  $details->circle3_text  }}" />
+                                @if ($errors->has('circle3_text'))
+                                <span class="text-danger">{{ $errors->first('circle3_text') }}</span>
+                                @endif
+                            </div>
+                            <br>
+                            <div class="">
+                                <label class="form-label">circle 3 Percentage</label><br>
+
+                                <br>
+                                <input type="number" class="form-control" name="circle3_percent" value="{{  $details->circle3_percent  }}" />
+                                @if ($errors->has('circle3_percent'))
+                                <span class="text-danger">{{ $errors->first('circle3_percent') }}</span>
+                                @endif
+                            </div>
+                            <br>
+
+
+                            <div class="">
+                                <label class="form-label">circle 4 Text</label><br>
+
+                                <br>
+                                <input type="text" class="form-control" name="circle4_text" value="{{  $details->circle4_text  }}" />
+                                @if ($errors->has('circle4_text'))
+                                <span class="text-danger">{{ $errors->first('circle4_text') }}</span>
+                                @endif
+                            </div>
+                            <br>
+                            <div class="">
+                                <label class="form-label">circle 4 Percentage</label><br>
+
+                                <br>
+                                <input type="number" class="form-control" name="circle4_percent" value="{{  $details->circle4_percent  }}" />
+                                @if ($errors->has('circle4_percent'))
+                                <span class="text-danger">{{ $errors->first('circle1_percent') }}</span>
+                                @endif
+                            </div>
+                            <br>
+
+
+                            <div class="">
+                                <label class="form-label">circle 5 Text</label><br>
+
+                                <br>
+                                <input type="text" class="form-control" name="circle5_text" value="{{  $details->circle5_text  }}" />
+                                @if ($errors->has('circle5_text'))
+                                <span class="text-danger">{{ $errors->first('circle5_text') }}</span>
+                                @endif
+                            </div>
+                            <br>
+                            <div class="">
+                                <label class="form-label">circle 5 Percentage</label><br>
+
+                                <br>
+                                <input type="number" class="form-control" name="circle5_percent" value="{{  $details->circle5_percent  }}" />
+                                @if ($errors->has('circle5_percent'))
+                                <span class="text-danger">{{ $errors->first('circle5_percent') }}</span>
                                 @endif
                             </div>
                             <br>
 
                             <div class="">
-                                <label class="form-label">Description 4</label>
+                                <label class="form-label">Extra Description</label>
                                 <textarea class="ckeditor form-control"
-                                    name="how_work_desc4">{!! $details->how_work_desc4 !!}</textarea>
-                                @if ($errors->has('how_work_desc4'))
-                                <span class="text-danger">{{ $errors->first('how_work_desc4') }}</span>
-                                @endif
-                            </div>
-                            <br>
-
-
-                            <!-- youtube Links -->
-                            <h4>Youtube Links</h4>
-                            <div class="">
-                                <label class="form-label">Youtube Link1</label>
-                                <input type="text" class="form-control" name="youtube_link1" value="{{ $details->youtube_link1 }}"
-                                     />
-                                @if ($errors->has('youtube_link1'))
-                                <span class="text-danger">{{ $errors->first('youtube_link1') }}</span>
-                                @endif
-                            </div>
-                            <br>
-
-                            <div class="">
-                                <label class="form-label">Youtube Link2</label>
-                                <input type="text" class="form-control" name="youtube_link2" value="{{ $details->youtube_link2 }}"
-                                     />
-                                @if ($errors->has('youtube_link2'))
-                                <span class="text-danger">{{ $errors->first('youtube_link2') }}</span>
+                                    name="extra_desc">{!! $details->extra_desc !!}</textarea>
+                                @if ($errors->has('extra_desc'))
+                                <span class="text-danger">{{ $errors->first('extra_desc') }}</span>
                                 @endif
                             </div>
                             <br>

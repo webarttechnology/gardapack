@@ -222,6 +222,16 @@
 					</ul>
 				</li>
 
+				<li class="menu-label">Manual</li>
+				<li>
+					<ul>
+                    <li @if(Str::contains($currentUrl, 'manual')) class="activate" @endif> 
+						<a href="{{ url('admin/manual/list') }}">
+							<i class="bx bx-right-arrow-alt @if(Str::contains($currentUrl, 'manual')) active_div @endif"></i>
+							<span @if(Str::contains($currentUrl, 'manual')) class='active_div' @endif>Manual</span></a></li>
+					</ul>
+				</li>
+
 				<li class="menu-label">Shipping Options</li>
 				<li>
 					<ul>

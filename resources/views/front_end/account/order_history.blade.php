@@ -54,6 +54,7 @@
                                         <div class="col-md-4">
                                             <div class="cncl text-right">
                                                 @if ($order->order_status == "active")
+                                                   <button class="badge bg-info text-end">Not Shipped</button>
                                                    <button class="badge bg-success text-end">Active</button>
                                                    {{-- <a href="{{ url('cancel-order', $order->order_id) }}"><button class="btn btn-danger">Cancel Order</button></a> --}}
                                                 @else

@@ -47,8 +47,13 @@
                 <h4 class="mb-5" style="display:block">@if ($footer != null) {{ $footer->information_header }} @endif</h4>
                 <ul>
                     @if($footer != null)                        
-                    @foreach (json_decode($footer->information, true) as $key => $info)    
-                        <li><a href="{{ $info['link'] }}">{{ $info['text'] }}</a></li>
+                    @foreach (json_decode($footer->information, true) as $key => $info)
+                    @if($key%2 == 0)
+                        <li class="float-left w-50"><a href="{{ $info['link'] }}">{{ $info['text'] }}</a></li>
+                        @else
+                        <li class="float-right w-50"><a href="{{ $info['link'] }}">{{ $info['text'] }}</a></li>
+                        
+                        @endif
                     @endforeach
                     @endif
                     

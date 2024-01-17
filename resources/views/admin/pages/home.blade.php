@@ -95,6 +95,14 @@
                                         <label class="form-label">Banner Link</label>
                                         <input type="text" class="form-control" name="banner_link[]" />
                                     </div>
+                                    <div class="">
+                                        <label class="form-label">Open Banner Link</label>
+                                        <select name="open_banner_link[]" class="form-control">
+                                              <option value="">Select a Option</option>
+                                              <option value="new_tab">Open in New Tab</option>
+                                              <option value="same_tab">Open in Same Tab</option>
+                                        </select>
+                                    </div>
                                     <div class="mb-3">
                                         <label class="form-label">Buuton 1 Text</label>
                                         <input type="text" class="form-control" value="" name="btn1_txt[]">
@@ -145,6 +153,14 @@
                                                 <div class="">
                                                     <label class="form-label">Banner Link</label>
                                                     <input type="text" class="form-control" value="{{ $bann['banner_link'] }}" name="banner_link[]" />
+                                                </div>
+                                                <div class="">
+                                                    <label class="form-label">Open Banner Link</label>
+                                                    <select name="open_banner_link[]" class="form-control">
+                                                          <option value="">Select a Option</option>
+                                                          <option value="new_tab" @if(($bann['open_banner_link']) == "new_tab") selected @endif>Open in New Tab</option>
+                                                          <option value="same_tab" @if(($bann['open_banner_link']) == "same_tab") selected @endif>Open in Same Tab</option>
+                                                    </select>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Buuton 1 Text</label>
@@ -963,6 +979,14 @@
                                         <input type="text" class="form-control"
                                             value=""
                                             name="btn1_link[]">
+                                    </div>
+                                    <div class="">
+                                                    <label class="form-label">Open Banner Link</label>
+                                                    <select name="open_banner_link[]" class="form-control">
+                                                          <option value="">Select a Option</option>
+                                                          <option value="new_tab">Open in New Tab</option>
+                                                          <option value="same_tab">Open in Same Tab</option>
+                                                    </select>
                                     </div>
                                     <div class="mb-3">
                                                     <label class="form-label">Button 1 Status</label>

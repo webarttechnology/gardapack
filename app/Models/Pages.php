@@ -50,5 +50,22 @@ class Pages extends Model
     'how_work_desc2',
     'how_work_desc3',
     'how_work_desc4',
+
+    'contact_btn_title',
+    'contact_btn_link',
+    'contact_btn_status',
+    'our_sol_img',
+
+    'circle1_text',
+    'circle1_percent',
+    'circle2_text',
+    'circle2_percent',
+    'circle3_text',
+    'circle3_percent',
+    'circle4_text',
+    'circle4_percent',
+    'circle5_text',
+    'circle5_percent',
+    'extra_desc',
    ];
 }

@@ -51,6 +51,10 @@ use App\Http\Controllers\payment\StripePaymentController;
 use App\Http\Controllers\admin\ShippingOptionsManageController;
 use App\Http\Controllers\Order\ShipStationManageController;
 
+
+use App\Http\Controllers\admin\TermPolicyManageController;
+use App\Http\Controllers\admin\ManualManageController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -108,6 +112,12 @@ Route::controller(PageManageController::class)->group(function () {
 
     Route::get('blog/details/{id}', 'blog_details');
     Route::get('blogs', 'blogs');
+
+    Route::get('shipping-term', 'shipping_term');
+    Route::get('return-policy', 'return_policy');
+    Route::get('term-and-condition', 'term_condition');
+    Route::get('privacy-policy', 'privacy_policy');
+    Route::get('manual', 'manual');
 });
 
 /**
@@ -551,6 +561,21 @@ Route::group(['prefix' => 'admin'], function () {
                 Route::post('update/action/{id}', 'update_action');
                 Route::get('delete/{id}', 'delete');
             });
+
+        // Term & Policy
+        Route::post('term/policy/save/{type}', [TermPolicyManageController::class, 'save']);
+        // Route::post('save/manual', [ManualManageController::class, 'save_manual']);
+
+        Route::controller(ManualManageController::class)
+        ->prefix('manual')
+        ->group(function () {
+            Route::get('list', 'list');
+            Route::get('add/page', 'add_page');
+            Route::post('add/action', 'add_action');
+            Route::get('update/page/{id}', 'update');
+            Route::post('update/action/{id}', 'update_action');
+            Route::get('delete/{id}', 'delete');
+        });
 
         Route::post('save/shipment/order', [ShippingOptionsManageController::class, 'shipment_order']);
 

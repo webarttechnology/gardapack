@@ -4,7 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{HomePge, Pages, Notification, Support, Technology};
+use App\Models\{HomePge, Manual, Pages, Notification, Support, Technology, TermPolicy};
 use Illuminate\Support\Facades\Auth;
 
 class AdminPagesController extends Controller
@@ -31,10 +31,31 @@ class AdminPagesController extends Controller
                     return view('admin.pages.home', compact('data'));
                 }
                 else if($details->title == "support"){
-                    // return redirect()->route('admin.support.list');
                     $data = Support::first();
                     return view('admin.pages.support', compact('data'));
                 }
+                
+                else if($details->title == "shipping_term"){
+                    $data = TermPolicy::whereType('shipping_term')->first();
+                    $type="shipping_term";
+                    return view('admin.pages.term_policy', compact('data', 'type'));
+                }
+                else if($details->title == "return_policy"){
+                    $data = TermPolicy::whereType('return_policy')->first();
+                    $type="return_policy";
+                    return view('admin.pages.term_policy', compact('data', 'type'));
+                }
+                else if($details->title == "term_condition"){
+                    $data = TermPolicy::whereType('term_condition')->first();
+                    $type="term_condition";
+                    return view('admin.pages.term_policy', compact('data', 'type'));
+                }
+                else if($details->title == "privacy_policy"){
+                    $data = TermPolicy::whereType('privacy_policy')->first();
+                    $type="privacy_policy";
+                    return view('admin.pages.term_policy', compact('data', 'type'));
+                }
+
                 else{
                     return view('admin.pages.update', compact('details'));
                 }
@@ -49,11 +70,18 @@ class AdminPagesController extends Controller
     public function admin_save_pages(Request $request)
     {
 
-            // $request->validate([
-            //      'name' => 'required|max:200',
-            //      'title' => 'required|max:200',
-            //      'description' => 'required',
-            // ]);
+            $request->validate([
+                 'circle1_text' => 'required',
+                 'circle1_percent' => 'required|min:0|max:100',
+                 'circle2_text' => 'required',
+                 'circle2_percent' => 'required|min:0|max:100',
+                 'circle3_text' => 'required',
+                 'circle3_percent' => 'required|min:0|max:100',
+                 'circle4_text' => 'required',
+                 'circle4_percent' => 'required|min:0|max:100',
+                 'circle5_text' => 'required',
+                 'circle5_percent' => 'required|min:0|max:100',
+            ]);
 
             $id = $request->id;
 
@@ -174,6 +202,21 @@ class AdminPagesController extends Controller
                     'how_work_desc4' => $request->how_work_desc4,
                     'feature_heading' => $request->feature_heading,
                     'how_work_heading' => $request->how_work_heading,
+
+                    'contact_btn_title' => $request->contact_btn_title,
+                    'contact_btn_link' => $request->contact_btn_link,
+                    'circle1_text' => $request->circle1_text,
+                    'circle1_percent' => $request->circle1_percent,
+                    'circle2_text' => $request->circle2_text,
+                    'circle2_percent' => $request->circle2_percent,
+                    'circle3_text' => $request->circle3_text,
+                    'circle3_percent' => $request->circle3_percent,
+                    'circle4_text' => $request->circle4_text,
+                    'circle4_percent' => $request->circle4_percent,
+                    'circle5_text' => $request->circle5_text,
+                    'circle5_percent' => $request->circle5_percent,
+                    'description' => $request->description,
+                    'extra_desc' => $request->extra_desc,
                  ]);
             //   }
 

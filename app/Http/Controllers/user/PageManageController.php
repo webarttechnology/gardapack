@@ -4,7 +4,7 @@ namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Blog, Product, PdfDownloads, Category, Technology, ProductGallery, Service, WebsiteGallery, Faq, Course, Pages, Cart, HomePge, User, Order, Support, Testimonial};
+use App\Models\{Blog, Product, PdfDownloads, Category, Technology, ProductGallery, Service, WebsiteGallery, Faq, Course, Pages, Cart, HomePge, Manual, User, Order, Support, TermPolicy, Testimonial};
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
@@ -265,5 +265,30 @@ class PageManageController extends Controller
     public function blogs(){
         $blogs = Blog::orderBy('id', 'desc')->get();
         return view('front_end.blogs', compact('blogs'));
+    }
+    
+    public function shipping_term(){
+        $details = TermPolicy::whereType('shipping_term')->first();
+        return view('front_end.shipping_term', compact('details'));
+    }
+
+    public function return_policy(){
+        $details = TermPolicy::whereType('return_policy')->first();
+        return view('front_end.return_policy', compact('details'));
+    }
+
+    public function term_condition(){
+        $details = TermPolicy::whereType('term_condition')->first();
+        return view('front_end.term_condition', compact('details'));
+    }
+    
+    public function privacy_policy(){
+        $details = TermPolicy::whereType('privacy_policy')->first();
+        return view('front_end.privacy_policy', compact('details'));
+    }
+
+    public function manual(){
+        $details = Manual::get();
+        return view('front_end.manual', compact('details'));
     }
 }

@@ -104,7 +104,7 @@
                                         </select>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">Buuton 1 Text</label>
+                                        <label class="form-label">Button 1 Text</label>
                                         <input type="text" class="form-control" value="" name="btn1_txt[]">
                                     </div>
                                     <div class="mb-3">
@@ -112,7 +112,7 @@
                                         <input type="text" class="form-control" value="" name="btn1_link[]">
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">BUtton 2 Text</label>
+                                        <label class="form-label">Btton 2 Text</label>
                                         <input type="text" class="form-control" value="" name="btn2_txt[]">
                                     </div>
                                     <div class="mb-3">
@@ -138,10 +138,8 @@
                                         @foreach (json_decode($data->banner, true) as $key => $bann)
                                             <div class="row border border-5 m-2 p-2">
                                                 <input type="hidden" name="hidden_banner[]" value="{{ $bann['img'] }}">
-                                                <div class="">
-                                                    @if ($key == 0)
+                                                <div class="">              
                                                         <label class="form-label">Banner</label>
-                                                    @endif
 
                                                     <br>
                                                     <img src="{{ asset('uploads/banners/' . $bann['img']) }}" width="200"
@@ -163,7 +161,7 @@
                                                     </select>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label class="form-label">Buuton 1 Text</label>
+                                                    <label class="form-label">Button 1 Text</label>
                                                     <input type="text" class="form-control"
                                                         value="{{ $bann['btn1_txt'] }}" name="btn1_txt[]">
                                                 </div>
@@ -186,7 +184,7 @@
                                                     </select>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label class="form-label">BUtton 2 Text</label>
+                                                    <label class="form-label">Btton 2 Text</label>
                                                     <input type="text" class="form-control"
                                                         value="{{ $bann['btn2_txt'] }}" name="btn2_txt[]">
                                                 </div>
@@ -969,7 +967,7 @@
                                 <input type="text" class="form-control" name="banner_link[]" />
                             </div>
                             <div class="mb-3">
-                                        <label class="form-label">Buuton 1 Text</label>
+                                        <label class="form-label">Button 1 Text</label>
                                         <input type="text" class="form-control"
                                             value=""
                                             name="btn1_txt[]">
@@ -998,7 +996,7 @@
                                                     </select>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">BUtton 2 Text</label>
+                                        <label class="form-label">Btton 2 Text</label>
                                         <input type="text" class="form-control"
                                             value=""
                                             name="btn2_txt[]">

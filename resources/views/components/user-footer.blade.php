@@ -48,12 +48,11 @@
                 <ul>
                     @if($footer != null)                        
                     @foreach (json_decode($footer->information, true) as $key => $info)
-                    @if($key%2 == 0)
-                        <li class="float-left w-50"><a href="{{ $info['link'] }}">{{ $info['text'] }}</a></li>
-                        @else
+                    {{-- @if($key%2 == 0) --}}
+                        <li class="w-50"><a href="{{ $info['link'] }}">{{ $info['text'] }}</a></li>
+                    {{-- @else
                         <li class="float-right w-50"><a href="{{ $info['link'] }}">{{ $info['text'] }}</a></li>
-                        
-                        @endif
+                    @endif --}}
                     @endforeach
                     @endif
                     
@@ -79,17 +78,29 @@
                 <h4 class="mb-5" style="display:block">@if ($footer != null) {{ $footer->need_help_text }} @endif</h4>
 
                 <div class="ftr-address">
-                    <h5><small>Toll Free :</small><br><a href="javascript:void(0)"
-                            style="color:#ffc81d">{{ $address->phone }}</a></h5>
+                    <h5><small>Toll Free :</small><br>
+                        @if ($footer != null)
+                        <i class="bi bi-telephone"></i>
+                        @foreach (json_decode($footer->footer_phone, true) as $fp)    
+                        <a href="tel:{{ $fp['value'] }}">{{ $fp['value'] }}</a>
+                        @endforeach
+                        @endif
+                        </h5>
                     <ul>
 
                         <li>
-                            <p><span><i class="bi bi-geo-alt-fill"></i></span> {{ $address->address }}</p>
+                            <p><span><i class="bi bi-geo-alt-fill"></i></span> @if($footer != null) {{ $footer->footer_address }} @endif</p>
                         </li>
 
                         <li>
-                            <p><span><i class="bi bi-envelope-fill"></i></span><a href="javascript:void(0)">
-                                    {{ $address->email }} </a></p>
+                            <p><span><i class="bi bi-envelope-fill"></i></span>
+                                @if ($footer != null)
+                                @foreach (json_decode($footer->footer_email, true) as $fe)  
+                                <a href="mailto:{{ $fe['value'] }}">
+                                    {{ $fe['value'] }} </a>
+                                @endforeach
+                                @endif
+                            </p>
                         </li>
 
                         <li></li>

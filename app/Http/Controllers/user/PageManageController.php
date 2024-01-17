@@ -36,6 +36,13 @@ class PageManageController extends Controller
 
     public function signup_signin()
     {
+        if(empty(session()->get('next_url'))){
+            $previousUrl = url()->previous();
+        }else{
+            $previousUrl = session()->get('next_url');
+            session()->forget('next_url');
+        }
+        session()->put('previous_url', $previousUrl);
         return view('front_end.signup');
     }
 
@@ -164,6 +171,8 @@ class PageManageController extends Controller
         if (Auth::user()) {
             return view('front_end.account.my_account');
         } else {
+            $previousUrl = request()->url();
+            session()->put('next_url', $previousUrl);
             return redirect()->route('user.signup')->with('danger', 'Please Login First');
         }
     }
@@ -184,6 +193,8 @@ class PageManageController extends Controller
             $cancel_orders = Order::where('user_id', Auth::user()->id)->where('order_status', 'cancel')->orderBy('id', 'desc')->paginate(2);
             return view('front_end.account.order_history', compact('orders', 'cancel_orders'));
         } else {
+            $previousUrl = request()->url();
+            session()->put('next_url', $previousUrl);
             return redirect()->route('user.signup')->with('danger', 'Please Login First');
         }
     }

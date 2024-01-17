@@ -46,9 +46,14 @@ class UserAuthController extends Controller
   
           if(Auth::attempt(['email' => $request -> input('email'), 'password' => $request -> input('password')])){
             CartManageController::cartSync(Auth::user()->id);
+
+            
+            $redirectedUrl = (session()->has('previous_url')) ? (session()->get('previous_url')) : "/";
+
             if(Auth::user()->user_type == "wholesale"){
                  if(Auth::user()->is_accept == "accept"){
-                    return redirect()->route('user.home');
+                    return redirect($redirectedUrl);
+                    // return redirect()->route('user.home');
                  }else{
                     if(Auth::user()->is_accept != "reject"){
                         Auth::logout();
@@ -60,7 +65,8 @@ class UserAuthController extends Controller
                 }
             }else{
                 if(Auth::user()->guest_user == 0){
-                    return redirect()->route('user.home');
+                    return redirect($redirectedUrl);
+                    // return redirect()->route('user.home');
                 }else{
                     return redirect()->route('user.signup')->with('danger', 'Invalid Credentials');
                 }
@@ -79,6 +85,9 @@ class UserAuthController extends Controller
 
      public function logout(Request $request){
         Auth::logout();
+        if(session()->has('previous_url')){
+            session()->forget('previous_url');
+        }
         return redirect()->route('user.signup')->with('success', 'Succesfully Logedout');
      }
 }

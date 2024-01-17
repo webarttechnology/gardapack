@@ -30,6 +30,10 @@ class WebsiteFoter extends Model
         'my_account_header',
         'information',
         'accounts',
-        'need_help_text'
+        'need_help_text',
+
+        'footer_email',
+        'footer_phone',
+        'footer_address'
     ];
 }

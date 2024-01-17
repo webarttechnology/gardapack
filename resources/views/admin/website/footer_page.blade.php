@@ -333,6 +333,37 @@
                                 @endif
                             </div>
                             <br>
+
+                            <h5>Contact Details Section</h5>
+                            <div class="">
+                                <label class="form-label">Email</label>
+                                @if($footer != null && $footer->footer_email != null)
+                                <input type="text" class="form-control" name="footer_email" id="tagInput" value="{{ $footer->footer_email }}">
+                                @else
+                                <input type="text" class="form-control" name="footer_email" id="tagInput" value="">
+                                @endif
+                                
+                                @if ($errors->has('footer_email'))
+                                <span class="text-danger">{{ $errors->first('footer_email') }}</span>
+                                @endif
+                            </div>
+                            <br>
+                            <div class="">
+                                <label class="form-label">Phone</label>
+                                <input type="text" class="form-control" name="footer_phone" id="tagInput2" value="@if($footer != null) {{ $footer->footer_phone }} @endif">
+                                @if ($errors->has('footer_phone'))
+                                <span class="text-danger">{{ $errors->first('footer_phone') }}</span>
+                                @endif
+                            </div>
+                            <br>
+                            <div class="">
+                                <label class="form-label">Address</label>
+                                <input type="text" class="form-control" name="footer_address" value="@if($footer != null) {{ $footer->footer_address }} @endif">
+                                @if ($errors->has('footer_address'))
+                                <span class="text-danger">{{ $errors->first('footer_address') }}</span>
+                                @endif
+                            </div>
+                            <br>
                             
                             {{-- <div class="">
                                 <a href="{{ url('admin/update/pages/3') }}" id="manage_con" target="_balnk">
@@ -448,6 +479,16 @@ $(document).ready(function() {
         $('#saveButton1').on('click', function() {
             saveChanges();
         });
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Initialize Tagify on the input element
+        var input = document.getElementById('tagInput');
+        var input2 = document.getElementById('tagInput2');
+        new Tagify(input);
+        new Tagify(input2);
     });
 </script>
 @endsection

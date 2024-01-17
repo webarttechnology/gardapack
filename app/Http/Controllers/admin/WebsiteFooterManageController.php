@@ -36,7 +36,14 @@ class WebsiteFooterManageController extends Controller
             'account_text.*' => 'required',
             'account_link.*' => 'required',
             'need_help_text' => 'required',
+
+            'footer_email' => 'required',
+            'footer_phone' => 'required',
+            'footer_address' => 'required',
         ]);
+
+        // dd($request->all());
+        // dd(json_decode($request->footer_email, true)[0]['value']);
 
         $footer = WebsiteFoter::first();
         if ($request->hasFile('foot_img')) {
@@ -149,6 +156,11 @@ class WebsiteFooterManageController extends Controller
                 'information_header' => $request->information_header,
                 'my_account_header' => $request->account_header,
                 'need_help_text' => $request->need_help_text,
+
+                'footer_email' => $request->footer_email,
+                'footer_phone' => $request->footer_phone,
+                'footer_address' => $request->footer_address,
+
                 'information' => $information,
                 'accounts' => $accounts,
 
@@ -180,6 +192,10 @@ class WebsiteFooterManageController extends Controller
                 'need_help_text' => $request->need_help_text,
                 'information' => $information,
                 'accounts' => $accounts,
+
+                'footer_email' => $request->footer_email,
+                'footer_phone' => $request->footer_phone,
+                'footer_address' => $request->footer_address,
             ]);
         }
 

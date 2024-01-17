@@ -39,6 +39,8 @@ class WishListController extends Controller
             $lists = WishList::where('user_id', Auth::user()->id)->paginate(10);
             return view('front_end.wishlist', compact('lists'));
         }else{
+            $previousUrl = request()->url();
+            session()->put('next_url', $previousUrl);
             return redirect('/signup')->with('error', 'Please Login to Continue');
         }
     }

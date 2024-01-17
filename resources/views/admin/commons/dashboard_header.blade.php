@@ -54,6 +54,13 @@
 
 
 	<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+	<!-- tagify -->
+	
+	<script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
+
 	
 	<title>
 	@if($app_name != null)
@@ -167,7 +174,7 @@
 					<a href="{{ url('admin/wholesaler/lists') }}" @if(Str::contains($currentUrl, 'wholesaler')) class="activate" @endif>
 						<div class="parent-icon @if(Str::contains($currentUrl, 'wholesaler')) active_div @endif"><i class="bx bx-user-circle"></i>
 						</div>
-						<div class="menu-title @if(Str::contains($currentUrl, 'wholesaler')) active_div @endif">Wholeseller</div>
+						<div class="menu-title @if(Str::contains($currentUrl, 'wholesaler')) active_div @endif">Wholesaler</div>
 					</a>
 					<a href="{{ route('shops.lists') }}" @if(Str::contains($currentUrl, 'shops')) class="activate" @endif>
 						<div class="parent-icon @if(Str::contains($currentUrl, 'shops')) active_div @endif"><i class="bx bx-user-circle"></i>
@@ -232,6 +239,16 @@
 					</ul>
 				</li>
 
+				<li class="menu-label">Contact Us</li>
+				<li>
+					<ul>
+                    <li @if(Str::contains($currentUrl, 'user-msg')) class="activate" @endif> 
+						<a href="{{ url('admin/user-msg') }}">
+							<i class="bx bx-right-arrow-alt @if(Str::contains($currentUrl, 'user-msg')) active_div @endif"></i>
+							<span @if(Str::contains($currentUrl, 'user-msg')) class='active_div' @endif>Contact Us</span></a></li>
+					</ul>
+				</li>
+
 				<li class="menu-label">Shipping Options</li>
 				<li>
 					<ul>
@@ -270,7 +287,7 @@
 
 					<li @if(Str::contains($currentUrl, 'product/add')) class="activate" @endif> <a href="{{ url('admin/product/add') }}"><i class="bx bx-right-arrow-alt @if(Str::contains($currentUrl, 'product/add')) active_div @endif"></i><span @if(Str::contains($currentUrl, 'product/add')) class='active_div' @endif>Add New Products</span></a></li>
 					 <li @if(Str::contains($currentUrl, 'stock/page')) class="activate" @endif> <a href="{{ url('admin/stock/page', 'in-stock') }}"><i class="bx bx-right-arrow-alt @if(Str::contains($currentUrl, 'stock/page')) active_div @endif"></i><span @if(Str::contains($currentUrl, 'stock/page')) class='active_div' @endif>Manage Stocks</span></a></li>
-					 <!--<li> <a href="{{ url('admin/product/request/page') }}"><i class="bx bx-right-arrow-alt"></i>Product Requests</a></li>-->
+					 <li @if(Str::contains($currentUrl, 'request/page')) class="activate" @endif> <a href="{{ url('admin/product/request/page') }}"><i class="bx bx-right-arrow-alt @if(Str::contains($currentUrl, 'request/page')) active_div @endif"></i><span @if(Str::contains($currentUrl, 'request/page')) class='active_div' @endif>Product Requests</span></a></li>
 					</ul>
 				</li>
 

@@ -260,6 +260,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('wholesaler/lists', [WholeSaleManageController::class, 'wholesaler_lists']);
     Route::get('wholesaler/view-details/{id}', [WholeSaleManageController::class, 'view_details']);
     Route::get('wholesaler/status/{id}/{status}', [WholeSaleManageController::class, 'wholesaler_status']);
+    // Route::get('contact/show', [ContactUsManageController::class, 'contact_page']);
 
     // Technology CMS
     Route::post('technology/save/action', [TechnologyManageController::class, 'save']);

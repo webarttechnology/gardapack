@@ -20,13 +20,10 @@
         </div>
         @endif
 
-        <div>
-            <a href="{{ url('admin/product/add') }}"><button class="btn btn-primary radius-30"><i
-                        class="bx bx-plus"></i>Add New</button></a>
-        </div>
+        
         <br>
 
-        <h6 class="mb-0 text-uppercase">All Products</h6>
+        <h6 class="mb-0 text-uppercase">All Product Requests</h6>
         <hr />
 
 

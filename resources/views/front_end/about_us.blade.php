@@ -140,7 +140,7 @@
                     {!! $details->how_work_desc1 !!}
 
                 </div>
-                <div class="col-sm-12 mt-3" >
+                <div class="col-sm-11 mt-3" >
 					{!! $details->extra_desc !!}
 				</div>
             </div>

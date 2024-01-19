@@ -290,7 +290,7 @@
                 <!-- sidebar -->
 
                 <aside id="sidebar" class="asidesecty">
-                    <span class="text-danger forClose">Close</span>
+                    {{-- <span class="text-danger forClose">Close</span> --}}
                     <!-- widget -->
 
                     <section class="widget overflow-hidden mb-3">

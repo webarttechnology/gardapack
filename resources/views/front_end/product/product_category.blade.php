@@ -483,7 +483,7 @@
 
 
 
-                    @if ($tags != null)
+                    {{-- @if ($tags != null)
 
                         @php
 
@@ -517,7 +517,7 @@
 
                         </section>
 
-                    @endif
+                    @endif --}}
 
 
 

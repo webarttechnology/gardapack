@@ -2611,7 +2611,8 @@ a {
 
 
 .widget .categoryList a {
-    color: #999999;
+    /*color: #999999;*/
+    color: white;
 }
 
 
@@ -2669,7 +2670,8 @@ a {
 
   line-height: 16px;
 
-  color: #707070;
+  /*color: #707070;*/
+  color: white;
 
 }
 
@@ -2703,8 +2705,8 @@ a {
 
 .widget .recentListHolder .headingVII a {
 
-  color: #707070;
-
+  /*color: #707070;*/
+  color: white;
   display: block;
 
 }
@@ -2717,7 +2719,8 @@ a {
 
   line-height: 17px;
 
-  color: #27272f;
+  /*color: #27272f;*/
+  color: white;
 
 }
 
@@ -4365,6 +4368,15 @@ a {
   .footersec .ftrservice {
     margin-top: 30px !important;
 }
+.support-page h1 {
+        font-size: 40px;
+        margin:0;
+    }
+    .support-page .subhd {
+    font-size: 24px;
+    margin-bottom: 15px !important;
+}
+
 
 }
 
@@ -9189,6 +9201,19 @@ font-weight:bold;
     width: 230px;
     opacity: 1;
     visibility: visible;
+}
+@media only screen and (max-width: 575px) {
+.paggSlider .slick-slide {
+        width: 12% !important;
+        margin-right: 0;
+    }
+    h2, .h2 {
+    font-size: 20px !important;
+}
+.support-page h1 {
+        font-size: 25px;
+        margin:0;
+    }
 }
 /* .back-to-top:hover{
   border: var(--color-theme) 1px solid;

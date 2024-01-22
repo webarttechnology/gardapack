@@ -6,7 +6,9 @@
             <div class="cart">
                 <div class="catlist">
                     <div class="grid_12">
+                        @if($total > 0)
                         <h1>Your Cart:</h1>
+                        @endif
                     </div>
 
                     <!-- if user login -->
@@ -155,7 +157,7 @@
                                     </li>
                                 @endforeach
                             @else
-                                <h2>No Products Found</h2>
+                                <h2 class="text-center">No Products Found</h2>
 
                             @endif
 
@@ -184,16 +186,23 @@
                                 </div>
 
                                 <div class="col_1of2">
+                                    @if($total > 0)
                                     <div class="total">
                                         <span class="amount"> Total $ {{ $total }}</span>
                                  </div>
+                                 @endif
                                 </div>
                             </div>
 
+
                             <div class="btn-summary">
                                 <a href="{{ url('/') }}" class="btn-checkout btn-reverse">Continue Shopping</a>
+                                
+                                @if($total > 0)
                                 <a href="{{ url('checkout') }}" class="btn-checkout">Checkout</a>
+                                @endif
                             </div>
+                            
                         </div>
                     </div>
                 </div>

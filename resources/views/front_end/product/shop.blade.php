@@ -195,11 +195,17 @@
                                                 onclick="return addToCart({{ $product->id }}, 'single', 'pc')"
                                                 class="icon-cart d-block"></a></li>
 
-                                            <li class="mr-2 overflow-hidden"><a href="javascript:void(0)"
+                                            <!--<li class="mr-2 overflow-hidden"><a href="javascript:void(0)"-->
+                                            <!--        data-toggle="tooltip" data-placement="left" title="Whishlist"-->
+                                            <!--        onclick="addWishList({{ $product->id }}, 1, 'category')"-->
+                                            <!--        class="icon-heart d-block"></a>-->
+                                            <!--</li>-->
+                                            
+                                             <li class="mr-2 overflow-hidden"><a href="{{ url('signup') }}"
                                                     data-toggle="tooltip" data-placement="left" title="Whishlist"
-                                                    onclick="addWishList({{ $product->id }}, 1, 'category')"
                                                     class="icon-heart d-block"></a>
                                             </li>
+                                            
                                             @endif
 
 
@@ -252,12 +258,20 @@
                                                     onclick="return addToCart({{ $product->id }}, 'single', 'pc')"
                                                     class="fas fa-shopping-bag"></a></li>
 
+                                        @if(Auth::user())
                                             <li class="btn btn-wrning overflow-hidden"><a href="javascript:void(0)"
                                                     data-toggle="tooltip" data-placement="top" title="Wishlist"
                                                     onclick="addWishList({{ $product->id }}, 1, 'category')"
                                                     class="fas fa-heart"></a>
 
                                             </li>
+                                        @else
+                                        <li class="btn btn-wrning overflow-hidden"><a href="{{ url('signup') }}"
+                                                    data-toggle="tooltip" data-placement="top" title="Wishlist"
+                                                    class="fas fa-heart"></a>
+
+                                            </li>
+                                        @endif
                                         </ul>
 
 
@@ -290,7 +304,7 @@
                 <!-- sidebar -->
 
                 <aside id="sidebar" class="asidesecty">
-                    {{-- <span class="text-danger forClose">Close</span> --}}
+                    <!--<span class="text-danger forClose">Close</span>-->
                     <!-- widget -->
 
                     <section class="widget overflow-hidden mb-3">

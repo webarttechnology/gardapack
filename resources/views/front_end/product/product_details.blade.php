@@ -30,8 +30,8 @@
         <div class="row mb-6 justify-content-around">
 
             <div class="col-12 col-lg-6 order-lg-1">
-                <div class="row">
-                    <div class="col-3 col-sm-2 col-md-2">
+                <div class="row mobile-reverse">
+                    <div class="col-12 col-sm-2 col-md-2">
                         <!-- paggSlider -->
                         <div class="paggSlider">
         
@@ -53,7 +53,7 @@
         
                         </div>
                     </div>
-                    <div class="col-9 col-sm-10 col-md-10">
+                    <div class="col-12 col-sm-10 col-md-10">
                         <!-- productSliderImage -->
                         <div class="productSliderImage mb-lg-0 mb-4" id="first_img" style="display: block;">
         
@@ -143,7 +143,7 @@
 
                     <hr>
                     {{-- <p class="mb-5">{!! $product->short_description !!}</p> --}}
-                    <ul class="list-unstyled productInfoDetail mb-2 overflow-hidden">
+                    <ul class="productInfoDetail mb-2">
 
                         <li class="mb-2">
                             {!! $product->features !!}
@@ -500,7 +500,9 @@
                                         </li>
                                     @else
                                         <li class="mr-2 overflow-hidden"><a href="javascript:void(0)"
-                                                onclick="warningAlert()" class="icon-cart d-block"></a></li>
+                                                onclick="return addToCart({{ $related_product->id }}, 'single')"
+                                                class="icon-cart d-block"></a>
+                                        </li>
                                     @endif
                                 @endif
 

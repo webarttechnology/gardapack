@@ -1,25 +1,27 @@
 function addToCart(product_id, type, page = "na", quantity = 0) {
     let cart_quantity;
     // console.log(product_id);
-    // alert(quantity);
+    // alert(type);
 
     if (type == "multiple") {
         cart_quantity = document.getElementById("cart_quantity").value;
-    } else {
-        cart_quantity = 1;
-    }
-
-    if (type == "multiple-add") {
-        cart_quantity = (quantity + 1);
-    }
-
-    if (type == "multiple-sub") {
-        if(quantity > 1){
-            cart_quantity = (quantity - 1);
-        }else{
-            return false;
-        }
     } 
+    else {
+        if (type == "multiple-add") {
+            cart_quantity = (quantity);
+        }
+    
+        else if (type == "multiple-sub") {
+            if(quantity > 1){
+                cart_quantity = (quantity);
+            }else{
+                return false;
+            }
+        } 
+        else{
+            cart_quantity = 1;
+        }
+    }
 
     if ($("#variation").length) {
         if ($("#variation").val() === "") {
@@ -36,9 +38,9 @@ function addToCart(product_id, type, page = "na", quantity = 0) {
     let message;
 
     if (page == "pc") {
-        url = "../../user/cart/add/" + product_id + "/" + cart_quantity;
+        url = "../../user/cart/add/" + product_id + "/" + cart_quantity + "/" + type;
     } else {
-        url = "../user/cart/add/" + product_id + "/" + cart_quantity;
+        url = "../user/cart/add/" + product_id + "/" + cart_quantity + "/" + type;
     }
 
     var csrfToken = $('meta[name="csrf-token"]').attr("content");
@@ -57,10 +59,11 @@ function addToCart(product_id, type, page = "na", quantity = 0) {
         },
         dataType: "json",
         success: function (data) {
-            if (data == "exceed") {
-                cartWarning("Sorry! Cart Quantity Exceded");
-                //  document.getElementById('cart_msg').innerHTML = "<strong class='text-danger'> Sorry! we don't have that much product in stock </strong>"
-            }
+            // if (data == "exceed") {
+            //     cartWarning("Sorry! Cart Quantity Exceded");
+            //     //  document.getElementById('cart_msg').innerHTML = "<strong class='text-danger'> Sorry! we don't have that much product in stock </strong>"
+            // }
+            console.log(data); 
             if (data == "Success") {
                 toastr.success("Added To Cart Successfully");
                 setTimeout(location.reload(), 1500);

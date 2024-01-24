@@ -41,7 +41,7 @@ class CartManageController extends Controller
         }
     }
 
-    public function cart_add($product_id, $cart_quantity, Request $request)
+    public function cart_add($product_id, $cart_quantity, $type, Request $request)
     {
         $product_details = Product::whereId($product_id)->first();
 
@@ -68,13 +68,14 @@ class CartManageController extends Controller
                     ]);
                 } else {
                     Cart::where('user_id', $user_id)->where('product_id', $product_id)->update([
-                        'cart_quantity' => $cart_quantity,
+                        'cart_quantity' => ($check->cart_quantity + 1),
                         'amount' => !empty($variationInfo) ? $variationInfo->final_price : $product_details->price,
                         'color' => $request->color,
                         'variation' => $request->variation
                     ]);
                 }
 
+                // return response()->json($cart_quantity);
                 return response()->json("Success");
             } else {
                 return response()->json("exceed");
@@ -86,6 +87,11 @@ class CartManageController extends Controller
             if (!empty($request->variation)) {
                 $variationInfo = Variations::find($request->variation);
             }
+
+            // $new_cart_quantity = 0;
+            // if($type == "multiple-sub"){
+            //     $new_cart_quantity = (int) $cart_quantity - 1;
+            // }
 
             $new_data = [
                 'product_id' => $product_id,
@@ -111,7 +117,16 @@ class CartManageController extends Controller
                 if (!$productExists) {
                     $existing_data[] = $new_data;
                 } else {
-                    $updatedProduct['cart_quantity'] = $new_data['cart_quantity'];
+                    $updatedProduct['cart_quantity'] += $new_data['cart_quantity'];
+                    
+                    if($type == "multiple-sub"){
+                        $updatedProduct['cart_quantity'] = $new_data['cart_quantity'] - 1;
+                    }
+
+                    if($type == "multiple-add"){
+                        $updatedProduct['cart_quantity'] = $new_data['cart_quantity'] + 1;
+                    }
+
                     $existing_data[] = $updatedProduct;
                 }
 
@@ -121,6 +136,7 @@ class CartManageController extends Controller
             }
 
             return response()->json("Success");
+            // return response()->json($updatedProduct);
         }
     }
 
@@ -160,9 +176,23 @@ class CartManageController extends Controller
 
     public function cart_delete($cart_id)
     {
-        Cart::find($cart_id)->delete();
-        // return redirect()->back();
-        return response()->json("Success");
+        if (Auth::check()) {
+            Cart::find($cart_id)->delete();
+            return response()->json("Success");
+        }else{
+            $existingCart = json_decode(Session::get('existing_cart'), true);
+
+            foreach ($existingCart as $index => $item) {
+                if ($item['product_id'] == $cart_id) {
+                    unset($existingCart[$index]);
+                    break;
+                }
+            }
+    
+            Session::put('existing_cart', json_encode(array_values($existingCart)));
+            return response()->json("Success");
+        }
+        
     }
 
 

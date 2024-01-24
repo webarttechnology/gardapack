@@ -103,9 +103,9 @@
                                     @endphp
 
                                     <li class="grid_4 item">
-                                        {{-- <a href="javascript:void(0)" onclick="" class="btn-remove">
+                                        <a href="javascript:void(0)" onclick="deleteCart({{ $cart['product_id'] }})" class="btn-remove">
                                             <i class="bi bi-trash"></i>
-                                        </a> --}}
+                                        </a>
 
                                         <div class="preview">
                                             <img src="{{ asset('admin/product/featured_img/' . $product->featured_img) }}" />
@@ -137,7 +137,7 @@
 
                                                 {{-- cartUpdate({{ $cart->id }}, 'minus') --}}
 
-                                                <a href="javascript:void(0)" onclick="return addToCart({{ $product->id }}, 'multiple-sub', 'pc', {{ $cart['cart_quantity'] }})" class="btn-quantity minus">
+                                                <a href="javascript:void(0)" onclick="return addToCart({{ $product->id }}, 'multiple-sub', 'pc', {{ ($cart['cart_quantity']) }})" class="btn-quantity minus">
                                                     <i class="bi bi-dash"></i>
                                                 </a>
 
